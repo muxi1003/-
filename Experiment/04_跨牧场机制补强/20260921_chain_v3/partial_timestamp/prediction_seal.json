@@ -1,0 +1,14 @@
+{
+  "reference_input_read": false,
+  "inputs_unchanged": true,
+  "windows": 53,
+  "events": 622,
+  "elapsed_seconds": 592.2659999999996,
+  "files": {
+    "prediction_events.csv": "fb23ec218ce3f66c76c80d1227f19206f5f43b23b82fa3cd3b5eb750d0fb1387",
+    "prediction_windows.csv": "4432c534c151f6097ad3ceae9a90268644e26635782d22cebf056bf07568b911",
+    "protocol_before_predictions.json": "d92af496ce8bf460c6d5b5c719c264b067e758681321ef412061bd4fe8e69b97",
+    "segments.csv": "6870aba083ad276d54fc299c7154deb1c55b42431229d9751b473f38e655ea3b",
+    "timestamp_gaps.csv": "c7fff56d79f2ab5c8e4a70ac3ad8f51aec8ea38f56fb69074fa12db13696a441"
+  }
+}

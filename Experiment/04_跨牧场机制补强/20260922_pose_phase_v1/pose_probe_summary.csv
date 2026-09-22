@@ -1,0 +1,8 @@
+﻿variant,frames,detected_frames,high_keypoints
+baseline,72,34,51
+center75,72,32,47
+clahe_l,72,33,48
+gray,72,21,39
+lower75,72,30,42
+rotate_minus30,72,11,13
+rotate_plus30,72,6,8

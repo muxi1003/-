@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "scope": "Edge real video plus synthetic Windows IME-shaped key events; not a live test of the users IME",
+  "tested": [
+    "Process+KeyQ",
+    "composing Process+KeyW",
+    "E interval toggle",
+    "A/D navigation",
+    "IME text input protection",
+    "cache persistence",
+    "embedded window data unchanged"
+  ],
+  "errors": [],
+  "html_sha256": "d700d3c097cf11be2d0f2a3ee19758db90cce81bff56bdee16092739751bad2f",
+  "humanEventsCreated": 0
+}

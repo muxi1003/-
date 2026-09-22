@@ -1,0 +1,53 @@
+--- Page 1 ---
+www.engineeringvillage.com
+Detailed results: 1
+Downloaded: 6/15/2026
+1. An end-to-end method for predicting the respiratory rate of dairy cows from RGB videos
+Accession number: 20243917119781
+Authors: Wang, M. (1); Li, S. (1); Peng, R. (1); Räisänen, S.E. (1); Serviento, A.M. (1); Sun, X. (1); Wang, K. (1); Yu, F. (2); Niu, M. (1)
+Author aﬃliation: (1) Animal Nutrition, Institute of Agricultural Sciences, Department of Environmental Systems Science, ETH
+Zürich, Zurich; 8092, Switzerland; (2) Department of Information Technology and Electrical Engineering, ETH Zürich, Zurich;
+8092, Switzerland
+Source title: 11th European Conference on Precision Livestock Farming
+Abbreviated source title: European Conf. Precis. Livest. Farming
+Part number: 1 of 1
+Issue title: 11th European Conference on Precision Livestock Farming
+Issue date: 2024
+Publication year: 2024
+Pages: 1250-1258
+Language: English
+ISBN-13: 9791221067361
+Document type: Conference article (CA)
+Conference name: 11th European Conference on Precision Livestock Farming
+Conference date: September 9, 2024 - September 12, 2024
+Conference location: Bologna, Italy
+Conference code: 202416
+Sponsor: Boehringer Ingelheim; et al.; Granarolo; Granlatte; MSD Animal Health; Parmigiano Reggiano
+Publisher: European Conference on Precision Livestock Farming
+Abstract: Respiratory rate (RR) is an important indicator of the health and welfare status of dairy cows. In recent years,
+progress has been made in monitoring the RR of dairy cows using video data. However, existing methods often involve
+multiple processing modules, such as region of interest detection and tracking, which can introduce errors that propagate
+through successive steps. The objective of this study was to develop an end-to-end computer vision (CV) method to predict
+RR of dairy cows continuously and automatically. The method leverages a state-of-the-art Transformer model, VideoMAE,
+which divides video frames into patches as input tokens, enabling the automated selection and featurization of relevant
+regions, such as a cow's abdomen, for predicting RR. The original encoder of VideoMAE was retained, and a classiﬁcation
+head was added on top of it. The model was ﬁne-tuned and tested on 17 video segments (16.2 ± 11.00 min; Mean ± SD)
+collected in a tie-stall barn from 6 dairy cows, capturing them resting with minimal movement from top and side views.
+Respiratory rates measured using a respiratory belt for individual cows were serving as the ground truth. The evaluation of
+the developed model was conducted using multiple metrics, including mean absolute error of 2.60 breaths per minute (bpm),
+root mean squared error of 3.62 bpm, root mean squared prediction error (as a proportion of observed mean) of 14.0%, and
+Pearson correlation of 0.91. The developed CV-based method oﬀers the potential for an end-to-end solution to monitor RR
+automatically. © 2024 11th European Conference on Precision Livestock Farming. All rights reserved.
+Number of references: 13
+Main heading: Mean square error
+Controlled terms: Fertilizers  -  Image coding  -  Image segmentation
+Uncontrolled terms: Dairy cow  -  End to end  -  Multiple processing  -  Precision livestock farming  -  Processing modules  -
+ Regions of interest  -  Respiratory rate  -  RGB cameras  -  Transformer  -  Video data
+Classiﬁcation code: 821.3 Agricultural Chemicals  -  1106.3.1 Image Processing  -  1202.2 Mathematical Statistics  -  1502.1.1.3
+Soil Pollution
+Numerical data indexing: Percentage 1.40E+01%, Time 9.72E+02s
+Compendex references: YES
+Database: Compendex
+Data Provider: Engineering Village
+Compilation and indexing terms, Copyright 2026 Elsevier Inc.
+Content provided by Engineering Village. Copyright 2026 Page 1 of 1

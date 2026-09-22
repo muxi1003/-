@@ -1,0 +1,22 @@
+{
+  "role": "single_retrospective_fusion_selector_test",
+  "input_hashes": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1\\scripts\\paper_repro_rr.py": "3c211f52fe3f1a6a3104a38f2b275cdf40fe5f21ff4ca042052cee8424947ec9",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1\\method_config.json": "c2e1d9c4bf315f0f7efd9683e9dc67ad5e55b106cc01e1f0c9a0eb5f076daa93",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\test_observed_periodicity.py": "758fd8841a67b6e4a27d1e60308f819e099d77994899de0d36bbfbde709aa218",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\external_transfer\\20260914_v2\\prediction_windows.csv": "d4dd3253785753da5b7ba48f16d73b84effbbb7570446ab413186e52504d0aa5"
+  },
+  "score": "max normalized Lomb-Scargle power after linear detrending, multiplied by finite sample coverage",
+  "fit_samples": "raw finite mapped temperatures only; never interpolated samples",
+  "frequency_range_bpm": [
+    20.0,
+    100.0
+  ],
+  "frequency_step": "1/(4*window_duration)",
+  "changed_component": "candidate selection only; existing peak rules/ROI/model/time unchanged",
+  "reference_read_for_prediction": false,
+  "no_phase_shift": true,
+  "all_original_abstentions_retained": true,
+  "candidate_count": 1,
+  "default_changed": false
+}

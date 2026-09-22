@@ -1,0 +1,6 @@
+# 仅事件输出的可选合并结果
+
+原216窗完整输出保持原样。53个原时间拒判窗增加partial_timestamp_supported_events；
+prediction_status和predicted_count仍保留原整窗拒判与空值，不能把partial_event_count除30秒当整窗RR。
+timestamp_supported_core_seconds仅表示时序支持核心时长，不保证整个片段鼻孔可见。
+此结果是已查看外测数据后的回顾性候选，不替换原冻结结果，也不恢复缺失区间内的事件。

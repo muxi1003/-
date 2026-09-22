@@ -1,0 +1,1078 @@
+--- Page 1 ---
+Citation: Zhao, K.; Duan, Y.; Chen, J.;
+Li, Q.; Hong, X.; Zhang, R.; Wang, M.
+Detection of Respiratory Rate of
+Dairy Cows Based on Infrared
+Thermography and Deep Learning.
+Agriculture 2023, 13, 1939.
+https://doi.org/10.3390/
+agriculture13101939
+Academic Editors: Xiuliang Jin, Hao
+Yang, Zhenhai Li, Changping Huang
+and Dameng Yin
+Received: 8 September 2023
+Revised: 28 September 2023
+Accepted: 30 September 2023
+Published: 4 October 2023
+Copyright: © 2023 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+agriculture 
+Article
+Detection of Respiratory Rate of Dairy Cows Based on Infrared
+Thermography and Deep Learning
+Kaixuan Zhao 1,2 , Yijie Duan 1,2 , Junliang Chen 3, Qianwen Li 1,*, Xing Hong 1,2 , Ruihong Zhang 1,2
+and Meijia Wang 4
+1 College of Agricultural Equipment Engineering, Henan University of Science and Technology,
+Luoyang 471023, China; kx.zhao@haust.edu.cn (K.Z.)
+2 Science & Technology Innovation Center for Completed Set Equipment, Longmen Laboratory,
+Luoyang 471023, China
+3 College of Food & Bioengineering, Henan University of Science and Technology, Luoyang 471023, China
+4 School of Electronic Information and Artiﬁcial Intelligence, Shaanxi University of Science & Technology,
+Xi’an 710021, China; meijiawang@sust.edu.cn
+* Correspondence: liqianwen@haust.edu.cn
+Abstract: The respiratory status of dairy cows can reﬂect their heat stress and health conditions.
+It is widely used in the precision farming of dairy cows. To realize intelligent monitoring of cow
+respiratory status, a system based on infrared thermography was constructed. First, the YOLO v8
+model was used to detect and track the nose of cows in thermal images. Three instance segmentation
+models, Mask2Former, Mask R-CNN and SOLOv2, were used to segment the nostrils from the nose
+area. Second, the hash algorithm was used to extract the temperature of each pixel in the nostril area
+of a cow to obtain the temperature change curve. Finally, the sliding window approach was used
+to detect the peaks of the ﬁltered temperature curve to obtain the respiratory rate of cows. Totally
+81 infrared thermography videos were used to test the system, and the results showed that the AP50
+of nose detection reached 98.6%, and the AP50 of nostril segmentation reached 75.71%. The accuracy
+of the respiratory rate was 94.58%, and the correlation coefﬁcient R was 0.95. Combining infrared
+thermography technology with deep learning models can improve the accuracy and usability of the
+respiratory monitoring system for dairy cows.
+Keywords: infrared thermography; respiratory rate; nostril segmentation; dairy cows
+1. Introduction
+The respiratory behaviour of dairy cows is closely related to their health status, and the
+respiratory rate (RR) of healthy dairy cows is approximately 12 to 28 times per minute [1].
+When the RR ﬂuctuates abnormally, it may be closely related to cow disease, shed comfort,
+environmental temperature, etc. [2–4]. Automatic monitoring of the breathing behavior
+of cows not only helps breeders grasp the health status of cows, but also ensures the
+production performance of cows and farm beneﬁts [ 5]. The detection of the respiratory
+behavior of cows is mainly completed by manual counting, which has high labor and
+time costs and low accuracy [ 6]. Therefore, it is important to realize the intelligent and
+automatic monitoring of dairy cow respiration to maintain the production performance of
+dairy cows and promote the development of precision breeding [7]. Today’s respiratory
+status monitoring methods are mainly divided into contact and noncontact methods [8,9].
+For contact detection of breathing behaviour, Eigenberg et al. (2000) ﬁxed a ﬁlm pressure
+sensor on the abdomen of dairy cows with a belt, which recorded the regular ﬂuctuations
+of the abdomen. In a direct sunlight environment, when the temperature changed by
+1◦C, the RR change in dairy cows was 6.6 times/min [ 10]. Milan et al. (2016) ﬁxed the
+temperature sensor near the nostril of the cow with a halter to monitor the temperature
+change in the air near the nostril of the cow and calculated the breathing rate according
+Agriculture 2023, 13, 1939. https://doi.org/10.3390/agriculture13101939 https://www.mdpi.com/journal/agriculture
+
+--- Page 2 ---
+Agriculture 2023, 13, 1939 2 of 15
+to the number of oscillations of the temperature signal [6]. Strutzke et al. (2019) designed
+a cow contact breathing monitoring device based on a differential pressure sensor. This
+method was highly correlated with manual counting results in three different states of cows:
+sleeping (correlation coefﬁcient, R = 0.92), lying down (R = 0.98), and standing (R = 0.99) [11].
+Although the technology of respiratory status monitoring methods based on contact sensors
+is mature, it is difﬁcult to apply in practice because of the poor compliance of dairy cows,
+the complex environment, and many interference factors. In addition, the contact sensor
+easily causes the stress response of cows, affecting animal welfare. Noncontact respiratory
+status monitoring does not easily cause a stress response in dairy cows because of its fast
+response and ﬂexible installation; this method is favoured by an increasing number of
+researchers and is an important development direction of intelligent respiratory status
+monitoring of dairy cows [12].
+For noncontact detection of breathing behaviour, Tang Liang et al. (2015) used machine
+vision technology to detect the breathing rate of pigs by assessing the changes in their
+abdominal area while breathing. The results from 10 test videos with low interference
+showed that the RR detection accuracy of this method could reach 92.0% [13]. Benetazzo
+et al. (2014) collected and calculated the distance between the chest and the camera based on
+the Kinect depth camera to detect breathing behaviour. Five sets of test results in different
+environments show that this method is a feasible alternative for breath detection [14]. Zhao
+Kaixuan et al. (2014) calculated the relative movement speed of each pixel point of a video
+frame image by using a Horn–Schunck optical ﬂow method, screened out breathing motion
+points in the pixel points by using cyclic Otsu algorithm, dynamically calculated the period
+of a speed direction curve, calculated the RR of the cow and further judged whether the cow
+breathing was abnormal. The accuracy rate of RR detection was 95.68% and the success rate
+of abnormal detection was 89.06% [15]. Zeng et al. (2020) proposed a breathing detection
+system based on WIFI, which uses multiple antennas on the router to receive the object
+reﬂection signal and extract and perceive the object breathing signal through blind source
+separation and independent component analysis [16].
+In the above methods, the costs of the depth camera and the requirements for the
+compliance of a detection object and the environment are relatively high. The Horn–Sch-
+unck optical ﬂow method is computationally expensive, and its detection speed and real-
+time performance are not good. In dairy farms, the environment is complex, and the noise
+is serious, so it is not suitable to use WIFI for breath detection. Infrared thermography
+(IRT) [17] is a noncontact method that has been validated for the measurement of RR in
+adult dairy cattle [18]. In this study, to achieve accurate, rapid, and automatic monitoring
+of the respiratory status of dairy cows, a system based on IRT was proposed. First, a YOLO
+v8 object detection model was used to train a detector of a cow’s nose in IRT images and
+three kinds of instance segmentation models were used to segment the nostrils from the
+nose area. Second, the hash algorithm was used to extract the temperature of each pixel in
+the nostril area of the cow to obtain the temperature change curve. Finally, the temperature
+change curve was ﬁltered, the wave crest was detected, and the RR was obtained. This
+method can provide a reference for the accurate and automatic detection of RR and realize
+automatic monitoring.
+2. Materials and Methods
+2.1. T est Data
+2.1.1. Data Acquisition
+The experimental video was collected in Nanyang Sansege Dairy Farm, China, on a
+sunny day in July 2021. The experimental objects were Holstein cows with an average age
+of 26 months, that were in lactation and had no history of respiratory disease. The cows did
+not drink water for half an hour before image acquisition. The temperature of the barn was
+around 32◦C and the humidity was 65%. When a cow ruminates, it will stretch its head
+out of the railing, and the individual activity is relatively stable. The FLIR A615 infrared
+thermal camera was ﬁxed at a distance of 1.9 m from the cow object and 0.75 m from the
+
+--- Page 3 ---
+Agriculture 2023, 13, 1939 3 of 15
+ground. During the cow ruminating process, the camera recorded the videos of ﬁve cows:
+the collection time of each cow was approximately 3 min, the total time was approximately
+15 min, the frame rate of the video was 25 frames per second (FPS), and the total frame
+was 22,485. The video resolution is 640 pixels (horizontal)× 480 pixels (vertical), and the
+shooting took place under natural lighting conditions.
+2.1.2. Dataset Production
+The preparation process of the test dataset is as follows:
+1. Data preprocessing: approximately 15 min of video is cut into 10 s of video data,
+totalling 92 segments;
+2. Picture acquisition: each frame picture is extracted from the recorded IRT video ﬁle,
+and the picture is saved in a JPG format;
+3. Dividing the dataset: to better train the parameters and predict the performance of
+the model, the dataset is divided into a training set and a test set at a ratio of 7:3 by
+random sampling. The training set is used as a training object to extract the neural
+network model. When the amount of data in the training set is sufﬁcient, it is helpful
+to enhance the recognition ability of the model application. The test set is used to
+verify the accuracy of the model.
+4. Data labelling: the nose, left nostril, and right nostril of the cow in each frame
+image of the training set are manually labelled. After the picture is annotated, a
+corresponding ﬁle is generated, which records the annotated area, object category,
+and other information;
+5. Dataset format: the ﬁle is converted into a standard format dataset for model training
+and testing.
+2.2. Nostril Detection Based on Cascaded Deep Learning
+2.2.1. Nose Detection Based on YOLO V8
+Intelligent video surveillance technology has been widely used in intelligent breeding,
+and it has become a research hotspot in the ﬁeld of agricultural engineering to improve
+the level of dairy cow behavior monitoring by using computer vision technology [19]. To
+realize the automatic monitoring of a cow’s respiratory status in video images, accurate
+nose positioning is essential.
+Nose detection refers to locating the position of a cow’s nose from an IRT image. To
+facilitate subsequent algorithm development and RR detection, the ﬁrst part is to detect the
+object in the IRT images and extract the cow’s nose as the basis for further analysis.
+YOLO (you only look once) [20] is a general object detection model based on a con-
+volutional neural network. It is characterized by using regression ideas to predict the
+rectangular frame of the detected object during detection, so it can greatly improve the
+computational efﬁciency compared with other detection methods that need a selective
+search to extract a large number of candidate areas. YOLO v8 is the latest version of the
+YOLO series models, providing a new SOTA model, replacing the C3 structure of YOLO v5
+with a C2f structure with richer gradient ﬂow, which greatly improves model performance.
+The model can complete the tasks of object detection, instance segmentation, and image
+classiﬁcation, and the loss function of the model adopts the positive sample allocation
+strategy. The model is faster and more accurate. At the same time, the data enhancement
+part of the training introduces the operation of turning off Mosaic enhancement in the last
+10 epochs of YOLO X, which can effectively improve accuracy.
+Therefore, YOLO v8 (you only look once v8) [21], an object detection model based on a
+deep learning neural network, is selected in this paper because of its detection accuracy and
+efﬁciency. As a detector of a cow’s nose, the detection result is represented by a rectangular
+box in the image. In addition, even if the nose can be accurately detected, how to obtain the
+breath temperature ﬂow is still a signiﬁcant problem. Therefore, it is necessary to further
+analyse the results of nose object detection.
+
+--- Page 4 ---
+Agriculture 2023, 13, 1939 4 of 15
+The model training parameters are set as follows: (1) The batch size is 8 with
+10,000 iterations, the initial learning rate is 0.01, with 3000 warm-up iterations, optimizer
+is SGD, and the learning rate schedule is linear; (2) the input image width and height
+of the network are 640 pixels× 480 pixels; and (3) the hardware platform conﬁguration
+for model training involves one NVIDIA GTX 2080 Ti graphics card (Nvidia Corporation,
+Santa Clara, CA, USA) with 16 GB memory and one Intel ® Core ™ i5-10400F processor
+(Intel Corporation, Santa Clara, CA, USA).
+2.2.2. Nostril Segmentation Based on Deep Learning
+With the deepening of research, only obtaining the nose position is far from meeting
+the needs of precise breeding. Therefore, it is important to accurately obtain the nostril
+information of dairy cows to improve the level of respiratory status monitoring.
+In this paper, the instance segmentation algorithm is introduced to obtain the nostril
+area. In recent years, with the rapid development of deep learning technology, E2EC,
+Mask R-CNN, YOLO v1-v8 and other semantic segmentation, instance segmentation or
+object detection networks have been proposed. Among them, the object detection speed is
+relatively fast, but the object and part of the background will be selected at the same time, so
+additional processing is needed [22]. Semantic segmentation and instance segmentation can
+directly obtain more accurate contour information. Instance segmentation is an advanced
+task that combines object detection and semantic segmentation. It not only needs to
+distinguish different instances but also needs to mark them with masks. This can further
+distinguish different individuals of the same category, but it is also more time consuming.
+The development of instance segmentation started with Mask RCNN [23].
+Mask2Former is a new architecture capable of handling any image segmentation task
+(panoramic, instance, or semantic). Its key components include hidden attention, which
+extracts local features by constraining cross-attention within the predicted mask area. In ad-
+dition to reducing the research effort by at least a factor of three, it signiﬁcantly outperforms
+the best-dedicated architectures on four popular datasets. Most notably, Mask2Former has
+proposed new and more advanced techniques for panoramic segmentation (57.8 PQ on
+COCO), instance segmentation (50.1 AP on COCO), and semantic segmentation (57.7 mIOU
+on ADE20K) [24].
+To better obtain the temperature change information in the nostril area of dairy cows,
+this study uses the method of extracting the object from each frame image and calculating
+the temperature of the nostril area of each frame image to complete respiratory status
+monitoring.
+2.3. T emperature Extraction of the Nostril Area Based on the Hash Algorithm
+When a cow breathes, the temperature of the nostril area will change regularly with
+the change in respiratory status. During inhalation, cool air is drawn in from the envi-
+ronment, resulting in a cooling of the nostrils and a subsequent darker appearance of the
+nostrils in infrared recordings. In contrast, during exhalation, warm air is expelled into
+the environment, resulting in a warming of the nostrils and a subsequent warmer reading
+with a brighter appearance of the nostrils in infrared recordings. According to the obtained
+information of the nostril area of the cow, the temperature of each pixel in the nostril area
+of each frame image when the cow breathes is obtained by using the hash algorithm. The
+speciﬁc steps are shown in Figure 1.
+RGB is a common colour space, and its colour mode includes three colour channels:
+red (R), green (G), and blue (B). The “colour space” for any colour can be deﬁned as a ﬁxed
+number or variable. Among them, the methods of coding a colour are collectively referred
+to as “colour space”. In this experiment, the RGB value of each pixel has its corresponding
+colour coding.
+According to the colour–temperature scale on the right side of the sampled video, the
+temperature value is determined by obtaining the mapping relationship between the RGB
+value of each pixel in the scale and the temperature and applying a hash algorithm. A hash
+
+--- Page 5 ---
+Agriculture 2023, 13, 1939 5 of 15
+map can map one value to another through a certain functional relationship. The hash
+map has the advantages of high efﬁciency, fast searching, insert and delete operations, and
+relatively easy programming. The disadvantage is that it is based on arrays, which are
+difﬁcult to extend after they are created.
+Agriculture 2023, 13, x FOR PEER REVIEW 5 of 16 
+ 
+ 
+Obtain the nostril 
+area coordinates
+Obtain the nostril 
+area color
+Calculate the hash 
+map table of color 
+and temperature
+Hit color
+Get 
+temperature 
+data
+Computed 
+nearest color
+Y
+N
+ 
+Figure 1. Temperature extraction process of the nostril area. 
+RGB is a common colour space, and its colour mode includes three colour channels: 
+red (R), green (G), and blue (B). The “colour space” for any colour can be deﬁned as a ﬁxed 
+number or variable. Among them, the methods of coding a colour are collectively referred 
+to as “colour space”. In this experiment, the RGB value of each pixel has its corresponding 
+colour coding. 
+According to the colour–temperature scale on the right side of the sampled video, the 
+temperature value is determined by obtaining the mapping relationship between the RGB 
+value of each pixel in the scale and the te mperature and applying a hash algorithm. A 
+hash map can map one value to another thro ugh a certain functional relationship. The 
+hash map has the advantages of high e ﬃciency, fast searching, insert and delete opera-
+tions, and relatively easy programming. The disadvantage is that it is based on arrays, 
+which are diﬃcult to extend after they are created. 
+A portion of the pixels in the nostril area in each frame image can obtain the corre-
+sponding temperature value by traversing the colour–temperature scale and using the 
+hash table, but the RGB value in the colour–temperature scale cannot completely match 
+the RGB value of each pixel. To calculate RR through the temperature change in the nostril 
+area, this paper adopts the method of calculating the minimum distance between the RGB 
+value that is not hit and the known RGB value in the colour–temperature scale to obtain 
+the temperature corresponding to the RGB value that is not hit. 
+The common distance measures are the Euclidean distance, Hamming distance, Man-
+hattan distance, Chebyshev distance, Jaccard distance, etc. In this study, the classical Eu-
+clidean distance is used to deal with the pixels that are not hit, and the Euclidean distance 
+has the advantages of simplicity and rapidity. 
+To obtain the distance between the colour pixel to be acquired and the known colour 
+pixel, the Euclidean distance 𝑑𝑖𝑠𝑡
+𝑎𝑘 between the colour vector (R, G, B) of pixel 𝑀𝑎 that 
+is not hit and the colour vector (R, G, B) of pixel 𝑁𝑘 that is known in the colour–temper-
+ature scale is calculated. Selecting a minimum value for the distance, the RGB value of the 
+known pixel corresponding to the minimum value is the RGB value of the colour pixel to 
+be obtained. 𝑀𝑎 is the a-th not hit pixel, 𝑁𝑘 is the k-th known pixel, 𝑀𝑎 and 𝑁𝑘 are 
+three-channel RGB pixel points, and the calculation formula for 𝑑𝑖𝑠𝑡𝑎𝑘 is as follows: 
+𝑑𝑖𝑠𝑡𝑎𝑘 = ට൫𝑀𝑎
+𝑟 −𝑁 𝑘
+𝑟
+൯
+2
++ ൫𝑀𝑎
+𝑔
+−𝑁 𝑘
+𝑔൯
+2
++ ቀ𝑀𝑎
+𝑏 −𝑁 𝑘
+𝑏
+ቁ
+2
+ (1)
+In Formula (1), 𝑀𝑎
+𝑟 , 𝑀𝑎
+𝑔 and 𝑀𝑎
+𝑏 are the R, G, and B components of the a-th not hit pixel, 
+respectively, and 𝑁𝑘
+𝑟 , 𝑁𝑘
+𝑔
+ and 𝑁𝑘
+𝑏 are the R, G, and B components of the k-th known pixel, 
+respectively. 𝑑𝑖𝑠𝑡𝑎1 , 𝑑𝑖𝑠𝑡𝑎2 , 𝑑𝑖𝑠𝑡𝑎3 ……𝑑𝑖𝑠𝑡𝑎𝑘 from 𝑀𝑎 to 𝑁1, 𝑁2, 𝑁3……𝑁𝑘 can be ob-
+tained through Formula (1). The smallest of them ൫𝑑𝑖𝑠𝑡𝑎𝑘 ൯
+𝑚𝑖𝑛
+ is selected, corresponding 
+to the known pixel 𝑁𝑘. The temperature value corresponding to 𝑀𝑎 is obtained by using 
+the hash algorithm. 
+By using the above method, the RGB value of each pixel in the nostril areas of each 
+frame of IRT pictures can be obtained, and then the corresponding temperature value can 
+be obtained. 
+Figure 1. Temperature extraction process of the nostril area.
+A portion of the pixels in the nostril area in each frame image can obtain the corre-
+sponding temperature value by traversing the colour–temperature scale and using the
+hash table, but the RGB value in the colour–temperature scale cannot completely match
+the RGB value of each pixel. To calculate RR through the temperature change in the nostril
+area, this paper adopts the method of calculating the minimum distance between the RGB
+value that is not hit and the known RGB value in the colour–temperature scale to obtain
+the temperature corresponding to the RGB value that is not hit.
+The common distance measures are the Euclidean distance, Hamming distance, Man-
+hattan distance, Chebyshev distance, Jaccard distance, etc. In this study, the classical
+Euclidean distance is used to deal with the pixels that are not hit, and the Euclidean
+distance has the advantages of simplicity and rapidity.
+To obtain the distance between the colour pixel to be acquired and the known colour
+pixel, the Euclidean distance dist ak between the colour vector (R, G, B) of pixel Ma that is
+not hit and the colour vector (R, G, B) of pixel Nk that is known in the colour–temperature
+scale is calculated. Selecting a minimum value for the distance, the RGB value of the
+known pixel corresponding to the minimum value is the RGB value of the colour pixel
+to be obtained. Ma is the a-th not hit pixel, Nk is the k-th known pixel, Ma and Nk are
+three-channel RGB pixel points, and the calculation formula for dist ak is as follows:
+dist ak =
+√
+(
+Mra− Nr
+k
+)2 +
+(
+Mg
+a− Ng
+k
+)2
++
+(
+Mba− Nb
+k
+)2
+(1)
+In Formula (1), Mr
+a, Mg
+a and Mb
+a are the R, G, and B components of the a-th not hit
+pixel, respectively, and Nr
+k, Ng
+k and Nb
+k are the R, G, and B components of the k-th known
+pixel, respectively. dist a1, dist a2, dist a3. . .. . .dist ak from Ma to N1, N2, N3. . .. . .Nk can be
+obtained through Formula (1). The smallest of them
+(
+dist ak
+)
+min is selected, corresponding
+to the known pixel Nk. The temperature value corresponding to Ma is obtained by using
+the hash algorithm.
+By using the above method, the RGB value of each pixel in the nostril areas of each
+frame of IRT pictures can be obtained, and then the corresponding temperature value can
+be obtained.
+2.4. Detection of RR
+This module processes the obtained temperature data and detects the RR of dairy
+cows according to temperature changes.
+The temperature extracted by the above method is a discrete signal consisting of the
+average value of all temperatures in each frame. First, the signal is subjected to spectral
+analysis by using a Fourier transform. Second, the data need to be ﬁltered. Finally, the RR
+was measured by the temperature curve. The speciﬁc steps are shown in Figure 2.
+
+--- Page 6 ---
+Agriculture 2023, 13, 1939 6 of 15
+Agriculture 2023, 13, x FOR PEER REVIEW 6 of 16 
+ 
+ 
+2.4. Detection of RR 
+This module processes the obtained temper ature data and detects the RR of dairy 
+cows according to temperature changes. 
+The temperature extracted by the above method is a discrete signal consisting of the 
+average value of all temperatures in each frame. First, the signal is subjected to spectral 
+analysis by using a Fourier transform. Second, the data need to be ﬁltered. Finally, the RR 
+was measured by the temperature curve. The speciﬁc steps are shown in Figure 2. 
+Spectral 
+Analysis Filter Mark Wave 
+Peaks
+Analyze The Temperature 
+Change Curve Detect RR
+ 
+Figure 2. Flow chart of the temperature change curve analysis. 
+There are mainly four kinds of ﬁlters according to the characteristics and di ﬀerent 
+applications of the ﬁlter: the Butterworth ﬁlter, Chebyshev I ﬁlter, Chebyshev II ﬁlter, and 
+elliptic ﬁlter [25]. Among them, the Bu tterworth ﬁlter is a more commonly used signal 
+processing ﬁlter, and its role is to make the frequency response of the signal as ﬂat as 
+possible in the passband, so it is also called the maximum ﬂat amplitude ﬁlter. This ﬁlter 
+is used in this test. A typical Butterworth ﬁlter is a low-pass ﬁlter. 
+In this test, peaks are marked according to their prominence. The prominence of a 
+peak measures how much the peak protrudes from the baseline around the signal and is 
+deﬁned as the vertical distance between the peak and its lowest contour, called the prom-
+inence of the peak (P), which is a measure of the independence of the peak. It can also be 
+understood as the minimum height at which the peak needs to fall to reach a higher point. 
+In this study, it was de ﬁned that a wave transformation with a small protrusion in the 
+temperature change curve of dairy cows during respiration did not belong to a respiration 
+process. In addition, the purpose of not marking a small wave peak could be achieved by 
+setting the P value; that is, when the respiration temperature diﬀerence was less than the 
+P value, it was not deﬁned as respiration. In this paper, the time of one breath is de ﬁned 
+as the time between two adjacent peaks. Using the sliding window method to traverse the 
+signal and mark each peak (extreme point), the number of peaks is the number of breaths. 
+2.5. Evaluation Index of the Model 
+To verify the accuracy of the respiratory status detection algorithm studied in this 
+paper, two evaluation indices, the instance segmentation evaluation parameter average 
+precision (AP) and accuracy ω, were used to evaluate the model performance. Note that 
+for the nose, if the parallel cross-ratio (intersection over union, IOU) between the detection 
+rectangular frame and the precalibrated real rectangular frame is greater than 0.5, then 
+the detection is deﬁned as correct. 
+The mean value of precision AP is used to measure the localization accuracy of nose 
+detection and nostril instance segmentation in this study. The instance segmentation eval-
+uation parameters AP and AP 50 in the model are selected. AP 50 refers to the measured 
+value of AP when the IOU threshold is greater than 0.5. 
+The accuracy of RR detections ω is used to verify the accuracy of the algorithm. In 
+each test video, the actual number of breaths of the cow obtained through manual count-
+ing is n1, and the number of breaths detected by the algorithm in this study is n2. The 
+detection accuracy ω of this research algorithm is deﬁned, as shown in Formula (2): 
+ω=( 1− |𝑛ଵ−𝑛 ଶ|
+𝑛ଵ
+) × 100% (2)
+3. Results and Discussion 
+3.1. Analysis of Test Results 
+Figure 2. Flow chart of the temperature change curve analysis.
+There are mainly four kinds of ﬁlters according to the characteristics and different
+applications of the ﬁlter: the Butterworth ﬁlter, Chebyshev I ﬁlter, Chebyshev II ﬁlter, and
+elliptic ﬁlter [25]. Among them, the Butterworth ﬁlter is a more commonly used signal
+processing ﬁlter, and its role is to make the frequency response of the signal as ﬂat as
+possible in the passband, so it is also called the maximum ﬂat amplitude ﬁlter. This ﬁlter is
+used in this test. A typical Butterworth ﬁlter is a low-pass ﬁlter.
+In this test, peaks are marked according to their prominence. The prominence of a peak
+measures how much the peak protrudes from the baseline around the signal and is deﬁned
+as the vertical distance between the peak and its lowest contour, called the prominence of
+the peak (P), which is a measure of the independence of the peak. It can also be understood
+as the minimum height at which the peak needs to fall to reach a higher point. In this
+study, it was deﬁned that a wave transformation with a small protrusion in the temperature
+change curve of dairy cows during respiration did not belong to a respiration process. In
+addition, the purpose of not marking a small wave peak could be achieved by setting the
+P value; that is, when the respiration temperature difference was less than the P value, it
+was not deﬁned as respiration. In this paper, the time of one breath is deﬁned as the time
+between two adjacent peaks. Using the sliding window method to traverse the signal and
+mark each peak (extreme point), the number of peaks is the number of breaths.
+2.5. Evaluation Index of the Model
+To verify the accuracy of the respiratory status detection algorithm studied in this
+paper, two evaluation indices, the instance segmentation evaluation parameter average
+precision (AP) and accuracy ω, were used to evaluate the model performance. Note that
+for the nose, if the parallel cross-ratio (intersection over union, IOU) between the detection
+rectangular frame and the precalibrated real rectangular frame is greater than 0.5, then the
+detection is deﬁned as correct.
+The mean value of precision AP is used to measure the localization accuracy of nose
+detection and nostril instance segmentation in this study. The instance segmentation
+evaluation parameters AP and AP50 in the model are selected. AP50 refers to the measured
+value of AP when the IOU threshold is greater than 0.5.
+The accuracy of RR detections ω is used to verify the accuracy of the algorithm. In
+each test video, the actual number of breaths of the cow obtained through manual counting
+is n1, and the number of breaths detected by the algorithm in this study is n2. The detection
+accuracy ω of this research algorithm is deﬁned, as shown in Formula (2):
+ω =
+(
+1−|n1− n2|
+n1
+)
+× 100% (2)
+3. Results and Discussion
+3.1. Analysis of T est Results
+3.1.1. Nose Object Detection Result
+Figure 3 is an example of a cow’s nose detection result in a test set. In the ﬁgure, the
+results of a cow’s nose detection is marked by blue rectangular boxes. Due to the high
+detection accuracy of the YOLO v8 model, the cow nose in most of the images can be
+accurately detected. However, in some special cases, such as fast motion leading to blurring
+and other factors, there will still be some cases of missed detection. Alternatively, there is a
+nose false alarm detection; that is, there is no nose in the picture but the nose is detected.
+
+--- Page 7 ---
+Agriculture 2023, 13, 1939 7 of 15
+Agriculture 2023, 13, x FOR PEER REVIEW 7 of 16 
+ 
+ 
+3.1.1. Nose Object Detection Result 
+Figure 3 is an example of a cow’s nose detection result in a test set. In the ﬁgure, the 
+results of a cow’s nose detection is marked by blue rectangular boxes. Due to the high 
+detection acc urac y of the YOLO v8 mo del, the cow nose in most of the image s can be 
+accurately detected. However, in some special cases, such as fast motion leading to blur-
+ring and other factors, there will still be so me cases of missed detection. Alternatively, 
+there is a nose false alarm detection; that is, there is no nose in the picture but the nose is 
+detected. 
+ 
+Figure 3. Example of a cow’s nose object detection result. 
+To verify the e ﬀectiveness of the proposed method , experiments are carried out on 
+the test set. Then, the video is screened acco rding to the nose detection result in each 
+video. If the nose is not detected in the video frame, it is considered that the nose is not in 
+the ﬁeld of view in the frame. To avoid too large errors in RR detecting, if the total time of 
+not detecting the nose in each video is more than 1 s, then the video is rejected. Finally, 11 
+videos are eliminated, leaving 81 videos. Table 1 shows the results of cow nose detection 
+using the YOLO v8 model. After analysis, th e reasons for the accuracy error are missing 
+detection and false alarm detection, but the impact on accuracy is very small. Combined 
+with Table 1, it can be seen that the YOLO v8 model can obtain ideal results in the detec-
+tion of a cow’s nose. 
+Table 1. Detection results of cows’ nose object. 
+Algorithm AP 50 AP 75 AP 50–95 
+YOLO v8 98.6 84.3 81.2 
+3.1.2. Comparison of Instance Segmentation Algorithms 
+To verify the reliability and stability of the Mask2Former network in nostril object 
+extraction, Mask R-CNN and SOLOv2 [26], which are the mainstream instance segmenta-
+tion algorithms at present, are selected. It is compared with Mask2Former, which is an 
+instance segmentation algorithm used in this paper. Among them, Mask R-CNN belongs 
+to the two-stage instance segmentation algorithm of “ ﬁrst detection and then segmenta-
+tion”. In the comparison of the segmentation accuracy of many models, the average accu-
+racy of the two-stage framework is better. This is because two-stage methods such as Mask 
+R-CNN are more suitable for area-based detection; although the model framework is not 
+ﬂexible, the training time is long and it is no t suitable for real-time applications [27]. The 
+single-stage SOLOv2 model can perform segmentation and detection in parallel, so it can 
+achieve good performance and reduce processing time, which is usually faster and more 
+Figure 3. Example of a cow’s nose object detection result.
+To verify the effectiveness of the proposed method, experiments are carried out on the
+test set. Then, the video is screened according to the nose detection result in each video.
+If the nose is not detected in the video frame, it is considered that the nose is not in the
+ﬁeld of view in the frame. To avoid too large errors in RR detecting, if the total time of
+not detecting the nose in each video is more than 1 s, then the video is rejected. Finally,
+11 videos are eliminated, leaving 81 videos. Table 1 shows the results of cow nose detection
+using the YOLO v8 model. After analysis, the reasons for the accuracy error are missing
+detection and false alarm detection, but the impact on accuracy is very small. Combined
+with Table 1, it can be seen that the YOLO v8 model can obtain ideal results in the detection
+of a cow’s nose.
+Table 1. Detection results of cows’ nose object.
+Algorithm AP 50 AP75 AP50–95
+YOLO v8 98.6 84.3 81.2
+3.1.2. Comparison of Instance Segmentation Algorithms
+To verify the reliability and stability of the Mask2Former network in nostril object ex-
+traction, Mask R-CNN and SOLOv2 [26], which are the mainstream instance segmentation
+algorithms at present, are selected. It is compared with Mask2Former, which is an instance
+segmentation algorithm used in this paper. Among them, Mask R-CNN belongs to the
+two-stage instance segmentation algorithm of “ﬁrst detection and then segmentation”. In
+the comparison of the segmentation accuracy of many models, the average accuracy of the
+two-stage framework is better. This is because two-stage methods such as Mask R-CNN are
+more suitable for area-based detection; although the model framework is not ﬂexible, the
+training time is long and it is not suitable for real-time applications [27]. The single-stage
+SOLOv2 model can perform segmentation and detection in parallel, so it can achieve good
+performance and reduce processing time, which is usually faster and more real-time than
+two-stage [28]. However, it is difﬁcult to detect small objects in a single-stage framework,
+and a two-stage framework is better in this respect.
+Based on the nose detection results, three instance segmentation algorithms,
+Mask2Former, Mask R-CNN, and SOLOv2, are used for training, and the detection results
+of the obtained model on the test set are shown in Table 2. It can be seen that the instance
+segmentation algorithm Mask2Former used in this paper has obvious advantages over
+Mask R-CNN and SOLOv2.
+
+--- Page 8 ---
+Agriculture 2023, 13, 1939 8 of 15
+Table 2. Comparison of nostril segmentation evaluation parameters.
+Algorithm AP 50
+Mask2Former 75.71
+Mask R-CNN 67.32
+SOLOv2 68.27
+Based on the nose detection results, the Mask2Former instance segmentation method
+is used to extract the cow nostril area from the cow IRT images numbered 2855, and the
+effect is shown in Figure 4. The nostril segmentation result of the cow in the ﬁgure is
+indicated by a mask. The size of the nostril area is approximately 20 × 16 pixels, and
+objects with pixel areas less than 32× 32 pixels are deﬁned as small objects in the COCO
+dataset. One of the difﬁculties of small object detection is that the RGB information of the
+nostrils is too small, so it contains too few discriminative features. Second, the dataset
+is unbalanced, and there is a serious image-level imbalance in COCO [ 29]. Third, small
+objects have different degrees of occlusion, ambiguity, and incompleteness. Therefore, there
+are different degrees of false detection and missed detection in the segmentation results of
+the nostril area, and the results are shown in Figure 5. Table 3 is obtained after the traversal
+analysis of the results after nostril detection.
+Agriculture 2023, 13, x FOR PEER REVIEW 8 of 16 
+ 
+ 
+real-time than two-stage [28]. However, it is di ﬃcult to detect small objects in a single-
+stage framework, and a two-stage framework is better in this respect. 
+Based on the nose detection results, three instance segmentation algorithms, 
+Mask2Former, Mask R-CNN, and SOLOv2, are used for training, and the detection results 
+of the obtained model on the test set are shown in Table 2. It can be seen that the instance 
+segmentation algorithm Mask2Former used in this paper has obvious advantages over 
+Mask R-CNN and SOLOv2. 
+Table 2. Comparison of nostril segmentation evaluation parameters. 
+Algorithm AP 50 
+Mask2Former 75.71 
+Mask R-CNN 67.32 
+SOLOv2 68.27 
+Based on the nose detection results, the Mask2Former instance segmentation method 
+is used to extract the cow nostril area fr om the cow IRT images numbered 2855, and the 
+eﬀect is shown in Figure 4. The nostril segmentation result of the cow in the ﬁgure is in-
+dicated by a mask. The size of the nostril area is approximately 20 × 16 pixels, and objects 
+with pixel areas less than 32 × 32 pixels are deﬁned as small objects in the COCO dataset. 
+One of the diﬃculties of small object detection is that the RGB information of the nostrils 
+is too small, so it contains too few discriminative features. Second, the dataset is unbal-
+anced, and there is a serious image-level imbalance in COCO [29]. Third, small objects 
+have diﬀerent degrees of occlusion, ambiguity, and incompleteness. Therefore, there are 
+diﬀerent degrees of false detection and missed detection in the segmentation results of the 
+nostril area, and the results are shown in Figure 5. Table 3 is obtained after the traversal 
+analysis of the results after nostril detection. 
+ 
+Figure 4. Example of a cow’s nostril detection results. 
+ 
+Figure 4. Example of a cow’s nostril detection results.
+Agriculture 2023, 13, x FOR PEER REVIEW 8 of 16 
+ 
+ 
+real-time than two-stage [28]. However, it is di ﬃcult to detect small objects in a single-
+stage framework, and a two-stage framework is better in this respect. 
+Based on the nose detection results, three instance segmentation algorithms, 
+Mask2Former, Mask R-CNN, and SOLOv2, are used for training, and the detection results 
+of the obtained model on the test set are shown in Table 2. It can be seen that the instance 
+segmentation algorithm Mask2Former used in this paper has obvious advantages over 
+Mask R-CNN and SOLOv2. 
+Table 2. Comparison of nostril segmentation evaluation parameters. 
+Algorithm AP 50 
+Mask2Former 75.71 
+Mask R-CNN 67.32 
+SOLOv2 68.27 
+Based on the nose detection results, the Mask2Former instance segmentation method 
+is used to extract the cow nostril area fr om the cow IRT images numbered 2855, and the 
+eﬀect is shown in Figure 4. The nostril segmentation result of the cow in the ﬁgure is in-
+dicated by a mask. The size of the nostril area is approximately 20 × 16 pixels, and objects 
+with pixel areas less than 32 × 32 pixels are deﬁned as small objects in the COCO dataset. 
+One of the diﬃculties of small object detection is that the RGB information of the nostrils 
+is too small, so it contains too few discriminative features. Second, the dataset is unbal-
+anced, and there is a serious image-level imbalance in COCO [29]. Third, small objects 
+have diﬀerent degrees of occlusion, ambiguity, and incompleteness. Therefore, there are 
+diﬀerent degrees of false detection and missed detection in the segmentation results of the 
+nostril area, and the results are shown in Figure 5. Table 3 is obtained after the traversal 
+analysis of the results after nostril detection. 
+ 
+Figure 4. Example of a cow’s nostril detection results. 
+ 
+Figure 5. Examples of false segmentation and missed segmentation of nostril.
+The analysis shows that one of the reasons for the error is that the nostril is a small
+object. Moreover, the method in this paper must be based on the correct detection of the
+cow nose, and the ﬁnal segmentation of the nostril area is highly dependent on the accuracy
+of nose detection. If the missing rate of the nose is high or there are a large number of
+false alarm objects, then the accuracy of nostril segmentation will be reduced. According
+
+--- Page 9 ---
+Agriculture 2023, 13, 1939 9 of 15
+to Table 3, the average proportion of false detection and missed detection is only 5.02%,
+which shows that the algorithm has high accuracy for cow nostril detection.
+Table 3. Proportion of false detection and missed detection of nostril.
+Cow Number
+Total
+Detection
+(/Frame)
+False Detection
+(/Frame)
+Missed
+Detection
+(/Frame)
+Proportion
+1386 4871 297 3 6.16%
+1563 3500 171 12 5.23%
+1568 4500 215 17 5.16%
+1809 3449 156 10 4.81%
+2855 3750 134 6 3.73%
+3.1.3. Results of RR Detecting
+Figure 6 depicts the result of visualizing the extracted temperature of the nostril area
+of each frame after extracting the temperature of cow No. 1386.
+Agriculture 2023, 13, x FOR PEER REVIEW 9 of 16 
+ 
+ 
+Figure 5. Examples of false segmentation and missed segmentation of nostril.. 
+Table 3. Proportion of false detection and missed detection of nostril. 
+Cow Number 
+Total** 
+Detection 
+(/Frame) 
+False Detection 
+(/Frame) 
+Missed ** 
+Detection 
+(/Frame) 
+Proportion 
+1386 4871 297 3 6.16% 
+1563 3500 171 12 5.23% 
+1568 4500 215 17 5.16% 
+1809 3449 156 10 4.81% 
+2855 3750 134 6 3.73% 
+The analysis shows that one of the reasons for the error is that the nostril is a small 
+object. Moreover, the method in this paper must be based on the correct detection of the 
+cow nose, and the ﬁnal segmentation of the nostril area is highly dependent on the accu-
+racy of nose detection. If the missing rate of the nose is high or there are a large number 
+of false alarm objects, then the accuracy of nostril segmentation will be reduced. Accord-
+ing to Table 3, the average proportion of false detection and missed detection is only 
+5.02%, which shows that the algorithm has high accuracy for cow nostril detection. 
+3.1.3. Results of RR Detecting 
+Figure 6 depicts the result of visualizing the extracted temperature of the nostril area 
+of each frame after extracting the temperature of cow No. 1386. 
+ 
+Figure 6. Example of the temperature change curve. 
+In this study, the temperature obtained in the previous step was further analysed 
+according to the method described in Section 2.4, and the results are shown in Figure 7. 
+Figure 7a is a spectrum analysis diagram before ﬁltering; Figure 7b is a spectrum analysis 
+diagram after Bu tterworth ﬁltering; and Figure 7c is the result of ﬁltering the Fourier 
+transformed data with the Butterworth ﬁlter and traversing the signal marker peaks with 
+the sliding window method in this study. 
+Figure 6. Example of the temperature change curve.
+In this study, the temperature obtained in the previous step was further analysed
+according to the method described in Section 2.4, and the results are shown in Figure 7.
+Figure 7a is a spectrum analysis diagram before ﬁltering; Figure 7b is a spectrum analysis
+diagram after Butterworth ﬁltering; and Figure 7c is the result of ﬁltering the Fourier
+transformed data with the Butterworth ﬁlter and traversing the signal marker peaks with
+the sliding window method in this study.
+The results of detecting the number of breaths on the test data by using this model
+are shown in Figure 8. The number of breaths of cows in 81 IRT videos were counted and
+compared using the model and manually. Through the error analysis of manual counting
+and model counting, 50 of the 81 counting points have an error of 0, accounting for 61.73%,
+and 31 have an error of 1, accounting for 38.27%, indicating a high accuracy rate. Table 4
+shows the accuracy ω for the detection of RR.
+Figure 8 and Table 4 show that the average accuracy ω of breath count detection of
+the test data is 94.58%, which demonstrates strong resistance to interference factors, such
+as temporary foreign object intrusion, video capture quality, light, and shade changes, and
+good robustness for RR detecting. Additionally, the average detection rate is high, which
+meets the practical requirements.
+
+--- Page 10 ---
+Agriculture 2023, 13, 1939 10 of 15
+Agriculture 2023, 13, x FOR PEER REVIEW 10 of 16 
+ 
+ 
+ 
+(a) ( b) 
+ 
+(c) 
+Figure 7. Temperature analysis results. (a) Spectrum analysis before ﬁltering; (b) Spectrum analysis 
+after Bu tterworth ﬁltering; (c) Bu tterworth-ﬁltered and tagged peak resu lts. Where, the blue line 
+represents the respiration temperature change curve after ﬁltering. The red lines indicate crests 
+prominence. 
+The results of detecting the number of brea ths on the test data by using this model 
+are shown in Figure 8. The number of breaths of cows in 81 IRT videos were counted and 
+compared using the model and manually. Through the error analysis of manual counting 
+and model counting, 50 of the 81 counting points have an error of 0, accounting for 61.73%, 
+and 31 have an error of 1, accounting for 38.27%, indicating a high accuracy rate. Table 4 
+shows the accuracy ω for the detection of RR. 
+Figure 7. Temperature analysis results. ( a) Spectrum analysis before ﬁltering; ( b) Spectrum anal-
+ysis after Butterworth ﬁltering; ( c) Butterworth-ﬁltered and tagged peak results. Where, the blue
+line represents the respiration temperature change curve after ﬁltering. The red lines indicate
+crests prominence.
+Agriculture 2023, 13, x FOR PEER REVIEW 11 of 16 
+ 
+ 
+ 
+Figure 8. Automatic counting results of respiration times. 
+Table 4. Detection accuracy of respiration rate for diﬀerent cows. 
+Cow Number 1386 1809 2855 1563 1568 
+Accuracy ω 92.57% 95.24% 97.22% 93.89% 93.96% 
+Figure 8 and Table 4 show that the average accuracy ω of breath count detection of 
+the test data is 94.58%, which demonstrates strong resistance to interference factors, such 
+as temporary foreign object intrusion, video capture quality, light, and shade changes, and 
+good robustness for RR detecting. Additionally, the average detection rate is high, which 
+meets the practical requirements. 
+3.2. Discussion 
+3.2.1. Analysis of Nose–Nostril Detection 
+This paper also tests the direct instan ce segmentation model, which cannot fully 
+adapt to the experimental data. Mask2Former is used to train the whole group of videos 
+directly. Because the cow’s nostril area is small and contains fewer features, there are more 
+interference features, leading to the training results AP
+50 being only 55.0, so the infor-
+mation of nostril temperature change could not be accurately obtained. After changing to 
+the cascade segmentation method, the cow nose was detected ﬁrst, and the detection area 
+was reduced to the cow nose area with less interference. Then, segmentation of the nostrils 
+is carried out. The segmented AP 50 of the nostril can reach 75.71, which is 37.7% higher 
+than that of the direct segmentation model. 
+The results show that the cascaded model can eﬀectively reduce the interference fea-
+tures outside the nose and reduce the error. The direct segmentation model will falsely 
+detect small objects such as moles or ear hole s as nostrils, as shown in Figure 9a. After 
+changing to the cascaded segmentation model, the false detection phenomenon com-
+pletely disappears, as show n in Figure 9b. This e ﬀectively improves the accuracy of the 
+next step of cow breath detection, shows a strong anti-interference capability, and can be 
+used in combination with cow identiﬁcation technology to achieve multiobject cow breath 
+detection. 
+Figure 8. Automatic counting results of respiration times.
+
+--- Page 11 ---
+Agriculture 2023, 13, 1939 11 of 15
+Table 4. Detection accuracy of respiration rate for different cows.
+Cow
+Number 1386 1809 2855 1563 1568
+Accuracy ω 92.57% 95.24% 97.22% 93.89% 93.96%
+3.2. Discussion
+3.2.1. Analysis of Nose–Nostril Detection
+This paper also tests the direct instance segmentation model, which cannot fully
+adapt to the experimental data. Mask2Former is used to train the whole group of videos
+directly. Because the cow’s nostril area is small and contains fewer features, there are more
+interference features, leading to the training results AP50 being only 55.0, so the information
+of nostril temperature change could not be accurately obtained. After changing to the
+cascade segmentation method, the cow nose was detected ﬁrst, and the detection area was
+reduced to the cow nose area with less interference. Then, segmentation of the nostrils is
+carried out. The segmented AP50 of the nostril can reach 75.71, which is 37.7% higher than
+that of the direct segmentation model.
+The results show that the cascaded model can effectively reduce the interference fea-
+tures outside the nose and reduce the error. The direct segmentation model will falsely
+detect small objects such as moles or ear holes as nostrils, as shown in Figure 9a. After
+changing to the cascaded segmentation model, the false detection phenomenon com-
+pletely disappears, as shown in Figure 9b. This effectively improves the accuracy of the
+next step of cow breath detection, shows a strong anti-interference capability, and can
+be used in combination with cow identiﬁcation technology to achieve multiobject cow
+breath detection.
+Agriculture 2023, 13, x FOR PEER REVIEW 12 of 16 
+ 
+ 
+ 
+(a) ( b) 
+Figure 9. Comparison of direct nostril detection and nose–nostril detection. ( a) A non-nostril is de-
+tected as a nostril by the direct detection; (b) Right detection by the cascaded algorithm. 
+3.2.2. Analysis of the Inﬂuence of Head Swing on the Results of RR Detecting 
+Cows, as living bodies, often produce head swings and other interference factors dur-
+ing the data collection process. To verify the robustness of this algorithm more accurately, 
+in this study, the head swing movement of cows is analysed to clarify the eﬀectiveness of 
+this method. 
+There are three fundamental reasons for the inﬂuence of the cow’s head swing on the 
+detection results. First, because the cow’s respiratory behaviour is weak, for the video-
+based respiratory behaviour monitoring method , the camera needs to be placed close to 
+the cow, and the cow’s action (interference) will a ﬀect the accuracy of the monitoring re-
+sults. Second, the temperature of the nostril area is unstable along with the swing move-
+ment of the cow head. Third, the head of the cow shakes violently, which leads to a reduc-
+tion in the conﬁdence in object extraction. 
+The average accuracy of breath detection of the 20-segment thermal imaging video 
+of the No. 1386 cow was 92.57%, and the main reason for the low accuracy was that the 
+head of the cow shook violently. This reduced the conﬁdence of object extraction and the 
+temperature data used to detect the RR, resulting in a signi ﬁcant decline in the accuracy 
+of RR detection. 
+In the test data of ﬁve cows with 81 segments, except for No. 1386, the other four 
+cows had motion interference, and the average accuracy of respiration detection was 
+95.08%, which was higher than the 92.57% accuracy of No. 1386. This was because the 
+interference caused by head swing movement was not intense, global, or continuous, and 
+the movement time was short. This did not a ﬀect the detection of breathing behaviour 
+using nostril temperature changes. 
+In summary, in the case of cow head swing interference, the ﬁnal detection accuracy 
+is less aﬀected, which proves that the algorithm in this study has good robustness and can 
+accurately complete the detection of breathing behaviour. In a follow-up study, we can 
+increase the proportion of head swing images in the training set so that the algorithm has 
+better robustness when the cow’s head swings. 
+3.2.3. Analysis of the Impact of Waveform Noise on the Results of RR Detecting 
+The temperature extraction result of this algorithm is shown in Figure 6. By analysing 
+the noise phenomenon, it is found that there are two main reasons for the noise: one is 
+generated in the process of data acquisition; and the second, is due to nose detection 
+missed, false alarms, nostril segmentation missed, and false detection. 
+To eliminate noise interference in this paper, a Fourier transform is used to analyse 
+the signal spectrum, and then a Butterworth ﬁlter is used to smooth the ﬁlter. 
+Figure 9. Comparison of direct nostril detection and nose–nostril detection. ( a) A non-nostril is
+detected as a nostril by the direct detection; (b) Right detection by the cascaded algorithm.
+3.2.2. Analysis of the Inﬂuence of Head Swing on the Results of RR Detecting
+Cows, as living bodies, often produce head swings and other interference factors dur-
+ing the data collection process. To verify the robustness of this algorithm more accurately,
+in this study, the head swing movement of cows is analysed to clarify the effectiveness of
+this method.
+There are three fundamental reasons for the inﬂuence of the cow’s head swing on the
+detection results. First, because the cow’s respiratory behaviour is weak, for the video-
+based respiratory behaviour monitoring method, the camera needs to be placed close to the
+cow, and the cow’s action (interference) will affect the accuracy of the monitoring results.
+Second, the temperature of the nostril area is unstable along with the swing movement of
+the cow head. Third, the head of the cow shakes violently, which leads to a reduction in the
+conﬁdence in object extraction.
+
+--- Page 12 ---
+Agriculture 2023, 13, 1939 12 of 15
+The average accuracy of breath detection of the 20-segment thermal imaging video
+of the No. 1386 cow was 92.57%, and the main reason for the low accuracy was that the
+head of the cow shook violently. This reduced the conﬁdence of object extraction and the
+temperature data used to detect the RR, resulting in a signiﬁcant decline in the accuracy of
+RR detection.
+In the test data of ﬁve cows with 81 segments, except for No. 1386, the other four
+cows had motion interference, and the average accuracy of respiration detection was
+95.08%, which was higher than the 92.57% accuracy of No. 1386. This was because the
+interference caused by head swing movement was not intense, global, or continuous, and
+the movement time was short. This did not affect the detection of breathing behaviour
+using nostril temperature changes.
+In summary, in the case of cow head swing interference, the ﬁnal detection accuracy is
+less affected, which proves that the algorithm in this study has good robustness and can
+accurately complete the detection of breathing behaviour. In a follow-up study, we can
+increase the proportion of head swing images in the training set so that the algorithm has
+better robustness when the cow’s head swings.
+3.2.3. Analysis of the Impact of Waveform Noise on the Results of RR Detecting
+The temperature extraction result of this algorithm is shown in Figure 6. By analysing
+the noise phenomenon, it is found that there are two main reasons for the noise: one is
+generated in the process of data acquisition; and the second, is due to nose detection missed,
+false alarms, nostril segmentation missed, and false detection.
+To eliminate noise interference in this paper, a Fourier transform is used to analyse the
+signal spectrum, and then a Butterworth ﬁlter is used to smooth the ﬁlter.
+The experimental results show that the noise analysis in this paper is correct and the
+noise suppression effect of object extraction is obvious. In contrast, the noise generated
+by data acquisition is a systematic error, which is inevitable and has little impact on the
+experimental results. In summary, the ﬁnal detection accuracy is less affected by noise,
+which proves that the algorithm has good robustness.
+3.3. Comparison with Other Detection Methods
+Jorquera-Chavez et al. (2019) collected nonradiative infrared videos of cows’ faces
+via an infrared thermal camera and calculated their RR according to the changes in pixel
+intensity values in the nose region caused by respiratory airﬂow during breathing [30]. The
+correlation coefﬁcient R between the respiratory frequency measured by this method and
+the results obtained by manual observation was 0.87. Lowe et al. (2019) completed the de-
+tection of respiratory behaviour by recording thermal ﬂuctuations around the nostrils with
+an infrared thermal camera, and the test results showed that the correlation between this
+method and manual counting reached 0.93 [31]. Wu et al. (2020) proposed a combination of
+Deeplab V3+ and the PBVM action ampliﬁcation algorithm to detect respiratory behaviour
+in standing cows with an accuracy of 93.04% [32].
+In this study, IRT videos of dairy cows were recorded by an infrared thermal cam-
+era, and a cascade method of dairy cow respiratory status monitoring was proposed by
+combining YOLO v8 and Mask2Former to detect the nose ﬁrst and then the nostrils. The
+accuracy of respiratory number detection in 81 thermal imaging videos of ﬁve dairy cows
+was 94.58%, and the correlation coefﬁcient R was 0.95. The results show that the algorithm
+can detect the cow’s breathing behaviour well, providing a basis for the follow-up study of
+the multiobject cow’s breathing behaviour detection method.
+3.4. Outlook
+Although the method in this paper has achieved a reliable effect on the change in
+temperature ﬂow in the nostril area of dairy cows, there are still some shortcomings.
+The research basis of this model is nose detection based on YOLO v8 and nostril area
+segmentation based on deep learning. The cow nostril object occupies fewer effective pixels
+
+--- Page 13 ---
+Agriculture 2023, 13, 1939 13 of 15
+in the video picture, and the breathing amplitude is smaller and more difﬁcult to observe.
+In addition, the environment is changeable, and there is considerable interference, which
+aggravate the difﬁculty of cow breathing detection. In future studies, cameras with higher
+resolution can be utilized, and nostril features can be added to improve the accuracy of
+RR detection.
+In the data acquisition process in this study, the camera is ﬁxed, and there is a situation
+in which the cow’s nostril area is not in the acquisition area due to the swing of the cow’s
+head, which results in the loss of breathing fragments. In future research, a tracking camera
+can be used to develop a real-time image display and processing platform to achieve remote
+real-time acquisition and processing of cow video.
+As experiments progressed, the respiratory behaviour of multiobject dairy cows
+can be explored based on the study of single-object dairy cows’ respiratory behaviour.
+However, dairy cows are easy to gather in natural scenes, and there are some problems
+in the detection of multiobject dairy cows’ respiratory behaviour, such as complex and
+changeable movements, many irrelevant interferences, as well as difﬁculty in detecting
+the RR of different dairy cows. The identity of a cow can be determined by a cow face
+recognition algorithm, and the position area of the cow object can be detected by an
+object detection algorithm. Different cow objects can be marked according to the position
+information, and the RR detecting of each cow object can be completed by developing
+a respiratory status monitoring algorithm. Multiobjective monitoring of the respiratory
+status of dairy cows can be achieved, and the application value of new technology and
+new algorithms for the welfare of dairy cows and the economic beneﬁts of dairy farms can
+be improved.
+This method has more advantages in the application prospect of large dairy farms, and
+the infrared thermal camera can be installed in the intelligent inspection robot, which has a
+higher utilization rate than the ﬁxed camera position acquisition method. High utilization
+of instruments means lower costs. At the same time, it is more convenient to collect the
+facial data of cows than the abdominal data, and the requirements for the cooperation
+of cows are lower. This method will provide a reference for large-scale intelligent dairy
+farming. In the future, it may provide reference for automatic monitoring of heat stress in
+dairy cows and remote diagnosis of other diseases related to respiratory behavior.
+4. Conclusions
+According to the characteristics of temperature change in the nostril area when cows
+breathe, a cow respiratory status monitoring system based on IRT is proposed. YOLO v8 is
+proposed to detect the cow’s nose from IRT images without contact; the results showed
+that the AP 50 of nose detection reached 98.6%. Three kinds of instance segmentation
+models were used to realize nostril area, and the ﬁnal experimental results show that
+Mask2Former has obvious advantages over Mask R-CNN and SOLOv2, AP 50 achieved
+75.71%. The maximum accuracy of RR detection is 97.22%, the minimum accuracy of RR
+detection is 92.57%, the average accuracy of RR detection is 94.58%, and the correlation
+coefﬁcient R was 0.95, higher than in previous studies on RR. The recognition effect was
+better than that of the combination of Deeplab V3+ and the PBVM action ampliﬁcation
+algorithm to detect respiratory behaviour in standing cows, which remarkably improved
+the accuracy and efﬁciency of the detection of RR. Therefore, the method presented in
+this paper could promote the popularization and application of automatic detection of RR
+systems in large-scale dairy farming.
+Author Contributions: Conceptualization, Y.D., Q.L. and K.Z.; Methodology, Y.D., K.Z. and X.H.;
+Software, Y.D., J.C. and X.H.; Validation, Y.D.; Formal analysis, Y.D. and Q.L.; Investigation, K.Z.;
+Resources, Y.D., Q.L. and K.Z.; Data curation, K.Z. and X.H.; Writing—original draft, Y.D.;
+Writing—review and editing, R.Z. and Y.D.; Visualization, X.H. and M.W.; Supervision, Q.L.; Project
+administration, K.Z.; Funding acquisition, Q.L. and X.H. All authors have read and agreed to the
+published version of the manuscript.
+
+--- Page 14 ---
+Agriculture 2023, 13, 1939 14 of 15
+Funding: This work was funded by the National Natural Science Foundation of China (Grant
+No. 32002227), International Science and Technology Cooperation Project of Henan Province Key
+Research and Development Projects (Grant No. 232102521006), University Science and Technology
+Innovation Talent Project of Henan Province (Grant No. 24HASTIT052), and Natural Science Basic
+Research Plan in Shaanxi Province of China (Program No. 2022JQ-175).
+Institutional Review Board Statement: Not applicable.
+Data Availability Statement: Not applicable.
+Acknowledgments: This work was supported by the National Natural Science Foundation of China
+(Grant No. 32002227), International Science and Technology Cooperation Project of Henan Province
+Key Research and Development Projects (Grant No. 232102521006), University Science and Technol-
+ogy Innovation Talent Project of Henan Province (Grant No. 24HASTIT052), and Natural Science
+Basic Research Plan in Shaanxi Province of China (Program No. 2022JQ-175). The authors appre-
+ciate the funding organisation for their ﬁnancial support. The authors would also like to thank
+the helpful comments and suggestions provided by all the authors cited in this article and the
+anonymous reviewers.
+Conﬂicts of Interest: The authors declare no conﬂict of interest.
+References
+1. Cui, Y. Normal physiological indicators and examination methods of dairy cows. T ech. Advis. Anim. Husb. 2013, 18, e0206520.
+2. Polsky, L.; von Keyserlingk, M.A. Invited review: Effects of heat stress on dairy cattle welfare. J. Dairy Sci. 2017, 100, 8645–8657.
+[CrossRef] [PubMed]
+3. Das, R.; Sailo, L.; Verma, N.; Bharti, P .; Saikia, J.; Kumar, R. Impact of heat stress on health and performance of dairy animals: A
+review. Vet. World 2016, 9, 260–268. [CrossRef] [PubMed]
+4. De Rensis, F.; Garcia-Ispierto, I.; López-Gatius, F. Seasonal heat stress: Clinical implications and hormone treatments for the
+fertility of dairy cows. Theriogenology 2015, 84, 659–666. [CrossRef] [PubMed]
+5. Guo, L.; WANG, J.; Li, F. Thoughts and Suggestions on the Determination of the Dairy Herd Improvement in China under the
+Background of Construction of a Modern Dairy Industry. Chin. J. Anim. Sci. 2015, 51, 7–11.
+6. Milan, H.F.M.; Maia, A.S.C.; Gebremedhin, K.G. Technical note: Device for measuring respiration rate of cattle under ﬁeld
+conditions. J. Anim. Sci. 2016, 94, 5434–5438. [CrossRef]
+7. He, D.; Liu, D.; Zhao, K. Review of Perceiving Animal Information and Behavior in Precision Livestock Farming. T rans. Chin. Soc.
+Agric. Mach. 2016, 47, 231–244. [CrossRef]
+8. Yan, X.; Liu, H.; Jia, Z.; Tian, S.; Pi, X. Advances in the detection of respiratory rate. Beijing Biomed. Eng. 2017, 36, 545–549.
+[CrossRef]
+9. Chen, Y.; Hou, Z.; Chen, C.; Liang, J.; Su, H. Research on non-contact respiratory detection algorithm based on depth images.
+Comput. Meas. Control. 2017, 25, 213–217. [CrossRef]
+10. Eigenberg, R.A.; Hahn, G.L.; Nienaber, J.A.; Brown-Brandl, T.M.; Spiers, D.E. Development of a new respiration rate monitor for
+cattle. T rans. ASAE2000, 43, 723–728. [CrossRef]
+11. Strutzke, S.; Fiske, D.; Hoffmann, G.; Ammon, C.; Heuwieser, W.; Amon, T. Technical note: Development of a noninvasive
+respiration rate sensor for cattle. J. Dairy Sci. 2019, 102, 690–695. [CrossRef] [PubMed]
+12. Li, D. Research on the Model and Efﬁciency of Dairy Cow Breeding in China. Ph.D. Thesis, Chinese Academy of Agricultural
+Sciences, Beijing, China, 2013.
+13. Liang, T.; Weixing, Z.; Xincheng, L.; Lei, Y. Identiﬁcation and detection of swine respiratory frequency based on area feature
+operator. Inf. T echnol.2015, 2, 73–77. [CrossRef]
+14. Benetazzo, F.; Freddi, A.; Monteriù, A.; Longhi, S. Respiratory rate detection algorithm based on RGB-D camera: Theoretical
+background and experimental results. Healthc. T echnol. Lett. 2014, 1, 81–86. [CrossRef] [PubMed]
+15. Zhao, K.; He, D.; Wang, E. Detection of Breathing Rate and Abnormity of Dairy Cattle Based on Video Analysis. T rans. Chin. Soc.
+Agric. Mach. 2014, 45, 258–263. [CrossRef]
+16. Zeng, Y.; Wu, D.; Xiong, J.; Liu, J.; Liu, Z.; Zhang, D. MultiSense: Enabling multi-person respiration sensing with commodity wiﬁ.
+Proc. ACM Interact. Mob. Wearable Ubiquitous T echnol. 2020, 4, 1–29. [CrossRef]
+17. Ma, T. Principle and Application Analysis of Infrared Thermal Camera. In Proceedings of the the 14th Ningxia Youth Scientists
+Forum Petrochemical Special Forum, Yinchuan, China, 24 July 2018; pp. 323 325+329.
+18. Stewart, M.; Wilson, M.T.; Schaefer, A.L.; Huddart, F.; Sutherland, M.A. The use of infrared thermography and accelerometers for
+remote monitoring of dairy cow health and welfare. J. Dairy Sci. 2017, 100, 3893–3901. [CrossRef]
+19. Wang, Z.; Song, H.; Wang, Y.; Hua, Z.; Li, R.; Xu, X. Research Progress and Technology Trend of Intelligent Morning of Dairy Cow
+Motion Behavior. Smart Agric. 2022, 4, 36. [CrossRef]
+20. Redmon, J.; Divvala, S.; Girshick, R.; Farhadi, A. You only look once: Uniﬁed, real-time object detection. In Proceedings of the
+IEEE Conference on Computer Vision and Pattern Recognition, Las Vegas, NV , USA, 27–30 June 2016; pp. 779–788.
+
+--- Page 15 ---
+Agriculture 2023, 13, 1939 15 of 15
+21. Jocher, G.; Chaurasia, A.; Qiu, J. YOLO by Ultralytics (Version 8.0.0) [Computer Software]. Available online: https://github.com/
+ultralytics/ultralytics (accessed on 30 May 2023).
+22. Wang, M.; Song, W. An RGB-D SLAM Algorithm Based on Adaptive Semantic Segmentation in Dynamic Environment.Robot
+2023, 45, 16–27. [CrossRef]
+23. He, K.; Gkioxari, G.; Dollár, P .; Girshick, R. Mask r-cnn. In Proceedings of the IEEE International Conference on Computer Vision,
+Venice, Italy, 22–29 October 2017; pp. 2961–2969.
+24. Cheng, B.; Misra, I.; Schwing, A.G.; Kirillov, A.; Girdhar, R. Masked-attention mask transformer for universal image segmentation.
+In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, New Orleans, LA, USA, 18–24 June
+2022; pp. 1290–1299.
+25. Agrawal, N.; Kumar, A.; Bajaj, V .; Lee, H.-N. Controlled ripple based design of digital IIR ﬁlter. In Proceedings of the 2016 IEEE
+International Conference on Digital Signal Processing (DSP), Beijing, China, 16–18 October 2016; pp. 627–631.
+26. Wang, X.; Zhang, R.; Kong, T.; Li, L.; Shen, C. Solov2: Dynamic and fast instance segmentation. Adv. Neural Inf. Process. Syst.
+2020, 33, 17721–17732.
+27. Huang, T.; Hua, L.; Gui, Z.; Shaobo, L.; Yang, W. Survey of Research on Instance Segmentation Methods.J. Front. Comput. Sci.
+T echnol.2023, 17, 810–825. [CrossRef]
+28. Qi, L.; Wang, Y.; Chen, Y.; Chen, Y.-C.; Zhang, X.; Sun, J.; Jia, J. Pointins: Point-based instance segmentation.IEEE T rans. Pattern
+Anal. Mach. Intell. 2021, 44, 6377–6392. [CrossRef] [PubMed]
+29. Kisantal, M.; Wojna, Z.; Murawski, J.; Naruniec, J.; Cho, K. Augmentation for small object detection. arXiv 2019, arXiv:1902.07296.
+[CrossRef]
+30. Jorquera-Chavez, M.; Fuentes, S.; Dunshea, F.R.; Warner, R.D.; Poblete, T.; Jongman, E.C. Modelling and Validation of Computer
+Vision Techniques to Assess Heart Rate, Eye Temperature, Ear-Base Temperature and Respiration Rate in Cattle.Animals 2019, 9,
+1089. [CrossRef] [PubMed]
+31. Lowe, G.; Sutherland, M.; Waas, J.; Schaefer, A.; Cox, N.; Stewart, M. Infrared thermography—A non-invasive method of
+measuring respiration rate in calves. Animals 2019, 9, 535. [CrossRef] [PubMed]
+32. Wu, D.; Yin, X.; Jiang, B.; Jiang, M.; Li, Z.; Song, H. Detection of the respiratory rate of standing cows by combining the Deeplab
+V3+ semantic segmentation model with the phase-based video magniﬁcation algorithm. Biosyst. Eng. 2020, 192, 72–89. [CrossRef]
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.

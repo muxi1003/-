@@ -1,0 +1,2557 @@
+--- Page 1 ---
+Biosystems Engineering 239 (2024) 207–230
+Available online 29 February 2024
+1537-5110/© 2024 IAgrE. Published by Elsevier Ltd. All rights reserved.
+Research Paper 
+A comparative study of machine learning models for respiration rate 
+prediction in dairy cows: Exploring algorithms, feature engineering, and 
+model interpretation 
+Geqi Yan
+a , b
+, Wanying Zhao
+c
+, Chaoyuan Wang
+d , e
+, Zhengxiang Shi
+d , e
+, Hao Li
+d , e , *
+, Zhenwei Yu
+f
+, 
+Hongchao Jiao
+a , b , **
+, Hai Lin
+a , b 
+a
+College of Animal Science and Technology, Shandong Agricultural University, Tai ’ an, 271018, China 
+b
+Key Laboratory of Efficient Utilization of Non-grain Feed Resources (Co-construction By Ministry and Province), Ministry of Agriculture and Rural Affairs, Shandong 
+Agricultural University, Tai ’ an, 271018, China 
+c
+China Rural Technology Development Center, Beijing, 100045, China 
+d
+College of Water Resources and Civil Engineering, China Agricultural University, Beijing, 100083, China 
+e
+Key Laboratory of Agricultural Engineering in Structure and Environment, Ministry of Agriculture and Rural Affairs, Beijing, 100083, China 
+f
+College of Mechanical and Electronic Engineering, Shandong Agricultural University, Tai ’ an, 271018, China 
+ARTICLE INFO 
+Keywords: 
+Dairy cow 
+Respiration rate 
+Machine learning 
+Regression model 
+SHAP analysis 
+ABSTRACT 
+The respiration rate (RR) of dairy cows is a crucial welfare indicator for assessing heat stress in cows exposed to 
+high temperatures. Machine learning (ML) models can automatically identify patterns from factors related to cow 
+RR. This study utilised ML methods to establish a predictive model for cow RR using easily accessible variables in 
+real production settings. A comparison of 20 ML algorithms, including linear regression, neural networks, and 
+others, was conducted to evaluate their performance in predicting cow RR and investigate the impact of different 
+inputs and feature engineering techniques on algorithm performance, using a cleaned dataset comprising 2977 
+records. The main findings indicate that the CATBOOST-based model, specifically the CATBOOST algorithm with 
+environmental parameters as input features under ordinal encoding, exhibited the best performance, with a 
+coefficient of determination (R
+2
+) of 0.676, a mean absolute error (MAE) of 7.246, a mean absolute percentage 
+error (MAPE) of 13.8%, and a root mean square error (RMSE) of 9.341. There was no statistical difference in 
+model performance using environmental parameters, heat indices, or heat flows as input features. Feature 
+polynomials, PCA-based dimensionality reduction, and filter-based feature selection may significantly reduce the 
+performance of the ML-based cow RR model. Additionally, according to the SHAP analysis of the optimal model, 
+air temperature, black globe temperature, and airflow speed are identified as the top three factors contributing to 
+the prediction of cow RR. The findings from this study can offer valuable guidance for the design and regulation 
+of dairy farm environmental control systems. 
+1. Introduction 
+In intensive dairy farming, the well-being and health of dairy cows 
+can be easily compromised. The respiration rate (RR), as a fundamental 
+physiological activity of cows, not only reflects their respiratory health 
+but also serves as a crucial indicator of welfare for assessing heat stress 
+during hot seasons ( Di β mann, Heinicke, Jensen, Amon, & Hoffmann, 
+2022 ). By assessing the RR of cows and implementing timely engi -
+neering cooling measures, it is possible to effectively enhance the health, 
+welfare, and productivity of cows. 
+In real-world production environments, manual observation is pri -
+marily employed to record the RR of cows. However, this method is 
+time-consuming, labour-intensive, and prone to significant deviations. 
+Previous studies developed RR recorders based on temperature sensors 
+( Strutzke et al., 2018 ) and pressure sensors ( Atkins, Cook, Mondaca, & 
+Choi, 2018 ; Milan, Maia, & Gebremedhin, 2016 ). However, these de -
+vices underwent only experimental validations and lack practicality for 
+large-scale farming environments. Alternatively, developing an RR 
+prediction model for dairy cows is more feasible, provided that the key 
+* Corresponding author. College of Water Resources and Civil Engineering, China Agricultural University, Beijing, 100083, China. 
+** Corresponding author. College of Animal Science and Technology, Shandong Agricultural University, Tai ’ an, 271018, China. 
+E-mail addresses: yangeqi@sdau.edu.cn (G. Yan), hao.li@cau.edu.cn (H. Li), hongchao@sdau.edu.cn (H. Jiao). 
+Contents lists available at ScienceDirect 
+Biosystems Engineering 
+journal homepag e: www.else vier.com/loc ate/issn/1 5375110 
+https://doi.org/10.1016/j.biosystemseng.2024.01.010 
+Received 28 June 2023; Received in revised form 18 January 2024; Accepted 21 January 2024 
+
+--- Page 2 ---
+Biosystems Engineering 239 (2024) 207–230
+208
+factors that have an impact on RR are identified. The thermoneutral 
+zone (TNZ) refers to a narrow range of ambient temperature within 
+which animals ’ energy expenditure is unnecessary to maintain normal 
+body temperature. For lactating cows, their TNZ falls between 5 and 
+25 
+◦
+C ( Becker, Collier, & Stone, 2020 ). Recent investigations have re -
+ported that dairy cows in Tunisia, characterised by a Mediterranean 
+climate, exhibit a RR of 26.4 ± 4.1 (mean ± standard deviation) breaths 
+per minute (bpm) when within the thermoneutral zone ( Amamou, 
+Beckers, Mahouachi, & Hammami, 2019 ). Dairy cows in Germany, sit -
+uated in a temperate continental climate, display RR ranging from 11.1 
+to 34.5 bpm ( Pinto et al., 2019 ). Upon exposure to heat stress, RR in 
+cows may escalate to anywhere between 45 and 80 bpm, and in certain 
+instances, it can even surpass 120 bpm, contingent on the severity of the 
+heat stress ( Hahn, 1999 ; Yan, Liu, Hao, Li, & Shi, 2021 ). Presently, heat 
+stress classification in dairy cows primarily relies on the 
+temperature-humidity index (THI), an amalgamation of ambient tem -
+perature and humidity ( Herbut, Angrecka, & Walczak, 2018 ). Early 
+research conducted in Israel demonstrated that forced ventilation led to 
+a decrease in RR from 73 ± 2 bpm (mean ± standard error) in the 
+control group to 59 ± 1 bpm (mean ± standard error) in the forced 
+ventilation group ( Berman et al., 1985 ). Furthermore, Gebremedhin, 
+Lee, Hillman, and Collier (2010) reported that an RR increase of over 
+125 bpm occurred in dairy cows exposed to a hot, dry environment or 
+solar radiation of 850 W m
+ 2 
+for a duration of 3 h. Prior studies have 
+constructed RR prediction models for beef and dairy cattle utilizing 
+multiple regression models ( Eigenberg, Brown-Brandl, Nienaber, & 
+Hahn, 2005 ; G. Li, Chen, Chen, Peng, & Gu, 2020 ). These models 
+incorporate fundamental thermal environmental parameters, such as air 
+temperature, relative humidity, and airflow speed, as inputs. Nonethe -
+less, these models mainly assess the extent of environmental heat stress 
+rather than accurately predicting RR. This deficiency in accuracy is 
+attributed to several factors. Firstly, the RR of cows within the same 
+environment may be influenced by diverse non-environmental factors, 
+including age, level of production, body condition, dry matter intake 
+(DMI), and housing design ( Becker et al., 2020 ). Additionally, cooling 
+measures such as fans and sprinklers installed in milking parlours, 
+feeding areas, and barns also impact cow RR ( Chen, Schütz, & Tucker, 
+2015 ; Wang, Zhang, & Choi, 2018 ). Traditional multiple regression 
+models for predicting RR require the determination of input variables 
+and specification of model form, resulting in low flexibility and 
+Nomenclature 
+P Pressure, kPa 
+P
+e 
+Water vapor pressure, kPa 
+Q Heat flux, W m
+ 2 
+S Body surface area, m
+2 
+T Temperature, 
+◦
+C (or K) 
+U Airflow speed, m s
+ 1 
+d Diameter of a cow, 0.8 m 
+f Coefficient 
+h Heat transfer coefficient, W m
+ 2
+⋅ K
+ 1 
+k Thermal conductivity, W m
+ 1 
+K
+ 1 
+m Weight, kg 
+r Thermal resistance, s m
+ 1 
+x The datapoint or variable (feature) 
+y The target 
+Greek symbols 
+σ Stefane Boltzmann constant, 5:67 × 10
+ 8 
+W m
+ 2 
+K
+ 4 
+ε Emissivity of cow coat, 0.95 
+ρ c
+p 
+Volumetric Specific heat capacity, 1220 J m
+ 3 
+K
+ 1 
+γ Psychrometer constant, 0.066 kPa K
+ 1 
+λ Latent heat of vaporization, 2260 J g
+ 1 
+Subscripts 
+a Air 
+b Body core 
+bg Black globe 
+c Hair coat 
+conv Convection 
+dp Dew point 
+ex Exhaled 
+evap Evaporation 
+lat Latent 
+hp Heat production 
+p Predicted 
+rad Radiant 
+res Respiration 
+s Skin 
+sen Sensible 
+sr Solar radiation 
+t True 
+Abbreviations 
+ADABOOST Adaptive Boosting 
+ANN Artificial Neural Network 
+BGHI Black Globe Humidity Index 
+BR Bayesian Ridge 
+CATBOOST Categorical Boosting 
+CCI Comprehensive Climate Index 
+DHLI Dairy Heat Load index 
+DT Decision Tree 
+EN Elastic Net 
+ET Extremely Randomised Tree 
+ETI Equivalent Temperature Index 
+ETIC Equivalent Temperature Index for Cattle 
+GBDT Gradient Boosted Decision Trees 
+KNN K-nearest Neighbors 
+LASSO Lasso Regression 
+LARS Least Angle Regression 
+LLARS Lasso Regression Fitted with LARS 
+LR Ordinary Least Squares Linear Regression 
+LGBM Light Gradient Boosting Machine 
+MAE Mean Absolute Error 
+MAPE Mean Absolute Percent Error 
+ML Machine Learning 
+MRR Mean Respiration Rate 
+MY Milk Yield 
+OMP Orthogonal Matching Pursuit 
+PCA Principal Component Analysis 
+POD Days of Pregnancy 
+R
+2 
+Determination of Coefficient 
+RF Random Forest 
+RIDGE Ridge Regression 
+RMSE Root Mean Squared Error 
+RR Respiration Rate 
+SGD Stochastic Gradient Descent 
+SHAP SHapley Additive exPlanations 
+STIC Skin Temperature Index for Cow 
+SVR Support Vector Machine 
+SWR Sweating Rate 
+THI Temperature-humidity Index 
+THI
+adj 
+Adjusted Temperature-humidity Index 
+VT Vidal Volume 
+XGBOOST Extreme Gradient Boosting 
+G. Yan et al. 
+
+--- Page 3 ---
+Biosystems Engineering 239 (2024) 207–230
+209
+complexity, making them unsuitable for real production conditions. In 
+contrast, machine learning (ML) models possess the ability to auto -
+matically learn patterns and relationships from extensive data, leading 
+to higher predictive performance owing to their flexibility and 
+complexity. Machine learning has already found success in predicting 
+milk production and milk composition of cows under real production 
+conditions ( Bao & Xie, 2022 ; Ding, Jiang, Shi, Zhao, & Ma, 2021 ; Ji, 
+Banhazi, Phillips, Wang, & Li, 2022 ). 
+To our knowledge, there is limited research on predicting cow RRs 
+using machine learning methods. Table 1 summarises recent studies and 
+includes the main objectives, data sets (data sources, building types, 
+samples, and locations), methods (ML algorithms, cross-validation, and 
+hyperparameter optimization), input features, relevant results (best ML 
+algorithms and performance metrics), and partial conclusions from the 
+previous studies. The input features can be categorised as thermal 
+environmental factors (air temperature, relative humidity, airflow 
+speed, etc.), cow-related factors (milk production, parity, calving sea -
+son, etc.), and other factors (such as time block). ML algorithms such as 
+linear regression (LR), random forest (RF), gradient boosting machine 
+(GBM), and artificial neural networks (ANN) have been utilised for 
+model training. Models are commonly optimised using five-fold and ten- 
+fold cross-validation, as well as random search or grid search. These 
+studies provide valuable insights for achieving more accurate pre -
+dictions of cow RR. However, further exploration of the input features is 
+necessary. In recent years, some studies have employed thermal balance 
+methods to simulate cow ’ s heat flows, showing promise in hourly RR 
+prediction (J. Li, Narayanan, Kebreab, Dikmen, & Fadel, 2021 ; Zhou, 
+Groot Koerkamp, Huynh, & Aarnink, 2022 ). Previous studies evaluating 
+heat indices developed for cattle have found strong correlations with the 
+RR of cows ( Wang, Gao, et al., 2018 ; Yan, Li, Zhao, & Shi, 2020 ). It 
+remains uncertain whether incorporating these variables as input fea -
+tures can enhance the performance of ML-based models. Moreover, 
+while the significance of ML algorithms and data preprocessing tech -
+niques in modelling performance has been acknowledged in previous 
+research ( Kuhn & Johnson, 2019 ), more advanced ML algorithms and 
+feature engineering techniques are rarely utilised in cow RR prediction 
+studies. Based on the findings and limitations of previous research, this 
+study proposes the following hypotheses: H1 , by utilizing sophisticated 
+ML algorithms in combination with additional predictive variables, 
+better performance and results can be achieved; H2 , feature engineering 
+techniques significantly impact ML-based prediction models for cow RR. 
+To verify the aforementioned hypothesis, the primary objective of 
+this research was to construct a machine learning-based prediction 
+model of cow RR. This was achieved by investigating machine learning 
+algorithms, input features, and feature engineering techniques through 
+the utilization of a dataset acquired from real-world production envi -
+ronments. By integrating domain knowledge with novel machine 
+learning interpretability techniques, it is possible to provide clearer 
+explanations of how machine learning models discern the RR of indi -
+vidual cows. Consequently, an additional objective was to enhance the 
+transparency and interpretability of the machine learning-based model, 
+facilitating a comprehensive understanding of the results. 
+2. Methodology 
+The methodology of this study comprises four main sections: data 
+processing, ML algorithm training, model evaluation and comparison, 
+and model interpretation. The research framework of this methodology 
+is illustrated in Fig. 1 . Firstly, data on environmental conditions, cow- 
+specific details, and other information related to production and sam -
+pling were collected from an actual dairy farm. Based on the research 
+objectives and literature review, features relevant to the responses and 
+predictions of cow RR were generated from the raw data. Secondly, the 
+cleaned data was utilised to train machine learning algorithms and 
+achieve performance metrics under various feature engineering tech -
+niques. Thirdly, the models were evaluated, and differences in perfor -
+mance metrics across different techniques were compared. Finally, the 
+SHAP value method was employed to interpret the optimal performing 
+model, providing an understanding of how cow ’ s RR responds to 
+influencing factors. 
+2.1. Data source 
+2.1.1. Location, buildings, and management 
+As illustrated in Fig. 2 , the data for this study were collected from a 
+commercial dairy farm situated at coordinates 39
+◦
+13 ′ N, 117
+◦
+2 ′ E. The 
+farm experiences a temperate continental monsoon climate. The 
+experiment took place between July and October 2020, during which 
+826 Holstein cows were observed. These cows were housed in 4 b, each 
+measuring 107 m in length by 31 m in width, and arranged in an east- 
+Table 1 
+Related studies on prediction of the respiration rate of dairy cows by machine 
+learning methods. 
+Study Gorczyca and 
+Gebremedhin 
+(2020) 
+Shu et al. (2023) 
+Purpose Ranking the effects 
+of environmental 
+variables on 
+physiological 
+responses of dairy 
+cows 
+Compare machine 
+learning models for 
+predicting 
+physiological 
+responses of dairy 
+cows in actual farm 
+Dataset Data source An experimental 
+trial lasting 21 days 
+(June – August) in 
+California, USA 
+A 20-day trial 
+(May – June) in 
+Shandong, China 
+Building type Concrete-floored 
+pen 
+Naturally ventilated 
+free-stall barn 
+Animals 10 Holstein-Friesian 
+dairy cows (control 
+group) 
+19 to 20 Holstein 
+dairy cows 
+Data processing ● normalised ● dimension 
+reduction 
+ PCA 
+ feature 
+selection 
+based VIF 
+● removing outliers 
+● categorical 
+encoding 
+Samples 486 records 2910 records 
+Methodology Algorithms LR, LR-FS, EN, RF, 
+GBM, ANN 
+EN, RF, GBM, ANN 
+Cross-validation N.A. 5-fold 
+Hyperparameter 
+optimization 
+Random search Grid search 
+Input 
+features 
+Environmental 
+variables 
+Ta, RH, Qsr, U Ta, RH, U 
+Cow-related 
+variables 
+N.A. birth season, calving 
+season, days in milk, 
+daily milk yield, 
+parity, age in 
+months, body 
+posture 
+Other variables N.A. time block 
+Result Optimal 
+algorithm 
+RF ANN 
+Performance 
+metric 
+● R
+2 
+= 0.610 
+● MAE = 7.616 
+● RMSE = 9.695 
+● R
+2 
+= 0.56 
+● RMSE = 13.24 
+Interpretation 
+method 
+Partial Dependence 
+Plots 
+Local Interpretable 
+Model-agnostic 
+Explanations (LIME) 
+Conclusion Air temperature has 
+the greatest impact 
+on the physiological 
+responses including 
+RR, while wind 
+speed has only a 
+minor effect. 
+Adding more 
+predictors beyond 
+meteorological 
+parameters has 
+potential to enhance 
+the predictive 
+performance. 
+G. Yan et al. 
+
+--- Page 4 ---
+Biosystems Engineering 239 (2024) 207–230
+210
+west orientation with a four-row head-to-head layout. The cow housing 
+area was divided into three zones based on the cows ’ production levels: 
+high-producing, medium-producing, and low-producing zones. During 
+the experiment, regular milking, feeding, manure removal, and cooling 
+management were carried out as usual. Evaporative cooling was 
+implemented using airflow fans (flow rate: 25,430 m
+3 
+h
+ 1
+) placed 
+approximately 6.0 m apart when the ambient temperature rose above 
+18 
+◦
+C. Additionally, sprinkle cooling was initiated when the THI 
+exceeded 72. 
+2.1.2. Raw variables 
+The thermal environmental parameters collected inside the barn 
+included ambient temperature ( T
+a
+, 
+◦
+C), relative humidity (RH, %; HOBO 
+U23-001, Onset Computer Inc., MA, USA; accuracy ± 0.2 
+◦
+C, ± 2.5%), 
+airflow speed ( U , m s
+ 1
+; TSI 9565P, TSI Inc., MN, USA; accuracy ±
+0.015 m s
+ 1
+), black globe temperature ( T
+bg
+, 
+◦
+C; JantyTech Inc., Beijing, 
+China; accuracy ± 0.6 
+◦
+C), and solar radiation intensity ( Q
+sr
+, W m
+ 2
+; TES 
+1333R, TES Electronic Crop., Taiwan China, accuracy ± 10 W m
+ 2
+). 
+Data were recorded at 10-min intervals. The cows ’ RRs were recorded 
+Fig. 1. The research framework of this study. 
+Fig. 2. Data source information. (a) location of data collection; (b) the buildings; (c) cows ’ information in the barns. 
+Table 2 
+Statistical description of environmental parameters, cow production variables, 
+and the respiration rate. 
+Variable Mean Standard 
+deviation 
+Minimum Maximum 
+Air temperature (
+◦
+C) 26.33 4.72 13.6 36.0 
+Relative humidity (%) 69.75 15.89 27.6 91.7 
+Black globe temperature 
+(
+◦
+C) 
+26.93 4.86 13.6 36.7 
+Airflow speed (m s
+ 1
+) 2.50 0.90 0 5.40 
+Solar radiation (W m
+ 2
+) 24.68 13.42 0 64 
+Parity 2.3 0.7 1 9 
+Milk yield (kg d
+ 1
+) 29.1 14.4 0 79.5 
+Days in milk (d) 265.2 168.1 9 1107 
+Respiration rate (bpm) 62.77 19.34 19 114 
+G. Yan et al. 
+
+--- Page 5 ---
+Biosystems Engineering 239 (2024) 207–230
+211
+during two time periods: 9:00 – 12:00 and 15:00 – 18:00 on the testing 
+days. The RR were determined by counting the number of chest and 
+abdominal movements within a 1-min period and reported in breaths 
+per minute (bpm). Production data of the cows, such as parity, milk 
+yield, and days in milk, were recorded and obtained from the farm 
+management software (Afimilk, Afimilk Ltd., Israel). Statistical 
+description of the above variables can be found in Table 2 . Changes in 
+the environmental parameters and the average of cow RRs during the 
+testing days are supplied in Appendix 1 . 
+2.2. Feature engineering 
+2.2.1. Data cleaning 
+The dataset incorporates three categorical variables in addition to 
+the variables outlined in Section 2.1.2 . These variables are denoted as 
+follows: the time block during which the sampling took place (morning, 
+afternoon), the production level of the barn wherein the cows are situ -
+ated (high-yielding area, medium-yielding area, low-yielding area), and 
+the body posture of the cows (lying, standing) at the time of sampling. 
+Among the 3005 records, a total of 126 missing values were identified. 
+The missing values in categorical variables were filled with the mode, 
+while the missing values in numerical variables were filled with the 
+median. The records with missing RR were directly excluded from the 
+analysis and modelling. After addressing the missing values, the z-score 
+method was used to identify outliers quantitatively. The z-score (rep -
+resented as z) of a sample is calculated using Eq. (1) 
+z = [ x mean ( x )] / std ( x ) (1) 
+where x denotes the datapoint, and mean( x ) and std( x ) represent the 
+mean and standard deviation of the variable, respectively. 
+The results of the outlier diagnosis are presented in Fig. 3 . The 
+“ airflow speed ” (U) variables exhibited 8 instances of outliers, while the 
+“ days in milk ” (DIM) and parity (PA) variables exhibited 13 and 40 
+outliers, respectively. Additionally, the target variable (RR) exhibited 5 
+outliers. The presence of outliers in the U variable may potentially relate 
+to abrupt and substantial fluctuations in airflow experienced during the 
+sampling process. It is worth noting that the DIM and PA variables were 
+automatically captured directly from the management software, thus 
+minimizing the possibility of errors. The outliers observed in the target 
+variable could either stem from inherent disparities among the animals 
+or could be associated with unknown stressors. Considering the afore -
+mentioned factors as well as the number of outliers, this study opted to 
+exclude any records containing outliers in the U, DIM, and target vari -
+ables. Consequently, the resultant dataset, post-outlier removal, con -
+sisted of 2977 records. 
+2.2.2. Heat flows 
+Based on previous studies ( Yan, Liu, Hao, Shi, & Li, 2021 ; Zhou, 
+Groot Koerkamp, et al., 2022 ), the heat flow components in the thermal 
+balance of dairy cows include total heat production, respiratory sensible 
+heat, respiratory latent heat, heat transfer from the core layer to the skin 
+layer, heat transfer from the skin layer to the coat layer, skin evapora -
+tion, and convective and radiative heat transfer between the coat surface 
+and the environment. The heat flows related to respiration, which 
+include sensible and latent heat, directly depend on the respiratory re -
+sponses, while the other heat flows have an indirect relationship. In this 
+study, we focus solely on the identified heat flow variables, excluding 
+heat transfer within the cow ’ s body. The calculation methods for the 
+variables necessary for heat flow calculation is presented in Appendix 2 . 
+- The total heat production ( Q
+hp
+, W m
+ 2
+) ( CIGR, 2002 ): 
+Q
+hp
+=
+[
+5 . 6 m
+0 . 75
++ 22MY + 1 . 6 × 10
+ 5
+POD
+3
++ 4 ( 20 T
+a
+)
+] /
+S (2) 
+where m represents the weight of the cow, 600 kg; MY represents the 
+milk yield, kg d
+ 1
+; POD represents the days of pregnant, d; T
+a 
+represents 
+the ambient temperature, 
+◦
+C; S represents the body surface area, m
+2
+. 
+- The sensible heat dissipation through respiration ( Q
+res_sen
+, W m
+ 2
+) 
+( Maia, da Silva, & Loureiro, 2005a ): 
+Q
+res sen
+= MRR × TV × ρ c
+p
+( T
+ex
+ T
+a
+)
+/
+( 60 × S ) (3) 
+where MRR represents the mean RR, bpm; TV represents the respiratory 
+tidal volume, m
+3
+; ρ represents the air density, kg m
+ 3
+; ρ c
+p 
+represents the 
+volumetric specific heat capacity of air at constant pressure, 1220 J 
+m
+ 3
+⋅ K
+ 1
+; T
+ex 
+represents the exhaled air temperature, 
+◦
+C. 
+- The latent heat dissipation through respiration ( Q
+res_lat
+, W m
+ 2
+) 
+( McArthur, 1987 ): 
+Q
+res lat
+= ρ c
+p
+ 
+P
+e , b
+ P
+e , a
+) /
+( γ r
+res
+) (4) 
+where P
+e,b 
+represents the saturated water vapor pressure at body tem -
+perature T
+b
+, kPa; P
+e,a 
+represents the actual water vapor pressure at 
+ambient temperature T
+a
+, kPa; γ represents the psychrometer constant, 
+0.066 kPa K
+ 1
+; r
+res 
+represents the respiratory evaporative resistance, s 
+m
+ 1
+. 
+- The total heat dissipation through respiration ( Q
+res
+, W m
+ 2
+): 
+Q
+res
+= Q
+res sen
++ Q
+res lat
+(5) 
+- The evaporative heat loss from the cow ’ s skin ( Q
+evap
+, W/m
+2
+) ( Collier 
+& Gebremedhin, 2015 ): 
+Q
+evap
+= SWR × λ
+/
+3600 (6) 
+where SWR represents the sweating rate of cows, g m
+ 2
+⋅ h
+ 1
+; λ represents 
+the latent heat of vaporization, 2260 J g
+ 1
+. 
+- The convective ( Q
+conv
+, W m
+ 2
+) heat flux ( Q
+rad
+, W/m
+2
+) between the 
+cow ’ s body surface and the surrounding environment ( Mcgovern & 
+Bruce, 2000 ): 
+Q
+conv
+= ( T
+c
+ T
+a
+) h
+a
+(7) 
+where T
+c 
+is the coat temperature, 
+◦
+C; h
+a 
+represents the convective heat 
+transfer coefficient W m
+ 2 
+K
+ 1
+. 
+Fig. 3. The results of outlier diagnosis ( T
+a 
+= air temperature, RH = relative 
+humidity, T
+bg 
+= black-globe temperature, U = airflow speed, Q
+sr 
+= solar radi -
+ation intensity, DIM = days in milk, PA = parity, Target = respiration rate). 
+G. Yan et al. 
+
+--- Page 6 ---
+Biosystems Engineering 239 (2024) 207–230
+212
+- The radiative heat flux ( Q
+rad
+, W m
+ 2
+) between the cow ’ s body surface 
+and the surrounding environment ( McArthur, 1987 ): 
+Q
+rad
+= ( T
+c
+ T
+rad
+) h
+rad
+(8) 
+where h
+rad 
+represents the linearised radiative heat transfer coefficient, W 
+m
+ 2 
+K
+ 1
+; T
+rad 
+represents the mean radiant temperature, approximated 
+by T
+a
+. 
+2.2.3. Heat indices 
+Previous reviews have indicated that certain heat indices commonly 
+employed for assessing heat stress in cattle were established based on RR 
+or the panting score ( Herbut et al., 2018 ; Ji et al., 2020 ). Additionally, 
+other field studies have demonstrated strong correlations between some 
+of the heat indices and RR ( Da Silva, Morais, & Guilhermino, 2007 ; Yan 
+et al., 2020 ). In this study, we selected heat indices specifically devel -
+oped for dairy cows, and their calculation methods are described as 
+follow. 
+- Temperature-humidity Index ( NRC, 1971 ): 
+THI = ( 1 . 8 T
+a
++ 32 ) ( 0 . 55 0 . 0055RH )( 1 . 8 T
+a
+ 26 ) (9) 
+- Black Globe Humidity Index ( Buffington et al., 1981 ): 
+BGHI = T
+bg
++ 0 . 36 T
+dp
++ 41 . 5 (10) 
+where T
+dp 
+represents dew point temperature, 
+◦
+C. 
+- Equivalent Temperature Index ( Herbut et al., 2018 ): 
+ETI = 27 . 88 0 . 456 T
+a
++ 0 . 010754 T
+a
+2
+ 0 . 4905RH + 0 . 00088RH
+2
++ 1 . 15 U
+ 0 . 12644 U
+2
++ 0 . 019876 T
+a
+RH 0 . 046313 T
+a
+U
+(11) 
+- Adjusted THI ( Mader, Davis, & Brown-Brandl, 2006 ): 
+THI
+adj
+= 4 . 51 + [ 0 . 8 T
+a
++ ( RH / 100 )( T
+a
+ 14 . 4 ) + 46 . 4 ] 1 . 992 U + 0 . 0068 Q
+sr
+(12) 
+- Comprehensive Climate Index ( Mader, Johnson, & Gaughan, 2010 ): 
+CCI = eq . ( U ) + eq . ( Q
+sr
+) + eq . ( RH )
+where 
+eq . ( Q
+sr
+) = 0 . 0076 Q
+sr
+ 0 . 00002 Q
+sr
+T
+a
++ 0 . 00005 T
+a
+2
+̅̅̅̅̅̅ ̅
+Q
+sr
+√
++ 0 . 1 T
+a
+ 2 
+eq . ( RH ) = exp
+ 
+0 . 00182RH + 1 . 8 × 10
+ 5
+T
+a
+RH
+)
+×
+ 
+0 . 000054 T
+a
+2
++ 0 . 00192 T
+a
+ 0 . 0246
+)
+( RH 30 )
+(13) 
+- Dairy Heat Load index ( Lees, Lees, & Gaughan, 2018 ): 
+DHLI =
+(
+1 . 681813
+1 exp ( ( 8 . 50749 + 0 . 206149 T
+bg ) + 4 . 088399RH )
+)
+ 0 . 0002
+1 . 6812 0 . 0002
+× 100 (14) 
+- Equivalent Temperature Index for Cattle ( Wang, Gao, et al., 2018 ): 
+ETIC = T
+a
+ 0 . 0038 T
+a
+( 100 RH ) 0 . 1173 u
+0 . 707
+( 39 . 2 T
+a
+) + 1 . 86
+× 10
+ 4
+T
+a
+Q
+sr
+(15) 
+- Skin Temperature Index for Cow ( Yan, Shi, Cui, & Li, 2022 ): 
+2.2.4. Polynomial features 
+Polynomial feature is a type of techniques in feature engineering that 
+involves creating new features based on existing ones. The degree of the 
+polynomial is used to govern the number of features added. For instance, 
+a degree of 3 would introduce two new variables for each original var -
+iable. Additionally, an “ interaction ” variable is formed for every pair of 
+input variables. As an illustration, given features ( x
+1
+, x
+2
+) , when the de -
+gree is set to 2, this transformation generates features such as ( 1 , x
+1
+, x
+2
+,
+x
+1
+2
+, x
+2
+2
+, x
+1
+x
+2
+) . Adding polynomial terms to linear models can effectively 
+capture nonlinear patterns ( Kuhn & Johnson, 2019 ). Typically, degrees 
+greater than 3 or 4 are uncommon because they can lead to excessively 
+flexible polynomial curves and peculiar shapes ( Witten & James, 2013 ). 
+Therefore, in this study, a degree of 2 was adopted for the polynomial 
+features. 
+2.2.5. Principal component analysis 
+Principal component analysis (PCA) is a technique used for feature 
+extraction in machine learning. It enables the mapping of high- 
+dimensional feature spaces to lower-dimensional ones while preser -
+ving the maximum amount of information from the original dataset. The 
+correlation between the newly obtained principal components and the 
+dimensionality is minimal. The new features derived through PCA are 
+referred to as principal components, denoted as PCi (i = 1, 2, … , n). PC1 
+captures the most significant information from the original dataset, 
+followed by PC2, PC3, and so on. A key advantage of PCA is its ability to 
+expedite machine learning algorithms by eliminating irrelevant vari -
+ables that do not contribute to decision-making processes. Additionally, 
+eq . ( U ) =
+ 6 . 56
+exp
+{
+1
+( 2 . 26 U + 0 . 23 )
+0 . 45
+×
+[
+2 . 9 + 1 . 14 × 10
+ 6
+U
+2 . 5
+ log
+0 . 3
+( 2 . 26 U + 0 . 33 )
+ 2
+]
+} 0 . 00566 U
+2
++ 3 . 33 
+STIC =
+(
+1 . 73 T
+a
+ 
+(
+1 
+RH
+100
+)
+10
+7 . 5 T a
+237 + T a
++ 0 . 116 u
+0 . 53
+( 10 T
+a
+ 300 ) + 0 . 05 Q
+sr
++ 16 . 08
+)
+( 0 . 116 u
+0 . 53
++ 1 )
+(16) 
+G. Yan et al. 
+
+--- Page 7 ---
+Biosystems Engineering 239 (2024) 207–230
+213
+PCA helps address overfitting issues caused by an excessively large 
+number of features. Nonetheless, PCA does have notable limitations. The 
+principal components are linear combinations of the original features 
+and lack interpretability relative to the original features. In addition, 
+seemingly insignificant pieces of data may be discarded, which could 
+potentially hold crucial information not well-represented in the training 
+set, thereby exacerbating overfitting problems ( Witten & James, 2013 ). 
+In this study, the explanation threshold was set at 95%, i.e., the selected 
+principal components needed to account for 95% of the cumulative 
+variance. 
+2.2.6. Feature selection 
+Feature selection is the process of reducing the number of input 
+variables in order to reduce computational costs and, in certain cases, 
+enhance model performance. A commonly employed approach for 
+feature selection is the filter-based method, known for its efficiency and 
+effectiveness. This approach leverages statistical measures to evaluate 
+the relationship between input and output variables, forming the basis 
+for filter feature selection. In the present study, the top 20% of features 
+exhibiting the highest correlation with the target variable were selected, 
+thereby facilitating a focused and refined feature set for further analysis 
+and modelling. 
+2.2.7. Categorical encoding 
+In general, most ML algorithms are unable to directly handle cate -
+gorical features. Therefore, in order to effectively utilise the data, cat -
+egorical data needs to be transformed into numerical data without 
+distorting the original data distribution. This process is known as “ cat -
+egorical encoding ” and is a crucial step in data preprocessing, as most 
+ML models perform better with numerical data. There are two 
+commonly used techniques for categorical encoding: ordinal encoding 
+and one-hot encoding. Ordinal encoding assigns a unique integer value 
+to each category based on its order. However, for categorical variables 
+where no ordinal relationship exists, relying solely on integer encoding 
+may be insufficient or even misleading for the models. Forcing an 
+ordinal relationship through ordinal encoding and allowing the model to 
+assume a natural ordering between categories can lead to subpar per -
+formance or unexpected outcomes, such as predictions that fall in be -
+tween categories. In such cases, one-hot encoding can be applied to the 
+ordinal representation. It creates one binary variable for each category, 
+eliminating the possibility of ordinal assumptions. However, it should be 
+noted that one-hot encoding can significantly increase the dimension -
+ality of the feature space, resulting in higher memory and training time 
+costs, particularly when dealing with a large number of categories ( Kuhn 
+& Johnson, 2019 ). Both categorical encoding techniques will be evalu -
+ated in this study to determine their effectiveness. 
+2.2.8. Feature scaling 
+Max-min normalization is a commonly employed technique aimed at 
+transforming numeric data into a specific range, typically [0, 1]. This 
+scaling process enhances the compatibility of data with certain machine 
+learning algorithms. By uniformly adjusting the scales and ranges across 
+features, this technique ensures that no single feature dominates the 
+learning process based on its larger values. In this study, the scaling 
+process was reversed when presenting the data distribution and inter -
+preting the model. The max-min normalization formula for a datapoint x 
+is as follows: 
+x
+∗
+= [ x min ( x )] / [ max ( x ) min ( x )] (17) 
+where x* represents the normalised value of the datapoint, min( x ) and 
+max( x ) represent the minimum and maximum values of the feature, 
+respectively. 
+2.2.9. Experimental schemes of feature engineering 
+However, not all of the aforementioned feature processing tech -
+niques will be implemented. As delineated in Table 3 , we formulated 24 
+different feature engineering schemes. These can be categorised as 
+follows: 
+- Schemes 1 – 12 entailed the utilization of ordinal coding for cate -
+gorical features, while Schemes 13 – 24 employed one-hot encoding. 
+- Schemes 1 – 4 and 13 – 16 incorporated environmental parameters as 
+numerical inputs (partly, the remaining, days in milk and milk yield), 
+whereas Schemes 5 – 8 and 17 – 20 utilised heat indices as numerical 
+inputs, and Schemes 9 – 12 and 21 – 24 employed heat flow as nu -
+merical inputs, with the purpose of investigating their influence on 
+model performance. 
+Table 3 
+Experimental schemes in this study. 
+Scheme 
+No. 
+Data 
+cleaning 
+Encoding Input Treatment Normalization 
+Ordinal One- 
+hot 
+Environmental 
+parameters 
+Heat 
+indices 
+Heat 
+flows 
+Polynomial 
+feature 
+PCA Feature 
+selection 
+1 ● ● ● ● 
+2 ● ● ● ● ● 
+3 ● ● ● ● ● ● 
+4 ● ● ● ● ● ● 
+5 ● ● ● ● 
+6 ● ● ● ● ● 
+7 ● ● ● ● ● ● 
+8 ● ● ● ● ● ● 
+9 ● ● ● ● 
+10 ● ● ● ● ● 
+11 ● ● ● ● ● 
+12 ● ● ● ● ● 
+13 ● ● ● ● 
+14 ● ● ● ● ● 
+15 ● ● ● ● ● ● 
+16 ● ● ● ● ● ● 
+17 ● ● ● ● 
+18 ● ● ● ● ● 
+19 ● ● ● ● ● ● 
+20 ● ● ● ● ● ● 
+21 ● ● ● ● 
+22 ● ● ● ● ● 
+23 ● ● ● ● ● ● 
+24 ● ● ● ● ● ● 
+G. Yan et al. 
+
+--- Page 8 ---
+Biosystems Engineering 239 (2024) 207–230
+214
+- Schemes 2 – 4, 6 – 9, 10 – 12, 14 – 16, and 18 – 20 introduced polynomial 
+features to explore their impact on model performance. 
+- Schemes 3, 7, 15, 19, and 23 employed Principal Component Anal -
+ysis (PCA) for dimensionality reduction, while Schemes 4, 8, 16, 20, 
+and 24 utilised feature filtering based on correlation coefficients, 
+with the goal of examining the influence of PCA and feature selection 
+on model performance. 
+Importantly, all schemes encompassed data cleaning and 
+normalization. 
+2.3. Machine learning algorithm training 
+2.3.1. Algorithms and hyperparameters 
+As shown in Table 4 , this study carefully curated a selection of 20 
+commonly used machine learning algorithms along with their corre -
+sponding hyperparameters. These encompassed linear models (e.g., 
+lasso regression, ridge regression, elastic net), support vector machine, 
+artificial neural network, and ensemble models (e.g., random forest, 
+gradient boosting decision trees). A hyperparameter search was con -
+ducted to optimise the predictive capability of the models. 
+The complete dataset was randomly shuffled, with 80% of the data 
+allocated as the training set and the remaining 20% as the testing set. 
+The distributions of raw numerical variable, created variables, inter -
+mediate variables and the target are provided in Appendix 3 . Grid search 
+cross-validation was performed on the training set using a 10-fold cross- 
+validation approach to identify the best hyperparameter combinations. 
+2.3.2. ML libraries and platforms for training 
+All algorithms in this study were implemented and evaluated uti -
+lizing the machine learning framework scikit-learn (version 1.2.2), 
+xgboost (version 1.6.1), lightgbm (version 3.2.2), and the catboost li -
+brary (version 1.2), operating under the Windows 11 (version 21H2) 
+system with Python (version 3.9). The hardware configuration included 
+an Intel i9-13900K @5.4 GHz processor and 32 GB memory. 
+2.4. Model evaluation and comparison 
+2.4.1. Performance metrics 
+For the regression model of cow RR, we employed common evalu -
+ation metrics to measure the performance of the model. These metrics 
+included the coefficient of determination (R
+2
+), the mean absolute error 
+(MAE), the mean absolute percentage error (MAPE), and the root mean 
+Table 4 
+Machine learning algorithms and their hyperparameter search ranges in this 
+study. 
+Abbr.
+a 
+ML algorithms Hyperparameters Search range
+b 
+LR Ordinary Least Squares 
+Linear Regression 
+- – 
+LASSO Lasso Regression L1 penalty [10e-5, 10e- 
+1] 
+RIDGE Ridge Regression L2 penalty [10e-5, 10e- 
+1] 
+EN Elastic Net Penalty coefficient [10e-5, 10e- 
+1] Ratio of L1 penalty 
+LARS Least Angle Regression Target number of non- 
+zero coefficients 
+[1, 200] 
+LLARS Lasso regression fitted 
+with lars 
+L1 penalty [10e-5, 10e- 
+1] 
+OMP Orthogonal Matching 
+Pursuit 
+Target number of non- 
+zero coefficients 
+[1, 200] 
+BR Bayesian Ridge Shape parameter [10e-5, 10e- 
+1] 
+Inverse scale parameter [10e-5, 10e- 
+1] 
+SGD Stochastic Gradient 
+Descent 
+Penalty coefficient [10e-5, 10e- 
+1] 
+Ratio of L1 penalty [10e-5, 10e- 
+1] 
+Learning rate [10e-4, 10e- 
+1] 
+SVM Support Vector 
+Machine 
+Kernel {‘linear ’ , 
+‘poly ’ , ‘rbf ’ } 
+C [0.01, 5] 
+Gamma [0.01, 0.5] 
+KNN K-nearest Neighbors Number of neighbors [2, 11] 
+DT Decision Tree Maximum depth [4, 23] 
+ET Extremely Randomised 
+Tree 
+Maximum depth [4, 23] 
+ANN Artificial Neural 
+Network 
+Hidden layer {(150), (150, 
+50)} 
+Penalty coefficient [10e-4, 0.5] 
+Learning rate [10e-4, 0.1] 
+Activation {‘relu ’ , 
+‘logistic, 
+‘tanh} 
+Iterations {300, 500, 
+1000} 
+RF Random Forest Number of estimators {100, 200, 
+500} 
+Maximum depth [4, 10] 
+ADABOOST Adaptive Boosting Number of estimators {100, 200, 
+500} 
+Learning rate [0.5, 2] 
+GBDT Gradient Boosted 
+Decision Trees 
+Number of estimators {100, 200, 
+500} 
+Learning rate [0.5, 2] 
+XGBOOST Extreme Gradient 
+Boosting 
+Minimum split loss [5, 10] 
+Node learning rate {0.1, 0.3, 0.5} 
+Number of estimators [50, 100, 
+150] 
+Maximum depth [3, 6, 9] 
+Penalty coefficient [0.01, 0.55] 
+LGBM Light Gradient 
+Boosting Machine 
+Iterations {50, 100, 
+500} 
+Learning rate {0.1, 0.3, 0.5} 
+Maximum number of 
+leaves 
+[10, 50] 
+Maximum depth [3, 9] 
+CATBOOST Categorical Boosting Iterations {50, 100, 
+500} 
+Learning rate {0.01, 0.02, 
+0.03} 
+Maximum depth [3, 9] 
+a
+Abbreviations (Abbr.) are used only for this study. 
+b
+Square brackets indicate a range, and curly braces indicate discrete values. 
+Table 5 
+Performance metrics for the regression models used in this study. 
+Metric Definition Meaning 
+Coefficient of 
+determination 
+R
+2
+( y
+t
+, y
+p
+) = 1 
+∑
+n
+i = 1
+( y
+t , i
+ y
+p , i
+)
+2
+∑
+n
+i = 1
+( y
+t , i
+ y )
+2 
+Reflecting the goodness of fit of 
+the regression model; 
+Higher is better 
+Mean absolute 
+error 
+MAE ( y
+t
+, y
+p
+) =
+1
+n
+∑
+n 1
+i = 0
+⃒
+⃒
+⃒ y
+t , i
+ y
+p , i
+⃒
+⃒
+⃒
+Measuring the average 
+magnitude of the errors 
+between the predicted values 
+and the actual values; 
+Lower is better 
+Mean absolute 
+percentage error 
+MAPE ( y
+t
+, y
+p
+) =
+1
+n
+∑
+n 1
+i = 0
+⃒
+⃒
+⃒ y
+t , i
+ y
+p , i
+⃒
+⃒
+⃒
+max (
+⃒
+⃒
+⃒ y
+t , i
+⃒
+⃒
+⃒ )
+Measuring the average 
+percentage difference between 
+the predicted values and the 
+actual values; 
+Lower is better 
+Root mean 
+squared error 
+RMSE ( y
+t
+, y
+p
+) =
+̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅ ̅
+1
+n
+∑
+n 1
+i = 0
+( y
+t , i
+ y
+p , i
+)
+2
+√
+Measuring the average 
+deviation of the predicted 
+values from the actual values; 
+Lower is better 
+Note: y
+p,i 
+is the predicted value of the i -th sample; y
+t,i 
+is the corresponding true 
+value; y is the mean value of total n samples. 
+G. Yan et al. 
+
+--- Page 9 ---
+Biosystems Engineering 239 (2024) 207–230
+215
+square error (RMSE). The equations for calculating these metrics can be 
+found in Table 5 . 
+2.4.2. Model comparison 
+In this study, the results of performance metrics were expressed as 
+mean ± standard deviation (n = 24) when comparing different ML al -
+gorithms. However, when statistical analyses were performed to 
+compare models that used the same ML algorithm, the results of the 
+performance metrics were expressed as mean ± standard error. The 
+following statistical analyses were then conducted: After passing Lev -
+ene ’ s test (i.e., p > 0.05), one-way analysis of variance was performed to 
+compare different input feature groups (the EP group, S1-4 and S13-16; 
+the HI group, S5-8 and S17-20; the HF group, S9-12 and S21-24; “ S ” 
+means Scheme, same below); paired sample t-tests were also performed 
+to compare the impacts of the categorical encoding types (n = 12, S1 vs. 
+S13, S2 vs. S14, … , S12 vs. S24), the presence of polynomial features (n 
+= 6, S1 vs. S2, S5 vs. S6, S9 vs. S10, S13 vs. S14, S17 vs. S18, S21 vs. 
+S22), and the feature reduction methods (n = 6, S3 vs. S4, S7 vs. S8, S11 
+vs. S12, S15 vs. S16, S19 vs. S20, S23 vs. S24) on model performance. P- 
+values below 0.05 were considered to indicate statistical significance. 
+2.5. Model interpretation 
+Machine learning models receive criticism for their opacity, often 
+referred to as “ black-box models, ” making it challenging to understand 
+their prediction mechanisms. While techniques such as feature impor -
+tance or partial dependency plots provide insights into factor influence, 
+they may simplify the complexity of the model for employing averaging 
+methods when calculating the partial dependence of a feature ( Molnar, 
+2023 ). To address these limitations and enhance transparency and 
+interpretability, the SHAP (SHapley Additive exPlanations) value 
+method was introduced, rooted in the principles of cooperative game 
+theory ( Lundberg & Lee, 2017 ). To ensure interpretability, SHAP uses an 
+additive factor attribution approach, where the resulting model is 
+defined as a linear combination of input factors. Consider a model with 
+input variables ( x
+0
+, x
+1
+, … , x
+M
+) , where M is the number of inputs, the 
+explainable model g ( x
+′
+) can be described by 
+g ( x
+′
+) = φ
+0
++
+∑
+M
+i = 1
+φ
+i
+x
+′
+i
+(18) 
+where φ
+0 
+symbolises the constant value in cases when all inputs are 
+missing; φ
+i 
+represents the SHAP value of x
+′
+i
+. 
+According to Lundberg and Lee (2017) , there exists a unique solution 
+to Eq. (18) that satisfies the following three properties: 
+- The first property local accuracy indicates that g ( x
+′
+) in Eq. (18) cor -
+responds to the original model f ( x ) , where x = ϑ
+x
+( x
+′
+) is valid for the 
+mapping function, ϑ
+x
+. Consequently, Eq. (18) can be expressed as 
+follows: 
+f ( x ) = g ( x
+′
+) = φ
+0
++
+∑
+M
+i = 1
+φ
+i
+x
+′
+i
+(19) 
+Fig. 4 illustrates Eq. (19) , where φ
+1
+, φ
+2
+, and φ
+3 
+increase the SHAP, 
+while φ
+4 
+decreases it. The current output f ( x ) can be obtained from the 
+base value φ
+0 
+by the Shapley values. 
+- The second property, i.e., missingness , means that the missing value of 
+x has no attributed impact, and it is expressed as 
+x
+′
+i
+= 0 → φ
+i
+= 0 
+- The third property, i.e., consistency , refers to how the Shapley value 
+increases or remains constant when the marginal contribution of an 
+input increases or remains constant irrespective of other inputs if the 
+explanatory model is changed. However, the value dose not 
+decrease. For instance, f
+x
+( z
+′
+) = f ( h
+x
+( z
+′
+)) , and z
+′
+= 0 in z
+′
+\ i . Any two 
+models f and f ′ satisfy 
+f
+′
+x
+( z
+′
+) f
+′
+x
+( z
+′
+\ i ) ≥ f
+x
+( z
+′
+) f
+x
+( z
+′
+\ i )
+All the input values are z
+′
+∈ { 0 , 1 }
+M
+, and they satisfy φ
+i
+( f
+′
+, x ) ≥ φ
+i
+( f ,
+x ) . Ultimately, the equation for SHAP can be expressed as follows: 
+φ
+i
+( f , x ) =
+∑
+z
+′
+⊆ x
+′
+| z
+′
+| ! ( M | z
+′
+| 1 ) !
+M !
+[ f
+x
+( z
+′
+) f
+x
+( z
+′
+\ i )] (20) 
+where | z ′ | represents the number of non-zero entries in z ′ , and z ′ satisfies 
+z ′ ⊆ x ′ , and φ
+i 
+represents the Shapley value. 
+3. Results and discussion 
+3.1. Comparison of ML algorithm performance 
+Fig. 5 presents the results (mean ± standard deviation) of perfor -
+mance metrics for 20 ML algorithms evaluated in 24 feature engineering 
+schemes on both the training and testing sets. It is evident that among 
+the evaluated algorithms, the LGBM algorithm (R
+2 
+= 0.547, MAE =
+8.446, MAPE = 16.1%, RMSE = 10.804) demonstrated the highest 
+overall performance, followed by the CATBOOST algorithm (R
+2 
+=
+0.543, MAE = 8.476, MAPE = 16.2%, RMSE = 10.850), XGBOOST al -
+gorithm (R
+2 
+= 0.539, MAE = 8.513, MAPE = 16.2%, RMSE = 10.891), 
+and RF algorithm (R
+2 
+= 0.537, MAE = 8.529, MAPE = 16.2%, RMSE =
+10.928). The lowest performing algorithms were the ADABOOST algo -
+rithm (R
+2 
+= 0.462, MAE = 9.494, MAPE = 19.2%, RMSE = 11.770) and 
+LLARS algorithm (R
+2 
+= 0.419, MAE = 9.487, MAPE = 18.4%, RMSE =
+11.934). Additionally, the GBDT algorithm exhibited noticeable 
+overfitting. 
+The performance metric results of the best models for all 20 ML al -
+gorithms on the test set are displayed in Table 6 . Additionally, the cor -
+responding hyperparameter search results on the training set and 
+prediction results on the test set are given in Appendixes 4 and 5 , 
+respectively. It is evident that the CATBOOST model trained under 
+feature engineering scheme #1 demonstrated the optimal performance, 
+with an R
+2 
+of 0.676, MAE of 7.246, MAPE of 13.8%, and RMSE of 9.341. 
+The next best models are the LGBM model (R
+2 
+= 0.671, MAE = 7.308, 
+MAPE = 13.8%, RMSE = 9.414) and XGBOOST model (R
+2 
+= 0.669, 
+MAE = 7.309, MAPE = 13.7%, RMSE = 9.437) trained under scheme 
+#13. 
+Due to differences in datasets, direct comparisons between studies 
+predicting cow RR using machine learning methods are not recom -
+mended. Here, we objectively describe the results of previous research. 
+Gorczyca and Gebremedhin (2020) utilised a subset of data from the 
+study of Chen et al. (2015) , specifically data from unsprayed cows, 
+which reduces the impact of other factors on cow RR. In this relatively 
+low-noise dataset, the RF model outperforms the LR, EN, gradient 
+boosted machine (GBM), and ANN models, achieving an R
+2 
+of 0.610, 
+MAE of 7.616, and RMSE of 9.695. The data used in the study of Shu 
+et al. (2023) were collected from an actual dairy farm, with geographical 
+location and production conditions relatively similar to ours. It would be 
+more meaningful to examine the findings of this study in conjunction 
+Fig. 4. The diagram showing SHAP attribute according to Lundberg and 
+Lee (2017) . 
+G. Yan et al. 
+
+--- Page 10 ---
+Biosystems Engineering 239 (2024) 207–230
+216
+with those of Shu et al. (2023) . In their report, Shu et al. (2023) stated 
+that in the presence of sprinkler, the ANN model yielded the best per -
+formance compared to the EN, RF, and GBM models, achieving an R
+2 
+of 
+0.56 and an RMSE of 13.24. As mentioned earlier, both Gorczyca and 
+Gebremedhin (2020) and Shu et al. (2023) ’ s studies only considered 
+early classic ML algorithms. Taking into account the results of our study, 
+the CATBOOST, LGBM, and XGBOOST algorithms, which are 
+state-of-the-art (SOTA) boosting algorithms developed in the past 
+decade, display superior performance in predicting cow RR in complex 
+production environments. 
+3.2. Influences of the feature engineering techniques 
+3.2.1. Input features 
+Fig. 6 shows the mean ( ± standard error) performance metrics of 20 
+machine learning algorithms using different input features. The results 
+of the one-way ANOVA, which passed the homogeneity of variance test, 
+indicated that the type of input features did not significantly affect the 
+performance metrics of the evaluated algorithms (p > 0.05). This lack of 
+significance is likely attributed to the limited sample size in each group 
+and the high within-group variation relative to between-group variance. 
+Although no statistically significant differences were observed, it seems 
+that distinct algorithms exhibit enhanced performance with specific 
+input features. For example, in terms of R
+2 
+values, the ANN and CAT -
+BOOST algorithms demonstrated the highest performance when envi -
+ronmental parameters were used as input features. The KNN, DT, ET, 
+and ADABOOST algorithms yielded the highest R
+2 
+values with heat 
+indices as input features, while the remaining 14 algorithms achieved 
+highest R
+2 
+values with heat flows as input features. 
+Table 7 summarises the types of input features that contributed to 
+superior predictive performance, i.e., higher R
+2 
+values and lower MAE, 
+Fig. 5. Performance measurement of the machine learning models. 
+Table 6 
+The performance metric results were obtained by the machine learning algo -
+rithm using the optimal scheme on the test set. 
+Algorithm Optimal scheme Metrics 
+R
+2 
+MAE MAPE RMSE 
+LR #13 0.631 7.816 15.1 9.968 
+LASSO #13 0.631 7.820 15.1 9.973 
+RIDGE #13 0.630 7.820 15.1 9.978 
+EN #13 0.631 7.820 15.1 9.973 
+LARS #1 0.619 8.020 15.5 10.128 
+LLARS #1 0.629 7.834 15.1 9.989 
+OMP #13 0.631 7.825 15.1 9.971 
+BR #13 0.630 7.829 15.1 9.986 
+SGD #9 0.611 7.657 14.6 9.950 
+SVM #17 0.633 7.768 14.7 9.947 
+KNN #5 0.617 7.964 15.1 10.167 
+DT #1 0.626 7.807 14.9 10.031 
+ET #1 0.601 8.033 15.2 10.360 
+ANN #13 0.662 7.550 14.6 9.544 
+RF #13 0.657 7.379 13.9 9.616 
+ADABOOST #1 0.614 8.217 16.4 10.198 
+GBDT #13 0.629 7.721 14.4 10.000 
+XGBOOST #13 0.669 7.309 13.7 9.437 
+LGBM #13 0.671 7.308 13.8 9.414 
+CATBOOST #1 0.676 7.246 13.8 9.341 
+G. Yan et al. 
+
+--- Page 11 ---
+Biosystems Engineering 239 (2024) 207–230
+217
+Fig. 6. Comparison of the mean values ( ± standard error) of the model performance metrics when environmental parameters (EP), heat index (HI) and heat flow (HF) 
+are used as input features. 
+G. Yan et al. 
+
+--- Page 12 ---
+Biosystems Engineering 239 (2024) 207–230
+218
+MAPE, and RMSE in this study. It appears that, for most algorithms, 
+utilizing heat flows as input features enhanced R
+2 
+and reduces RMSE and 
+MAE, while heat indices as input features diminished the algorithm ’ s 
+MAPE. Comparing heat indices and heat flows as input features, the 
+CATBOOST algorithm consistently outperformed across all four metrics 
+when environmental parameters were employed as input features. 
+3.2.2. Categorical encoding 
+Fig. 7 presents the effects of commonly used categorical encoding 
+methods on the performance metrics (mean ± standard error) of the ML 
+algorithms. The evaluation, conducted using paired sample t-tests, 
+demonstrated that one-hot encoding had a significant positive impact on 
+the LR, LASSO, RIDGE, EN, OMP, BR, and SVM algorithms (p < 0.05). 
+Specifically, it improved the R
+2 
+value and reduced the values of MAE, 
+MAPE, and RMSE. Additionally, ordinal encoding exhibited a notable 
+influence on the MAE and MAPE values only for the LARS algorithm (p 
+< 0.05), while no significant impact was observed on the R
+2 
+and RMSE 
+values (p > 0.05). In the case of other algorithms (i.e., LLARS, SGD, 
+KNN, DT, ET, ANN, RF, ADABOOST, GBDT, XGBOOST, LGBM, CAT -
+BOOST), the use of one-hot encoding did not significantly affect algo -
+rithm performance compared to ordinal encoding (p > 0.05). It is worth 
+noting that CATBOOST, being an algorithm with built-in advanced 
+categorical feature encoding, may experience a performance decline if 
+additional preprocessing steps are applied to categorical features ( Dor -
+ogush, Ershov, & Gulin, 2018 ). 
+3.2.3. Polynomial features 
+Fig. 8 illustrates the impact of incorporating polynomial features on 
+the performance metrics (mean ± standard error) of the models, as 
+compared to when polynomial features are not utilised. The results 
+obtained from the paired sample t-tests indicated that introducing 
+polynomial features not only failed to enhance the model ’ s predictive 
+performance but also significantly impaired its overall performance (p 
+< 0.05). This negative effect was supported by a notable reduction in the 
+R
+2 
+values across all evaluated algorithms, accompanied by a consider -
+able increase in MAE, MAPE, and RMSE. One plausible explanation for 
+this outcome is that incorporating polynomial features amplifies the 
+complexity of the model, potentially leading to overfitting. It is impor -
+tant to note that this study was conducted under real production 
+conditions on an actual dairy farm, where the collected data inherently 
+contain measurement errors or random variations. The increased 
+complexity introduced by polynomial features might unintentionally 
+capture noise as meaningful patterns, consequently resulting in less 
+accurate predictions. 
+3.2.4. PCA and feature selection 
+Fig. 9 illustrates the impact of PCA-based dimensionality reduction 
+and filtering-based feature selection on model ’ s mean ( ± standard error) 
+performance. The result indicated that, for most of the evaluated models 
+(LR, LLARS, SGD, KNN, DT, ET, RF, ADABOOST, GBDT, XGBOOST, 
+LGBM, CATBOOST), there was no significant difference between PCA 
+and the filter-based feature selection in affecting model performance (p 
+> 0.05). However, for LASSO, RIDGE, and OMP models, feature selec -
+tion showed the potential to enhance model performance in comparison 
+to PCA. Furthermore, for the EN, BR, and SVM models, feature selection 
+improved a part of performance metrics in contrast to PCA. Conversely, 
+for the LARS model, PCA exhibited the ability to enhance model per -
+formance compared to filter-based feature selection, and a reduction in 
+the MAPE value of the ANN model was also observed. It is worth 
+mentioning that for the models that employed polynomial features, both 
+PCA-based dimensionality reduction and filtering-based feature selec -
+tion resulted in a decrease in model performance. This suggests that the 
+use of these feature reduction techniques led to a significant loss of 
+valuable information. 
+3.3. Optimal model interpretation by SHAP 
+3.3.1. Global feature interpretation 
+The results of the SHAP analysis are presented in Fig. 10 . Fig. 10 (a) 
+visualises the extent of each feature ’ s involvement in the overall change 
+of SHAP, while Fig. 10 (b) demonstrates how each feature affects the 
+change of SHAP. Fig. 10 (a) identifies the top nine features that have the 
+greatest impact on the RR of cows: air temperature, black-globe tem -
+perature, airflow speed, body posture, time block, milk yield, relative 
+humidity, days in milk, and parity. Fig. 10 (b) indicates that the SHAP 
+value increases with higher values of air temperature, black-globe 
+temperature, body posture, time block, milk yield, and relative humid -
+ity, which are defined as having a positive effect on cow RR. Conversely, 
+airflow speed and days in milk show a decrease in SHAP values as 
+feature values increase, indicating a negative impact on cow RR. The 
+importance and changing trends of parity and two more features, i.e., 
+solar radiation intensity and barn production level, on SHAP values 
+seem less clear. 
+Fig. 10 (b) examines the relationship between environmental factors 
+and cow-related factors with respect to cow RR. Considering that 
+respiration response serves as a crucial thermoregulatory mechanism for 
+cows to withstand high-temperature environments, our main emphasis 
+during the interpretation of the results revolves around the processes of 
+heat production and dissipation. Environmental factors that can pro -
+mote cow RR include air temperature, black-globe temperature, and 
+relative humidity. Higher air temperature and black-globe temperature 
+reduce sensible heat exchange between cows and the environment, 
+while relative humidity hinders evaporative heat dissipation ( Maia, da 
+Silva, & Loureiro, 2005b ). This reduction in heat dissipation forces cows 
+to increase their respiratory frequency and promote heat dissipation 
+through respiration to compensate for the heat dissipation deficiency. 
+According to Gaughan (2000) , during hot conditions with air tempera -
+ture ranging from 24 to 39 
+◦
+C, the rise in RR varied from 2.8 to 3.3 bpm 
+for every 1 
+◦
+C increase in air temperature. Amamou et al. (2019) re -
+ported that for every point increase in the temperature-humidity index 
+value, there was a corresponding increase of 2 bpm in RR. In our 
+CATBOOST-based model, the “ body posture ” feature is encoded as 1 for 
+standing and 2 for lying down. When cows lie down, their body surface 
+area for radiation, convection, and evaporative heat dissipation de -
+creases due to contact with bedding that often has poor thermal 
+Table 7 
+The input features at which the algorithm exhibits the best performance metric 
+values. 
+Metric Input features Machine learning algorithms Total 
+(all) 
+R
+2 
+Environmental 
+parameters 
+ANN, CATBOOST 2 (20) 
+Heat indices KNN, DT, ET, ADABOOST 4 (20) 
+Heat flows LR, LASSO, RIDGE, EN, LAR, LLARS, 
+OMP, BR, SGD, SVM, RF, GBDT, 
+XGBOOST, LGBM 
+14 (20) 
+MAE Environmental 
+parameters 
+RF, ADABOOST, CATBOOST 3 (20) 
+Heat indices KNN, DT, ET 3 (20) 
+Heat flows LR, LASSO, RIDGE, EN, LARS, LLARS, 
+OMP, BR, SGD, SVM, ANN, GBDT, 
+XGBOOST, LGBM 
+14 (20) 
+MAPE Environmental 
+parameters 
+RF, XGBOOST, CATBOOST 3 (20) 
+Heat indices LR, LASSO, RIDGE, EN, OMP, BR, SGD, 
+SVM, KNN, DT, ET, ANN, ADABOOST, 
+GBDT, LGBM 
+15 (20) 
+Heat flows LARS, LLARS 2 (20) 
+RMSE Environmental 
+parameters 
+ANN, ADABOOST, CATBOOST 3 (20) 
+Heat indices DT, ET 2 (20) 
+Heat flows LR, LASSO, RIDGE, EN, LARS, LLARS, 
+OMP, BR, SGD, SVM, KNN, RF, GBDT, 
+XGBOOST, LGBM 
+15 (20) 
+G. Yan et al. 
+
+--- Page 13 ---
+Biosystems Engineering 239 (2024) 207–230
+219
+Fig. 7. Comparison of the mean values ( ± standard error) of the model performance metrics under ordinal encoding and one-hot encoding for categorical features (** 
+denotes p-value less than 0.01, * denotes value less than 0.05). 
+G. Yan et al. 
+
+--- Page 14 ---
+Biosystems Engineering 239 (2024) 207–230
+220
+Fig. 8. Comparison of the impact of polynomial features on algorithm performance metrics (mean ± standard error; ** denotes p-value less than 0.01, * denotes 
+value less than 0.05). 
+G. Yan et al. 
+
+--- Page 15 ---
+Biosystems Engineering 239 (2024) 207–230
+221
+Fig. 9. Comparison of the impact of PCA and feature selection on algorithm performance metrics (mean ± standard error; ** denotes p-value less than 0.01, * 
+denotes value less than 0.05). 
+G. Yan et al. 
+
+--- Page 16 ---
+Biosystems Engineering 239 (2024) 207–230
+222
+conductivity, leading to blocked heat dissipation ( Wang, Zhang, & Choi, 
+2018 ). During high temperatures, cows instinctively reducing lying 
+times ( Cook, Mentink, Bennett, & Burgi, 2007 ; Nordlund, Strassburg, 
+Bennett, Oetzel, & Cook, 2019 ). Moreover, lying down increases respi -
+ration rate due to chest compression, resulting in reduced efficiency 
+( Pinto et al., 2019 ). The “ time block ” feature is encoded as 1 for morning 
+and 2 for afternoon. Ambient temperature is typically cooler in the 
+morning than in the afternoon, and heat load in the cow ’ s body accu -
+mulates during the day and is released at night. Additionally, the fact 
+that cows are active during the daylight hours and inactive at night 
+results in a higher amount of heat being produced during the day than at 
+night ( Veissier, Mialon, & Sloth, 2017 ). Consequently, mornings often 
+align with the lowest heat load experienced by cows during the daytime. 
+Generally, as days in milk increase, milk yield decreases, and milk yield 
+is positively associated with metabolic heat production ( Tao et al., 
+2020 ). Higher milk yield leads to greater metabolic activity, making 
+cows more sensitive to environmental heat stress ( Polsky & Keyserlingk, 
+2017 ). 
+The most contributing feature revealed in Fig. 10 (a) is consistent 
+with the study by Gorczyca and Gebremedhin (2020) , which found that 
+air temperature was the most influential predictor in their model for the 
+RR prediction. However, there is a discrepancy in the importance 
+ranking of the “ airflow speed ” feature, which was ranked last in their 
+model and thus deemed to have a smallest impact as a heat stressor. 
+Recently, Zhou, Aarnink, Huynh, van Dixhoorn, and Groot Koerkamp 
+(2022) conducted a study in climate-controlled chamber conditions to 
+investigate the inflection point temperature at which the RR of cows 
+begins to increase. They examined this temperature under various levels 
+of relative humidity and air velocity. The authors observed that an 
+increased airflow speed of 1.5 m s
+ 1 
+resulted in an approximately 2 
+◦
+C 
+rise in the inflection point temperature of the RR, as compared to a low 
+airflow speed of 0.1 m s
+ 1 
+( Zhou, Aarnink, et al., 2022 ). This finding 
+suggests a substantial influence of airflow speed on the respiratory 
+response of cows. Furthermore, our own observations indicated that 
+relative humidity had a relatively minor impact on the predictive 
+models. This finding could be attributed to the high relative humidity 
+present in the barn during the experiment. Supporting this, Berman 
+(2006) reported that the effect of relative humidity on respiratory water 
+Fig. 10. Global feature interpretation of the optimal model (the CATBOOST-based model). (a) Feature importance plot; (b) feature bee-swarm plot. 
+G. Yan et al. 
+
+--- Page 17 ---
+Biosystems Engineering 239 (2024) 207–230
+223
+loss is most significant when it reaches 40%, and exceeding this 
+threshold does not further decrease respiratory water loss. Moreover, 
+previous studies have demonstrated that the specific impact of relative 
+humidity on cow heat dissipation strongly depends on both ambient 
+temperature and airflow conditions ( Becker et al., 2020 ; Berman, 2005 ). 
+Shu et al. (2023) interpreted their optimal prediction model for cow RR, 
+which was based on an artificial neural network. Within this model, 
+non-environmental variables such as “ calving month ” and “ time block ” 
+emerged as the most prominent features. In our model, body position, 
+time block, and milk yield ranked 4th to 6th in terms of feature 
+importance ( Fig. 10 (a)), respectively. Nevertheless, it presents a chal -
+lenge to comprehend why the “ calving month ” and “ time block ” hold the 
+utmost influence on RR prediction in their model. Generally, the respi -
+ratory response of healthy cows is believed to be primarily influenced by 
+thermal environmental factors, with high temperatures acting as the 
+primary driving force behind increased RRs ( Polsky & Keyserlingk, 
+2017 ). 
+3.3.2. Local interpretation 
+The model ’ s local prediction of the RR can be elucidated with the 
+assistance of waterfall plots. These plots demonstrate the contribution of 
+each feature to the CATBOOST-based model prediction, arranged in 
+descending order of magnitude, which may differ from the overall re -
+sults depicted in the bee-swarm plot. In each waterfall plot, the contri -
+bution of features to the CATBOOST-based model prediction is displayed 
+using blue and red bars, indicating the magnitude of the contribution, 
+where blue represents negative effects and red represents positive ef -
+fects. The numbers on the left side of each feature in the waterfall plot 
+represent the values of the corresponding instance ’ s features. The model 
+predictions, denoted as f(x), along with the corresponding actual values, 
+are depicted in each waterfall plot. Fig. 11 (a-f) illustrate the CATBOOST- 
+based prediction based on six randomly selected instances. Among these 
+instances, the significance of air temperature is considered highly sig -
+nificant in four of them ( Fig. 11 (a-c) and e). It is indeed evident from the 
+bee-swarm plot that “ air temperature ” is the most significant feature 
+overall in predicting the respiration rate. However, in the case of the 
+waterfall plot, randomly selected instance #4 ( Fig. 11 (d)) and instance 
+#6 ( Fig. 11 (f)) indicate that “ airflow speed ” and “ milk yield ” are highly 
+influential features, followed by the “ body posture ” feature. 
+3.4. Limitations and perspectives 
+The present study has two primary limitations, which can be sum -
+marised as follows: 
+(1) Data-level limitations: Although the dataset employed in this 
+study comprised nearly 3000 records, there is still room for 
+expanding the data capacity. Since the data was collected 
+exclusively from a commercial dairy farm situated in a specific 
+geographical location, it may not adequately capture diverse 
+production types across various areas. Furthermore, there existed 
+collinearity in the constructed features. Despite incorporating 
+PCA, this study did not employ additional approaches to 
+comprehensively address the issue of feature collinearity. 
+Consequently, certain models may exhibit diminished stability 
+and interpretability, which could potentially result in suboptimal 
+predictions. 
+(2) Algorithm-level limitations: The study demonstrates that the 
+CATBOOST-based model exhibited superior predictive perfor -
+mance, while the LGBM algorithm demonstrated better overall 
+performance. However, the current work has limitations in terms 
+of exploring and optimizing the hyperparameters for these 
+Fig. 11. Local interpretable results. 
+G. Yan et al. 
+
+--- Page 18 ---
+Biosystems Engineering 239 (2024) 207–230
+224
+algorithms. Moreover, more advanced hyperparameter optimi -
+zation techniques, such as Bayesian optimization, were not 
+employed to optimise a broader range of hyperparameters, 
+thereby missing potential avenues to enhance the model ’ s 
+performance. 
+This study presents concepts for developing a RR model specifically 
+tailored to the real-world production conditions of dairy cows, focusing 
+on how to construct a RR prediction model using limited and readily 
+accessible data. Whether pertaining to RR monitoring equipment or 
+predictive models, their primary aim remains to support animal health 
+management and environmental control within dairy farms. The latter is 
+crucial for ensuring the well-being and productivity of animals and can 
+also be considered a facet of animal health management. In contrast to 
+recently proposed radar-based ( Tuan, Rustia, Hsu, & Lin, 2022 ) and 
+computer vision-based methods ( Wu et al., 2020 ) for monitoring cow 
+RRs, our machine learning-based solution entails lower hardware re -
+quirements and reduced reliance on specific placement. The variables 
+currently required are sourced directly from management systems and 
+environmental monitoring systems, encompassing environmental data 
+from cost-effective sensors in the dairy barns and cow-related data from 
+management software, all of which are indispensable for modern dairy 
+farms. As a result, this signifies that any farm has the capacity to develop 
+a cow RR prediction model suitable for their production conditions using 
+machine learning methods. These models can function as intelligent 
+control algorithms and, when integrated with environmental control -
+lers, enable more astute adjustment of cooling equipment operating 
+modes to enhance energy efficiency. 
+4. Conclusions 
+This study utilised machine learning approaches to predict the 
+respiration rate of cows in real-world production conditions. We 
+compared the performance differences of 20 machine learning algo -
+rithms and explored the impact of different feature engineering tech -
+niques on algorithm performance. The SHAP mechanism was employed 
+to interpret the optimal model. The key findings of this study are sum -
+marised as follows: 
+● The LGBM algorithm (R
+2 
+= 0.547, MAE = 8.446, MAPE = 16.1%, 
+RMSE = 10.804) demonstrated the highest overall performance in 
+predicting the respiration rate of cows among the 20 evaluated ma -
+chine learning algorithms. However, the CATBOOST-based model, 
+specifically the CATBOOST algorithm with environmental parame -
+ters as input features under ordinal coding, exhibited the best per -
+formance with an R
+2 
+of 0.676, MAE of 7.246, MAPE of 13.8%, and 
+RMSE of 9.341. 
+● The inclusion of heat flows as inputs led to improvements in R
+2
+, 
+MAE, and RMSE values for most algorithms, while using heat indices 
+as inputs improved the MAPE value. However, there were no sta -
+tistically significant differences in performance metrics when using 
+environmental parameters, heat flows, or heat indices as inputs. 
+● For linear regression (ordinary linear regression and linear regres -
+sion with regularization) and support vector machine algorithms, 
+utilizing one-hot encoding enhanced model performance. However, 
+for most of the evaluated algorithms, one-hot encoding did not 
+significantly improve performance when compared to ordered 
+encoding. Polynomial features significantly decreased model per -
+formance, and PCA-based dimensionality reduction and filtering- 
+based feature selection also had a negative impact. 
+● The CATBOOST model with SHAP interpretation provided insights 
+into the local and global impacts of environmental variables and 
+cow-related variables on prediction results. Air temperature, black 
+globe temperature, and airflow speed were identified as the top three 
+influential factors for predicting respiration rate of cows, followed by 
+body posture, time block, and milk yield. 
+There are certain unidentified factors in real production conditions 
+that affect the performance of machine learning-based cow respiration 
+rate models. By expanding the dataset, employing more comprehensive 
+feature engineering techniques, and utilizing advanced hyperparameter 
+optimization, the predictive capabilities of state-of-the-art boosting al -
+gorithms such as CATBOOST, LGBM, and XGBOOST for cow respiration 
+rate may be further improved. This study establishes a machine 
+learning-based model of cow respiration rate with acceptable perfor -
+mance using readily accessible variables in dairy farms, which can 
+contribute to guiding the design and intelligent regulation of environ -
+mental control systems in dairy barns. 
+Authors credit statement 
+Geqi Yan : Software, Conceptualization, Methodology, Investigation, 
+Writing – original draft, Data curation. Wanying Zhao : Investigation, 
+Visualization. Chaoyuan Wang : Writing – review & editing. Zheng -
+xiang Shi : Supervision, Resources. Hao Li : Resources, Writing – review 
+& editing. Zhenwei Yu: Methodology, Data curation. Hongchao Jiao : 
+Supervision, Resources. Hai Lin : Supervision, Resources. 
+Declaration of competing interest 
+The authors declare that they have no known competing financial 
+interests or personal relationships that could have appeared to influence 
+the work reported in this paper. 
+Acknowledgments 
+This research was supported by the China Agriculture Research 
+System of MOF and MARA. 
+G. Yan et al. 
+
+--- Page 19 ---
+Biosystems Engineering 239 (2024) 207–230
+225
+Appendix 1 
+Changes in the environmental parameters during the daytime (06:00 – 18:00) and the average of cow respiration rates during the experiment days.
+Appendix 2 
+The calculation methods for the intermediate variables required for heat flow calculation. 
+Description Calculation formula
+1 
+Involved equation Reference
+2 
+Body-core temperature 
+T
+b
+=
+{
+38 . 5 + 0 . 081 ( T
+a
+ 20 . 4 ) , T
+a
+> 20 . 4
+38 . 5 , T
+a
+≤ 20 . 4 
+Eq. (4) Ref [1] 
+Skin temperature 
+T
+s
+=
+0 . 173 T
+a
+ 
+ 
+0 . 1 
+RH
+1000
+)
+× 10
+7 . 5 T
+a
+237 . 5 + T
+a + 0 . 116 U
+0 . 53
+T
+a
++
+5 Q
+sr
+1000
++ 31 . 608
+0 . 116 U
+0 . 53
++ 1 
+Eq. (6) Ref [2] 
+Coat temperature 
+T
+c
+= 18 . 76 + 0 . 908 T
+a
+ 0 . 011 T
+a
+2 
+Eq. (7) and (8) Ref [3] 
+Exhaled air temperature T
+ex
+= 17 . 0 + 0 . 3 T
+a
++ exp ( 0 . 01611RH + 0 . 0387 T
+a
+) Eq. (7) and (8) Ref [4] 
+Sweating rate 
+SWR =
+{
+1 . 1665 T
+s
+2
+ 64 . 166 T
+s
++ 894 . 35 , T
+s
+< 35
+4 . 2976 T
+s
+ 71 . 289 , T
+s
+≥ 35 
+Eq. (6) Ref [5] 
+Saturation vapor pressure at T
+b 
+P
+e , b
+= 0 . 611 × 10
+7 . 5 T
+b
+( T
+b
++ 237 . 3 )
+Eq. (4) Ref [2] 
+Mean respiration rate MRR = exp ( 2 . 966 + 0 . 0218 T
+a
++ 0 . 00069 T
+a
+2
+) Eq. (3) Ref [4] 
+Tidal volume 
+TV = 0 . 0189MRR
+ 0 . 463 
+Eq. (3) Ref [4] 
+Respiratory evaporative resistance 
+r
+res
+=
+100
+2 . 7 × 10
+ 4
+MRR + 5 × 10
+ 3 
+Eq. (4) Ref [6] 
+Days of pregnant 
+POD = 0 . 1076MY
+2
+ 3 . 7311MY + 273 
+Eq. (2) Ref [7] 
+Body surface area S = 0 . 15 m
+0 . 56 
+Eq. (2) and (3) Ref [2] 
+Convective heat transfer coefficient h
+a
+= k
+a
+Nu / d Eq. (7) Ref [8] 
+Radiative heat transfer coefficient 
+h
+rad
+= 4 σ ε [( T
+c
++ T
+rad
+) / 2 ]
+3 
+Eq. (8) Ref [6] 
+1
+All symbols, variables and parameters are described in the Nomenclature. 
+2
+Ref [1]: G. Li et al. (2020) ; Ref [2]: Yan, Liu, Hao, Li, and Shi (2021) ; Ref [3]: Maia, da Silva, and Loureiro (2008) ; Ref [4]: Stevens (1981) ; Ref [5]: Collier and 
+Gebremedhin (2015) ; Ref [6]: McArthur (1987) ; Ref [7]: R. Li et al. (2023) ; Ref [8]: Mcgovern and Bruce (2000) . 
+Appendix 3 
+Distributions of the original variables, the created variables, and the intermediate variables ( T
+a 
+= air temperature, RH = relative humidity, T
+bg 
+=
+black-globe temperature, U = airflow speed, Q
+sr 
+= solar radiation intensity, THI = temperature-humidity index, BGHI = black-globe humidity index, 
+ETI = equivalent temperature index, THIadj = adjusted THI, CCI = comprehensive climatic index, DHLI = heat load index for dairy cows, ETIC =
+equivalent temperature index for cows, STIC = skin temperature index for cows, T
+b 
+= estimated body-core temperature, T
+s 
+= estimated skin tem -
+perature, T
+c 
+= estimated coat temperature, T
+ex 
+= estimated exhaled air temperature, TV = Tidal volume, SWR = sweating rate, MRR = mean 
+respiration rate, Q
+hp 
+= heat production, Q
+res 
+= respiratory heat loss, Q
+res_sen 
+= sensible heat loss due to respiration, Q
+res_lat 
+= latent heat loss due to 
+G. Yan et al. 
+
+--- Page 20 ---
+Biosystems Engineering 239 (2024) 207–230
+226
+respiration, Q
+evap 
+= evaporative heat loss from the skin, Q
+conv 
+= convective heat loss, Q
+rad 
+= radiation heat loss, DIM = days in milk, MY = milk yield, 
+PA = parity, Target = respiration rate).
+G. Yan et al. 
+
+--- Page 21 ---
+Biosystems Engineering 239 (2024) 207–230
+227
+Appendix 4 
+Optimal values through hyperparameter search under the optimal scheme. 
+Algorithm Optimal scheme Hyperparameter Optimal value 
+LR #13 - – 
+LASSO #13 L1 penalty 10e-2 
+RIDGE #13 L2 penalty 10e-1 
+EN #13 Penalty coefficient 10e-2 
+Ratio of L1 penalty 1 
+LARS #1 Target number of non-zero coefficients 8 
+LLARS #1 L1 penalty 10e-2 
+OMP #13 Target number of non-zero coefficients 10 
+BR #13 Shape parameter 10e-1 
+Inverse scale parameter 10e-4 
+SGD #9 Penalty coefficient 10e-3 
+Ratio of L1 penalty 10e-4 
+Learning rate 0.056 
+SVM #17 Kernel ‘poly’ 
+C 3.687 
+Gamma 0.16 
+KNN #5 Number of neighbors 10 
+DT #1 Maximum depth 4 
+ET #1 Maximum depth 5 
+ANN #13 Hidden layer (150, 50) 
+Penalty coefficient 0.389 
+Learning rate 0.033 
+Activation ‘relu’ 
+Iterations 500 
+RF #13 Number of estimators 500 
+Maximum depth 6 
+ADABOOST #1 Number of estimators 200 
+Learning rate 0.58 
+GBDT #13 Number of estimators 200 
+Learning rate 0.579 
+XGBOOST #13 Minimum split loss 10 
+Node Learning rate 0.1 
+Number of estimators 50 
+Maximum depth 3 
+Penalty coefficient 0.36 
+LGBM #13 Iterations 50 
+Learning rate 0.1 
+Maximum number of leaves 40 
+Maximum depth 3 
+CATBOOST #1 Iterations 500 
+Learning rate 0.03 
+Maximum depth 3 
+G. Yan et al. 
+
+--- Page 22 ---
+Biosystems Engineering 239 (2024) 207–230
+228
+Appendix 5 
+Prediction results of the best models for all 20 machine learning algorithms on the test set.
+G. Yan et al. 
+
+--- Page 23 ---
+Biosystems Engineering 239 (2024) 207–230
+229
+References 
+Amamou, H., Beckers, Y., Mahouachi, M., & Hammami, H. (2019). Thermotolerance 
+indicators related to production and physiological responses to heat stress of holstein 
+cows. Journal of Thermal Biology, 82 , 90 – 98. https://doi.org/10.1016/j. 
+jtherbio.2019.03.016 
+Atkins, I. K., Cook, N. B., Mondaca, & Choi, C. (2018). Continuous respiration rate 
+measurement of heat-stressed dairy cows and relation to environment, body 
+temperature, and lying time. Transactions of the ASABE, 61 (5), 1475 – 1485. https:// 
+doi.org/10.13031/trans.12451 
+Bao, J., & Xie, Q. (2022). Artificial intelligence in animal farming: A systematic literature 
+review. Journal of Cleaner Production, 331 , Article 129956. https://doi.org/10.1016/ 
+j.jclepro.2021.129956 
+Becker, C. A., Collier, R. J., & Stone, A. E. (2020). Invited review: Physiological and 
+behavioral effects of heat stress in dairy cows. Journal of Dairy Science, 103 (8), 
+6751 – 6770. https://doi.org/10.3168/jds.2019-17929 
+Berman, A. (2005). Estimates of heat stress relief needs for Holstein dairy cows. Journal 
+of Animal Science, 83 (6), 1377 – 1384. https://doi.org/10.2527/2005.8361377x 
+Berman, A. (2006). Extending the potential of evaporative cooling for heat-stress relief. 
+Journal of Dairy Science, 89 , 3817 – 3825. https://doi.org/10.3168/jds.S0022-0302 
+(06)72423-7 
+Berman, A., Folman, Y., Kaim, M., Mamen, M., Herz, Z., Wolfenson, D., et al. (1985). 
+Upper critical temperatures and forced ventilation effects for high-yielding dairy 
+cows in a subtropical climate. Journal of Dairy Science, 68 (6), 1488 – 1495. https:// 
+doi.org/10.3168/jds.S0022-0302(85)80987-5 
+Buffington, D. E., Collazo-Arocho, A., Canton, G. H., Pitt, D., Thatcher, W. W., & 
+Collier, R. J. (1981). Black globe-humidity index (BGHI) as comfort equation for 
+dairy cows. Transactions of the ASAE, 24 (3), 711 – 714. https://doi.org/10.13031/ 
+2013.34325 
+Chen, J., Schütz, K. E., & Tucker, C. B. (2015). Cooling cows efficiently with sprinklers: 
+Physiological responses to water spray. Journal of Dairy Science, 98 (10), 6925 – 6938. 
+https://doi.org/10.3168/jds.2015-9434 
+CIGR. (2002). 4
+th 
+report of working group on climatization of animal houses heat and moisture 
+production at animal and house levels . 
+Collier, R. J., & Gebremedhin, K. G. (2015). Thermal biology of domestic animals. Annual 
+Review of Animal Biosciences, 3 , 513 – 532. https://doi.org/10.1146/annurev-animal- 
+022114-110659 
+Cook, N. B., Mentink, R. L., Bennett, T. B., & Burgi, K. (2007). The effect of heat stress 
+and lameness on time budgets of lactating dairy cows. Journal of Dairy Science, 90 (4), 
+1674 – 1682. https://doi.org/10.3168/jds.2006-634 
+Da Silva, R. G., Morais, D. A. E. F., & Guilhermino, M. M. (2007). Evaluation of thermal 
+stress indexes for dairy cows in tropical regions. Revista Brasileira de Zootecnia, 36 . 
+https://doi.org/10.1590/S1516-35982007000500028 
+Ding, T., Jiang, L., Shi, Z., Zhao, Y., & Ma, H. (2021). Relationship between 
+environmental factors and milk yield of dairy cow house in cold region based on 
+random forest. Transactions of the Chinese Society for Agricultural Machinery, 52 (12), 
+378 – 385. https://doi.org/10.6041/j.issn.1000-1298.2021.12.039 
+Di ß mann, L., Heinicke, J., Jensen, K. C., Amon, T., & Hoffmann, G. (2022). How should 
+the respiration rate be counted in cattle? Veterinary Research Communications, 46 (4), 
+1221 – 1225. https://doi.org/10.1007/s11259-022-09984-7 
+Dorogush, A. V., Ershov, V., & Gulin, A. (2018). CatBoost: Gradient boosting with 
+categorical features support. ArXiv Preprint ArXiv:1810.11363. Advance online 
+publication https://doi.org/10.48550/arXiv.1810.11363 . 
+Eigenberg, R. A., Brown-Brandl, T. M., Nienaber, J. A., & Hahn, G. L. (2005). Dynamic 
+response indicators of heat stress in shaded and non-shaded feedlot cattle, Part 2: 
+Predictive relationships. Biosystems Engineering, 91 (1), 111 – 118. https://doi.org/ 
+10.1016/j.biosystemseng.2005.02.001 
+Gaughan, J. B. (2000). Respiration rate — is it a good measure of heat stress in cattle? 
+Asian-Australasian Journal of Animal Sciences, 13 , 329 – 332. https://doi.org/10.1016/ 
+S0168-1591(00)00108-8 
+Gebremedhin, K. G., Lee, C., Hillman, P. E., & Collier, R. J. (2010). Physiological 
+responses of dairy cows during extended solar exposure. Transactions of the ASABE, 
+53 (1), 239 – 247. https://doi.org/10.13031/2013.29927 
+Gorczyca, M. T., & Gebremedhin, K. G. (2020). Ranking of environmental heat stressors 
+for dairy cows using machine learning algorithms. Computers and Electronics in 
+Agriculture, 168 . https://doi.org/10.1016/j.compag.2019.105124 
+Hahn, G. L. (1999). Dynamic responses of cattle to thermal heat loads. Journal of Animal 
+Science, 77 (suppl_2), 10 – 20. https://doi.org/10.2527/1997.77suppl_210x 
+Herbut, P., Angrecka, S., & Walczak, J. (2018). Environmental parameters to assessing of 
+heat stress in dairy cattle-a review. International Journal of Biometeorology, 62 (12), 
+2089 – 2097. https://doi.org/10.1007/s00484-018-1629-9 
+Ji, B., Banhazi, T., Perano, K., Ghahramani, A., Bowtell, L., Wang, C., et al. (2020). 
+A review of measuring, assessing and mitigating heat stress in dairy cattle. Biosystems 
+Engineering, 199 (1), 4 – 26. https://doi.org/10.1016/j.biosystemseng.2020.07.009 
+Ji, B., Banhazi, T., Phillips, C. J. C., Wang, C., & Li, B. (2022). A machine learning 
+framework to predict the next month ’ s daily milk yield, milk composition and 
+milking frequency for cows in a robotic dairy farm. Biosystems Engineering, 216 , 
+186 – 197. https://doi.org/10.1016/j.biosystemseng.2022.02.013 
+Kuhn, M., & Johnson, K. (2019). Feature engineering and selection: A practical approach for 
+predictive models . Chapman and Hall/CRC . 
+Lees, J., Lees, A., & Gaughan, J. B. (2018). Developing a heat load index for lactating 
+dairy cows. Animal Production Science, 58 (8), 1387 – 1391. https://doi.org/10.1071/ 
+AN17776 
+Li, G., Chen, S., Chen, J., Peng, D., & Gu, X. (2020). Predicting rectal temperature and 
+respiration rate responses in lactating dairy cows exposed to heat stress. Journal of 
+Dairy Science, 103 (6), 5466 – 5484. https://doi.org/10.3168/jds.2019-16411 
+Li, R., Hu, H., Feng, X., Ma, Y., Cai, B., Li, S., et al. (2023). Effects of gestation days on 
+lactation traits of Holstein dairy cows in Ningxia region. Chinese Journal of Animal 
+Science, 59 (10), 166 – 173. https://doi.org/10.19556/j.0258-7033.20220809-05 
+Li, J., Narayanan, V., Kebreab, E., Dikmen, S., & Fadel, J. G. (2021). A mechanistic 
+thermal balance model of dairy cattle. Biosystems Engineering, 209 , 256 – 270. https:// 
+doi.org/10.1016/j.biosystemseng.2021.06.009 
+Lundberg, S., & Lee, S.-I. (2017). A unified approach to interpreting model predictions. In 
+Proceedings of the 31
+st 
+international Conference on neural information processing systems 
+(pp. 4768 – 4777) . 
+Mader, T. L., Davis, M. S., & Brown-Brandl, T. (2006). Environmental factors influencing 
+heat stress in feedlot cattle. Journal of Animal Science, 84 (3), 712 – 719. https://doi. 
+org/10.2527/2006.843712x 
+Mader, T. L., Johnson, L., & Gaughan, J. B. (2010). A comprehensive index for assessing 
+environmental stress in animals1. Journal of Animal Science, 88 (6), 2153 – 2165. 
+https://doi.org/10.2527/jas.2009-2586 
+Maia, A. S. C., da Silva, R. G., & Loureiro, C. M. B. (2005a). Respiratory heat loss of 
+Holstein cows in a tropical environment. International Journal of Biometeorology, 49 
+(5), 332 – 336. https://doi.org/10.1007/s00484-004-0244-0 
+Maia, A. S. C., da Silva, R. G., & Loureiro, C. M. B. (2005b). Sensible and latent heat loss 
+from the body surface of Holstein cows in a tropical environment. International 
+Journal of Biometeorology, 50 (1), 17 – 22 . 
+Maia, A. S. C., da Silva, R. G., & Loureiro, C. M. B. (2008). Latent heat loss of holstein 
+cows in a tropical environment: A prediction model. Revista Brasileira de Zootecnia, 
+37 (10), 1837 – 1843. https://doi.org/10.1590/S1516-35982008001000018 
+McArthur, A. J. (1987). Thermal interaction between animal and microclimate: A 
+comprehensive model. Journal of Theoretical Biology, 126 (2), 203 – 238. https://doi. 
+org/10.1016/S0022-5193(87)80229-1 
+Mcgovern, R. E., & Bruce, J. M. (2000). A model of the thermal balance for cattle in hot 
+conditions. Journal of Agricultural Engineering Research, 77 (1), 81 – 92. https://doi. 
+org/10.1006/jaer.2000.0560 
+Milan, H. F. M., Maia, A. S. C., & Gebremedhin, K. G. (2016). Technical note: Device for 
+measuring respiration rate of cattle under field conditions. Journal of Animal Science, 
+94 (12), 5434 – 5438. https://doi.org/10.2527/jas.2016-0904 
+Molnar, C. (2023). Interpretable machine learning: A Guide for making black box models 
+explainable: Independently published (February 28, 2022). Retrieved from https://chri 
+stophm.github.io/interpretable-ml-book/ . 
+Nordlund, K. V., Strassburg, P., Bennett, T. B., Oetzel, G. R., & Cook, N. B. (2019). 
+Thermodynamics of standing and lying behavior in lactating dairy cows in freestall 
+and parlor holding pens during conditions of heat stress. Journal of Dairy Science, 102 
+(7), 6495 – 6507. https://doi.org/10.3168/jds.2018-15891 
+NRC. (1971). A guide to environmental research on animals . Washington, DC, USA: 
+National Academy Press . 
+Pinto, S., Hoffmann, G., Ammon, C., Amon, B., Heuwieser, W., Halachmi, I., et al. (2019). 
+Influence of barn climate, body postures and milk yield on the respiration rate of 
+dairy cows. Annals of Animal Science, 19 (2), 469 – 481. https://doi.org/10.2478/aoas- 
+2019-0006 
+Polsky, L., & Von Keyserlingk, M. A. G. (2017). Invited review: Effects of heat stress on 
+dairy cattle welfare. Journal of Dairy Science, 100 (11), 8645 – 8657. https://doi.org/ 
+10.3168/jds.2017-12651 
+Shu, H., Li, Y., Bindelle, J., Jin, Z., Fang, T., Xing, M., et al. (2023). Predicting 
+physiological responses of dairy cows using comprehensive variables. Computers and 
+Electronics in Agriculture, 207 . https://doi.org/10.1016/j.compag.2023.107752 
+Stevens, D. G. (1981). A model of respiratory vapor loss in Holstein dairy cattle. 
+Transactions of the ASAE, 24 (1), 151 – 153. https://doi.org/10.13031/2013.34215 
+Strutzke, S., Fiske, D., Hoffmann, G., Ammon, C., Heuwieser, W., & Amon, T. (2018). 
+Technical note: Development of a noninvasive respiration rate sensor for cattle. 
+Journal of Dairy Science, 102 (1), 690 – 695. https://doi.org/10.3168/jds.2018-14999 
+Tao, S., Orellana Rivas, R. M., Marins, T. N., Chen, Y.-C., Gao, J., & Bernard, J. K. (2020). 
+Impact of heat stress on lactational performance of dairy cows. Theriogenology, 150 , 
+437 – 444. https://doi.org/10.1016/j.theriogenology.2020.02.048 
+Tuan, S.-A., Rustia, D. J. A., Hsu, J.-T., & Lin, T.-T. (2022). Frequency modulated 
+continuous wave radar-based system for monitoring dairy cow respiration rate. 
+Computers and Electronics in Agriculture, 196 , Article 106913. https://doi.org/ 
+10.1016/j.compag.2022.106913 
+Veissier, I., Mialon, M.-M., & Sloth, K. H. (2017). Short communication: Early 
+modification of the circadian organization of cow activity in relation to disease or 
+estrus. Journal of Dairy Science, 100 (5), 3969 – 3974. https://doi.org/10.3168/ 
+jds.2016-11853 
+Wang, X., Gao, H., Gebremedhin, K. G., Bjerg, B. S., van Os, J., Tucker, C. B., et al. 
+(2018). A predictive model of equivalent temperature index for dairy cattle (ETIC). 
+Journal of Thermal Biology, 76 , 165 – 170. https://doi.org/10.1016/j. 
+jtherbio.2018.07.013 
+Wang, X., Zhang, G., & Choi, C. (2018). Effect of airflow speed and direction on 
+convective heat transfer of standing and reclining cows. Biosystems Engineering, 167 , 
+87 – 98. https://doi.org/10.1016/j.biosystemseng.2017.12.011 
+Witten, D., & James, G. (2013). An introduction to statistical learning with applications in R . 
+Springer . 
+Wu, D., Yin, X., Jiang, B., Jiang, M., Li, Z., & Song, H. (2020). Detection of the respiratory 
+rate of standing cows by combining the Deeplab V3 + semantic segmentation model 
+with the phase-based video magnification algorithm. Biosystems Engineering, 192 , 
+72 – 89. https://doi.org/10.1016/j.biosystemseng.2020.01.012 
+Yan, G., Li, H., Zhao, W., & Shi, Z. (2020). Evaluation of thermal indices based on their 
+relationships with some physiological responses of housed lactating cows under heat 
+stress. International Journal of Biometeorology, 64 (12), 2077 – 2091. https://doi.org/ 
+10.1007/s00484-020-01999-6 
+G. Yan et al. 
+
+--- Page 24 ---
+Biosystems Engineering 239 (2024) 207–230
+230
+Yan, G., Liu, K., Hao, Z., Li, H., & Shi, Z. (2021). Development and evaluation of thermal 
+models for predicting skin temperature of dairy cattle. Computers and Electronics in 
+Agriculture, 188. https://doi.org/10.1016/j.compag.2021.106363 
+Yan, G., Liu, K., Hao, Z., Shi, Z., & Li, H. (2021). The effects of cow-related factors on 
+rectal temperature, respiration rate, and temperature-humidity index thresholds for 
+lactating cows exposed to heat stress. Journal of Thermal Biology, 100, Article 
+103041. 
+Yan, G., Shi, Z., Cui, B., & Li, H. (2022). Developing a new thermal comfort prediction 
+model and web-based application for heat stress assessment in dairy cows. Biosystems 
+Engineering, 214, 72–89. https://doi.org/10.1016/j.biosystemseng.2021.12.006 
+Zhou, M., Aarnink, A. J. A., Huynh, T. T. T., van Dixhoorn, I. D. E., & Groot 
+Koerkamp, P. W. G. (2022). Effects of increasing air temperature on physiological 
+and productive responses of dairy cows at different relative humidity and air velocity 
+levels. Journal of Dairy Science, 105(2), 1701–1716. https://doi.org/10.3168/ 
+jds.2021-21164 
+Zhou, M., Groot Koerkamp, P. W. G., Huynh, T. T. T., & Aarnink, A. (2022). Development 
+and evaluation of a thermoregulatory model for predicting thermal responses of 
+dairy cows. Biosystems Engineering, 223, 295–308. https://doi.org/10.1016/j. 
+biosystemseng.2022.09.010 
+G. Yan et al.

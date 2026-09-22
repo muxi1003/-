@@ -1,0 +1,5 @@
+﻿scope,cohort,windows,r3_minus_r2_f1,ci_low,ci_high,count_changed_windows,mean_absolute_reference_count_change,note
+eligible_full_window,jiufu271,11,0.057899122981070694,-0.023836114976869008,0.1343618181347841,11,1.5454545454545454,"reference sensitivity, NOT model improvement; small stratified sample"
+eligible_full_window,lindian49,12,0.11845152873671227,0.05134909946393622,0.17977825515174736,8,1.25,"reference sensitivity, NOT model improvement; small stratified sample"
+strict_visible_phase,jiufu271,9,0.05675675675675679,-0.042826542242203565,0.14780890804597685,9,1.6666666666666667,"reference sensitivity, NOT model improvement; small stratified sample"
+strict_visible_phase,lindian49,11,0.12023230262125262,0.04412457615363485,0.18250370193462126,7,1.2727272727272727,"reference sensitivity, NOT model improvement; small stratified sample"

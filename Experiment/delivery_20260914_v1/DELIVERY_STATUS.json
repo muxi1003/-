@@ -1,0 +1,36 @@
+{
+  "same_policy_signal_ablation": {
+    "status": "COMPLETED_INTERNAL_DEVELOPMENT",
+    "cohorts": [
+      73,
+      49
+    ],
+    "arms": 8,
+    "prediction_rows": 976,
+    "network_same_training_split_ablation": "NOT_RUN_NOT_CLAIMED"
+  },
+  "frozen_external_count_test": {
+    "status": "SCORED_COUNT_REFERENCE_ONLY",
+    "released": 271,
+    "paired": 122,
+    "temperature_scope": "RF_pseudocolor_proxy_not_validated_absolute_Celsius",
+    "event_F1": null
+  },
+  "reliable_event_reference": {
+    "tool_status": "COMPLETED_QA_PASSED",
+    "human_event_status": "AWAIT_HUMAN_EVENT_TIMES",
+    "events_submitted": 0,
+    "intervals_submitted": 0,
+    "double_blind": "NOT_IMPLEMENTED_USER_PAUSED",
+    "original_total_counts_preserved": true
+  },
+  "all_three_scientific_experiments_complete": false,
+  "automatable_current_scope": "complete_if_final_manifest_and_reference_integrity_checks_pass",
+  "never_claim": [
+    "all271_accuracy_from_paired_subset",
+    "event_F1_from_total_counts",
+    "zero_target_farm_calibration",
+    "new_network_ablation",
+    "camera_scale_confirmed"
+  ]
+}

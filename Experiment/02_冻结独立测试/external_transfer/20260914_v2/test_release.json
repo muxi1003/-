@@ -1,0 +1,11 @@
+{
+  "status": "DATA_AND_SIGNAL_POLICY_FROZEN_END_TO_END_PENDING",
+  "released_at": "20260909_201402_921620",
+  "method_snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1",
+  "method_manifest_sha256": "fb88586aaa86f425327210197065e1305b4a62418c6c11f5780c90b66e543bd0",
+  "test_windows_sha256": "fc23ad2e375cb7181769cf00bdf62c74aedcd70b10f0c08c871bdb29a41dac28",
+  "exposure_review_sha256": "2dab20313e3260a82793ada030a601762fb1a230a01aeb5d941d36e64979a640",
+  "reference_used_for_selection": false,
+  "n_windows": 271,
+  "inference_adapter_status": "requires_validated_timestamp_and_modality_adapter_before_execution"
+}

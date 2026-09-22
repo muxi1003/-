@@ -1,0 +1,10 @@
+{
+  "status": "DO_NOT_ADOPT_KEEP_DEFAULT",
+  "reference_sha256": "7a9451ab552f6a2e658dd78c75e0bae1fa6bbf1bbbadad3e03cbc788d4af4dee",
+  "control_replay_matches": 49,
+  "candidate_outputs": 18,
+  "reason": "coverage_and_same_analysis_set_predeclared_rule; subset_metrics_not_full_cohort_improvement",
+  "default_modified": false,
+  "external_evaluation": false,
+  "reference_limit": "internal_single_observer_nonblind_total_counts_not_event_reference"
+}

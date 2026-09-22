@@ -1,0 +1,89 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F0G0P0",
+      "complete": 47,
+      "paired": 47,
+      "tp": 797,
+      "fp": 252,
+      "fn": 330,
+      "status": "PASS"
+    },
+    {
+      "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F0G0P1",
+      "complete": 47,
+      "paired": 47,
+      "tp": 824,
+      "fp": 263,
+      "fn": 303,
+      "status": "PASS"
+    },
+    {
+      "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F0G1P0",
+      "complete": 47,
+      "paired": 47,
+      "tp": 797,
+      "fp": 252,
+      "fn": 330,
+      "status": "PASS"
+    },
+    {
+      "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F0G1P1",
+      "complete": 47,
+      "paired": 47,
+      "tp": 824,
+      "fp": 263,
+      "fn": 303,
+      "status": "PASS"
+    },
+    {
+      "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F1G0P0",
+      "complete": 47,
+      "paired": 47,
+      "tp": 842,
+      "fp": 281,
+      "fn": 285,
+      "status": "PASS"
+    },
+    {
+      "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F1G0P1",
+      "complete": 47,
+      "paired": 47,
+      "tp": 856,
+      "fp": 292,
+      "fn": 271,
+      "status": "PASS"
+    },
+    {
+      "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F1G1P0",
+      "complete": 47,
+      "paired": 47,
+      "tp": 843,
+      "fp": 281,
+      "fn": 284,
+      "status": "PASS"
+    },
+    {
+      "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F1G1P1",
+      "complete": 47,
+      "paired": 47,
+      "tp": 857,
+      "fp": 292,
+      "fn": 270,
+      "status": "PASS"
+    },
+    {
+      "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260917_r2_v2",
+      "complete": 214,
+      "paired": 172,
+      "tp": 1318,
+      "fp": 1018,
+      "fn": 1686,
+      "status": "PASS"
+    }
+  ],
+  "method": "independent_sorted_DP_cardinality_and_total_time_error; unique_event_detail_checks; direct_count_formulas; output_and_source_hashes",
+  "human_phase_correctness_verified": false,
+  "review_independence": "same_executor_deterministic_not_independent_scientific_certification"
+}

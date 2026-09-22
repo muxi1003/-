@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-09-09T15:28:24.023658+08:00",
+  "source_roots": {
+    "jiufu": "E:\\real\\use_code\\久福牧场面部热红外数据及牛脸RGB录像数据_344",
+    "lindian": "E:\\real\\use_code\\林甸红外视频"
+  },
+  "video_file_count": 2579,
+  "farm_file_counts": {
+    "jiufu": 1042,
+    "lindian": 1537
+  },
+  "modality_hints": [
+    {
+      "farm": "jiufu",
+      "modality_hint": "rgb_name_hint",
+      "n": 342
+    },
+    {
+      "farm": "jiufu",
+      "modality_hint": "thermal_name_hint",
+      "n": 338
+    },
+    {
+      "farm": "jiufu",
+      "modality_hint": "unknown",
+      "n": 362
+    },
+    {
+      "farm": "lindian",
+      "modality_hint": "derived_clip_hint",
+      "n": 287
+    },
+    {
+      "farm": "lindian",
+      "modality_hint": "thermal_name_hint",
+      "n": 829
+    },
+    {
+      "farm": "lindian",
+      "modality_hint": "unknown",
+      "n": 421
+    }
+  ],
+  "candidate_review_count": 619,
+  "candidate_window_count": 606,
+  "confirmed_independent_test_count": 0,
+  "training_statement": "User confirmed Jiufu raw dataset not used for YOLO training only",
+  "independence_status": "Await RR tuning/viewing exposure and cow identity review; known split_all_use sessions/cows excluded",
+  "fingerprint_scope": "sampled fingerprints screen duplicates; full SHA256 required for test release"
+}

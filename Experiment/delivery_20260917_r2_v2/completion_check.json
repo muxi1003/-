@@ -1,0 +1,20 @@
+{
+  "status": "PASS_DETERMINISTIC_DELIVERY",
+  "checked_at": "20260918_090756_224609",
+  "formal_submission_date": "2026-09-17",
+  "original_desktop_exports_unchanged": true,
+  "scoring_code_and_snapshots_match": true,
+  "report_artifacts_unchanged": true,
+  "numerical_methods_verified": 9,
+  "synthetic_tests_passed": 25,
+  "artifact_count": 136,
+  "review_status": "same_family_WARN_provisional; final_two_fixes_verified_deterministically_not_reapproved_by_unavailable_agent",
+  "remaining": [
+    "two_pending_windows",
+    "historical_exposure_confirmation",
+    "no_partial_window_interval_evaluation",
+    "no_independent_phase_sensor_or_double_observer",
+    "absolute_temperature_unverified",
+    "network_same_training_ablation_not_run"
+  ]
+}

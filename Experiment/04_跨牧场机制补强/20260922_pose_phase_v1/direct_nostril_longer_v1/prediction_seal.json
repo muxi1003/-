@@ -1,0 +1,12 @@
+{
+  "folds_completed": 3,
+  "heldout_frames": 36,
+  "elapsed_seconds": 460.73400000000015,
+  "original_model_unchanged": true,
+  "files": {
+    "out_of_fold_predictions.csv": "b3dd2f35ebd74f7d07659f00517dd64b0951389cf48bc6432709954dd8be2dc5",
+    "frame_predictions.csv": "f1e897c398ed5a74201110c01988b2cda6c7e0b07aee389e54fb724b88b0131e",
+    "fold_checkpoints.csv": "a0cd9055ad2abbb51fbf69762b7c9e4f7f92173c0f28de63e48a9ceec4e43057",
+    "protocol_before_training.json": "909b145d8ad0612db968a60a61b7f672719a7dd91d954c2085e3c41650aa838e"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "video_id": "bs200673",
+  "raw_source_path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍病牛区\\20230807T081058n200673\\20230807T081058n200673.MP4",
+  "raw_source_sha256": "8dfdbe031985cacea663ba6cdf883ca65443c6d21893031ed683dd344064ade0",
+  "origin_frame_index": 0,
+  "origin_timestamp_seconds": 0.0,
+  "duration_seconds": 30.0,
+  "predicted_breath_count": 33,
+  "predicted_rr_bpm": 66,
+  "reference_status": "new_raw_time_window_not_scored",
+  "prediction_status": "predicted_internal_only",
+  "reason": "",
+  "source_frames": 264,
+  "target_frames": 261,
+  "reused_source_frames": 14,
+  "max_nearest_time_error_seconds": 0.09896551724137836,
+  "valid_signal_frames": 261,
+  "grid_frames": 261
+}

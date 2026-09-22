@@ -1,0 +1,19 @@
+{
+  "video_id": "ns200886",
+  "raw_source_path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍新产牛\\20230807T072548n200886\\20230807T072548n200886.MP4",
+  "raw_source_sha256": "9eba3da1895095a9fef3fc491f6335ec88d4d09ad9172b7bebf5435ba5ebaf83",
+  "origin_frame_index": 190,
+  "origin_timestamp_seconds": 21.611666666666668,
+  "duration_seconds": 30.0,
+  "predicted_breath_count": 28,
+  "predicted_rr_bpm": 56,
+  "reference_status": "new_raw_time_window_not_scored",
+  "prediction_status": "predicted_internal_only",
+  "reason": "",
+  "source_frames": 264,
+  "target_frames": 261,
+  "reused_source_frames": 27,
+  "max_nearest_time_error_seconds": 0.13540229885057276,
+  "valid_signal_frames": 236,
+  "grid_frames": 261
+}

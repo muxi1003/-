@@ -1,0 +1,14 @@
+{
+  "lindian49": {
+    "predictions_hidden": false,
+    "annotation_windows_sha256": "64b6522745dd7d212a501d4f5ef5f02c17fec943b96947e08957656ba735c214",
+    "user_statement": "2026-09-11用户先答两组没有隐藏，随后仅更正久福；林甸仍记录为没有隐藏。",
+    "role": "nonblind_single_observer_count_reference"
+  },
+  "jiufu271": {
+    "predictions_hidden": true,
+    "annotation_windows_sha256": "004f8ec22fafd28770782dceae1e26c71598a0efe1803f8aa17c99024b09b41a",
+    "user_statement": "2026-09-11用户更正：说错了久福牧场的隐藏了，因为久福的本来就没有标注次数，也没有预测标注。",
+    "role": "single_observer_counts_without_algorithm_predictions_not_double_observer_validation"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "fold": 2,
+  "checkpoint": "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\20260922_pose_phase_v1\\direct_nostril_longer_v1\\runs\\fold2\\weights\\last.pt",
+  "sha256": "9d1c2c084412d6efa592ce571c3949ffdeb0b7c820660302d5fb5fd46f4538a2",
+  "epochs": 200
+}

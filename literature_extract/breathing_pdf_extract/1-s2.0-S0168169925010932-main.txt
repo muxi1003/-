@@ -1,0 +1,806 @@
+--- Page 1 ---
+Original papers
+Respiratory rate regression in Holstein dairy cattle with deep neural 
+networks: An evaluation on different body regions
+Paula F. Curti
+a
+, Andr ´e M. Souza
+b
+, Livia L. Kobayashi
+a
+, Aline M. Castanheira
+a
+, 
+Di ´ogenes L. Pinto
+a
+, Alexandre M. Ruiz
+a
+, Lucas T. Andrietta
+a
+, Júlio C.C. Balieiro
+a
+, 
+Francisco P. Renn ´o
+a
+, Elaine P.M. Sousa
+b
+, Ricardo V. Ventura
+a , *
+a
+Department of Animal Production and Animal Nutrition, School of Veterinary Medicine and Animal Science of University of Sao Paulo, Pirassununga, Brazil
+b
+Department of Computer Science (SCC) - Institute of Mathematical and Computer Sciences (ICMC), University of S ˜ao Paulo, S ˜ao Carlos, Brazil
+ARTICLE INFO
+Keywords:
+Computer vision
+Dairy cattle
+Precision livestock farming
+Transformers
+Spatiotemporal convolution models
+ABSTRACT
+Respiratory Rate (RR) is a key physiological indicator in dairy cattle, providing insights into herd and individual 
+health, as well as reactions to environmental factors like heat stress, thermo-resilience, and respiratory disease. 
+Traditionally, RR is monitored by visually counting abdominal fluctuations, an approach that becomes 
+impractical in large herds. This challenge creates an opportunity to implement Computer Vision (CV) methods, 
+particularly deep learning networks designed for video assessment. In our study, we captured video recordings of 
+Holstein cows during different milking sessions in the milking parlor. A total of 688 videos of the animals ’ dorsal 
+view were manually annotated to count breaths over 30 s, identify suitable frames, and define the Region of 
+Interest (ROI). The resulting dataset supported a comparative analysis between two architectures: R2Plus1D18 
+and MViTv2. We tested three ROI extraction techniques: Center Crop (CC), Full Abdomen Bounding Box (FABB), 
+and One-Sided Portion of the Abdomen Bounding Box (OSPABB). R2Plus1D18 outperformed MViTv2, achieving 
+MAPE of 13.21 %, 14.03 %, and 12.94 %, for CC, FABB, and OSPABB, respectively, and RMSE of 5.11, 5.48, and 
+4.66, respectively, against MViTv2 ′ s RMSE of ~7.5 and MAPE of ~23.5 % on the three scenarios. To the best of 
+our knowledge, this is the first study in the field to concurrently evaluate three ROI approaches using two state- 
+of-the-art architectures on the same manually annotated dataset. Additionally, we contribute by releasing our 
+source code to facilitate reproducibility.
+1. Introduction
+From a dairy farm management standpoint, tracking cows ’ Respi -
+ratory Rate (RR) holds significant importance, both at herd and indi -
+vidual levels, as it is associated with several aspects of the animal ’ s 
+health and production. From a herd perspective, it helps identify and 
+manage heat stress (HS), while on an individual level, it aids in identi -
+fying thermo-resilient animals ( Liu et al., 2020a ) and detecting diseases 
+at an early stage ( Kim and Hidaka, 2021; Wu et al., 2023 ).
+Regarding HS, it can be defined as the state in which animals spend 
+an extra amount of energy trying to dissipate their own heat to maintain 
+normal body temperature ( Ruban et al., 2020 ). It often occurs when 
+animals are outside their thermoneutral zone: the state that the body 
+uses the least amount of energy to support basic life functions, which for 
+dairy cows typically falls within the range of 5 and 25 
+◦
+C ( Ruban et al., 
+2020 ). Considering that Holstein herds, located in tropical and sub -
+tropical countries, face a significant challenge in the form of elevated 
+temperature and relative humidity ( Becker et al., 2020 ) that exceed the 
+cow ’ s thermoneutral zone by a substantial margin, panting serves as an 
+early indicator of increasing HS ( Idris et al., 2021; Sejian et al., 2022 ), as 
+it is one important heating transfer route in cattle.
+To evaluate the level of HS at a herd level, common practices include 
+visual scoring of RR through observation of abdominal fluctuations ( Kim 
+and Hidaka, 2021; Wu et al., 2020 ) and measuring body temperature via 
+rectal temperature ( Idris et al., 2021 ). However, these methods are 
+labor-intensive, particularly for larger herds ( Kim and Hidaka, 2021; Wu 
+et al., 2020 ). Another approach is monitoring the temperature-humidity 
+index (THI), a reliable indicator that accounts for both air temperature 
+and relative humidity ( Dikmen and Hansen, 2009; Yan et al., 2021 ). THI 
+helps identify the threshold at which dairy cows begin to exhibit signs of 
+* Corresponding author.
+E-mail address: rvventura@usp.br (R.V. Ventura). 
+Contents lists available at ScienceDirect
+Computers and Electronics in Agriculture
+journal homep age: www. elsevier.com/ locate/comp ag
+https://doi.org/10.1016/j.compag.2025.110987
+Received 20 September 2024; Received in revised form 10 August 2025; Accepted 9 September 2025 
+Computers and Electronics in Agriculture 239 (2025) 110987 
+Available online 11 September 2025 
+0168-1699/© 2025 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+
+--- Page 2 ---
+thermal stress, which is 28 
+◦
+C and 50 % for temperature and humidity, 
+respectively ( Dikmen and Hansen, 2009 ).
+In light of the fact that the response to HS varies among individuals, 
+some are more susceptible to its adverse effects, while others are more 
+resilient. In this context, resilience is defined as an animal ’ s ability to 
+recover from HS and sustain optimal productivity ( Ka ˇsn ´a et al., 2022 ). 
+To address this problem, many efforts have been made to identify bio -
+markers ( Liu et al., 2017 ) and phenotypic behavior ( Silpa et al., 2021 ) 
+associated with thermo-resilient cows. Observing cows that exhibit 
+lower RR under HS conditions can serve as an indicator of thermal 
+resilience ( Liu et al., 2020b ), offering key insights for developing 
+effective breeding strategies.
+To address practical challenges, various studies have explored Arti -
+ficial Intelligence resources, such as sensors and cameras, to automati -
+cally detect HS ( Sejian et al., 2022 ) and respiratory diseases in cows 
+( Schaefer et al., 2012 ). These technologies enable farmers to take 
+effective action using non-invasive tools that generate quantitative data 
+( Mahmud et al., 2021; Sejian et al., 2022 ). Specifically, systems that 
+monitor parameters via cameras often rely on Computer Vision (CV), a 
+branch of AI that extracts valuable information from images or videos 
+( Fernandes et al., 2020 ). CV solutions typically involve Machine 
+Learning or one of its subsets, Deep Learning.
+While using CV for this purpose, Kim and Hidaka (2021) employed 
+thermal cameras and identified the nostrils as the Region of Interest 
+(ROI) to determine the breathing rate by averaging temperature values 
+within this area. Other studies focused on RR assessment using RGB 
+cameras, applying optical flow-based algorithms to either individual 
+animals ( Wang et al., 2023; Wu et al., 2020 ) or multiple cows at once 
+( Wu et al., 2023 ). These algorithms detect changes in pixels within an 
+image and are widely used for motion perception ( Wu et al., 2023 ). More 
+recently, Mantovani et al. (2024) proposed a different approach, using 
+fast Fourier transform applied to pixel-intensity variations within flank 
+ROIs in RGB and infrared videos of lying cows, demonstrating that 
+frequency-domain analysis can be a viable alternative to motion-based 
+methods for RR prediction. Although all of these approaches have suc -
+cessfully estimated cows ’ respiration, systematic comparisons of 
+different ROIs using the same model, as well as evaluations of different 
+architectures on a common dataset, are still lacking.
+Addressing these gaps requires not only consistent datasets but also 
+robust algorithms capable of handling the complexity of video-based 
+data. Unlike static image analysis, video processing must account for 
+spatial – temporal relationships between frames ( Tran et al., 2018 ), 
+which increases computational demands and model complexity. This 
+remains an active area of research with continuous advancements. 
+Given these challenges, notable architectures for video-based visual 
+recognition include R2Plus1D18 ( Tran et al., 2018 ) and the Improved 
+Multiscale Vision Transformers (MViTv2) ( Li et al., 2022 ). R2Plus1D18 
+leverages a ResNet architecture with 2D spatial convolutions (height ×
+width) followed by a 1D temporal convolution (time) ( Tran et al., 2018 ). 
+This split improves efficiency and allows the model to learn spatial and 
+temporal features separately. Meanwhile, MViTv2 is built upon the 
+original Multiscale Vision Transformer (MVIT), and integrates the 
+Transformer ’ s ability to capture long-range dependencies; a multiscale 
+structure that processes data at different resolutions; and an upgrade to 
+the Pooling Attention from the original MVIT architecture ( Li et al., 
+2022 ).
+Our study aims to evaluate the performance of both R2Plus1D18 and 
+MViTv2 architectures (after slight modifications), under the same 
+experimental conditions, to determine which model best recognizes the 
+respiratory patterns of dairy cattle. The analysis considers three pre -
+defined ROIs, based on different body regions that may influence the 
+assessment of respiratory movements.This was accomplished through 
+video recordings captured by low-cost cameras during different milking 
+periods. Additionally, a new methodology was developed to preprocess 
+and select suitable frames from the videos, which were included in the 
+dataset and subsequently used to build a regression model.
+2. Materials and methods
+This experiment was carried out under approval of the Ethics Com -
+mittee on Animal Use – School of Veterinary Medicine and Animal 
+Sciences, University of S ˜ao Paulo (S ˜ao Paulo, Brazil; protocol 
+#3621310323).
+2.1. Animals and housing
+The videos were recorded at the Dairy Cattle Research Laboratory 
+(LPBL) from the University of S ˜ao Paulo ( 21.9653 and 47.4784 in 
+latitude and longitude, respectively). LPBL housed 87 Holstein cows in 
+lactation period, with a mean milk yield of 2,500 kg per day, and were 
+milked twice a day (6 am and 5 pm) in a herringbone milking parlor. The 
+animals were kept in barns with individual pens (17.5 m
+2 
+area), which 
+contained sand bedding, fans, feed bunks, and free access to water.
+2.2. Temperature and humidity during sampling periods
+In order to better describe the thermal conditions in the environment 
+where the cows were housed, we collected the hourly values of tem -
+perature (
+◦
+C) and relative humidity with the Novus RHT Climate tem -
+perature and humidity sensor (Novus Automation, Porto Alegre, RS, 
+Brazil). We calculated the THI according to ( Mader et al., 2006 ). The 
+descriptive statistical values of these variables in the data collection 
+periods are depicted in Table 1 .
+During the filming periods, the recorded amplitude of THI values was 
+19.6 units, and elevated THI values were observed in general due to the 
+summer season in Brazil. Given the temperature and THI ranges 
+observed, the dataset included animals experiencing both thermoneu -
+trality and HS.
+2.3. Camera setup and filming periods
+Throughout the experiment, two filming sessions were conducted 
+during Brazilian summer, specifically in March 2023, and from 
+December 2023 to January 2024. The experimental setup included two 
+low-cost security cameras: an Intelbras VIP 1430B G2 camera 
+( https://www.intelbras.com/en/bullet-camera-vip-1430-b-g2 ) and a 
+Microsoft Lifecam Studio USB webcam (Microsoft Corp., Redmond, WA, 
+USA), as demonstrated in Fig. 1 . The Microsoft webcam captured video 
+at 30 frames per second (fps) and a resolution of 720 pixels, whereas the 
+Intelbras recorded at 20 fps with 4 M pixels. We collected in total 304.4 
+GB of data.
+The animals were randomly selected and filmed one at a time in a 
+top-down perspective in order to observe abdominal distension during 
+respiration. We chose the proposed method mainly because the milking 
+parlor is where all animals pass through daily, allowing for good camera 
+positioning and a clear visualization of the ROI. These factors made it 
+possible to capture videos of several animals on different days without 
+the need to move the camera setup and with minimal interruptions to 
+both the routine of farm employees and the animals. Furthermore, 
+considering that the implementation cost is one of the decisive aspects 
+for the adoption of precision livestock farming solutions on dairy farms 
+( Bianchi et al., 2022 ), the proposed method seeks to reduce investment 
+Table 1 
+Statistical values of THI, temperature (
+◦
+C), and relative humidity (RH) obtained 
+with a Novus RHT Climate sensor in LPBL during the data collection periods.
+Variable
+THI T
+◦
+C RH
+Mean 74.1 26.4 60.6
+Standard Deviation 6.3 4.7 10.0
+Coefficient of Variation 8.5 17,8 16.5
+Min 63.7 20.4 34.8
+Max 83.6 35.4 75.8
+P.F. Curti et al. Computers and Electronics in Agriculture 239 (2025) 110987 
+2 
+
+--- Page 3 ---
+in hardware. This can be achieved by installing fewer cameras than if the 
+animals were monitored in different areas of the farm. Finally, we 
+decided to film one animal at a time to maximize analysis accuracy, as 
+each individual occupies more pixels per frame, making it easier to 
+monitor respiratory behavior using CV techniques. ( Wu et al., 2023 ).
+At the conclusion of the filming periods, the final dataset comprised 
+688 recordings, collected from 84 animals, across various milkings and 
+experimental periods.
+2.4. Manual annotation step, image processing, and software pipeline
+We divided the recordings into 30-second segments, and two skilled 
+veterinarians annotated 688 videos in two phases: first, by pre-selecting 
+appropriate frames, and then by counting each animal ’ s respirations.
+At the first phase, each video frame was classified based on its 
+suitability for observing respiratory movement. Frames where the ani -
+mals were standing still and their abdominal expansion during respira -
+tion was clearly visible were classified as “ Adequate. ” In contrast, frames 
+showing peer movement or interaction, individual movement (e.g., 
+limbs, tail, ears, weight shift), partial body occlusion or background 
+noise (e.g., human interaction or manipulation during milking) were 
+classified as “ Inadequate ” ( Fig. 2 ).
+We counted the number of respirations only within the video seg -
+ments classified as “ Adequate ” . This process reduced the dataset by 
+discarding unsuitable frames, ensuring that the annotations were based 
+on accurate ground truth breathing rate observations. Since only the 
+’ Adequate ’ frames were analyzed by the model, it was crucial to main -
+tain the reliability of the input data to ensure accurate results. After this 
+process, 586 of the 688 videos were included in the final analysis. Of 
+these, 263 were from morning milkings, and 323 from afternoon 
+Fig. 1. Schematic diagram of the camera setup in the herringbone milking parlor. (a) Each camera was placed in a structure that was attached to the wall, which 
+allowed observation of the animal ’ s dorsal view on both sides of the milking line. (b) The cameras were placed three meters from the ground, at a 90
+◦
+angle.
+Fig. 2. Examples of interferences encountered during filming sessions, which were excluded, since they were pre-classified in the manual annotation step as 
+“ Inadequate ” (a) Cow movement and peer interaction; (b) Parts of the animal ’ s body out of frame; (c) Human manipulation during milking (yellow arrow).
+P.F. Curti et al. Computers and Electronics in Agriculture 239 (2025) 110987 
+3 
+
+--- Page 4 ---
+milkings.
+At this stage, observer bias was controlled by comparing the number 
+of respirations counted by both professionals. The Pearson correlation 
+between their observations was 0.9836, and a paired t -test yielded a p- 
+value of 0.07, leading to the acceptance of the null hypothesis, indi -
+cating no statistical difference between the observations of the two 
+veterinarians.
+We used three different ROI extraction approaches as inputs for both 
+deep learning models considered in this study: R2Plus1D18 and 
+MViTv2. The approaches focused on different animal body regions: 
+Center Crop (CC), Full Abdomen Bounding Box (FABB), and One-Sided 
+Portion of the Abdomen Bounding Box (OSPABB) ( Fig. 3 ).
+Given the architectural differences between the models, the image 
+transformation parameters for R2Plus1D18 and MViTv2, outlined in 
+Table 2 , were derived from the respective architecture documentation 
+( Tran et al., 2018; Li et al., 2022 ). These transformations ensure that the 
+dataset conforms to the input size requirements of each model.
+We first evaluated the 18-layer R(2 + 1)D network (R2Plus1D18) 
+( Tran et al., 2018 ), which combines spatial and temporal convolutions 
+within a deep residual framework. Its official PyTorch implementation, 
+originally designed for image classification, was slightly modified in 
+order to suit our regression task for RR prediction. This involved 
+removing the final 512x400 fully connected classification layer and 
+replacing it with a 512x1 fully connected layer tailored for regression. 
+The same architectural modification was applied to MViTv2 by replac -
+ing the final linear layer with one containing a single output node.
+As stated before, in order to accurately predict RRs, the “ Adequate ” 
+frames were used solely as input for the regression model in both cases 
+(frame pre-classification step).
+In both architectures, for the CC methodology, we resized and 
+cropped the original video according to the specific requirements of 
+each model ( Table 2 ). The latter involved trimming sections from the 
+top, bottom, and sides, resulting in an image that captured the animal ’ s 
+entire body.
+In the other two proposed methodologies, FABB and OSPABB, a 
+rectangular box (referred to as a bounding box) was positioned around 
+each ROI to be analyzed, and a transformation was carried out to retain 
+only the image within the boundaries of each box. In the FABB approach, 
+the rectangle covered the animal ’ s back, extending from the iliac region 
+to the spine of the scapula. In the OSPABB method, the box encompassed 
+a square in the paralumbar fossa region, located on the same side as the 
+milking line, opposite to the animal positioned behind. In both FABB and 
+OSPABB scenarios, the resulting images were resized to 112 × 112 pixels 
+for R2Plus1D18 and 224 × 224 pixels for MViTv2.
+We performed the experiments in a single machine with the 
+following configuration: NVIDIA GeForce RTX 4070 Ti GDDR6X 12 GB 
+GPU, with an AMD Ryzen 9 5950X 16-Core CPU @ 3.4 GHz, 128 GB 
+RAM, on a Linux 6.11.11-1-MANJARO. The ML/data utilities were 
+managed with scikit-learn ( Pedregosa et al., 2011 ) and Pandas 
+( McKinney, 2010 ). Additionally, we implemented the Deep Learning 
+models using PyTorch ( Paszke et al., 2019 ) and PyTorch Lightning ( Falcon 
+et al., 2019 ), respectively.
+In the data selection stage, we resampled each annotated video to 5 
+FPS and divided the dataset into video segments for training, with 16 
+frames per segment and a hop size of 8 frames between each segment. 
+Therefore, every 16 frames (3.2 s) formed a sample for training and 
+evaluating the developed models. This resulted in a total of 5,128 seg -
+ments, which were split into training (n = 4,085) and testing (n = 1,043) 
+sets.
+In all three cases, before feeding the data to the models, we applied Z- 
+normalization to the RGB channels. The mean and standard deviation 
+(SD) values used for normalization are detailed in Table 2 . This stan -
+dardization is commonly used in CV projects so that the data has a mean 
+of zero and a standard deviation of one. This process brings the data onto 
+the same scale, improving the convergence of the algorithms.
+For both MViTv2 and R2Plus1D18, across the two learning tasks, 
+AdamW ( Loshchilov and Hutter, 2019 ) was used, with an initial learning 
+rate of 1e-3 and weight decay of 1e-2 . The batch size trained comprised 
+16 samples. During training, schedulers were employed to reduce the 
+learning rate by a 0.1 factor when the loss over the test dataset stopped 
+improving for eight epochs . Early stopping was set to interrupt training 
+when test loss stopped improving after 16 epochs , in order to prevent 
+overfitting. The models were saved with the lowest test loss value for 
+each task.
+Both networks were trained under the same experimental conditions, 
+with the sole exception of a minor adjustment in batch size to accom -
+modate MViTv2 execution. Model performance was assessed using an 
+independent set of individuals to evaluate the predicted respiratory 
+values. As one of the models did not exhibit performance differences 
+Fig. 3. ROI extraction methods evaluated in this study, defined based on the body region: (a) Center Crop (CC) – the image was cropped at the margins, retaining 
+only the center for analysis; (b) Full Abdomen Bounding Box (FABB) – a bounding box was applied to encompass the entire abdomen of the animal; and (c) One-Sided 
+Portion of the Abdomen Bounding Box (OSPABB) – a smaller bounding box was placed over a specific section of the animal ’ s abdomen.
+Table 2 
+Input parameters for image pre-processing in each evaluated model.
+R2Plus1D18 MViTv2
+Z-normalization mean 0.43216, 0.39466, 0.37645 0.45, 0.45, 0.45
+Z-normalization SD 0.22803, 0.022145, 0.216989 0.225, 0.225, 0.225
+Resize 128 × 171 px 256 px*
+Crop 112 × 112 px 224 × 224 px
+*The frame is resized so that the shortest of height or width becomes 256 pixels, 
+and the other dimension is scaled accordingly to preserve the original aspect 
+ratio.
+P.F. Curti et al. Computers and Electronics in Agriculture 239 (2025) 110987 
+4 
+
+--- Page 5 ---
+(among the individuals and across regions) during the prediction phase, 
+the in-depth analysis of ROI extraction scenarios was conducted exclu -
+sively for the R2Plus1D18. The evaluation metrics used in this study 
+included Mean Squared Error (MSE) loss with an identity activation 
+function, Mean Absolute Percentage Error (MAPE), and Root Mean 
+Square Error (RMSE). After obtaining predictions from the top- 
+performing model, the results were visualized using a boxplot to 
+compare the distribution and behavior of the predicted RR values with 
+the actual RR observed during both milking periods (morning and af -
+ternoon). Furthermore, a Pearson correlation analysis was conducted to 
+validate the metrics and determine which ROI extraction approach led 
+to the best results.
+2.5. Delivery of results: Individual segments vs animal approach
+Given that we trained the algorithms by dividing each cow recording 
+into 3.2-second segments, with each segment generating a prediction for 
+the same animal, we considered two approaches for presenting the 
+model ’ s performance: by segment or by animal ( Fig. 4 ).
+When designing precision livestock farming solutions for practical 
+applications, it is crucial to develop a system that provides the end-user 
+with relevant insights about the object of analysis – in this case, the cow. 
+Therefore, our study considered both segment-based and animal-based 
+approaches. The latter is determined by the median of the model ’ s 
+predicted values for each cow, where each cow is represented by an 
+aggregation of n segments. The two distinct approaches provide means 
+to understand the models ’ performance and, at the animal level, enable 
+interventions at both herd level (such as in HS assessment), and indi -
+vidual level (identifying heat-resilient animals and early detection of 
+respiratory diseases), by notifying the end-user about animals with 
+normal resting RR and those with abnormally high RR.
+In that sense, all the metrics previously described were applied to 
+both scenarios.
+3. Results and discussion
+In the following sections, we compare the two deep learning net -
+works for predicting RR from video inputs across different milking days. 
+The analysis highlights how prediction results vary depending on the 
+animal body region used as input. We also discuss key factors affecting 
+the practical applications of these models by producers.
+3.1. Comparison between MViTv2 and R2Plus1D18
+To ensure a fair comparison based on architectural hyperparameters, 
+we aimed to evaluate both networks under the same experimental 
+conditions. R2Plus1D18 was successfully trained with a batch size of 16 
+as intended. However, due to hardware limitations, MViTv2 required a 
+hyperparameter adjustment (batch size = 4). Although this impacts the 
+fairness of training and inference time comparisons, it does not affect the 
+metrics used for the model evaluation (RMSE and MAPE).
+Our hypothesis is that, although MViTv2 was designed to improve 
+the MViT architecture by making it faster, more efficient, and reducing 
+computational demands through the enhancement of the Pooling 
+Fig. 4. Illustration of result delivery approaches: by segments and by animal. In the segment-based method, the absolute error is determined by the difference 
+between the predicted and annotated respiratory rate for each segment. Conversely, in the animal-based method, the absolute error is calculated as the difference 
+between the median of the predictions for the segments of each cow and the annotated respiratory rate.
+P.F. Curti et al. Computers and Electronics in Agriculture 239 (2025) 110987 
+5 
+
+--- Page 6 ---
+Attention step ( Li et al., 2022 ), it still requires more computational 
+memory than R2Plus1D18. Additionally, MViTv2 depends on large- 
+scale data for fine-tuning models that assess video recognition ( Li 
+et al., 2022 ). Although our dataset was considerably larger than those 
+used in many previous studies in this field ( Wu et al., 2020 , 2023; 
+Mantovani et al. 2024 ), it was still not sufficient for such large-scale fine- 
+tuning. This discussion is especially relevant in settings with limited 
+infrastructure and hardware (common in animal production) where the 
+best option is the one with lower computational demands. In that sense, 
+in our specific case, R2Plus1D18 outperformed MViTv2 in both memory 
+usage and training time.
+The MViTv2 architecture achieved an RMSE of ~7.5 and MAPE of 
+~23.5 % across all three cases (CC, FABB, and OSPABB), while 
+R2Plus1D18 presented RMSE values of 5.41, 5.84, and 4.93, and MAPE 
+values of 14.75 %, 15.81 % and 14.04 %, respectively.
+The reduced variance observed between ROI scenarios for MViTv2 
+network could be associated with its original definition, which relies on 
+a multi-scale attention-based concept and does not depend on a fixed 
+spatial arrangement, unlike convolution-based models (as implemented 
+by the R2Plus1D18). It learns global aspects of each frame, identifying 
+patterns without dependence on specific local features, making the 
+differences among body regions less impactful. In contrast, R2Plus1D18, 
+which applies separate convolutions in time and space, is more sensitive 
+to structural variations regarding the region to be investigated.
+Since the original execution of MViTv2 was overall inferior to the 
+R2Plus1D18 model under hardware and dataset constraints, the subse -
+quent RR prediction and results discussion focused solely on the 
+R2Plus1D18 architecture.
+3.2. R2Plus1D18 ′ s RR predictions through milking periods
+Taking into account that cattle in subtropical and tropical environ -
+ments are exposed to various stressors, such as high temperatures and 
+daily temperature fluctuations ( Prayaga et al., 2006 ), we compared the 
+predicted values from the R2Plus1D18 model with the manual annota -
+tions across different milking periods ( Fig. 5 ). In the morning, the me -
+dian RR/30 s observed in the manual annotations was 26, while the 
+medians for the predictions were 26 for CC, 25 for FABB, and 24 for 
+OSPABB are 26, 25, and 24, respectively. In the afternoon, the median 
+values were 33.5 for the annotated respirations, 31 for both CC and 
+FABB, and 33 for OSPABB, respectively. The RR/30 s medians for the 
+morning period were consistently lower than those for the afternoon 
+across all cases. This pattern was expected, as in Brazil, THI and 
+temperature values are higher in the afternoon than in the morning, and 
+all three models successfully captured this trend. Additionally, since the 
+manually annotated RR values ranged from 14 to 40 breaths/30 s in the 
+morning and 19 to 52 breaths/30 s in the afternoon, and considering 
+that HS is triggered at an RR of 48 breaths per minute (24 breaths/30 s) 
+( Li et al., 2020 ), it is evident that the dataset included animals in both 
+thermoneutral and in HS state.
+The Interquartile Range (IQR = Q3 Q1) obtained from the OSPABB 
+approach was 8.75, which is the closest to the IQR from the actual an -
+notated RR values (8). In comparison, the IQRs for the CC and FABB 
+models were 5.75 and 5.5, respectively. Additionally, the outliers from 
+the OSPABB approach are more closely aligned with those from the true 
+observed RR values than the outliers from the FABB and CC approaches.
+3.3. R2Plus1D18 ′ s predictions evaluation - animal and segment-based
+After analyzing the performance of the three proposed methodolo -
+gies through different evaluation metrics, the results are presented in 
+Table 3 .
+When looking at the RMSE metric closely, it is evident that all three 
+models presented similar results. For the fragment-based analysis, the 
+average RMSE across models was 5.39 (SD = 0.46). A difference of only 
+0.91 points was observed between the least effective model (FABB) and 
+the best one (OSPABB). For the animal-based assessment, the results 
+were similar but slightly lower, with an average RMSE of 5.08 (SD =
+0.41), and a difference of 0.82 points between FABB and OSPABB. From 
+a broader perspective, since the RMSE metric reflects the average de -
+viation of the predictions from the true values (annotated RR), it can be 
+interpreted that the models generally deviate by approximately 5 to 6 
+respirations from what would be observed by a human.
+Regarding the MAPE, the proposed methodologies exhibited a 
+similar performance pattern, with OSPABB performing the best, fol -
+lowed by CC and FABB. The difference in results between the segment- 
+based and animal-based evaluations can be attributed to the use of 
+median prediction values in the latter, which reduced the error values 
+assigned to each evaluated instance.
+Finally, when analyzing the Pearson correlation coefficient between 
+the manually annotated RR and the predictions generated by the three 
+methodologies, it was found that OSPABB outperformed the other two in 
+both scenarios (segment and animal-based approaches), with correla -
+tions of 0.79039 and 0.81371 for the segment-based and animal-based 
+analyses, respectively. In comparison, under the segment-based evalu -
+ation, the correlation results for CC and FABB were 0.00991 and 
+Fig. 5. Boxplot comparison of annotated respiratory rate (orange) versus predicted respiratory rates by adapting a R(2 + 1)D network according to the Center Crop 
+(blue), Full Abdomen Bounding Box (green), and One-Sided Portion of the Abdomen Bounding Box (red) scenarios, across different milking periods – morning 
+and afternoon.
+P.F. Curti et al. Computers and Electronics in Agriculture 239 (2025) 110987 
+6 
+
+--- Page 7 ---
+0.15163 lower than OSPABB, respectively. Similarly, in the animal- 
+based approach, reductions of 0.08 and 0.1192 units were observed 
+for CC and FABB, respectively.
+Fig. 6 illustrates the relationship between the annotated and pre -
+dicted RR/30 s. The actual annotated data is represented by the Identity 
+Line, which denotes a perfect prediction scenario. This visualization 
+allows for comparison of the three methodologies, highlighting which 
+one deviated most from the ideal and, consequently, exhibited the 
+highest error. In this plot, it is clear that, in general, OSPABB predicts the 
+RR/30 s more accurately, as the red circles are closer to the actual RR/ 
+30 s line. The FABB methodology (green diamonds) showed the greatest 
+deviation from the dotted line, while CC (blue squares) displayed in -
+termediate performance.
+Upon reviewing the videos corresponding to the predictions with the 
+highest absolute error, we found that they mainly corresponded to in -
+stances in which cows exhibited abrupt panting movements or were in a 
+calm resting state with very subtle respiratory movements (i.e., animals 
+with very high or low RR). This observation aligns with the findings of 
+Wang et al. (2023) , who noted that cows in a thermally comfortable 
+state tend to have a low-frequency RR zone (38 breaths/min, or 19/ 
+breaths/30 s). Additionally, changes in cow posture or body shaking 
+were found to negatively affect the accuracy of RR detection.
+In the present study, the errors observed in the extreme classes are 
+likely due to the data distribution, as most of the data is concentrated in 
+the center, which leads to a bias in the model to underestimate new high 
+RR and overestimate new low RR data, which is expected. This issue can 
+be addressed by increasing the number of animals that present high and 
+low RR in the dataset, as more instances of those patterns would benefit 
+the training task and improve the models ’ performance.
+3.4. Considerations regarding R2Plus1D18 OSPABB ’ s superiority
+As previously discussed, R2Plus1D18 with the OSPABB approach 
+outperformed CC and FABB in all evaluated metrics. Upon close exam -
+ination of Fig. 6 , it is evident that, when compared to the other two 
+approaches, OSPABB performed better in the extreme classes (up to 20 
+respirations/30 s and over 40 respirations/30 s), as its predicted values 
+are closer to the Identity Line. Although a direct comparison is not 
+possible due to differences in camera and animal positioning, dataset 
+size and architecture utilized, Mantovani et al. (2024) reported great 
+results when assessing lying dairy cattle RR with the same ROI posi -
+tioning as OSPABB. In our case, the improved performance of this ROI is 
+likely due to OSPABB ’ s positioning, which corresponds to the animal ’ s 
+paralumbar fossa and is placed strategically opposite the animal posi -
+tioned behind it, reducing the influence of interactions between in -
+dividuals. Additionally, because OSPABB ’ s ROI has smaller dimensions 
+compared to the other two approaches, it is expected to present more 
+significant noise reduction while accurately capturing respiratory 
+movement.
+Upon observing the 20 – 40 respirations/30 s range, OSPABB ’ s pre -
+dictions show a slight deviation from the Identity Line, a trend that is 
+less pronounced in CC and FABB. hypothesize that this outcome is due to 
+the cows exhibiting two distinct movement types during panting: lateral 
+distension of the abdominal wall and cranial-caudal (head-to-tail axis) 
+movements caused by rapid inhalations and exhalations. These move -
+ments are believed to occur at timings and velocities, especially during 
+high RR: the abdominal movement tends to be faster than the cranial- 
+caudal one. The cranial-caudal motion is better captured by methods 
+covering a larger cow area, such as CC and FABB. In contrast, OSPABB 
+focuses solely on the flank movement, capturing fewer movement fea -
+tures, which may contribute to a more comprehensive identification of 
+Table 3 
+RMSE, MAPE, and pearson correlation coefficient by segments and by animal, for the three proposed methodologies, considering the testing set.
+Scenarios
+By segment (n = 1043) By animal (n = 121)
+CC FABB OSPABB CC FABB OSPABB
+RMSE 5.41 5.84 4.93 5.11 5.48 4.66
+MAPE (%) 14.75 15.81 14.04 13.21 14.03 12.94
+Pearson Correlation Coefficients* 0.6912 0.63876 0.79039 0.73364 0.69451 0.81371
+*Pearson Correlation between manually annotated and predicted respiratory rate in the three proposed scenarios.
+Fig. 6. Scatter plot depicting the prediction performance of RR/30 s for the three different scenarios (according to the cow body region). The Identity Line was based 
+on the annotated respirations/30, and represents the perfect prediction scenario. Green diamonds, blue squares, and red circles indicate respiratory predictions for 
+Full Abdomen Bounding Box, Center Crop, and One-Sided Portion of the Abdomen Bounding Box, respectively.
+P.F. Curti et al. Computers and Electronics in Agriculture 239 (2025) 110987 
+7 
+
+--- Page 8 ---
+RR, limiting its ability to assess respiration fully.
+From a computational perspective, our hypothesis regarding 
+OSPABB ’ s superior performance with the R2Plus1D18 architecture is 
+likely due to its ability to focus on discriminative local features that are 
+directly relevant to RR, while minimizing the impact of background 
+noise. In contrast, the other two approaches (CC, FABB) may introduce 
+irrelevant background information, which could detract from the 
+model ’ s ability to learn the most important features. By isolating a 
+specific region, the model can better capture essential spatial and tem -
+poral variations, leading to more accurate predictions. This targeted 
+approach likely enhances the model ’ s ability to discern subtle respira -
+tory movements, while reducing the interference from unnecessary 
+factors present in larger ROIs.
+3.5. Computational demand and practical implications across 
+R2Plus1D18 scenarios
+The primary goal of our study is to develop a CV suitable for real- 
+world farm conditions, where computational demand is a critical fac -
+tor influencing response time, hardware requirements, and the balance 
+between accuracy and efficiency.
+Among the three proposed R2Plus1D18 methodologies, all less 
+computationally intensive than segmentation-based ROI detection, CC 
+stands out for its technical feasibility, as it eliminates manual bounding 
+box annotation and extra image processing, reducing both computa -
+tional and labor costs.Regarding the time required for R2Plus1D18 
+training and achieving the state where the model attained its best 
+metrics, CC took 2.7 h, while FABB took 19.22 h and OSPABB took 6.81 
+h. In this case, in the presented experimental conditions, the approxi -
+mate prediction time for each 3.2 s segment is around 0.3 s, 1.9 s, and 
+1.5 s for CC, FABB, and OSPABB, respectively. Thus, only CC can deliver 
+real-time results under the tested conditions; FABB and OSPABB would 
+be limited to delayed reporting unless more powerful GPUs were used.
+One discussion topic is how using more powerful GPUs and 
+increasing the models ’ input data resolution and fragment size would 
+influence the model ’ s predictions. Preliminary tests not shown in this 
+article indicate that such modifications would substantially impact the 
+predictions, reducing the MAPE of the test set by around 2 %. While 
+faster hardware could make FABB and OSPABB real-time capable, such 
+investment is often unfeasible for farmers. However, declining cloud 
+computing costs and improved rural internet access make these heavier 
+models increasingly viable without high-end local hardware. As tech -
+nology advances, these complex models will likely become even more 
+accessible in various real-world scenarios.
+The implementation of precision livestock farming solutions still 
+faces several challenges, from data collection to delivery of the results to 
+the final user ( Curti et al., 2023 ). In the case of CV applications for dairy 
+cattle, various studies reported several obstacles, such as effect of 
+camera, animal positioning, occlusion of points of interest ( Gong et al., 
+2022; Wu et al., 2023 ), lightning conditions ( Fernandes et al., 2020; 
+Gong et al., 2022 ), image resolution ( Kim and Hidaka, 2021; Gong et al., 
+2022 ), the difficulty to simultaneously monitor multiple animals ( Gong 
+et al., 2022; Wu et al., 2023 ), and many others. These limitations 
+highlight that within video data, not every frame is suitable for analysis, 
+and even within usable frames, only a specific portion of the image may 
+be of evaluative interest. Therefore, it is crucial to implement image 
+processing steps, which may involve frame selection and the definition 
+of the ROI for analysis. In our approach, only viable frames were 
+included in the RR analysis, excluding those affected by occlusion, an -
+imal interactions, movement, or human interference during milking. 
+This selective frame classification not only improves accuracy but also 
+paves the way for future models capable of automatically determining 
+when to monitor a cow ’ s RR or exclude data, thereby optimizing the 
+entire collection process.
+While our study successfully identified specific body regions relevant 
+for RR estimation in dairy cattle, data collection was conducted during 
+milking periods, which can be a limitation when trying to replicate in 
+environments where animals cluster closely on both sides. Future 
+research should explore segmentation techniques to handle such sce -
+narios. Moreover, as this study was performed only during the Brazilian 
+summer, repeating it across different seasons with data from the same 
+animals would strengthen the analysis and help identify individuals 
+more resilient to seasonal THI variations.
+4. Conclusions
+To the best of our knowledge, our work establishes a new benchmark 
+by using the largest manually annotated dataset to compare two state-of- 
+the art architectures and three ROI-based computer vision approaches 
+for assessing respiratory rate in dairy cattle. The superior performance of 
+R2Plus1D18, particularly with the OSPABB method, highlights the po -
+tential of cost-effective, segmentation-free spatiotemporal models. 
+These findings open pathways for further research into scalable, data- 
+driven solutions that can enhance efficiency and decision-making in 
+commercial dairy systems.
+CRediT authorship contribution statement
+Paula F. Curti: . Andr ´e M. Souza: Writing – review & editing, 
+Writing – original draft, Visualization, Validation, Software, Methodol -
+ogy, Investigation. Livia L. Kobayashi: Visualization, Validation, 
+Formal analysis. Aline M. Castanheira: Writing – review & editing, 
+Writing – original draft, Visualization, Validation, Investigation, Formal 
+analysis. Di ´ogenes L. Pinto: Methodology, Data curation. Alexandre 
+M. Ruiz: Methodology, Investigation, Formal analysis. Lucas T. 
+Andrietta: Writing – review & editing, Software, Formal analysis. Júlio 
+C.C. Balieiro: Writing – review & editing, Visualization, Validation, 
+Formal analysis. Francisco P. Renn ´o: Writing – review & editing, Re -
+sources. Elaine P.M. Sousa: Writing – review & editing. Ricardo V. 
+Ventura: Writing – review & editing, Writing – original draft, Valida -
+tion, Project administration, Methodology, Investigation, Funding 
+acquisition, Formal analysis, Data curation, Conceptualization.
+Declaration of competing interest
+The authors declare that they have no competing financial interests 
+or personal relationships that could have appeared to influence the work 
+reported in this paper.
+Acknowledgments
+The authors would like to acknowledge the S ˜ao Paulo Research 
+Foundation - FAPESP (grants 16/17078-0, 16/19514-2, 21/03101-9, 
+and 23/02851-0), CNPQ (grants 408867/2021-3 and 305307/2022-3), 
+and CAPES (finance code 001) for the financial support.
+Data availability
+The authors do not have permission to share data.
+References
+Becker, C.A., Collier, R.J., Stone, A.E., 2020. Invited review: Physiological and 
+behavioral effects of heat stress in dairy cows. J. Dairy Sci. 103, 6751 – 6770. https:// 
+doi.org/10.3168/jds.2019-17929 .
+Bianchi, M.C., Bava, L., Sandrucci, A., Tangorra, F.M., Tamburini, A., Gislon, G., 
+Zucali, M., 2022. Diffusion of Precision Livestock Farming Technologies in Dairy 
+Cattle Farms. animal 16, 100650. https://doi.org/10.1016/j.animal.2022.100650 .
+Mantovani, R.R., Menezes, G.L., D ´orea, J.R.R., 2024. Predicting respiration rate in 
+unrestrained dairy cows using image analysis and fast Fourier transform. JDS 
+Communications 5, 310 – 316. https://doi.org/10.3168/jdsc.2023-0442 .
+Curti, P.D.F., Selli, A., Pinto, D.L., Merlos-Ruiz, A., Balieiro, J.C.D.C., Ventura, R.V., 
+2023. Applications of livestock monitoring devices and machine learning algorithms 
+in animal production and reproduction: an overview. Anim. Reprod. 20, e20230077. 
+https://doi.org/10.1590/1984-3143-ar2023-0077 .
+P.F. Curti et al. Computers and Electronics in Agriculture 239 (2025) 110987 
+8 
+
+--- Page 9 ---
+Dikmen, S., Hansen, P.J., 2009. Is the temperature-humidity index the best indicator of 
+heat stress in lactating dairy cows in a subtropical environment? J. Dairy Sci. 92, 
+109 – 116. https://doi.org/10.3168/jds.2008-1370 .
+Falcon, W., and The PyTorch Lightning team. 2019. PyTorch Lightning (Version 1.4) 
+[Computer software]. Zenodo. https://doi.org/10.5281/zenodo.3828935 .
+Fernandes, A.F.A., D ´orea, J.R.R., Rosa, G.J.D.M., 2020. Image analysis and computer 
+vision applications in animal sciences: an overview. Front. Vet. Sci. 7, 551269. 
+https://doi.org/10.3389/fvets.2020.551269 .
+Gong, C., Zhang, Y., Wei, Y., Du, X., Su, L., Weng, Z., 2022. Multicow pose estimation 
+based on keypoint extraction. PLoS One 17. https://doi.org/10.1371/journal. 
+pone.0269259 .
+Idris, M., Uddin, J., Sullivan, M., McNeill, D.M., Phillips, C.J.C., 2021. Non-Invasive 
+physiological indicators of heat stress in cattle. Animals 11, 71. https://doi.org/ 
+10.3390/ani11010071 .
+Ka ˇsn ´a, E., Zavadilov ´a, L., Va ˇreka, J., Kyselov ´a, J., 2022. General resilience in dairy cows: 
+a review. Czech J. Anim. Sci. 67, 475 – 482. https://doi.org/10.17221/149/2022- 
+CJAS .
+Kim, S., Hidaka, Y., 2021. Breathing pattern analysis in cattle using infrared 
+thermography and computer vision. Animals 11, 207. https://doi.org/10.3390/ 
+ani11010207 .
+Li, G., Chen, S., Chen, J., Peng, D., Gu, X., 2020. Predicting rectal temperature and 
+respiration rate responses in lactating dairy cows exposed to heat stress. J. Dairy Sci. 
+103, 5466 – 5484. https://doi.org/10.3168/jds.2019-16411 .
+Li, Y., Wu, C.-Y., Fan, H., Mangalam, K., Xiong, B., Malik, J., Feichtenhofer, C., 2022. In: 
+MViTv2: Improved Multiscale Vision Transformers for Classification and Detection. 
+IEEE, New Orleans, LA, USA, pp. 4794 – 4804. https://doi.org/10.1109/ 
+CVPR52688.2022.00476 .
+Liu, H., Reibman, A.R., Boerman, J.P., 2020a. Video analytic system for detecting cow 
+structure. Comput. Electron. Agric. 178. https://doi.org/10.1016/j. 
+compag.2020.105761 .
+Liu, S., Yue, T., Ahmad, M.J., Hu, X., Zhang, X., Deng, T., Hu, Y., He, C., Zhou, Y., 
+Yang, L., 2020b. Transcriptome analysis reveals potential regulatory genes related to 
+heat tolerance in holstein dairy cattle. Genes 11, 68. https://doi.org/10.3390/ 
+genes11010068 .
+Liu, Z., Ezernieks, V., Wang, J., Arachchillage, N.W., Garner, J.B., Wales, W.J., Cocks, B. 
+G., Rochfort, S., 2017. Heat stress in dairy cattle alters lipid composition of milk. Sci. 
+Rep. 7, 961. https://doi.org/10.1038/s41598-017-01120-9 .
+Loshchilov, I., Hutter, F., 2019. Decoupled Weight Decay Regularization.
+Mader, T.L., Davis, M.S., Brown-Brandl, T., 2006. Environmental factors influencing heat 
+stress in feedlot cattle1,2. J. Anim. Sci. 84, 712 – 719. https://doi.org/10.2527/ 
+2006.843712x .
+Mahmud, M.S., Zahid, A., Das, A.K., Muzammil, M., Khan, M.U., 2021. A systematic 
+literature review on deep learning applications for precision cattle farming. Comput. 
+Electron. Agric. 187. https://doi.org/10.1016/j.compag.2021.106313 .
+McKinney, W., 2010. Data structures for statistical computing in python. In: Presented at 
+the Python in Science Conference, pp. 56 – 61 .
+Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., Killeen, T., Lin, Z., 
+Gimelshein, N., Antiga, L., Desmaison, A., K ¨opf, A., Yang, E., DeVito, Z., Raison, M., 
+Tejani, A., Chilamkurthy, S., Steiner, B., Fang, L., Bai, J., Chintala, S., 2019. PyTorch: 
+An Imperative Style, High-Performance Deep Learning Library.
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., 
+Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., 
+Cournapeau, D., 2011. Scikit-learn: Machine learning in python. Mach. Learn, 
+PYTHON . 
+Prayaga, K. C., W. Barendse, and H. M. Burrow. 2006. Genetics of tropical adaptation. 
+Pages 16-01 in Proc. 8th World Congr. Genet. Appl. Livest. Prod., Belo Horizonte, 
+Minas Gerais, Brazil. Inst. Proci ˆencia, Minas Gerais, Brazil.
+Ruban, S., Borshch, O.O., Borshch, O.V., Orischuk, O., Balatskiy, Y., Fedorchenko, M., 
+Kachan, A., Zlochevskiy, M., 2020. The impact of high temperatures on respiration 
+rate, breathing condition and productivity of dairy cows in different production 
+systems. Anim. Sci. Paper Rep.
+Schaefer, A.L., Cook, N.J., Bench, C., Chabot, J.B., Colyn, J., Liu, T., Okine, E.K., 
+Stewart, M., Webster, J.R., 2012. The non-invasive and automated detection of 
+bovine respiratory disease onset in receiver calves using infrared thermography. Res. 
+Vet. Sci. 93, 928 – 935. https://doi.org/10.1016/j.rvsc.2011.09.021 .
+Sejian, V., Shashank, C.G., Silpa, M.V., Madhusoodan, A.P., Devaraj, C., Koenig, S., 2022. 
+Non-invasive methods of quantifying heat stress response in farm animals with 
+special reference to dairy cattle. Atmos. 13. https://doi.org/10.3390/ 
+atmos13101642 .
+Silpa, M.V., K ¨onig, S., Sejian, V., Malik, P.K., Nair, M.R.R., Fonseca, V.F.C., Maia, A.S.C., 
+Bhatta, R., 2021. Climate-resilient dairy cattle production: applications of genomic 
+tools and statistical models. Front. Vet. Sci. 8, 625189. https://doi.org/10.3389/ 
+fvets.2021.625189 .
+Tran, D., Wang, H., Torresani, L., Ray, J., LeCun, Y., Paluri, M., 2018. In: A Closer Look at 
+Spatiotemporal Convolutions for Action Recognition. Salt Lake City, UT, 
+pp. 6450 – 6459. https://doi.org/10.1109/CVPR.2018.00675 .
+Wang, X., Chen, B., Yang, R., Liu, K., Cuan, K., Cao, M., 2023. A non-contact and fast 
+estimating method for respiration rate of cows using machine vision. Agriculture 14, 
+40. https://doi.org/10.3390/agriculture14010040 .
+Wu, D., Han, M., Song, H., Song, L., Duan, Y., 2023. Monitoring the respiratory behavior 
+of multiple cows based on computer vision and deep learning. J. Dairy Sci. https:// 
+doi.org/10.3168/jds.2022-22501 .
+Wu, D., Yin, X., Jiang, B., Jiang, M., Li, Z., Song, H., 2020. Detection of the respiratory 
+rate of standing cows by combining the Deeplab V3 + semantic segmentation model 
+with the phase-based video magnification algorithm. Biosyst. Eng. 192, 72 – 89. 
+https://doi.org/10.1016/j.biosystemseng.2020.01.012 .
+Yan, G., Liu, K., Hao, Z., Shi, Z., Li, H., 2021. The effects of cow-related factors on rectal 
+temperature, respiration rate, and temperature-humidity index thresholds for 
+lactating cows exposed to heat stress. J. Therm. Biol 100, 103041. https://doi.org/ 
+10.1016/j.jtherbio.2021.103041 .
+P.F. Curti et al. Computers and Electronics in Agriculture 239 (2025) 110987 
+9

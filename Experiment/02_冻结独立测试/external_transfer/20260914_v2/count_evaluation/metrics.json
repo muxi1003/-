@@ -1,0 +1,77 @@
+{
+  "status": "SCORED_COUNT_REFERENCE_ONLY",
+  "n_released": 271,
+  "n_cows": 168,
+  "n_complete_reference": 157,
+  "n_unobservable_reference": 114,
+  "n_algorithm_ok": 216,
+  "n_primary": 122,
+  "output_coverage_all271": 0.7970479704797048,
+  "paired_coverage_complete_reference": 0.7770700636942676,
+  "metrics": {
+    "n": 122,
+    "rr_r2": 0.19370446193558233,
+    "rr_mae_bpm": 5.360655737704918,
+    "rr_rmse_bpm": 8.256145252248746,
+    "count_mae": 2.680327868852459,
+    "exact_count": 23,
+    "within_one_count": 51,
+    "mean_count_accuracy_percent": 83.50773703172146,
+    "bias_bpm": -1.8852459016393444,
+    "loa_low_bpm": -17.704734522993693,
+    "loa_high_bpm": 13.934242719715005
+  },
+  "cluster_ci95": {
+    "clusters": 97,
+    "draws": 2000,
+    "seed": 20260914,
+    "method": "percentile_bootstrap_cow_clusters_keep_all_windows_per_sampled_cow",
+    "scope": "paired_complete_and_ok_set_conditional_on_coverage_not_missing_outcome_imputation",
+    "intervals": {
+      "rr_r2": {
+        "low": -0.41531630818807874,
+        "high": 0.5737861989099414,
+        "finite_draws": 2000
+      },
+      "rr_mae_bpm": {
+        "low": 4.29026790595954,
+        "high": 6.564112903225806,
+        "finite_draws": 2000
+      },
+      "rr_rmse_bpm": {
+        "low": 6.070461379972286,
+        "high": 10.283973430222357,
+        "finite_draws": 2000
+      },
+      "count_mae": {
+        "low": 2.14513395297977,
+        "high": 3.282056451612903,
+        "finite_draws": 2000
+      },
+      "mean_count_accuracy_percent": {
+        "low": 80.42411221294587,
+        "high": 86.41334247306145,
+        "finite_draws": 2000
+      },
+      "bias_bpm": {
+        "low": -3.5,
+        "high": -0.3499801587301588,
+        "finite_draws": 2000
+      }
+    }
+  },
+  "prediction_seal_sha256": "577663688bc27364d0defaca0c8d60ea6235bf112785cccefa0d14ada2817266",
+  "reference_sha256": "12e20dbc196eaea15de17f66919469e263f1d06a0019aac44c4ac19579668843",
+  "event_metrics": null,
+  "event_reference_status": "NOT_AVAILABLE_NO_EVENT_TIMES",
+  "blinding": "Jiufu_single_observer_counts_hidden_from_algorithm_predictions_per_user_declaration; not_double_observer",
+  "limitations": [
+    "RF_mapped_pseudocolor_proxy; absolute_Celsius_and_fixed_palette_not_verified; no_offset_correction",
+    "IRT_source_directory_and_user_provenance; no_independent_anatomical_visibility_or_overlay_mask_validation",
+    "YOLO_and_RR_heldout_videos; target_farm_separately_captured_RF_calibration_available_not_zero_target_calibration",
+    "same_cow_repeated_windows_not_independent",
+    "no_parameter_updates_from_this_holdout",
+    "algorithm_rejection_and_human_unobservability_not_zero_counts",
+    "no_claim_all271_accuracy"
+  ]
+}

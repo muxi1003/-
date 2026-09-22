@@ -1,0 +1,611 @@
+--- Page 1 ---
+综述·Review Papers 2019 年 第 55 卷 第 10 期
+- 52 - - 53 - 
+奶牛呼吸频率自动监测技术研究进展
+李奇峰
+1,2,3
+，丁露雨
+1,2,3*
+，李 洁
+4
+，马为红
+1,2,3
+，肖伯祥
+1,2,3
+，余礼根
+1,2,3
+，高荣华
+1,2,3
+，郑文刚
+5
+，张石锐
+5
+（1. 北京农业信息技术研究中心， 北京 100097； 2. 国家农业信息化工程技术研究中心， 北京 100097；
+3. 农业部农业信息技术重点实验室， 北京 100097； 4. 天津市农业农村委员会信息中心， 天津 300061；
+5. 北京农业智能装备技术研究中心， 北京 100097）
+摘 要：在 “互联网 + 现代畜牧业” 和农业物联网普及应用的共同推动下， 动物生命信息的获取与分析应用成
+为畜禽智慧养殖技术研究的热点 。奶牛呼吸频率是反映养殖环境舒适度的重要特征 ，随着养殖业自动化与智
+能化的发展 ，呼吸频率自动监测的需求日益凸显 。本文从接触式和非接触式两方面着重介绍了基于侧腹伸缩
+运动和呼吸气流变化的 6 种监测方法 ，分析了各类方法的优缺点 、研究现状和应用前景 ，期望有助于完善奶
+牛生理参数自动监测装备的开发与生产应用， 为国内开展奶牛智慧养殖研究提供参考。
+关键词： 奶牛；呼吸频率； 可穿戴设备； 图像分析； 自动监测
+中图分类号 ：S817；S823 文献标识码 ：A DOI 编号：10.19556/j.0258-7033.20190130-07
+收稿日期：2019-01-30；修回日期：2019-03-26
+资助项目：国家重点研发计划（2018YFD0500702-02）；北京市自
+然科学基金（6194037）
+作者简介：李奇峰（1981-），男，山西柳林人，博士，副研究员，
+主要从事畜牧信息化研究，E-mail： liqf@nercita.org.cn 
+* 通讯作者：丁露雨（1988-），女，四川泸州人，博士，助理研究员，
+主要从事畜舍环境智能监测与调控、畜禽养殖过程信息化及智能
+化等方面研究，E-mail：dingly@nercita.org.cn 
+全球范围内 ，畜禽生产正在向以动物为中心的精细
+畜牧业方向转型 ，通过获取畜禽的生命信息研究其生理 、
+健康、福利状况 ，可对畜禽养殖环境 、饲喂、繁育和防
+疫等进行精准管理与决策支持
+[1]
+。呼吸频率作为畜禽重
+要的生命体征参数 ，常作为健康 、热环境舒适度和福利
+的重要参考指标
+[2-4]
+。呼吸频率是评判奶牛热应激状态
+最直接 、有效的生理指标 ，出现热应激时 ，奶牛的呼吸
+频率普遍在 40 次 /min 以上，并随着热应激程度的增加
+而升高
+[5-8]
+。奶牛汗腺不发达 ，呼吸道蒸发散热是奶牛
+体热调节中的主要散热途径之一 ，呼吸频率也是奶牛呼
+吸道散热模型中的重要参数 ，是研究奶牛与环境传热传
+质过程与模型的基础
+[9-10]
+。因此，连续、准确的呼吸频
+率监测对了解奶牛的健康状况 ，建立奶牛与环境的互作
+机制、表达模型与报警机制 、实现精准环境调控等都有
+重要意义 。
+传统的奶牛呼吸频率测定以人工观察为主 ，利用秒
+表连续 3 min 记录侧腹起伏次数
+[11-12]
+。这种方式对观察
+人员要求高 ，人力成本高 、效率低 ，不能进行连续自动
+监测，难以满足现代畜牧业数字化和智能化的需求
+[2,13]
+。
+连续自动监测可以增加测量频率 ，提供一致性和鲁棒性
+更好的数据为动物的生理反应做动态评估 ，同时减少数
+据收集所需的劳动强度和人力成本
+[14]
+。随着传感技术
+和信息技术的发展 ，人们开始尝试呼吸频率的无损 、自
+动检测 。目前奶牛呼吸频率的自动监测技术大致可分为
+接触式和非接触式两大类 ，其中接触式检测方法利用可
+穿戴设备中的压敏 、气敏或热敏元件等 ，通过测定胸腹
+部运动 、呼吸声 、呼吸气流 、呼出的二氧化碳等来检测
+呼吸频率 ；而非接触式检测方法则主要通过机器视觉或
+光学测距技术监测侧腹起伏状况来获得呼吸频率
+[4,15-18]
+。
+随着智慧养殖理念的提出和信息技术的发展 ，可穿
+戴设备和生物传感器在动物生产和健康管理中的应用越
+来越多 ，在全球范围内正在形成一个新兴的市场
+[19]
+。
+本文从动物呼吸频率接触式测定方法和非接触式测定方
+法两方面介绍了国内外相关研究的发展情况和应用前
+景，为国内开展奶牛智慧养殖研究提供参考 。
+1 接触式测定方法
+与人类的呼吸频率检测设备相比 ，由于使用场景 、
+成本和动物的不配合性与破坏性等条件限制 ，用于动物
+
+--- Page 2 ---
+2019 年 第 55 卷 第 10 期 Review Papers·综述
+- 52 - - 53 - 
+尤其是大型动物的呼吸频率自动检测设备种类比较有
+限，主要包括基于胸腹伸缩运动的呼吸监测马甲 / 胸带
+和基于呼吸气流变化的监测设备等 。
+奶牛呼吸所引起的侧腹伸缩运动或呼吸气流变化的
+信号很小 ，且伴有各种噪音 ，通常需要进行滤波或信号
+放大等预处理后才能进行分析 ，计算相应的呼吸频率
+[4,20] 
+（图 1）。接触式检测方法虽然对动物的行为有一定干扰 ，
+但可以进行连续在线监测 ，且动物适应后可减少设备佩
+戴对动物的影响 ；其难点在于穿戴设备的结构设计和传
+感器信号的算法解析 ，同时，传感器的使用寿命 、抗破
+坏性等还需进一步提高
+[4,16]
+。
+ 
+1.1 可穿戴马甲 / 胸带 可穿戴的马甲或胸带 （图 1）
+是出现最早 、应用相对较多的奶牛呼吸频率自动监测设
+备，通过检测吸气 、呼气时胸廓形变所引起的压力变化
+或胸腹围周长变化测定呼吸频率 。1997 年，BIOPAC 系
+统公司推出了一套自动检测人呼吸频率的传感设备 ，该
+设备将一个薄膜力敏传感器集成到了硅胶应变装置中 ，
+通过呼吸时胸围或腹围的变化来改变硅胶应变装置的拉
+力，并利用力敏传感器记录拉力变化 ，进行信号放大
+和调理后进而获得呼吸频率 。在此基础上 ，Eigenberg
+等
+[20]
+研制了适用于牛的呼吸频率自动检测设备 ，主要
+包含拉力传感器 、保持张力并能连接传感器双侧拉力环
+的胸带 、数据采集器和分析程序几部分 。初代的呼吸频
+率检测胸带采用的是 TFX-11 微处理器 ，在采样频率为
+1 次 /min 、间隔 15 min 自动记录 1 次的条件下 ，内存
+只够连续采集 4 d
+[14]
+。
+试验条件下 ，呼吸频率检测胸带测试结果与人工计
+数的误差在 10 次 /min（RPM）以内，目前主要是在科研
+中应用，研究评价环境热应激程度以及降温技术的效果。
+例如，Eigenberg 等
+[21]
+用该设备获取了育肥牛的呼吸频率，
+建立呼吸频率与干球温度、湿度、风速和太阳辐射等环境
+参数的相关关系，并评价了遮阳对缓解热应激的作用程度。
+但是粪尿污染和动物对胸带的啃咬、拖拽都会严重干扰信
+号的读取 ，甚至造成监测设备的损坏
+[4,14,20]
+。此外，该设
+备测得的数据只能存储在内置的数据采集仪中，不能进行
+实时在线监测和智能预警，且存储时间有限。随着芯片技
+术和无线通讯的发展，可以进一步扩展微处理器的存储能
+力和计算能力，同时解决在线监测和数据传输的问题。但
+需要从结构设计和传感器原理上进行改进才能解决粪尿污
+染和动物破坏性所造成的信号干扰，这就限制了可穿戴的
+马甲或胸带在实际生产中的大面积推广应用。
+ 
+1.2 基于呼吸气流的监测方法 呼出的空气温度更高 、湿
+度更大、CO2 含量更高，且气流的呼出会产生正压
+[22-24]
+，
+这些差异为呼吸频率的自动监测提供了契机 。因此，基
+于气流的呼吸频率监测方法又可以分为 4 种，即基于温
+度、湿度、气体浓度和压力的呼吸频率监测方法 。这一
+类的监测方法一般需要借助呼吸面罩 ，或者需要固定在
+头套上的设备从鼻孔处采集呼吸气流的对应参数信号 。
+Milan 等
+[4]
+开发的呼吸频率监测装置利用牛鼻孔处
+放置的热敏传感器分析呼入 、呼出气流的温度变化来检
+测呼吸频率 。检测装置负载到牛头套顶端的脖子处 ，温
+度传感器及连接线通过金属包被的保护壳引至鼻腔 。研
+究中采用 PT100/PPG101A1 的电阻型温度传感器 ， 将
+其弯成 “J”字型并包被金属外壳 ，以增加传感器的硬
+度和贴合度 ，避免奶牛活动时传感器从鼻孔中掉出 。温
+度信号采样频率为 100 Hz ，经过 1 kHz 的低通滤波和
+611 倍放大后转化成数字信号进行存储和后处理 。利用
+傅里叶变换去除低于温度信号谱中 0.17 Hz 和高于 1.67 
+Hz 的部分后 ，根据信号的振荡次数就可以计算出对应
+的呼吸频率 。虽然统计分析结果表明 ，Milan 开发的自
+动检测装置与人工计数获得的呼吸频率差异不显著 ；但
+是从 2 种方法检测的平均值和回归关系看 ，自动检测的
+结果比人工计数的结果略低 （图 3），平均系统误差约
+为 5%
+[4]
+，且并未分析环境温度对鼻腔温度的潜在影响 。
+研究中 ，试验期间的环境温度处于奶牛体热调节的热中
+性区，呼吸频率相对较低 （<30 RPM ）。当温度升高 、
+奶牛处于热应激时 ，环境温度对鼻腔内温度的影响以及
+呼吸频率检测误差的影响等还需进行深入分析 ，进一步
+图 1 接触式监测设备自动获取呼吸频率的基本流程
+图 2 奶牛呼吸频率穿戴式监测设备
+( 改编自 Eigenberg 等 [14] 和 Milan 等 [4])
+侧腹压力 、 周
+长变化或鼻腔
+温度 、 湿度 、
+压力变化
+信号过滤、
+放大等预处理 信号分析 呼吸频率
+胸带或马甲
+头套
+传感器
+
+--- Page 3 ---
+综述·Review Papers 2019 年 第 55 卷 第 10 期
+- 54 - - 55 - 
+优化相应的算法 ，提高检测设备的准确率 。
+ 
+Strutzke 等
+[24]
+根据吸入 、呼出气体的压力差开发
+了奶牛呼吸频率自动检测设备 。该设备利用一个柔性硅
+胶管将鼻腔内的压力传送至压差传感器 ，并通过微控
+制器接收传感器的信号 ，经调理转换后输出测得的呼
+吸频率 。该方法所得的呼气 、吸气压力波清晰易分辨
+（图 4），与人工计数的结果相关系数较高 ，准确率在
+92%~99% 。测试时奶牛的活动状态会影响自动检测与
+人工计数方式所得结果的一致性 ，奶牛站立时测试结果
+的一致性最高 ，躺卧时次之 。
+ 
+基于呼吸气流的水汽含量差和 CO2 浓度差监测呼
+吸频率的方法在人医临床应用上研究较多 ，与人工计
+数的误差可达 1 RPM
+[19]
+，但较少用于动物呼吸频率检
+测的研究 。为了准确检测气体浓度 ，水汽含量差或 CO2
+浓度差的方法通常需要在口鼻处戴面罩 ，这就限制了该
+方法在动物呼吸频率检测中的推广应用 。而且同等条件
+下，温度和压力传感器的成本通常比气体浓度传感器的
+成本低 ，因此，基于呼吸气流压力差或温度差的方法在
+奶牛呼吸频率检测方面更具有可操作性和应用前景 。
+2 非接触式检测方法
+非接触式检测方法主要是根据呼吸时胸腹部的运动变
+化，通过测距或者图像分析的方法来检测呼吸频率
+[13,16-17]
+，
+更大程度上依赖于软件算法对信号进行提取 、分析。相
+比较而言 ，现行条件下非接触式检测方法只能在特定场
+景（如挤奶时 ）进行自动测量 ，难以针对单头动物进行
+跟踪监测 。其优点在于单个设备可以检测多头奶牛的呼
+吸频率且不需要对动物本身装配任何元件 。
+2.1 基于激光测距的检测方法 2007 年，Pastell 等
+[16]
+开发了一套基于激光测距的非接触式奶牛呼吸频率检
+测设备 ， 该设备主要包括激光测距仪 （L-Gage LT3 ，
+Banner ，USA）、 小型闪存数据采集卡 （NI CF-6004 ）
+和 PDA（Dell Axim 50 ）。 激光测距仪的测点定位于奶
+牛侧腹外侧区域 ，测定频率为 25 Hz ，通过奶牛呼吸时
+检测到的侧腹距离变化来推算呼吸频率 （图 5）。研究
+表明 ，奶牛在热中性区时 ，呼吸频率一般在 0.3~0.7Hz
+（18~42 RPM），虽然激光测距仪的测点每次定位到牛体
+的位点不同，但侧腹运动引起的形变面积较大，测点定位
+仍具有较好的代表性和普适性
+[26]
+。在检测频率为 100 Hz
+时，该方法测定呼吸频率的误差为 0.1Hz 即 6 RPM。
+激光测距仪测得的原始信号需要经过三步处理后才
+能提取出对应的呼吸频率 ：①所检测的原始信号中含有
+图 3 人工计数与基于呼吸气流温度差的
+呼吸频率自动检测结果比较 [4]
+图 4 奶牛呼吸时呼吸气流产生的压差波形图 [18]
+图 5 基于激光测距的方法检测呼吸频率 [16]
+0
+5
+10
+15
+20
+25
+30
+35
+1 2 3 4 5
+奶牛呼吸频率，RPM
+测试对象编号
+人工计数 设备监测
+奶牛呼吸频率， RPM呼吸率检测设备测定值， RPM
+呼吸率检测设备测定值， RPM
+35
+30
+25
+20
+15
+10
+5
+0
+35
+30
+25
+20
+15
+10
+测试对象编号
+RRC=0.00+1.05RRD
+R
+2
+=0.95
+人工计数 设备检测
+1 2 3 4 5
+10 15 20 25 30 35
+压力差，mbar
+2.5
+1.25
+0
+-1.25
+-2.5
+呼出
+吸入
+36,837
+40,777
+44,717
+48,657
+52,597
+56,237
+00,477
+04.417
+09,154
+13,094
+17,034
+20,974
+24,914
+28,854
+32,794
+36,734
+时间，ss:ms
+
+--- Page 4 ---
+2019 年 第 55 卷 第 10 期 Review Papers·综述
+- 54 - - 55 - 
+牛舍荧光灯等引起的背景噪声 、奶牛活动所引起的异常
+波峰等干扰信号 ，需要采用特定的算法进行去除 ；②采
+用 0.1 Hz 和 3 Hz 带通的二阶巴特沃斯带通滤波器进行
+过滤；③采用 1 024 个执行点数的快速傅里叶变换算法
+（FFT ）估计功率谱 、提取呼吸频率数据 。增加 FFT 算
+法的执行点数可以增加时间窗 （Time Window ）进而提
+高分辨率 ，但同时也会降低系统度量时间变化的能力 。
+该方法目前只能用于处于保定状态的牛 ，且受干扰
+因素较多 。例如，黑色毛发对激光有吸收 ，不能用于侧
+腹为黑色毛色的奶牛 ；信号传输线过长会产生噪音干扰 ，
+需要进行滤波去噪等
+[26]
+。
+2.2 基于图像分析的检测方法 基于图像分析的检测方
+法可以分为可见光图像分析和热红外图像分析 2 种，也
+有学者在探索深度图像分析的方式 。可见光图像分析依
+据呼吸时侧腹的周期性起伏变化 ，利用呼吸运动区域的
+运动速度与腹部起伏规律的相关性 ，通过对运动目标的
+检测筛选出呼吸运动点 ，提取呼吸过程特征值 ，进而计
+算呼吸频率
+[13]
+。热红外图像分析方法通过呼吸时鼻尖下
+皮肤温度的变化 ，分析热成像 （图 6）后对应区域的像
+素灰度值变化规律 ，进而计算呼吸频率
+[15, 27-28]
+。热成像
+分析方法的难点在于自动对面部进行识别和实时追踪 ，
+并对目标区域进行图像分割 。与人工计数相比 ，热红外
+图像分析获得的呼吸频率平均误差为 0.83 RPM
+[15]
+。
+ 
+光流法是图像分析中对运动目标检测和目标跟踪的
+常用方法 ，通过给图像中的每个像素点赋予一个速度矢
+量，形成了一个运动矢量场 。根据各个像素点的速度矢
+量特征 ，可以对图像进行动态分析 。应用较为普遍的光
+流场计算方法主要包括 Horn-Schunck 经典光流场计算方
+法（H-S 法）和 Lucas-Kanade 计算方法（L-K 法）
+[29]
+。H-S
+法结合梯度约束和全局平滑条件约束 ，在足够的迭代次
+数时，该方法能获得精确的光流 ，但计算时间较长 。L-K
+法采用区域性最小平方法进行局部约束 ，将光流场计算
+转换成线性系统的求解
+[30]
+。如果这个线性系统是良性的
+（图像空间梯度达到设定的阈值且在小邻域内梯度方向
+变化丰富 ），利用局部优化方法就可以得到唯一且可靠
+的光流值 ；若是空间梯度接近于零或梯度方向在小邻域
+内几乎不发生变化 ，则局部优化的方法就不再适用
+[31]
+。
+赵凯旋等
+[13]
+利用光流法计算了视频帧图各像素点
+的相对运动速度 ，通过循环 Ostu 处理对像素点进行筛
+选得到呼吸运动点 ，动态计算速度方向曲线的周期进而
+获得了牛的呼吸频率 。研究中 ，光流场计算采用了 H-S
+的约束算法 ，迭代次数 300 次，最终误差为 0.01 。根据
+其对 72 头奶牛进行的 360 min 检测数据分析 ，与人工
+计数相比 ，该方法获得的呼吸频率准确率为 95.68% 。
+还有一种方法是通过图像分析脊腹线的曲率变化来
+检测呼吸频率。当动物正常站立时，其身体轮廓可以找到
+一个形心，动物因探究行为等引起的头、蹄部位稍稍挪动
+只会引起形心在某一水平面的轻微晃动。因此，可以基于
+形心确定动物的脊腹轮廓，并根据脊腹轮廓线与形心的距
+离计算脊腹线曲率 ，通过曲率波动检测呼吸频率
+[32]
+。目
+前该方法主要应用在猪的呼吸频率监测研究方面。当样本
+量约为 70 头时，呼吸频率自动识别率为 94.3%，自动识
+别与人工计数的平均相对误差为 2.28% 
+[32-33]
+。奶牛呼吸时
+腹部水平方向的位移比垂直方向明显 ，该方法的应用效
+果与改进方法还需要进行试验验证 。
+图像分析的方法受动物身体展示角度影响 ，目前的
+研究基本都是针对具有完整侧视的单头动物 。在实际生
+产中，由于动物相互间的遮挡或是展示角度的问题 ，很
+难自动捕捉到试验条件的标准图像或视频 。图像分析的
+方法在生产中的推广应用还有一段距离 。
+3 展 望
+随着物联网和互联网技术的发展 ，穿戴设备迅速发
+展，其市场规模也从 2014 年的 22 亿元激增到了 2016
+年的 231 亿，有望成为未来物联网的控制中心
+[34]
+。目前，
+国内外已经有数家创业公司在研发针对农场的可穿戴设
+备，例如 ，苏格兰的 Silent Herdsman 公司开发了一种
+内置有重力感应器的项圈 ，能够让农户从电脑或智能手
+机上追踪奶牛的活动 ，获取其健康信息 。
+目前，国内奶牛可穿戴设备大部分用于奶牛的活动
+量和体温监测 ，以此判断奶牛健康和发情情况 ，很少涉
+及奶牛心率 、呼吸频率等多项生理参数的监测 。在政策
+层面上 ，国家大力发展数字畜牧业 ，为智能监测方法和
+图 6 奶牛吸入 (A) 和呼出 (B) 气流时的热红外图像 [15]
+A B
+
+--- Page 5 ---
+综述·Review Papers 2019 年 第 55 卷 第 10 期
+- 56 - - 57 - 
+设备的研发与应用提供了良好的契机 ；在应用层面上 ，
+奶牛饲养周期长 、个体经济价值相对较高 ，具有动态监
+测健康与生产状况的需求 。因此，研发集呼吸频率 、体
+温、活动量 、采食量等多参数为一体的穿戴式智能检测
+设备，具有较好的商业化生产和应用前景 ，在奶牛行业
+有广阔的发展空间 。
+接触式的呼吸频率检测方法基于传感器测量 ，更容
+易实现多参数的集成监测 ，同时获得数据的准确性也更
+好，但是需要将设备的成本压缩到商业应用的可接受范
+围内才能实现普及应用 。由于还有一些技术瓶颈没有突
+破，广大科研工作者需要共同努力 ，使得呼吸频率的检
+测朝着智能化和低成本化的可穿戴式设备发展 。这些问
+题包括畜牧生产环境下材料的耐用性与抗破坏性 、传感
+器的抗干扰能力 、电池续航时间 、无线传输功耗与数据
+丢包问题 、设备小型化等
+[34]
+。
+穿戴式的呼吸频率监测设备未来将实现 24 h 不间
+断地收集奶牛个体的生理信息 、健康状况 、生产性能等 ，
+并对采集信息进行更深层的数据挖掘 ，通过手机 、电脑
+等移动设备实时监控 、预警，为奶牛行为分析 、生产能
+力评估与疾病预警提供有力支持 ，将奶牛养殖推向数字
+化、智能化管理的发展方向 ，整体提升我国奶牛的养殖
+水平。
+参考文献 ：
+ [1] 汪开英 , 赵晓洋 , 何勇 . 畜禽行为及生理信息的无损监测技
+术研究进展 [J]. 农业工程学报 , 2017(20): 197-209.
+[2] Eigenberg R A, Brownbrandl T M, Nienaber J A. Development 
+of a respiration rate monitor for swine[J]. T ASABE, 2002, 
+45(5): 1599-1603.
+[3] 王跃俊 . 基于光电容积脉搏波的呼吸频率监测 [D]. 北京 : 北
+京理工大学 , 2015.
+[4] Milan H F, Maia A S, Gebremedhin K G. Technical note: 
+Device for measuring respiration rate of cattle under field 
+conditions[J]. J Anim Sci, 2016, 94(12): 5434-5438.
+[5] Brown-Brandl T M, Eigenberg R A, Nienaber J A, 
+et al . 
+Dynamic response indicators of heat stress in shaded and non-
+shaded feedlot cattle, part 1: Analyses of indicators[J]. Biosyst 
+Eng, 2005, 90(4): 451-462.
+[6] Smith T R, Chapa A, Willard S, 
+et al. Evaporative tunnel cooling 
+of dairy cows in the southeast. I: effect on body temperature and 
+respiration rate[J]. J Dairy Sci, 2006, 89(10): 3904-3914.
+[7] Da C A, Feitosa J V , Júnior P A, 
+et al . Rectal temperatures, 
+respiratory rates, production, and reproduction performances 
+of crossbred Girolando cows under heat stress in northeastern 
+Brazil[J]. Int J Biometerorol, 2015, 59(11): 1647-1653.
+[8] Das R, Sailo L,Verma N, 
+et al . Impact of heat stress on health 
+and performance of dairy animals: a review[J]. Vet World, 
+2016, 9(3): 260-268.
+[9] Campos M A S, Gomes D R, Battiston L C M. Respiratory 
+heat loss of Holstein cows in a tropical environment[J]. Int J 
+Biometerorol, 2005, 49(5): 332-336.
+[10] 张琛 . 可穿戴设备——未来物联网控制中心 [J]. 新材料产业 , 
+2016(12): 17-19.
+[11] Scharf B, Leonard M J, Weaber, R L, 
+et al . Determinants of 
+bovine thermal response to heat and solar radiation exposures 
+in a field environment[J]. Int J Biometerorol, 2011, 55(4): 469-
+480.
+[12] 丁露雨 , 王美芝 , 陈昭辉 , 等 . 南方开放式肉牛舍夏季喷雾
+降温效果 [J]. 农业工程学报 , 2013(2): 224-231.
+[13] 赵凯旋 , 何东健 , 王恩泽 . 基于视频分析的奶牛呼吸频率与
+异常检测 [J]. 农业机械学报 , 2014(10): 258-263.
+[14] Eigenberg R A, Brown-Brandl T M, Nienaber J A. Sensors for 
+dynamic physiological measurements[J]. Comput Electron Agr, 
+2008, 62(1): 41-47.
+[15] Stewart M, Wilson M T, Schaefer A L, 
+et al. The use of infrared 
+thermography and accelerometers for remote monitoring of 
+dairy cow health and welfare[J]. J Dairy Sci, 2017, 100(5): 
+3893-3901.
+[16] Pastell M, Kaihilahti J, Aisla A M, 
+et al . A system for contact-
+free measurement of respiration rate of dairy cows[A]. In: 3rd 
+ECPLF Conference[C]. Skiathos, Greece: ECPLF Academic 
+Publisher, 2007.
+[17] Min S D, Jin K K, Hang S S, 
+et al . Noncontact respiration rate 
+measurement system using an ultrasonic proximity sensor[J]. 
+IEEE Sens J, 2010, 10(11): 1732-1739.
+[18] Al-Khalidi F Q, Saatchi R, Burke D, 
+et al . Respiration rate 
+monitoring methods: a review[J]. Pediatr Pulmonol, 2011, 
+46(6): 523-529.
+[19] Neethirajan S. Recent advances in wearable sensors for animal 
+health management[J]. Sensing and Bio-sensing Research, 
+2017, 12 (Complete): 15-29.
+[20] Eigenberg R A, Hahn G L, Nienaber J A, 
+et al . Development 
+of a new respiration rate monitor for cattle[J]. T ASAE, 2000, 
+43(3): 723-728.
+[21] Eigenberg R A, Brown-Brandl T M, Nienaber J A, 
+et al . 
+Dynamic response indicators of heat stress in shaded and non-
+shaded feedlot cattle, part 2: Predictive relationships[J]. Biosyst 
+Eng, 2005, 91(1): 111-118.
+[22] Niesters M, Mahajan R, Olofsen E, 
+et al . Validation of a novel 
+respiratory rate monitor based on exhaled humidity[J]. Brit J 
+Anaesth, 2012, 109(6): 981-989.
+[23] Mogera U, Sagade A A, George S J, 
+et al . Ultrafast response 
+humidity sensor using supramolecular nanofibre and its 
+application in monitoring breath humidity and flow[J]. Sci Rep, 
+2014, 4(7): 4103.
+[24] Strutzke S, Fiske D, Ammon C, 
+et al . A novel sensor for 
+respiration rate recording in cattle[A]. In: EurAgEng 2018 
+Conference[C]. Wageningen: Wageningen Academic Publisher, 
+2018.
+
+--- Page 6 ---
+2019 年 第 55 卷 第 10 期 Review Papers·综述
+- 56 - - 57 - 
+[25] Pastell M, Aisla A M, Hautala M, et al . Contactless measure-
+ment of cow behavior in a milking robot[J]. Behav Res Methods, 
+2006, 38(3): 479-486.
+[26] Alkali A H, Saatchi R, Elphick H, et al. Eyes' corners detection 
+in infrared images for real-time noncontact respiration rate 
+monitoring[A]. 2014 World Congress on Computer Applications 
+and Information Systems (WCCAIS)[C]. Piscataway N J: IEEE 
+Press, 2014.
+[27] Saatchi R, Alkali A H, Elphick H, 
+et al. Thermal Image Processing 
+for Real-Time Noncontact Respiration Rate Monitoring[J]. IET 
+Circ Device Syst, 2017, 11(2): 142-148.
+[28] 吴振杰 . 基于改进光流法的运动目标检测与跟踪系统 [D]. 
+郑州 : 郑州大学 , 2012.
+[29] Yuan L, Li J, Li D D. Discontinuity-preserving optical flow 
+algorithm[J]. J Syst Eng Electron, 2007, 2: 347-354.
+Automatic Measurement Methods for Respiration Rate of Cattle : A Review
+LI Qifeng
+1,2,3
+, DING Luyu
+1,2,3*
+, LI Jie
+4
+, MA Weihong
+1,2,3
+, XIAO Boxiang
+1,2,3
+, YU Ligen
+1,2,3
+,
+GAO Ronghua
+1,2,3
+, ZHENG Wengang
+5
+, ZHANG Shirui
+5
+(1. Beijing Research Center for Information Technology in Agriculture, Beijing 100097, China; 
+2. National Engineering Research Center for Information Technology in Agriculture (NERCITA), Beijing 100097, China; 
+3. Key Laboratory of Agri-informatics, Ministry of Agriculture, Beijing 100097, China;
+4. Information Center of Tianjin Agricultural and Rural work committee, Tianjing 300061, China; 
+5. Beijing Research Center of Intelligent Equipment for Agriculture, Beijing 100097, China)
+Abstract: Driven by the proposition of “Internet + animal production” and the application of IOT in Agriculture, sensing and 
+application of animal bio-information has been a popular research topic in precision livestock farming. Respiration rate (RR) 
+of dairy cow is an important indicator to evaluate environmental comfort. With the development of automation and intelligence 
+in animal production, it comes out an increasing need of automatic monitoring of RR in dairy production. This paper 
+introduced six different sensing methods based on chest-abdominal movement and respiratory airflow, either contact or contact 
+free. Aiming to improve the development and practical application of automatic monitoring equipment for physiological 
+parameters of dairy cows, this paper illustrated the research status, advantages and disadvantages, and application prospect 
+of the different sensing methods. It provides a reference for researches on precision and intelligent farming of dairy cow in 
+China.
+Keywords: Dairy cow; Respiration rate; Wearable sensors; Image analysis; Automatic monitoring
+（责任编辑： 周会会）
+[30] Kaneko T, Hori O. Feature selection for reliable tracking 
+using template matching[A]. 2003 IEEE Computer Society 
+Conference on Computer Vision & Pattern Recognition[C]. 
+Piscataway N J: IEEE Press, 2003.
+[231] 纪滨 , 朱伟兴 , 刘波 , 等 . 基于脊腹线波动的猪呼吸急促症
+状视频分析 [J]. 农业工程学报 , 2011(1): 191-195.
+[32] 谢海员 , 纪滨 , 胡宏智 , 等 . 基于曲率特征猪腹式呼吸运
+动波形图建模方法 [J]. 苏州科技学院学报 : 自然科学版 , 
+2016(3): 66-70.
+[33] Gaughan J B, Holt S M, Hahn G L, 
+et al. Respiration rate is it a 
+good measure of heat stress in cattle[J]. Asian-Austral J Anim, 
+Sci, 2000, 13(4): 329-332.
+[34] 於少文 , 孔繁涛 , 张建华 , 等 . 可穿戴设备技术在奶牛养殖
+中的应用及发展趋势 [J]. 中国农业科技导报 , 2016, 18(5): 
+102-110.

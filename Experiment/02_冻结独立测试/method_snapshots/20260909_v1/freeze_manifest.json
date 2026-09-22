@@ -1,0 +1,78 @@
+{
+  "created_at": "2026-09-09T19:58:25.252501+08:00",
+  "status": "METHOD_SNAPSHOT_ONLY_TEST_NOT_RELEASED",
+  "files": [
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\scripts\\paper_repro_rr.py",
+      "snapshot_relative_path": "scripts\\paper_repro_rr.py",
+      "bytes": 214762,
+      "sha256": "3c211f52fe3f1a6a3104a38f2b275cdf40fe5f21ff4ca042052cee8424947ec9"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\scripts\\run_lindian_robust_rr.py",
+      "snapshot_relative_path": "scripts\\run_lindian_robust_rr.py",
+      "bytes": 4940,
+      "sha256": "80f853665ad5b0781a4f700862bbd69ab5996e364a3a22d74d73c228dbcd0984"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\scripts\\run_lindian_motion_robust_rr.py",
+      "snapshot_relative_path": "scripts\\run_lindian_motion_robust_rr.py",
+      "bytes": 6938,
+      "sha256": "33b8048a43db10802463448addfe4f3c733c579ba05573e3e572d5931018731d"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\scripts\\evaluate_lindian_adaptive_roi.py",
+      "snapshot_relative_path": "scripts\\evaluate_lindian_adaptive_roi.py",
+      "bytes": 16897,
+      "sha256": "7a3321824cee5722e1c2955d17adddbafcf3e3e06d3d17fe7035135e0bfa9f36"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\scripts\\evaluate_paper73_adaptive_roi.py",
+      "snapshot_relative_path": "scripts\\evaluate_paper73_adaptive_roi.py",
+      "bytes": 15406,
+      "sha256": "d78b9b697753fff054d0938ae1fec4411cc50fbe12b84a14149f17092a10aeb4"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\scripts\\evaluate_lindian49_butterworth_spectral.py",
+      "snapshot_relative_path": "scripts\\evaluate_lindian49_butterworth_spectral.py",
+      "bytes": 23463,
+      "sha256": "82bb8fe57293135bb492b5274fcd202b17554d1e0ab97ffc51fbe46603106808"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\temperature_extraction\\getRandomForestRegress\\clf_model_RGB_20240906.pkl",
+      "snapshot_relative_path": "weights\\clf_model_RGB_20240906.pkl",
+      "bytes": 78460513,
+      "sha256": "26b8e7dd25afb7780798f3609aaf16592089598157d58e11bc1e1dffd7bb03d5"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\runs\\pose\\YOLO11n_cow_pose\\weights\\YOLO11n-best.pt",
+      "snapshot_relative_path": "weights\\YOLO11n-best.pt",
+      "bytes": 5647733,
+      "sha256": "12c3ad363a00e008ab6d8b859ac6134dbd6582bbfd9cc72afee6884ccd304a09"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\runs\\pose\\YOLOv8n_cow_pose-21\\weights\\YOLO8n-best.pt",
+      "snapshot_relative_path": "weights\\YOLO8n-best.pt",
+      "bytes": 6421227,
+      "sha256": "2ca5a004880d0ee72149c35251cda85b36c63b3f03cbce1c71510a9e8334d898"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\runs\\pose\\YOLO11n_cow_pose\\args.yaml",
+      "snapshot_relative_path": "training_provenance\\args.yaml",
+      "bytes": 1660,
+      "sha256": "e6eb5c52afc9d3cab2df5d1b38744975a6e364b899187140d861719a53fbaed3"
+    },
+    {
+      "source": "E:\\real\\use_code\\yoloV8\\dataset.yaml",
+      "snapshot_relative_path": "training_provenance\\dataset.yaml",
+      "bytes": 146,
+      "sha256": "6e05c1a3e763b8cf65aede0b273ea009541aabde1392c95e41ee39b80deea1aa"
+    },
+    {
+      "source": "generated_explicit_config",
+      "snapshot_relative_path": "method_config.json",
+      "bytes": 4280,
+      "sha256": "c2e1d9c4bf315f0f7efd9683e9dc67ad5e55b106cc01e1f0c9a0eb5f076daa93"
+    }
+  ]
+}

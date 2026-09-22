@@ -1,0 +1,9 @@
+{
+  "status": "ELIGIBLE_FOR_FURTHER_VALIDATION_NOT_DEPLOYED",
+  "historical_replay_matches": 49,
+  "candidate_count_changes": 4,
+  "candidate_output_windows": 49,
+  "default_modified": false,
+  "external_inference_run": false,
+  "scope_limit": "internal_CFR_MP4_and_existing_temperatures; not raw_video_VFR_or_end_to_end_external_validation"
+}

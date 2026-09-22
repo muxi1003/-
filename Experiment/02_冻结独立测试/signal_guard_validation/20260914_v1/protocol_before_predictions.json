@@ -1,0 +1,21 @@
+{
+  "policy": {
+    "version": "observability_guard_20260914_v1",
+    "max_short_gap_frames": 3,
+    "confidence_minimum": 0.5,
+    "boundary_missing": "abstain",
+    "mixed_fusion_support": "both_inputs_direct; conservative_not_anatomical_visibility_truth",
+    "long_gap_action": "abstain_complete_window; keep_diagnostic_events_only",
+    "event_context_frames": 3,
+    "parameter_origin": "existing_frozen_max_track_gap_conf_and_source_peak_support_radius",
+    "truth_used": false
+  },
+  "reference_counts_used_in_inference": false,
+  "input_scope": "internal49_annotation_CFR_existing_temperature_snapshot; plus_unscored_raw49",
+  "source_manifest_sha256": "37bfbde0238a00464796a23ea0423bef3a358fab8cf5db315d4ac95aedefcdf0",
+  "method_manifest_sha256": "fb88586aaa86f425327210197065e1305b4a62418c6c11f5780c90b66e543bd0",
+  "adoption_rule": "keep_default_if_coverage_drops_or_either_all49_or_completed39_R2_MAE_regresses",
+  "partial_peak_count": "diagnostic_only_never_reported_as_full_window_count",
+  "no_parameter_search": true,
+  "external_inference": false
+}

@@ -1,0 +1,25 @@
+{
+  "status": "PASS_STRUCTURAL_AND_RENDER",
+  "pages": 15,
+  "tables": 7,
+  "figures": 5,
+  "text_chars_by_page": [
+    1382,
+    1634,
+    1087,
+    1019,
+    1072,
+    1282,
+    779,
+    1045,
+    500,
+    397,
+    930,
+    1257,
+    1094,
+    1106,
+    1227
+  ],
+  "renderer": "Microsoft Word COM to PDF; pypdfium2 raster",
+  "checks": "XML well-formed, key numerical anchors, nonblank PDF pages; visual QA recorded separately"
+}

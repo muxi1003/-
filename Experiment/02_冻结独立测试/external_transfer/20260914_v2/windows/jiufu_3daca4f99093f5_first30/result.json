@@ -1,0 +1,19 @@
+{
+  "window_id": "jiufu_3daca4f99093f5_first30",
+  "prediction_status": "ok",
+  "predicted_count": 19,
+  "duration_seconds": 30.0,
+  "method_manifest_sha256": "fb88586aaa86f425327210197065e1305b4a62418c6c11f5780c90b66e543bd0",
+  "source_sha256": "efe5e6154d7a203b0390803f39697fa6e651454b7ff28e2d8fd2a4941bd83e23",
+  "reason": "",
+  "frame_shape": [
+    1440,
+    1080,
+    3
+  ],
+  "timestamp_policy_status": "ready_for_signal_candidate",
+  "grid_frames": 261,
+  "radius_min": 16,
+  "radius_max": 24,
+  "exponent": 1.0
+}

@@ -1,0 +1,2 @@
+﻿start_frame,stop_frame_exclusive,length_frames,boundary,permitted_short_gap
+0,10,10,True,False

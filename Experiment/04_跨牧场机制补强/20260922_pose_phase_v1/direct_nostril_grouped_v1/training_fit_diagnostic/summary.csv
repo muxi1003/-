@@ -1,0 +1,5 @@
+﻿subset,threshold,frame_model_pairs,expected,predicted,correct,precision,recall,max_confidence,median_frame_max_confidence
+heldout,0.001,36,50,72,17,0.2361111111111111,0.34,0.11540140956640244,0.018791542388498783
+heldout,0.25,36,50,0,0,0.0,0.0,0.0,0.0
+training,0.001,72,100,144,54,0.375,0.54,0.35625526309013367,0.013538113795220852
+training,0.25,72,100,8,5,0.625,0.05,0.35625526309013367,0.0

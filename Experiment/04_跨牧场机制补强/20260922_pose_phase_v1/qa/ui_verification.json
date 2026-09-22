@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "imePhysicalKey": true,
+  "editableGuard": true,
+  "nativeCoordinates": true,
+  "undo": true,
+  "export": true,
+  "mobileNoHorizontalOverflow": true,
+  "syntheticDataNeverResearchReference": true,
+  "pageErrors": []
+}

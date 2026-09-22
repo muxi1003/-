@@ -1,0 +1,15 @@
+{
+  "video_id": "190588",
+  "raw_source_path": "E:\\real\\use_code\\林甸红外视频\\0805\\B1号舍泌乳牛下午0805时间405挤奶之后进食\\20230805T164945n190588\\20230805T164945n190588.MP4",
+  "raw_source_sha256": "48a355a2850dc5637b1310a5c4441cd787db43bd030c68de7a0d17081f4c0c79",
+  "origin_frame_index": 548,
+  "origin_timestamp_seconds": 62.365,
+  "duration_seconds": 30.0,
+  "predicted_breath_count": null,
+  "predicted_rr_bpm": null,
+  "reference_status": "new_raw_time_window_not_scored",
+  "prediction_status": "abstain",
+  "predicted_count": null,
+  "reason": "long_timestamp_gap",
+  "long_gap_count": 1
+}

@@ -1,0 +1,7 @@
+{
+  "status": "GUARD_REPLAY_AND_REFERENCE_BINDING_PASS",
+  "replayed_internal_windows": 49,
+  "reference_delivery_hash_matches": true,
+  "prediction_seals_match": true,
+  "empirical_event_accuracy_validated": false
+}

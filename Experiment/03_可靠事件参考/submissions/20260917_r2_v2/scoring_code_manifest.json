@@ -1,0 +1,32 @@
+[
+  {
+    "path": "E:\\real\\use_code\\yoloV8\\Experiment\\evaluate_event_submission.py",
+    "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\code_snapshots\\00_evaluate_event_submission.py",
+    "sha256": "3bd6c63b4da51531fd89598d613f9c0753ac1004de3e16e8449c074606427fcf"
+  },
+  {
+    "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\reference_tools.py",
+    "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\code_snapshots\\01_reference_tools.py",
+    "sha256": "eda7ea4b78a26216e92f9868e0548990cffe4419658d5bccfd073cb48e091cf3"
+  },
+  {
+    "path": "E:\\real\\use_code\\yoloV8\\Experiment\\experiment_common.py",
+    "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\code_snapshots\\02_experiment_common.py",
+    "sha256": "b529c344204062c9e612cba0660772b0b57369744e55777b79a2de4abf5e35f5"
+  },
+  {
+    "path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\score_external_counts.py",
+    "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\code_snapshots\\03_score_external_counts.py",
+    "sha256": "ea56e7b9b44b9f49649904fea36d45fcce1b58726cf9550020baeb7f39e9aa89"
+  },
+  {
+    "path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\run_frozen_external.py",
+    "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\code_snapshots\\04_run_frozen_external.py",
+    "sha256": "5ca5eae4769ca40dca211eb4aea88b46c969102ff1bb4079aaaef841f8ef3af9"
+  },
+  {
+    "path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\frozen_rr_evaluation.py",
+    "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\code_snapshots\\05_frozen_rr_evaluation.py",
+    "sha256": "09871bc534b9c41d6a568ddb58e48d6120ec4c05ce68b43d8d42f3cb438c5f9d"
+  }
+]

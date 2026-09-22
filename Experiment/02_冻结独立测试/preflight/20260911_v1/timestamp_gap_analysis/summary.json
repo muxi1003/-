@@ -1,0 +1,11 @@
+{
+  "windows": 271,
+  "windows_with_gap_over_0p5s": 51,
+  "intervals_over_0p5s": 51,
+  "largest_interval_seconds": 2.750000000000001,
+  "largest_nominal_time_error_seconds": 3.1700000000000017,
+  "median_max_nominal_time_error_seconds": 0.3422988505747142,
+  "raw_timestamp_sha256": "8b28f0b075be5e028734e9d69dd9dd132fb621180c7465e05e66024b1164add8",
+  "reference_files_used": [],
+  "inference_or_member_filtering": false
+}

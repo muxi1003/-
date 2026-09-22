@@ -1,0 +1,19 @@
+{
+  "video_id": "ns210947",
+  "raw_source_path": "E:\\real\\use_code\\林甸红外视频\\0806\\B0806新产牛\\20230806T073953n210947\\20230806T073953n210947.MP4",
+  "raw_source_sha256": "1d4dc8644842a71ff74eb55a42d746f569fa479ad779086814e78806d26a537e",
+  "origin_frame_index": 1490,
+  "origin_timestamp_seconds": 171.75333333333333,
+  "duration_seconds": 30.0,
+  "predicted_breath_count": 22,
+  "predicted_rr_bpm": 44,
+  "reference_status": "new_raw_time_window_not_scored",
+  "prediction_status": "predicted_internal_only",
+  "reason": "",
+  "source_frames": 264,
+  "target_frames": 261,
+  "reused_source_frames": 17,
+  "max_nearest_time_error_seconds": 0.12591954022989782,
+  "valid_signal_frames": 229,
+  "grid_frames": 261
+}

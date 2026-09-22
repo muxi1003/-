@@ -1,0 +1,14 @@
+{
+  "reference_file": "C:\\Users\\muxi\\Desktop\\实验\\nostril_reference_2026-09-22T06-26-48-117Z.json",
+  "reference_sha256": "2f7a8af055d1fab3b6454764818a2ecd87e8967645233414887f0fe8e981ba36",
+  "package_id": "615231d85537ed31fcce4e8e8f615809cbbdf764481cea22f489d4bab30ae93d",
+  "completed": 36,
+  "pending": 36,
+  "uncertain": 0,
+  "scope": "submitted frames only; not all271 detection AP; one-observer approximate anatomical ellipses",
+  "point_match": "unordered one-to-one; normalized ellipse distance <=1",
+  "diagnostic_variant_radius": 20,
+  "frozen_roi_radius": "actual stored adaptive radius",
+  "incomplete_annotations_not_zeroed": true,
+  "no_training_or_default_change": true
+}

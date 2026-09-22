@@ -1,0 +1,4 @@
+﻿first_blocking_stage,prediction_status,windows,complete_references,tp,fp,fn,rr_mae
+no_pose_detection_all_frames,abstain,2,1,0.0,0.0,15.0,
+signal_available,ok,216,173,1324.0,1028.0,1134.0,5.15606936416185
+timestamp_sampling,abstain,53,42,0.0,0.0,557.0,

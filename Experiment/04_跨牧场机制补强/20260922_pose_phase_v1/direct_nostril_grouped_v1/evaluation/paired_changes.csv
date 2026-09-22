@@ -1,0 +1,3 @@
+﻿method,delta_correct,better_frames,worse_frames,extra_false_or_off_target
+direct_nostril_oof,-18,0,14,-9
+no_keypoint_fallback_oof,0,0,0,0

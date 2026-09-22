@@ -1,0 +1,12 @@
+{
+  "status": "DECODE_CHECKED_END_TO_END_NOT_VALIDATED",
+  "windows": 271,
+  "decode_timing_pass": 220,
+  "decode_timing_review": 51,
+  "elapsed_seconds": 230.17100000000005,
+  "reference_counts_read": false,
+  "calibration_compatibility": "PENDING",
+  "spatial_input_adapter": "PENDING",
+  "frozen_prediction_seal_created": false,
+  "not_a_validated_timestamp_report_for_sealing": true
+}

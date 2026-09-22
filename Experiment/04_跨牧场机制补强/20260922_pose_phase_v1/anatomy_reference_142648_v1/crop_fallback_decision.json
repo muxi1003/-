@@ -1,0 +1,17 @@
+{
+  "rule": "only when baseline has no >=.5 point, use lower75 crop points",
+  "role": "post_reference_diagnostic_not_adopted",
+  "correct_before": 18,
+  "correct_after": 18,
+  "points_before": 27,
+  "points_after": 28,
+  "changed_frames": [
+    {
+      "frame_id": "R3-06_t10",
+      "original_points": 0,
+      "new_points": 1,
+      "new_correct_points": 0
+    }
+  ],
+  "adopted": false
+}

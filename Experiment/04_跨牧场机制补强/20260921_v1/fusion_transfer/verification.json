@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "external_numeric_replays": 216,
+  "external_members": 271,
+  "input_hashes_unchanged": true,
+  "frozen_predictor_replay_exact": true,
+  "all_refusal_members_retained": true,
+  "no_new_YOLO_inference": true,
+  "no_new_RF_training": true,
+  "default_unchanged": true,
+  "reference_hashes": {
+    "annotation_windows.csv": "d9de65abfde3fec2b564286c7bdf45eb8f4aad1b771ed48df947202f9864ab35",
+    "reference_events.csv": "77b472549c7bd796c6a294fbe4fac55b1bf766f09bb8dfc4269c38d73a72cc3a"
+  },
+  "code_sha256": "86091be202dce27c8ef2e26f4454aa614cba882e32fe661a0c80eaa2654565e8"
+}

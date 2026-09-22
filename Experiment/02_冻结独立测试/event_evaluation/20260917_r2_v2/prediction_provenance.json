@@ -1,0 +1,7 @@
+{
+  "prediction_seal_sha256": "577663688bc27364d0defaca0c8d60ea6235bf112785cccefa0d14ada2817266",
+  "all_271_checkpoints_verified": true,
+  "no_predictions_recomputed": true,
+  "no_parameters_updated": true,
+  "timebase": "presealed_target_grid_in_source_video_seconds_not_posthoc_fitted_offset"
+}

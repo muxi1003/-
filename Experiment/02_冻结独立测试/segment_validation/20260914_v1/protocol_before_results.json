@@ -1,0 +1,18 @@
+{
+  "policy": {
+    "version": "supported_segments_20260914_v1",
+    "minimum_core_seconds": 6.0,
+    "minimum_duration_origin": "two_cycles_at_existing_min_RR_20_bpm; not_fitted_to_counts",
+    "gap_boundary_margin_frames": 3,
+    "minimum_peaks_for_segment_RR": 2,
+    "side_selection": "retain_upstream_selected_fusion; no_new_side_search",
+    "partial_RR": "60_times_sum_eligible_segment_peaks_over_sum_eligible_core_seconds",
+    "full_window_count": "null_unless_the_entire_original_window_is_eligible",
+    "support_scope": "inherited_detection_provenance_with_permitted_short_gaps_not_visibility_truth"
+  },
+  "input_manifest_sha256": "16d01002320c86a33e7a254e00e75f61243dcff2c9e1ae565557e77e80c91dec",
+  "method_manifest_sha256": "fb88586aaa86f425327210197065e1305b4a62418c6c11f5780c90b66e543bd0",
+  "reference_counts_read": false,
+  "adoption": "diagnostic_candidate_only_no_accuracy_claim_no_default_change",
+  "upstream_time_scope": "inherited_N048_N049_not_new_decoder_validation"
+}

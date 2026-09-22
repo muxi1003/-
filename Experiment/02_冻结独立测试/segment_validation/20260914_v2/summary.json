@@ -1,0 +1,21 @@
+{
+  "cohorts": {
+    "internal49": {
+      "windows": 49,
+      "any_segment_output": 49,
+      "full_window_outputs": 18,
+      "eligible_seconds": 1269.4969962845128,
+      "requested_seconds": 1470.2848505725624
+    },
+    "raw49_unscored": {
+      "windows": 49,
+      "any_segment_output": 35,
+      "full_window_outputs": 9,
+      "eligible_seconds": 808.3908045977012,
+      "requested_seconds": 1470.0
+    }
+  },
+  "accuracy_scored": false,
+  "default_changed": false,
+  "external_predictions": 0
+}

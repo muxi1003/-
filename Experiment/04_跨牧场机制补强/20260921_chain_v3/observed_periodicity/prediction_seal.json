@@ -1,0 +1,11 @@
+{
+  "original_output_peak_replay_verified": 216,
+  "reference_read": false,
+  "files": {
+    "candidate_scores.csv": "98eb444987efbdf4d68c38b3e8657d715870e30b70e3de61fac72597257a6af3",
+    "input_hashes.csv": "b365fa968d440b98c39f749b7f50fcd43eba5d6e87c25167a2f7b2266ccf4c0f",
+    "prediction_events.csv": "662b3f125afc5a8310af6d05d48b4e1c6743d8f1aee87f5ed3257f295fd5c28e",
+    "prediction_windows.csv": "bed5addbdc47dec198025670ee1c379aed1ffcbc719a84dcb3350067eafe8109",
+    "protocol_before_predictions.json": "ed5add37ad7d2b40bcb5c9208ff6ab78024e58d15e8bdf0efbd4e140fab8343f"
+  }
+}

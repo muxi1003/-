@@ -1,0 +1,16 @@
+{
+  "count_changes": 0,
+  "prediction_source_sha256": "e50f4168550c92d77497430217138de496056db5009228188b966fd6224a0f06",
+  "historical_prediction_and_duration_source": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\matched_windows.csv",
+  "historical_source_sha256": "37f83d6747e16d31bbb58c3f69d8ab2c32bbf77a8975e14e27610ed60f1297fe",
+  "submitted_reference_manifest": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v2\\lindian49\\manifest.json",
+  "submitted_reference_manifest_sha256": "a6dfed02d64f47a6ead2911c492ef4216f10dcdac9dba4ac195e61c9a095e6d4",
+  "blinding_declarations_sha256": "b84bb72a9f9987f978b86188f2d0cfa01da8e2e379017c28a3f4c7695ee9b3d0",
+  "processor_sha256": "1fef79b111132209250e9e3f47a2411486e34fcb2983c7d76fbb7584e9784c8e",
+  "common_metrics_source_sha256": "b529c344204062c9e612cba0660772b0b57369744e55777b79a2de4abf5e35f5",
+  "inference_rerun": false,
+  "parameter_tuning": false,
+  "default_changed": false,
+  "scope": "49 internal windows; 39 completed count labels, not confirmed event references",
+  "ablation_scope": "8 fixed-radius20 arms; historical baseline has a different ROI policy; do not attribute their difference to one factor"
+}

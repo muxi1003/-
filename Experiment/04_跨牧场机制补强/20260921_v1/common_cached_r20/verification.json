@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "members": 320,
+  "arms": 2,
+  "predictions_generated_before_reference_loading": true,
+  "source_inputs_unchanged": true,
+  "baseline_count_analysis_sets_identical": true,
+  "default_unchanged": true,
+  "code_sha256": "b0b50fca3a9ccfb99cf3a50c371ee53cbb452f6712958234c01f54121ee52c83"
+}

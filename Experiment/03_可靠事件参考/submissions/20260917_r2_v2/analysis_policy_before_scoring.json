@@ -1,0 +1,32 @@
+{
+  "created_at": "20260917_201327_129675",
+  "round": "R2",
+  "tolerance_seconds": 0.3,
+  "primary": "complete_only; all_abstained_reference_events_count_as_FN",
+  "submission_selection": "2026-09-17 user corrected source to Desktop/标注; earlier Downloads export superseded, do not mix outcomes",
+  "no_tuning": true,
+  "no_phase_offset_fitting": true,
+  "scope": "new_reference_evaluation_of_existing_internal_ablation_and_presealed_external_predictions; not_new_independent_test",
+  "source_exports": [
+    {
+      "source": "C:\\Users\\muxi\\Desktop\\标注\\annotation_windows.csv",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\raw\\annotation_windows.csv",
+      "sha256": "cd9df66ee84500c2e0d50ab55e1fe3254de507dd023233c008caee39ac2410ad"
+    },
+    {
+      "source": "C:\\Users\\muxi\\Desktop\\标注\\reference_events.csv",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\raw\\reference_events.csv",
+      "sha256": "77b472549c7bd796c6a294fbe4fac55b1bf766f09bb8dfc4269c38d73a72cc3a"
+    },
+    {
+      "source": "C:\\Users\\muxi\\Desktop\\标注\\unobservable_intervals.csv",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\raw\\unobservable_intervals.csv",
+      "sha256": "b7ce893423123eee16c180950c7a06f5a99dd692f8ea0643b097d95552e3ffd8"
+    },
+    {
+      "source": "C:\\Users\\muxi\\Desktop\\标注\\event_reference_R2_backup.json",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\raw\\backup.json",
+      "sha256": "e45c68bcee8ae73c50c17a992fe699b07b35045a6cbadad74ebfe33bd1ada75b"
+    }
+  ]
+}

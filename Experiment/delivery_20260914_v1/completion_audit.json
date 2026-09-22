@@ -1,0 +1,29 @@
+{
+  "status": "PASS_AUTOMATABLE_DELIVERY_WITH_EXPLICIT_HUMAN_DEPENDENCY",
+  "checks": [
+    "all_21_indexed_artifacts_exist_and_hash_match",
+    "both_original_R1_count_files_byte_unchanged",
+    "all976_ablation_rows_8_arms_24_metric_groups_independently_recomputed",
+    "all976_ablation_curve_peak_counts_match_summary",
+    "external271_membership_complete_intersection_and_metrics_independently_recomputed_no_event_F1",
+    "320_pending_event_windows_zero_fake_events_49_time_pixel_verified_viewing_copies_UI_passed"
+  ],
+  "completed": [
+    "same_policy_signal_ablation",
+    "locked_external_count_test",
+    "event_entry_and_evaluation_tools",
+    "artifact_purpose_index"
+  ],
+  "human_required": [
+    "actual_reference_event_times",
+    "unobservable_intervals_and_honest_R2_blinding_declaration"
+  ],
+  "not_claimed": [
+    "completed_human_event_reference",
+    "event_F1",
+    "absolute_temperature_validation",
+    "same_split_network_training_ablation"
+  ],
+  "all_three_scientific_evidence_blocks_complete": false,
+  "validator_sha256": "638b35033c6d30958a98a36a61d3113ac1778f24eefc4af56833e701982e3cdc"
+}

@@ -1,0 +1,11 @@
+﻿scope,classification,events,windows
+all_eligible,both_extrema_nearby,17,7
+all_eligible,maximum_only,46,10
+all_eligible,minimum_only,5,3
+all_eligible,no_extremum_within_tolerance,37,9
+all_eligible,no_observed_ROI_sample,38,10
+strict_visible,both_extrema_nearby,14,5
+strict_visible,maximum_only,36,8
+strict_visible,minimum_only,5,3
+strict_visible,no_extremum_within_tolerance,28,7
+strict_visible,no_observed_ROI_sample,34,8

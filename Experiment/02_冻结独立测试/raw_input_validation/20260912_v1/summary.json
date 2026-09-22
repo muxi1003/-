@@ -1,0 +1,12 @@
+{
+  "status": "SAMPLED_INTERNAL_FRAME_PARITY_PASS",
+  "internal_windows": 49,
+  "sampled_frames": 147,
+  "exact_canonical_frames": 147,
+  "exact_pose_frames": 147,
+  "roi_comparisons": 220,
+  "roi_matches": 220,
+  "external_videos_validated": 0,
+  "external_rr_predictions": 0,
+  "remaining": "full_raw_runner_and_target_video_palette_scale_compatibility; keypoint anatomical side naming not visually verified"
+}

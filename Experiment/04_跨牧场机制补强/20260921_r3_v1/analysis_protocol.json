@@ -1,0 +1,20 @@
+{
+  "reference": "R3 paired repeat-observer diagnostic; R2 original retained",
+  "tolerances": [
+    0.1,
+    0.2,
+    0.3,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "main_tolerance": 0.3,
+  "fitted_phase_shift": false,
+  "changed_predictions": false,
+  "full_window_rule": "complete, count/event consistent, no explicit contradictory unobservable suffix note",
+  "strict_phase_rule": "both window and every event visible_expiration",
+  "phase_disagreements": "retain original values; broad descriptive set allowed, strict phase set excludes",
+  "no_intervals": "empty export is absence of markings, not verified full observability",
+  "sampling": "12 internal/12 external planned, external abstentions enriched; not representative holdout",
+  "date": "2026-09-21"
+}

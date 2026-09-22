@@ -1,0 +1,24 @@
+{
+  "reference_sha256": "2f7a8af055d1fab3b6454764818a2ecd87e8967645233414887f0fe8e981ba36",
+  "completed_frames": 36,
+  "visible_frames": 30,
+  "expected_nostrils": 50,
+  "original_reference_unchanged": true,
+  "human_minor_diameter_640_median": 15.416666666666668,
+  "original_frozen_models_unchanged": true,
+  "full_RR_rerun": false,
+  "baseline": {
+    "geometric_matched_pairs": 26,
+    "outside_current_median": 0.3985680190930787,
+    "outside_centered_median": 0.09864757358790771,
+    "outside_current_mean": 0.4523284988678783,
+    "single_frame_RF_difference_abs_median": 0.25742257553181247
+  },
+  "frozen_roi": {
+    "geometric_matched_pairs": 24,
+    "outside_current_median": 0.4086124951425609,
+    "outside_centered_median": 0.08273667462211615,
+    "outside_current_mean": 0.4501535921054753,
+    "single_frame_RF_difference_abs_median": 0.19650642318177525
+  }
+}

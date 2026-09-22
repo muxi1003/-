@@ -1,0 +1,23 @@
+{
+  "video_id": "bs210974",
+  "duration_seconds": 30.0,
+  "prediction_status": "abstain",
+  "reason": "no_valid_temperature_signal",
+  "predicted_breath_count": null,
+  "predicted_rr_bpm": null,
+  "reference_status": "new_raw_window_no_accuracy_scoring",
+  "base_temperature_sha256": "e70a044779094b2b60c7b0debef20216ef771e91614babf4c2f420ed0475ce24",
+  "grid_frames": 261,
+  "radius_min": 16,
+  "radius_max": 21,
+  "exponent": 0.5,
+  "spacing_cv": 0.06122510598899352,
+  "base_both_missing_frames": 27,
+  "base_longest_missing_frames": 27,
+  "base_direct_detection_frames": 234,
+  "longest_no_direct_detection_frames": 27,
+  "adaptive_valid_signal_frames": 0,
+  "no_direct_detection_support": false,
+  "exceeds_existing_short_repair_limit": true,
+  "signal_quality_status": "not_validated; interpolation_or_coordinate_inference_may_bridge_missing_observations"
+}

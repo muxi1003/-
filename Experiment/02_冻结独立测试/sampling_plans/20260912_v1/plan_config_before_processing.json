@@ -1,0 +1,20 @@
+{
+  "policy": {
+    "version": "timestamp_candidate_20260912_v2",
+    "target_fps": 8.7,
+    "long_gap_seconds": 0.5,
+    "sampling": "nearest_existing_frame_on_half_open_uniform_grid; ties_choose_earlier",
+    "long_gap_action": "abstain_entire_window; never_compress_time_or_fill_breaths",
+    "short_interval_action": "existing_frame_may_be_reused; no_new_temperature_interpolation",
+    "boundary_support_rule": "min(long_gap/2,1.5*median_observed_frame_interval)",
+    "uses_reference_counts": false,
+    "adoption": "candidate_requires_internal_validation"
+  },
+  "adapter_sha256": "76dcfdac321876c7bd60ec64fa7c1d4c15bb710238db615c44ef1d8289b9fa05",
+  "runner_sha256": "ee15c197ec3c48fa8fcfa29b744b0e333074533995940517be45133dd5a2e839",
+  "frozen_window_manifest_sha256": "fc23ad2e375cb7181769cf00bdf62c74aedcd70b10f0c08c871bdb29a41dac28",
+  "timestamp_source_sha256": "8b28f0b075be5e028734e9d69dd9dd132fb621180c7465e05e66024b1164add8",
+  "human_reference_files_read": [],
+  "model_inference": false,
+  "scope": "candidate_input_plan_only_not_prediction_seal_or_algorithm_output_coverage"
+}

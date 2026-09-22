@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "source_inputs_unchanged": true,
+  "source_hashes": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260918_r2_status_v1\\raw\\annotation_windows.csv": "d9de65abfde3fec2b564286c7bdf45eb8f4aad1b771ed48df947202f9864ab35",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260918_r2_status_v1\\raw\\reference_events.csv": "77b472549c7bd796c6a294fbe4fac55b1bf766f09bb8dfc4269c38d73a72cc3a",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260918_r2_status_v1\\raw\\unobservable_intervals.csv": "b7ce893423123eee16c180950c7a06f5a99dd692f8ea0643b097d95552e3ffd8",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F1G1P1\\event_metrics_by_window.csv": "93ea97f9ef92aefeb0f89dbb2c2159dc461038cc327224d1641de06949abb657",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F1G1P1\\prediction_events.csv": "601c5fd7fbb9624e1ab8b9b507d55a8bf53dfd67c6be84c408d0f2794e9a572d",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F1G1P1\\paired_count_results.csv": "cc908e2c12376f3def006ad1307e58cda31d08bb5f6427a7d5e4addcf65c8e9f",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F1G1P1\\prediction_windows.csv": "54d4354057e6413105468f27a26e20de3ce131b027c968b7ecd079aea109cbb3",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2\\F1G1P1\\cluster_uncertainty.json": "aae23c51c3b3524237d01f379060b7d59359dccdf62ac01add5ed255831a4be3",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1\\event_metrics_by_window.csv": "e0b196ca83223b2da86d39ca48bae94e60da99b450ab886c6040f850d0a252f5",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1\\prediction_events.csv": "5b6de74afcac3be136ebb58f2362ffced6d55d2ead3c20985ede460899dfe608",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1\\paired_count_results.csv": "61aa0fe41eccd7fd9dc420e6f7399d246acac4138efd6658c41caadd3eef5b89",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1\\prediction_windows.csv": "c3af52b00fda0b6767be4138fc4c4e7da955ef9541ea2c52b7bb7d586bce0f08",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1\\cluster_uncertainty.json": "1d4dc538a4ff6f3af2ac8cbf6bfe837701afbaeac3db5a426e918ef08bd8020b",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\runs\\20260909_v1\\paired_predictions.csv": "e50f4168550c92d77497430217138de496056db5009228188b966fd6224a0f06",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\analyze_transfer.py": "5fd25131baed68dfc2536ae06245811c4e84d6411e7f2c4acff0026c9848c482",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\signal_observability_guard.py": "b7a2c6e9713b76db505f316efc08d12e68853b8e02ed564967444a5f34319c4a"
+  },
+  "matcher": "Hungarian independently checked by ordered DP at all six tolerances",
+  "baseline_per_window_counts_verified": true,
+  "default_algorithm_changed": false,
+  "candidate_peak_indices_verified": true,
+  "reference_modified": false,
+  "limitation": "Neither causal farm attribution nor human physiological phase validation"
+}

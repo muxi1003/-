@@ -1,0 +1,2 @@
+label,videos,rr_valid_videos,rr_r2,rr_pearson_r2,rr_mae,rr_rmse,count_valid_videos,count_mae,exact_count,exact_count_accuracy,exact_count_accuracy_percent,within_one_count,abs_count_error_ge2,mean_count_accuracy,mean_count_accuracy_percent
+paper_repro,73,73,0.9465953232567761,0.9486829668797454,1.691728363357693,3.0064230811498973,73,0.3013698630136986,51,0.6986301369863014,69.86301369863014,73,0,0.9667205321314911,96.67205321314911

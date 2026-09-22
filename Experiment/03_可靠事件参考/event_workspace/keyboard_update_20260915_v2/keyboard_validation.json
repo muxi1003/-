@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "tested": [
+    "Space play/pause",
+    "Q confirmed and W uncertain regardless of selector",
+    "uppercase shortcuts",
+    "A/D navigation with filter and no boundary wrap",
+    "E alternating start/end",
+    "held-key suppression",
+    "required fields and reason retained",
+    "text/select focus protection",
+    "modifier protection",
+    "focused button/video Space no double action",
+    "cache persistence including navigation",
+    "published/template parity",
+    "human CSVs and embedded window data unchanged"
+  ],
+  "syntheticQAOnly": true,
+  "humanEventsCreated": 0,
+  "before_html_sha256": "67794e924423f541d014b91810e74ef71f22a7bb86e58fe375263a7b6f8b5148",
+  "after_html_sha256": "d700d3c097cf11be2d0f2a3ee19758db90cce81bff56bdee16092739751bad2f",
+  "csv_hashes": {
+    "annotation_windows.csv": "a8859998d8330d04377f729464975d45f4875183259577378b9c2f9c0a5cf254",
+    "reference_events.csv": "07f20862189cc5332d83675326d0ab69e3bad560a83c2af9db6aeb558e70a65d",
+    "unobservable_intervals.csv": "a23f7ec7e6fe923c3e0d9ef0b8c5877139f615981eb92e30404705e65b7cdc18"
+  },
+  "errors": []
+}

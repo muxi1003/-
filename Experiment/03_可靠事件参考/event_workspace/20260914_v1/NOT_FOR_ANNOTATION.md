@@ -1,0 +1,1 @@
+Superseded development output. Browser could not decode original Lindian FMP4 video. No human reference events were created. Use ../20260914_v3/index.html with verified browser-compatible viewing copies.

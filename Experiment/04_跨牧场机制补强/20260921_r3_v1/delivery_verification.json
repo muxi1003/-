@@ -1,0 +1,53 @@
+{
+  "status": "PASS_WITH_DISCLOSED_LABEL_CLARIFICATIONS",
+  "archived_R2_window_event_metrics_exact": 23,
+  "archived_prediction_counts_and_durations_exact": true,
+  "all_hashed_inputs_unchanged": true,
+  "paused_marking_metadata": true,
+  "prediction_hidden_metadata": true,
+  "note": "UI metadata is not independent observation of actual human procedure",
+  "related_unit_tests_passed": 12,
+  "docx_schema_validation": "PASS",
+  "document_qa": {
+    "status": "PASS_STRUCTURAL_AND_RENDER",
+    "pages": 18,
+    "tables": 9,
+    "figures": 7,
+    "text_chars_by_page": [
+      1389,
+      2002,
+      1141,
+      1032,
+      1109,
+      1226,
+      889,
+      994,
+      590,
+      182,
+      784,
+      1199,
+      1239,
+      1128,
+      726,
+      1170,
+      770,
+      1291
+    ],
+    "renderer": "Microsoft Word COM to PDF; pypdfium2 raster",
+    "checks": "XML well-formed, key numerical anchors, nonblank PDF pages; visual QA recorded separately"
+  },
+  "artifacts": {
+    "中文论文初稿.md": {
+      "sha256": "dfe3838d99b8347503d81f770e59bd77170e7159966b867815b197f6bc092a6e",
+      "bytes": 39112
+    },
+    "奶牛热红外呼吸检测_中文初稿_20260921.docx": {
+      "sha256": "5752eb1fe5a4a59d0da9425efcab3bf2422e92ac0f0db035b8c460c73b7fb087",
+      "bytes": 981581
+    },
+    "奶牛热红外呼吸检测_中文初稿_20260921.pdf": {
+      "sha256": "e3ded1250ae46e42be5c113e5dffcdfe8219bc4c28d1e26be91d9af608e5842a",
+      "bytes": 1130818
+    }
+  }
+}

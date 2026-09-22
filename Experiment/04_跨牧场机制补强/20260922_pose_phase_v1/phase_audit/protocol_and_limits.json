@@ -1,0 +1,14 @@
+{
+  "role": "diagnosis_only_not_new_RR_predictor",
+  "reference": "R3 20260921 19:21",
+  "smoothing": "MAF3 only within finite same-side run, valid central timestamps",
+  "distance_frames": 5,
+  "prominence": 0.035,
+  "tolerance_seconds": 0.3,
+  "reference_time_shift": 0,
+  "signal": "archived native-pixel RF ROI samples, no missing-value interpolation",
+  "matching": "per-side per-polarity one-to-one; per-reference proximity is descriptive only",
+  "no_observed_ROI_sample": "nearest sampled timestamp within .25 s; not proof of human invisibility",
+  "nearby_extremum": "temporal agreement only, not independent physiological validation",
+  "no_default_or_reference_changes": true
+}

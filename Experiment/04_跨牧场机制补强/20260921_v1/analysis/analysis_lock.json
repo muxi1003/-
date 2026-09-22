@@ -1,0 +1,31 @@
+{
+  "role": "retrospective_diagnostic_not_independent_new_test",
+  "seed": 20260921,
+  "main_tolerance_seconds": 0.3,
+  "sensitivity_tolerances": [
+    0.1,
+    0.2,
+    0.3,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "phase_shift_fitting": false,
+  "truth_used_to_generate_candidate": false,
+  "candidate": "same_existing_guard_mask_evaluated_at_each_frozen_peak_not_entire_window",
+  "policy": {
+    "version": "observability_guard_20260914_v1",
+    "max_short_gap_frames": 3,
+    "confidence_minimum": 0.5,
+    "boundary_missing": "abstain",
+    "mixed_fusion_support": "both_inputs_direct; conservative_not_anatomical_visibility_truth",
+    "long_gap_action": "abstain_complete_window; keep_diagnostic_events_only",
+    "event_context_frames": 3,
+    "parameter_origin": "existing_frozen_max_track_gap_conf_and_source_peak_support_radius",
+    "truth_used": false
+  },
+  "no_recovered_events_in_abstentions": true,
+  "adoption": "no_default_replacement; require_nonnegative_source_F1_CI_and_R3_phase_visibility_review",
+  "comparison": "within_each_cohort_same_frozen_peaks_and_inputs; between_cohort_pipeline_confound_remains",
+  "references": "R2 20260918; playing-Q response latency unknown; R3 not yet available"
+}

@@ -1,0 +1,113 @@
+# ============================================================
+# 奶牛热红外呼吸检测项目 — 代码/文档仓库忽略规则
+# 原则：只纳入源码、配置、文档与轻量结果（csv/json/md/html）；
+#       数据集、视频、帧图、模型权重、环境与工具链一律排除。
+# ============================================================
+
+# ---------- 目录：本地环境与工具链 ----------
+.conda/
+.venv/
+venv/
+env/
+__pycache__/
+*.egg-info/
+.ipynb_checkpoints/
+
+# AI 技能 / 代理工具链（含上游 git 仓库、目录连接与缓存）
+.aris/
+.agents/
+.claude/
+.codex/
+.codex_tmp/
+.codeartsdoer/
+.arts/
+.cursor/
+.idea/
+.vscode/
+.ultralytics/
+Ultralytics/
+claude-vision-skill/
+
+# ---------- 目录：数据集与实验素材 ----------
+Dataset_new/
+dataset/images1/
+dataset/cow_frames/
+dataset/extracted_frames/
+runs/
+scripts/runs/
+models/
+outputs/
+Experiment/tools_deps/
+
+# ---------- 扩展名：媒体 / 权重 / 二进制 ----------
+*.jpg
+*.JPG
+*.jpeg
+*.JPEG
+# PNG 多为逐帧转储与可视化拼图，体积大，不作为源码仓库内容
+*.png
+*.PNG
+*.bmp
+*.tif
+*.tiff
+*.webp
+*.mp4
+*.MP4
+*.avi
+*.mov
+*.mkv
+*.wmv
+*.flv
+*.gif
+
+# 模型权重与序列化模型
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.pickle
+*.h5
+*.pb
+*.tflite
+*.engine
+*.caffemodel
+
+# 二进制 / 打包
+*.exe
+*.dll
+*.pyd
+*.so
+*.dylib
+*.pdb
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+*.whl
+
+# 大体积办公文档（保留 csv/json/md/html/txt 结果）
+*.pdf
+*.docx
+*.doc
+*.pptx
+*.ppt
+*.xlsx
+*.xls
+
+# ---------- 运行时产物 ----------
+*.log
+yolov8_train_log.txt
+*.tmp
+*.lock
+.DS_Store
+Thumbs.db
+
+# ---------- 本地凭据（切勿提交） ----------
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+.git-credentials

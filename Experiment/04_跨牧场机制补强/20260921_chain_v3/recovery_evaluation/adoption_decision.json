@@ -1,0 +1,7 @@
+{
+  "disposition": "OPT_IN_PARTIAL_EVENTS_ONLY",
+  "event_scope": "retrospective R2 full216 and R3 review11, not unseen holdout",
+  "full_RR": "UNCHANGED; 0.419629 R2 R-squared not solved by partial events",
+  "default_changed": false,
+  "forbidden": "sum partial events / 30s as full RR"
+}

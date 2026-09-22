@@ -1,0 +1,10 @@
+{
+  "reference_read": false,
+  "points": 98,
+  "frames": 34,
+  "files": {
+    "prediction_points.csv": "1cc84e5a49c596669cbdb315777c4bd2ce2e7dea24986d2633acb455c9ad9877",
+    "candidate_scores.csv": "138b11c480fd89e83c66502218826fbfa289ed74cdf90f92b20e13792dc71981",
+    "protocol_before_predictions.json": "007cd0fbf49e0036c90974d8c681ac2d18ff1f9a6b2413ec63b50a3480378855"
+  }
+}

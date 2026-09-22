@@ -1,0 +1,7 @@
+{
+  "status": "SEGMENT_INTERVAL_EVENT_ACCOUNTING_PASS",
+  "window_records": 98,
+  "segment_records": 186,
+  "algorithm_events": 1854,
+  "accuracy_scored": false
+}

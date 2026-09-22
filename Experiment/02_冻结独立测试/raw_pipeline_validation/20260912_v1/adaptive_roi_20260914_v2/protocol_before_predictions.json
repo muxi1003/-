@@ -1,0 +1,19 @@
+{
+  "scope": "internal_raw30_adaptive_ROI_unscored_not_adopted",
+  "source_predictions_sha256": "bf578fe4d1533a661f4a482831a1f17ec732a7eed01e650e8cff5dc8e571a9d5",
+  "roi_policy": {
+    "base_radius": 20,
+    "min_radius": 16,
+    "max_radius": 24,
+    "spacing_cv_threshold": 0.06,
+    "linear_exponent": 1.0,
+    "damped_exponent": 0.5
+  },
+  "method_manifest_sha256": "fb88586aaa86f425327210197065e1305b4a62418c6c11f5780c90b66e543bd0",
+  "source_reference_exposure": "v1_loaded_internal_membership_table_containing_counts_but_did_not_use_count_columns; corrected_in_future_runner",
+  "this_stage_reads_human_counts": false,
+  "holdout_run": false,
+  "image_reader": "strict_numpy_fromfile_cv2_imdecode_BGR; Unicode_paths_supported; decode_error_aborts",
+  "signal_observability": "descriptive_only_no_new_gate_selected_from_results",
+  "frozen_limit": "coordinate-based_radius_table_can_extract_at_low_confidence_or_inferred_coordinates; does_not_prove_visible_nostril"
+}

@@ -1,0 +1,9 @@
+﻿annotation_status,prediction_status,reason,n
+complete,abstain,long_timestamp_gap,33
+complete,abstain,no_valid_temperature_signal,1
+complete,abstain,unsupported_window_end,1
+complete,ok,,122
+unobservable,abstain,long_timestamp_gap,18
+unobservable,abstain,no_valid_temperature_signal,1
+unobservable,abstain,unsupported_window_end,1
+unobservable,ok,,94

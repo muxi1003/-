@@ -1,0 +1,5 @@
+﻿claim,evidence,file,limit
+参考敏感性,同预测下林甸12窗F1变化+0.118452,reference_sensitivity.csv,不是算法改善或普遍反应延迟
+外部问题仍在,久福11窗R3 F1 0.362832；拒判FN59、输出FN43,events_by_window.csv,不是216窗全量结果
+门控继续否决,同R3久福局部门控F1 0.230769,event_metrics.csv,不因林甸小子集略升而采用
+可见性证据不足,0区间、R3-11备注、R3-12字段冲突,clarifications.csv,不能构造解剖可见性金标准

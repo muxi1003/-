@@ -1,0 +1,4 @@
+﻿comparison,status,checkpoint_available,required_before_claim,metrics
+YOLOv8n_pose_vs_YOLO11n_pose,NOT_RUN,yes_both,same training/validation split and annotation version; same training budget; no cow/session leakage,box/keypoint metrics; localization failure; end_to_end_RR; measured runtime
+YOLO11n_pose_vs_P3_attention,NOT_RUN_IN_THIS_PACKAGE,not_audited,matched training setup and seeds; freeze before independent test; reject test-guided tuning,keypoint metrics; end_to_end_RR; parameters; FLOPs; hardware_latency
+fixed20_vs_adaptive_ROI,HISTORICAL_RESULTS_NOT_MATCHED_SINGLE_FACTOR_HERE,same_detector_possible,"same keypoints, frame geometry, sampling windows, postprocessing and reference; change ROI rule only",paired_RR_error; motion_strata; event_FP_FN; coverage

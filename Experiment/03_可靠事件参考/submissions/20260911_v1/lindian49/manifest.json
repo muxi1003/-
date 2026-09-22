@@ -1,0 +1,26 @@
+[
+  {
+    "source": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\20260909_v1\\annotation_windows.csv",
+    "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v1\\lindian49\\original_bytes\\annotation_windows.csv",
+    "sha256": "64b6522745dd7d212a501d4f5ef5f02c17fec943b96947e08957656ba735c214",
+    "encoding": "gb18030",
+    "rows": 49,
+    "source_modified": false
+  },
+  {
+    "source": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\20260909_v1\\reference_events.csv",
+    "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v1\\lindian49\\original_bytes\\reference_events.csv",
+    "sha256": "07f20862189cc5332d83675326d0ab69e3bad560a83c2af9db6aeb558e70a65d",
+    "encoding": "utf-8-sig",
+    "rows": 0,
+    "source_modified": false
+  },
+  {
+    "source": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\20260909_v1\\unobservable_intervals.csv",
+    "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v1\\lindian49\\original_bytes\\unobservable_intervals.csv",
+    "sha256": "a23f7ec7e6fe923c3e0d9ef0b8c5877139f615981eb92e30404705e65b7cdc18",
+    "encoding": "utf-8-sig",
+    "rows": 0,
+    "source_modified": false
+  }
+]

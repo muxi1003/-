@@ -1,0 +1,9 @@
+{
+  "video_id": "ba455",
+  "duration_seconds": 30.0,
+  "prediction_status": "abstain",
+  "reason": "long_timestamp_gap",
+  "predicted_breath_count": null,
+  "predicted_rr_bpm": null,
+  "reference_status": "new_raw_window_no_accuracy_scoring"
+}

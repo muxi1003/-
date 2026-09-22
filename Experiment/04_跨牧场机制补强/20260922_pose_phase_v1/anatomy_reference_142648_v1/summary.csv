@@ -1,0 +1,9 @@
+﻿variant,scored_frames,visible_frames,expected_nostrils,predicted_points,correct_points,point_recall,point_precision,no_prediction_visible_frames,no_correct_point_visible_frames
+baseline,36,30,50,27,18,0.36,0.6666666666666666,12,16
+center75,36,30,50,26,14,0.28,0.5384615384615384,14,18
+clahe_l,36,30,50,24,18,0.36,0.75,14,17
+frozen_roi,36,30,50,29,16,0.32,0.5517241379310345,16,18
+gray,36,30,50,20,11,0.22,0.55,19,22
+lower75,36,30,50,25,20,0.4,0.8,13,15
+rotate_minus30,36,30,50,5,2,0.04,0.4,26,28
+rotate_plus30,36,30,50,4,4,0.08,1.0,27,27

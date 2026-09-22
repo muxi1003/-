@@ -1,0 +1,15 @@
+{
+  "video_id": "bs177611",
+  "raw_source_path": "E:\\real\\use_code\\林甸红外视频\\0806\\B3号舍病牛体温检测0806上午\\20230806T093742n177611\\20230806T093742n177611.MP4",
+  "raw_source_sha256": "c767d8882bc3154dc3b96e9796f373bcc31d82afb58d49614cd21eda77ce4809",
+  "origin_frame_index": 618,
+  "origin_timestamp_seconds": 70.43666666666667,
+  "duration_seconds": 30.0,
+  "predicted_breath_count": null,
+  "predicted_rr_bpm": null,
+  "reference_status": "new_raw_time_window_not_scored",
+  "prediction_status": "abstain",
+  "predicted_count": null,
+  "reason": "long_timestamp_gap",
+  "long_gap_count": 1
+}

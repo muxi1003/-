@@ -1,0 +1,714 @@
+--- Page 1 ---
+ 
+IoT-Enabled Device for Predictive Monitoring and 
+Disease Management in Cow 
+1st E. Chandralekha 
+Assistant professor, CSE 
+Vel Tech Rangarajan Dr. Sagunthala 
+R&D Institute of Science and 
+Technology 
+Avadi, Chennai, India 
+echandralekha@veltech.edu.in 
+ 
+ 
+4th Tailuru Ganesh 
+UG Scholar, CSE 
+Vel Tech Rangarajan Dr. Sagunthala 
+R&D Institute of Science and 
+Technology 
+Avadi, Chennai, India 
+vtu19235@veltech.edu.in 
+2nd Inturi Dhineesh 
+UG Scholar, CSE 
+Vel Tech Rangarajan Dr. Sagunthala 
+R&D Institute of Science and 
+Technology 
+Avadi, Chennai, India 
+vtu19234@veltech.edu.in 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+3rd Ganta Lokesh Reddy 
+UG Scholar, CSE 
+Vel Tech Rangarajan Dr. Sagunthala 
+R&D Institute of Science and 
+Technology 
+Avadi, Chennai, India 
+vtu19283@veltech.edu.in 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Abstract - Cattle health and welfare are crucial to the dairy 
+and farming sectors, where early disease detection can 
+improve animal welfare and reduce financial losses. An 
+Arduino UNO, an ESP8266 microcontroller, and several 
+sensors are integrated in this study's aff ordable and 
+scalable Internet of Things-enabled system to continuously 
+monitor critical parameters like temperature, humidity, 
+heart rate, and respiratory rate in cows. For the purpose of 
+tracking live animal conditions, the real-time data is sent to 
+the ThingSpeak cloud platform and displayed using 
+ThingView. Python's Pickle serialization is used to embed a 
+machine learning -based predictive model that has been 
+trained on both synthetic and real -time data within a 
+Streamlit web application. The model achieves a prediction 
+accuracy of 80% to 95% under controlled test conditions, 
+classifying the health status of cattle into categories such as 
+Normal, Fever, Heat Stress, or Respiratory Infection. 
+Through the use of Random Forest classification a nd 
+threshold-based logic, the system provides actionable 
+insights via an intuitive dashboard and facilitates the early 
+detection of possible health problems. The suggested 
+solution supports both small and large -scale livestock 
+operations by offering real -time, remote, and intelligent 
+diagnostics for cattle health, thereby addressing the 
+drawbacks of manual monitoring. 
+ 
+Keywords— Application Programming Interface , Central 
+Processing Unit , Comma-Separated Values , Espressif Systems , 
+Graphical User Interface , Internet of Things , Liquid-Crystal 
+Display, Logistic Regression , Machine Learning , Pickle File , 
+Random Forest , Support Vector Machine , User Interface , 
+Uniform Resource Locator, Visual Studio. 
+I. INTRODUCTION 
+In modern day livestock management, maintaining animal 
+welfare, increasing productivity, and reducing financial 
+losses all depend on ongoing cattle health monitoring. The 
+detection of new health problems is frequently delayed by 
+traditional methods, which rely on fixed threshold alerts and 
+recurring manual inspections. Real -time data collection and 
+analysis is now feasible thanks to developments in wireless 
+communication, sensor miniaturization, and cloud 
+computing; however, there are still three major issu es with 
+current solutions: sporadic data collection, underutilized 
+predictive analytics, and expensive deployment costs. 
+ 
+In order to address these constraints, this paper proposes an 
+end-to-end IoT and machine -learning framework. Using an 
+Arduino UNO and an ESP8266 microcontroller equipped 
+with sensors for temperature, humidity, heart rate, and 
+respiratory rate, our system collects and preprocesses data on-
+device. Dashboards from ThingView and Streamlit are used 
+to visualize the cleaned data after it has been streamed to the 
+ThingSpeak cloud platform. A Random Forest classifier, 
+serialized using Python's Pickle and trained on both historical 
+and live datasets, performs inference in real time, classifying 
+each animal's condition as Normal, Fever, Heat Stress, or 
+Respiratory Infection with 80 –95% accuracy in controlled 
+tests. 
+ 
+Key Contributions: 
+1. IoT architecture that is inexpensive and energy -
+efficient for ongoing cattle health monitoring. 
+ 
+2. Early disease prediction using a cloud -based 
+analytics pipeline that combines Random Forest 
+classification with rule-based thresholds. 
+ 
+3. Remote, real -time visualization of sensor data and 
+health alerts is made possible by an interactive, 
+Streamlit dashboard. 
+ 
+4. High predictive performance and scalability across 
+small and large -scale farming scenarios are 
+demonstrated by experimental validation. 
+II. LITERATURE REVIEW 
+Khan et al. [1] have presented an MSSO-ANFIS model-based 
+healthcare monitoring system for heart disease diagnosis in 
+Proceedings of the 3rd International Conference on Self Sustainable Artificial Intelligence Systems (ICSSAS-2025)
+IEEE Xplore Part Number: CFP25DN7-ART; ISBN: 979-8-3315-3884-2
+979-8-3315-3884-2/25/$31.00 ©2025 IEEE 531
+2025 3rd International Conference on Self Sustainable Artificial Intelligence Systems (ICSSAS) | 979-8-3315-3884-2/25/$31.00 ©2025 IEEE | DOI: 10.1109/ICSSAS66150.2025.11081385
+Authorized licensed use limited to: China Jiliang University. Downloaded on June 15,2026 at 12:13:06 UTC from IEEE Xplore. Restrictions apply. 
+
+--- Page 2 ---
+an IoMT (Internet of Medical Things) cloud environment. To 
+improve the accuracy and speed of medical pre dictions, the 
+system combines intelligent cloud -based monitoring with 
+machine learning techniques, specifically an enhanced 
+version of the Adaptive Neu ro Fuzzy Inference System 
+(ANFIS). Their study demonstrates how IoMT can be used to 
+improve healthcare delivery by enhancing predictive models 
+and offering real-time diagnostic capabilities. 
+ 
+Chatterjee et al. [2] have presented Live Care is a framework 
+for IoT-enabled livestock healthcare that combines sensors, 
+cloud storage, and visualization. Their system exemplifies 
+scalable smart agriculture solutions that enable real -time 
+animal monitoring with the specific goal of enhancing the 
+health of livestock. The frame work highlights the benefits of 
+remote visualization and cloud -based data storage, which 
+allow for ongoing health monitoring and the early 
+identification of possible health problems i n cattle. 
+According to their research, IoT frameworks can improve the 
+productivity and well-being of livestock. 
+ 
+Feng et al. [3] have presented Social Cattle is an Internet of 
+Things (IoT) system that uses behavioral sensing to identify 
+mastitis in cattle. This novel approach uses the social 
+interaction patterns of cattle to identify early symptoms of 
+disease, especially mastitis, a common condition that affects 
+dairy cows. The system reduces the need for manual 
+intervention and enables proactive health management by 
+combining behavioral sensing with cloud -based analytics to 
+provide real-time disease detection. 
+ 
+Nagasubramanian et al. [4] have presented an IoT -based 
+pattern recognition system combined with an ensemble 
+classification framework for the detection of crop diseases. 
+To identify crop diseases, their system integrates IoT sensors 
+with 5 a variety of machine learning approaches, in cluding 
+ensemble learning, decision trees, and support vector 
+machines. The system gives farmers a more dependable and 
+effective method of crop management by processing real -
+time sensor data and applying machine learning to forec ast 
+possible disease outbreaks. 
+ 
+Patle et al. [5] have presented LSTM (Long Short -Term 
+Memory) networks are used in a field -tested smart sensor 
+system to predict plant diseases. Based on real -time sensor 
+data, the system predicts plant disease outbreaks using 
+sophisticated machine learning models such as LSTM 
+networks. By giving farmers precise forecasts and assisting 
+them in taking preventive action before an outbreak happens, 
+their method shows enhanced forecasting capabilities under 
+actual farming conditions. 
+ 
+Costa et al. [6] 2021 have presented a thorough analysis of 
+precision livestock technologies with an emphasis on how 
+they can be used to manage dairy calves and increase 
+agricultural output. In order to increase productivity, animal 
+welfare, and resource efficiency in dai ry farms, the paper 
+explores a number of technologies, such as sensors, data 
+analytics, and Internet of Things systems, and how they can 
+be incorporated into precision livestock management. 
+ 
+Dutta et al. [7] have presented MOOnitor is a multi-sensory, 
+Internet of Things -enabled tool for tracking cattle activity. 
+Accelerometers and physiological sensors are integrated into 
+the system to provide real -time cattle behavior monitoring 
+and continuous health tracking. Cattle welfare and fa rm 
+management can be enhanced by using the data gathered to 
+track animal health, identify behavioral changes, and 
+anticipate possible health problems. 
+ 
+ Qazi et al. [8] have presented a critical analysis of smart 
+agriculture enabled by AI, emphasizing present obstacles and 
+potential paths for IoT -based farming technologies. With an 
+emphasis on issues like data integration, sensor calibration, 
+and real-time data processin g, their paper offers a thorough 
+examination of the application of AI and IoT in agriculture. 
+They talk about how AI could improve agricultural practices’ 
+sustainability and efficiency. 
+ 
+Arshad et al. [9] 2022 have presented the installation of a 
+wireless sensor network 6 to monitor animals intelligently. 
+Temperature, heart rate, and movement patterns are just a few 
+of the health data that the system continuously gathers and 
+sends via wireless sensors. Par ticularly in remote locations 
+where conventional monitoring techniques are impractical, 
+this real-time data is utilized to produce actionable insights 
+for improved livestock health management and more 
+productive farming practices. 
+ 
+Arshad et al. [10] have presented a safe system for tracking 
+the health of cattle that incorporates encryption protocols and 
+intelligent modules to ensure data integrity. To guarantee the 
+privacy and security of the data gathered from cattle health 
+monitoring sensors, this system integrates cutting -edge 
+security measures. Real -time data analysis is made possible 
+by the system’s intelligent modules, which also guarantee 
+data security and integrity and enable the early identification 
+of health problems 
+ 
+Research Gap: 
+ 
+IoT-based monitoring and predictive analytics have made 
+great strides, but there are still a number of important gaps. 
+Without offering an integrated framework that combines 
+ongoing data collection with real -time predictive analytics, 
+many current systems function in silos, concentrating on 
+distinct monitoring facets. The implementations of Khan et 
+al. [1] and Chatterjee et al. [2] frequently lack smooth 
+integration between hardware components, cloud data 
+management, and intelligent decision -making modules, 
+despite the fact that they have established solid foundations 
+in healthcare and livestock monitoring, respectively. Early 
+disease detection through machine learning models is 
+possible with systems like those suggested by Feng et al. [3] 
+and Nagasubramanian et al. [4], but they still face difficulties 
+like sensor calibration and data heterogeneity. Similarly, 
+Patle et al.’s deep learning methods [5] and Costa et al.’s 
+review of precision livestock frameworks [6] highlights 
+important developments but also po int to shortcomings in 
+terms of scalability, adaptability, and energy efficiency. 
+Furthermore, there is still a clear gap in systems that combine 
+various sensor inputs with strong encryption and real -time 
+analytics, even after wireless sensor networks were 
+Proceedings of the 3rd International Conference on Self Sustainable Artificial Intelligence Systems (ICSSAS-2025)
+IEEE Xplore Part Number: CFP25DN7-ART; ISBN: 979-8-3315-3884-2
+979-8-3315-3884-2/25/$31.00 ©2025 IEEE 532
+Authorized licensed use limited to: China Jiliang University. Downloaded on June 15,2026 at 12:13:06 UTC from IEEE Xplore. Restrictions apply. 
+
+--- Page 3 ---
+implemented in research by Dutta et al. [7] and Arshad et al. 
+[8, 10]. The fragmented nature of current IoT applications 
+across various do mains is further highlighted by additional 
+reviews by Qazi et al. [11], Moutaouakil et al. [13], and 
+Poyyamozhi et al . [14]. Islam et al. [15] show that 
+comprehensive early detection systems are scarce even in 
+aquaculture. This project intends to close these enduring gaps 
+by creating a comprehensive monitoring solution that 
+integrates several physiological sensors with a n Arduino -
+based CPU, enables wireless data transfer via ESP8266, 
+supports cloud visualization, and uses a state -of-the art 
+machine learning pipeline. In order to overcome the 
+drawbacks of the current IoT -based monitoring systems, the 
+suggested integrated a pproach aims to increase system 
+scalability, guarantee energy efficiency, and enhance 
+personalized care and predictive accuracy. 
+III. PROPOSED WORK 
+The proposed Animal Health Monitoring System 
+integrates cloud computing, machine learning, and the 
+Internet of Things to enable real -time disease prediction in 
+cattle in Fig.1. Through the use of a sensor array, the system 
+continuously gathers critical data, including temperature, 
+humidity, heart rate, and respiratory rate. An ESP 8266 
+wirelessly sends the data to the ThingSpeak cloud platform 
+after an Arduino UNO processes the raw sensor signals and 
+carries out basic filtering and digital conversion. A Streamlit-
+based web application retrieves real-time data from a mobile 
+app called ThingView and uses it to feed a pre -trained 
+machine learning model (serialized with Pickle) that 
+categorizes cattle health into sections like normal, fever, heat 
+stress, and respiratory infection. While an alert system quickly 
+alerts farmers and veterinarians to critical conditions, a rule -
+based system offers backup for quick risk assessment and 
+offers suggestions for useful interventions. The system is 
+designed to be both afforda ble and scalable, which will 
+ultimately improve farm efficiency and animal welfare. It can 
+be used in both small and large scale farming operations. 
+ 
+Figure 1 shows overall Architecture of the Cow Health 
+Monitoring System 
+ 
+ 
+A. COMPONENT DESCRIPTION: 
+1. Sensors: 
+The sensor module is in charge of recording the vital 
+physiological and environmental characteristics of the cattle. 
+In order to identify fever or other indications of infection and 
+heat stress, it has a temperature sensor that measures body 
+temperature. M onitoring ambient moisture levels with a 
+humidity sensor is crucial for spotting respiratory problems 
+and avoiding dehydration. Additionally, a respiratory rate 
+sensor continuously tracks breathing patterns to identify any 
+anomalies that could indicate met abolic problems or 
+infections. A heart rate sensor measures changes in cardiac 
+rhythm that may be early indicators of stress or cardiovascular 
+issues. Together, these sensors provide comprehensive 
+information for effective health monitoring. 
+2. Microcontrollers: 
+Data collection and communication are managed by two 
+micro controllers. The Arduino UNO is the primary data 
+acquisition device, using interfaces with all sensors to 
+precisely gather and preprocess raw signals into usable digital 
+readings. The ESP8266 micro controller then provides 
+wireless connectivity for the transmission of the processed 
+sensor data to the ThingSpeak cloud platform. This 
+combination enables seamless, real -time remote monitoring 
+and ensures data integrity through robust error handling. 
+3. Display: 
+The system includes an LCD display to show the temperature, 
+humidity, heart rate, and respiratory rate sensor readings in 
+real time. With the help of this feature, farmers can keep an 
+eye on the health of their cattle without constantly accessing 
+the cloud. 
+B. DATA ACQUISITION: 
+Processing raw sensor outputs and wirelessly sending the 
+formatted data to the cloud platform are the two primary steps 
+in the data acquisition process. 
+1. Arduino UNO Data Processing: 
+Raw digital signals via the sensors are collected by the 
+Arduino UNO, which serves as the main microcontroller. 
+Along with performing preliminary data formatting and 
+filtering, it transforms those signals into digital numerical 
+readings. After processing, the data is sent to the ESP8 266 
+microcontroller via a serial communication protocol. 
+2. ESP8266-Based Wireless Data Transmission: 
+Using HTTP requests, the ESP8266 microcontroller 
+wirelessly transmits the formatted data from the Arduino 
+UNO to the ThingSpeak cloud. The sensor data is also sent to 
+ThingSpeak by the ESP8266 for storage and visualization. If 
+there are network problems, data is retransmitted thanks to 
+basic error-handling procedures. 
+Proceedings of the 3rd International Conference on Self Sustainable Artificial Intelligence Systems (ICSSAS-2025)
+IEEE Xplore Part Number: CFP25DN7-ART; ISBN: 979-8-3315-3884-2
+979-8-3315-3884-2/25/$31.00 ©2025 IEEE 533
+Authorized licensed use limited to: China Jiliang University. Downloaded on June 15,2026 at 12:13:06 UTC from IEEE Xplore. Restrictions apply. 
+
+--- Page 4 ---
+ 
+Figure 2 shows steps involved in Hardware Connection 
+with ThingSpeak 
+The picture shows in Fig.2 various phases of Wi -Fi 
+connectivity and cloud integration for the Animal Health 
+Monitoring System using an Arduino-based Internet of Things 
+device with an LCD display. "Initializing..." indicates the 
+system's startup, and "Connected..." confirms a successful Wi-
+Fi connection. The ThingSpeak Channel ID (2849586), which 
+connects the device to cloud-based data storage, is shown on 
+the third screen. The Wi-Fi SSID (IOTCLOUD) and password 
+(12345678) used to access the network are disp layed on the 
+last screen. This configuration guarantees the transmission 
+and monitoring of cattle health data in real time through cloud 
+services. 
+ 
+ 
+ 
+Figure 3. Thing Speak website interface is displayed. 
+The picture shows in Fig.3 the Animal Health Monitoring 
+System's ThingSpeak dashboard, where sensor data is 
+uploaded and shown. Since the Channel ID (2849586) is open 
+to the public, cattle health metrics can be tracked in real time. 
+Additional insights are made possible by the dash board's 
+visualization, data export, and MATLAB analysis options. 
+According to the channel statistics, there were 231 data 
+entries, with the most recent one occurring roughly four hours 
+ago. 
+IV. MACHINE LEARNING MODEL DEPLOYMENT 
+We trained and implemented three supervised 
+learning models Random Forest, Support Vector Machine 
+(SVM), and Logistic Regression to automatically classify the 
+health status of cattle. To provide real-time predictions based 
+on sensor inputs, the trained models were serialized using 
+Python's Pickle module and incorporated into a Streamlit web 
+application. 
+ 
+Algorithms: 
+Three machine learning models were tested for binary 
+classification tasks in our deployment framework. Here is a 
+description of the models. 
+ 
+Logistic regression: It is a linear model that uses a logistic 
+function to estimate the likelihood of a binary outcome. By 
+applying the sigmoid activation function, logistic regression 
+converts input features into a probability. For input vector x, 
+model weights w, and bias b, the prediction 𝑦 ̂ is given by: 
+ 
+𝑦 ̂ = 1/(1 + 𝑒𝑥𝑝(−𝑤^𝑇 𝑥 + 𝑏)) 
+ 
+A binary label for the class is then generated by thresholding 
+this output. 
+ 
+Support Vector Classifier (SVM): The Support Vector 
+Classifier maximizes the margin between classes to determine 
+the best separating hyperplane. The expression for its decision 
+function is 
+ 𝑚𝑖𝑛
+𝑤, 𝑏, 𝜉 
+1
+2 ∥ 𝑤 ∥2+ 𝐶 ∑ 𝜉𝑖𝑁
+𝑖=1 
+subject to 
+ 𝑦𝑖 (𝑤^𝑇 𝜙(𝑥_𝑖) + 𝑏) ≥ 1 − 𝜉𝑖, 𝜉𝑖 ≥ 0, ∀𝑖 
+ 
+Here, 𝜙(∙) is the cost parameter, and C is a nonlinear 
+mapping to a higher -dimensional space. The function that 
+makes decisions is: 
+ 𝑓(𝑥) = 𝑠𝑖𝑔𝑛(𝑤^𝑇 𝜙(𝑥) + 𝑏) 
+ 
+Random Forest: To increase accuracy and decrease 
+overfitting, the Random Forest ensemble approach combines 
+the predictions of several decision trees. The final prediction 
+for classification is established by: 
+ 
+ 𝑦 ̂ = 𝑚𝑜𝑑𝑒 {ℎ_1 (𝑥), ℎ_2 (𝑥), … , ℎ_𝑇 (𝑥)} 
+ 
+Using Gini Impurity, which is defined for a node D as follows, 
+each decision tree chooses the optimal split at each node: 
+ 
+ Gini(D)= 𝐺𝑖𝑛𝑖(𝐷) = 1 − ∑ 𝑝𝑖
+2𝑘
+𝑖=1 
+Where 𝑝𝑖 is the probability of class i in node D. Lowe Gini 
+values indicate purer splits. 
+ 
+V. EXPERIMENTAL RESULTS 
+A. Experimental Setup 
+A synthetic dataset with 2,300 labeled records representing 
+the health conditions of cattle was used to test the system. 
+Heart rate, temperature, humidity, and respiratory rate were 
+among the characteristics. Every data instance was classified 
+as either Respiratory Infection, Heat Stress, Fever, or Normal. 
+Eighty percent of the dataset was used for training, and 
+twenty percent was used for testing. 
+ 
+Label encoding and feature normalization were part of the 
+data preprocessing process. Python 3.9 and the scikit -learn 
+library were used to create the models. The front -end web 
+Proceedings of the 3rd International Conference on Self Sustainable Artificial Intelligence Systems (ICSSAS-2025)
+IEEE Xplore Part Number: CFP25DN7-ART; ISBN: 979-8-3315-3884-2
+979-8-3315-3884-2/25/$31.00 ©2025 IEEE 534
+Authorized licensed use limited to: China Jiliang University. Downloaded on June 15,2026 at 12:13:06 UTC from IEEE Xplore. Restrictions apply. 
+
+--- Page 5 ---
+application was built using the Streamlit framework, and 
+ThingSpeak was used to gather and store sensor data. The 
+web dashboard was used for both real -time predictions and 
+model inference. 
+ 
+B. Model Evaluation: 
+Random Forest, Support Vector Machine (SVM), and 
+Logistic Regression were the three machine learning models 
+that were trained and assessed. The classification accuracy 
+for every model is compiled in Table I: 
+TABLE 1 MODEL PERFORMANCE 
+ 
+Algorithm Accuracy 
+Logestic Regression 76 
+Support Vector Classifier 83 
+Random Forest 91 
+ 
+Table 1 shows the highest accuracy of 91%, the Random 
+Forest model performed better than the others. It was chosen 
+to be the last model to be used for the health monitoring. 
+ 
+C. Classification Report: 
+ 
+ 
+Figure 4: Model Accuracy 
+ 
+Fig 4 displays the Random Forest model's classification 
+report, which includes information on each class's F1-scores, 
+precision, and recall. While maintaining respectable 
+performance on the Normal and Respiratory Infection 
+classes, the model excels on the Fever and Heat Stress 
+classes. 
+ 
+D. Sensor Data Collection: 
+The system uses an Arduino Uno and an ESP8266 to monitor 
+sensor data in real time. Trends in the physical and 
+environmental variables recorded are shown in Figures 4–7. 
+ 
+Figure 5: Health Monitoring 
+ 
+Figure 5 shows Real-time cow heart rate readings that are 
+continuously tracked and displayed through the ThingView 
+application . Heart rate (bpm) data from March 15–26, 2025. 
+It displays health fluctuations with a steep increase on March 
+15 and a subsequent decline and gradually normalization by 
+March 26. 
+ 
+ 
+ 
+Figure 6: Real-time temperature 
+Figure provides real-time temperature readings for the cattle, 
+which are monitored and shown via the ThingView app. 
+shows the temperature changes that were noted between 
+March 15 and March 26, 2025. Around March 16, there is a 
+sharp increase that might be a sign of fever or heat stress, 
+highlighting the importance of routine monitoring. 
+ 
+ 
+ 
+Figure 7: Real-time Respiration 
+ 
+Figure 7 demonstrates how the cattle's real -time respiratory 
+rate readings are continuously monitored and visualized 
+using the ThingView application. It shows the measurements 
+of the respiration rate taken between March 15 and March 26, 
+2025. Significant increases and dips around March 17 are 
+among the fluctuations that could indicate difficulties with 
+respiration or irregular breathing patterns 
+ 
+ 
+ 
+ 
+Figure 8: cattle’s Surrounding 
+Proceedings of the 3rd International Conference on Self Sustainable Artificial Intelligence Systems (ICSSAS-2025)
+IEEE Xplore Part Number: CFP25DN7-ART; ISBN: 979-8-3315-3884-2
+979-8-3315-3884-2/25/$31.00 ©2025 IEEE 535
+Authorized licensed use limited to: China Jiliang University. Downloaded on June 15,2026 at 12:13:06 UTC from IEEE Xplore. Restrictions apply. 
+
+--- Page 6 ---
+Figure 8 shows the cattle's surroundings' real -time humidity 
+levels, which are tracked and displayed via the ThingView 
+app. Humidity levels during the same time frame. The 
+significance of preserving ambient comfort to avoid heat 
+stress or dehydration is highlighted by a discernible increase 
+around March 17, followed by a decline and a gradual 
+increase toward March 26 
+ 
+E. Predection Result: 
+ 
+ 
+ 
+Figure 9: Interface Visualized 
+ 
+Figure 9 shows the interface visualized here is built with 
+Streamlit and connects to the ThingSpeak platform to collect 
+live sensor readings. Based on the received data, such as heart 
+rate and temperature, the system predicts the cow’s health 
+status. The displayed output confirms the predicted condition 
+as ’Heat Stress’, supporting the system’s real -time detection 
+capability. 
+VI. LIMITAIONS AND FUTURE WORK 
+Our IoT-ML system performs well in real-time and with high 
+accuracy, but there are still a number of real -world issues. 
+Extreme temperature or humidity fluctuations can cause 
+sensor drift and radio frequency interference in hardware 
+integration, and relying solely on constant Wi-Fi puts distant 
+farms at risk for data gaps. Monitoring just four vital signs 
+could cause other early warning signs to be missed, and 
+models that were developed in a controlled environment 
+might deteriorate in the field. Large -scale implementation is 
+hampered by battery life and device maintenance, and 
+existing error -handling might not completely recover from 
+network or sensor failures. 
+ 
+We will address these by implementing advanced sensor -
+fusion algorithms, expanding our sensor suite (e.g., SpO₂ and 
+activity trackers), introducing edge -computing for on-device 
+preprocessing, and switching to lightweight protocols 
+(MQTT/LoRaWAN) for lower power consumption; 
+experimenting with deep -learning architectures and 
+augmenting our datasets to improve generalization; and 
+developing self -healing routines with automated calibration 
+and an improved, mobile-friendly dashboard to ensure robust, 
+scalable livestock health monitoring. 
+VII. CONCLUSION 
+The IoT -enabled framework for ongoing cattle health 
+monitoring and predictive risk assessment is presented in this 
+paper. It is based on sensors that measure heart rate, 
+temperature, humidity, and respiratory rate, as well as an 
+Arduino UNO for data collection and an ESP8266 for 
+wireless transmission. A pre-trained machine-learning model 
+(serialized with Pickle) provides real -time health -status 
+predictions and intervention recommendations based on 
+sensor feeds that are streamed to cloud platforms 
+(ThingSpeak/ThingView) and visualized via a Streamlit 
+dashboard. According to experimental findings, combining 
+data-driven Random Forest classification with rule -based 
+thresholds can achieve up to 91% accuracy, facilitating early 
+disease detection and preventative v eterinary care that 
+improves farm productivity and animal welfare. 
+ 
+However, the system's practical limitations include its 
+reliance on dependable wireless connectivity, its narrow 
+range of physiological parameters, and its power limitations 
+in field deployments. The sensor suite will be expanded, 
+deep-learning architectures will be investigated using larger 
+and more varied datasets, and edge computing and energy 
+management techniques will be optimized for scalable, 
+resilient operation in future work. All things considered; this 
+economical approach presents a positive first step toward 
+data-driven, sustainable livestock management. 
+ 
+ 
+ 
+REFERENCES 
+[1] Khan, Mohammad Ayoub, and Fahad Algarni.”A health care 
+monitoring system for the diagnosis of heart disease in the IoMT cloud 
+environment using MSSO ANFIS.” IEEE Access 8 (2020): 122259 -
+122269. 
+[2] Chatterjee, Pinaki S., Niranjan K. Ray, and Saraju P. Mohanty. 
+”LiveCare: An IoT-based healthcare framework for livestock in smart 
+agriculture.” IEEE Transactions on Consumer Electronics 67, no. 4 
+(2021): 257-265. 
+[3] Feng, Yunhe, Haoran Niu, Fanqi Wang, Susan J. Ivey, Jie Jayne Wu, 
+Hairong Qi, Raul A. Almeida, Shigetoshi Eda, and Qing Cao. 
+”SocialCattle: IoT-based mastitis detection and control through social 
+cattle behavior sensing in smart farms.” IEEE Internet of Th ings 
+Journal 9, no. 12 (2021): 10130-10138. 
+[4] Nagasubramanian, Gayathri, Rakesh KumarSakthivel, Rizwan Patan, 
+Muthura malingam Sankayya, Mahmoud Daneshmand, and Amir H. 
+Gandomi. ”Ensem ble classification and IoT-based pattern recognition 
+for crop disease monitoring system.” IEEE Internet of Things Jou rnal 
+8, no. 16 (2021): 12847-12854. 
+[5] Patle, Kamlesh S., Riya Saini, Ahlad Kumar, and Vinay S. Palaparthy. 
+”Field evaluation of smart sensor system for plant disease prediction 
+using LSTM net work.” IEEE Sensors Journal 22, no. 4 (2021): 3715-
+3725. 
+[6] Costa, Joao HC, Melissa C. Cantor, and Heather W. Neave. 
+”Symposium re view: Precision technologies for dairy calves and 
+management applications.” Journal of Dairy Science 104, no. 1 (2021): 
+1203-1219. 
+[7] Dutta, Debeshi, Dwipjyoti Natta, Soumen Mandal, and Nilotpal Ghosh. 
+”MOOnitor: An IoT -based multi-sensory intelligent device for cattle 
+activity 51 monitoring.” Sensors and Actuators A: Physical 333 (2022): 
+113271. 
+[8] Qazi, Sameer, Bilal A. Khawaja, and Qazi UmarFarooq. ”IoT -
+equipped and AI enabled next-generation smart agriculture: A critical 
+review, current challenges and future trends.” IEEE Access 10 (2022): 
+21219-21235. 
+[9] Arshad, J., A. U. Rehman, M. T. B. Othman, M. Ahmad, H. B. Tariq, 
+M. A. Khalid, and H. Hamam. ”Deployment of wireless sensor network 
+and IoT plat form to implement an intelligent animal monitoring 
+system.” Sustainability 14, no. 10 (2022): 6249. 
+[10] Arshad, J., T. A. Siddiqui, M. I. Sheikh, M. S. Waseem, M. A. B. 
+Nawaz, E. T. Eldin, and A. U. Rehman. ”Deployment of an intelligent 
+and secure cattle health monitoring system.” Egyptian Informatics 
+Journal 24 (2023): 265–275. 
+Proceedings of the 3rd International Conference on Self Sustainable Artificial Intelligence Systems (ICSSAS-2025)
+IEEE Xplore Part Number: CFP25DN7-ART; ISBN: 979-8-3315-3884-2
+979-8-3315-3884-2/25/$31.00 ©2025 IEEE 536
+Authorized licensed use limited to: China Jiliang University. Downloaded on June 15,2026 at 12:13:06 UTC from IEEE Xplore. Restrictions apply. 
+
+--- Page 7 ---
+[11] Rajendran, Jai Ganesh, Manjunathan Alagarsamy, Vaishnavi Seva, 
+Paramathi Mani Dinesh, Balamurugan Rajangam, and Kannadhasan 
+Suriyan. ”IoT -based tracking cattle health monitoring system using 
+wireless sensors.” Bulletin of Electrical Engineering and Informa tics 
+12, no. 5 (2023): 3086-3094. 
+[12] Casella, Enrico, Melissa C. Cantor, Megan M. Woodrum Setser, 
+Simone Sil vestri, and Joao HC Costa. ”A machine learning and 
+optimization framework for the early diagnosis of bovine respiratory 
+disease.” IEEE Access 11 (2023): 71164-71179. 
+[13] Moutaouakil, Khalid El, Hamza Jdi, Brahim Jabir, and Noureddine 
+Falih. ”Dig ital Farming: A Survey on IoT -based Cattle Monitoring 
+Systems and Dash boards.” AGRIS on -line Papers in Economics and 
+Informatics 15, no. 2 (2023): 31-39. 
+[14] Poyyamozhi, Mukilan, Balasubramanian Murugesan, 
+Narayanamoorthi Ra jamanickam, Mohammad Shorfuzzaman, and 
+Yasser Aboelmagd. ”IoT —A 52 Promising Solution to Energy 
+Management in Smart Buildings: A Systematic Review, Applications, 
+Barriers, and Future Scope.” Buildings 14, no. 11 (2024): 3446. 
+[15] Islam, Sk Injamamul, Foysal Ahammad, and Haitham Mohammed. 
+”Cutting edge technologies for detecting and controlling fish diseases: 
+Current status, outlook, and challenges.” Journal of the World 
+Aquaculture Society 55, no. 2 (2024): e13051. 
+[16] Sharma, Kushagra, and Shiv Kumar Shivandu. ”Integrating artificial 
+intelli gence and internet of things (IoT) for enhanced crop monitoring 
+and manage ment in precision agriculture.” Sensors International 
+(2024): 100292. 
+[17] Jafar, Abbas, Nabila Bibi, Rizwan Ali Naqvi, Abolghasem Sadeghi -
+Niaraki, and Daesik Jeong. ”Revolutionizing agriculture with artificial 
+intelligence: plant disease detection methods, applications, and their 
+limitations.” Frontiers in Plant Science 15 (2024): 1356260. 
+[18] Liao, Yuxuan, Zhong Tang, Kun Gao, and Mohammad Trik. 
+”Optimization of resources in intelligent electronic health systems 
+based on Internet of Things to predict heart diseases via artificial neural 
+network.” Heliyon 10, no. 11 (2024). 
+[19] Michelena, ´ Alvaro, ´ Oscar Fontenla-Romero, and Jos´ e Luis Calvo-
+Rolle. ”A review and future trends of precision livestock over dairy and 
+beef cow cattle with artificial intelligence.” Logic Journal of the IGPL 
+(2024): jzae111. 
+[20] Zhao, Yanan, Lu Zhang, Aihua Wang, and Dong Zhou. ”Biosensor 
+Technol ogy: Advances and Applications in Livestock Infectious 
+Disease Diagnosis.” Veterinary Sciences 12, no. 1 (2025): 23. 
+Proceedings of the 3rd International Conference on Self Sustainable Artificial Intelligence Systems (ICSSAS-2025)
+IEEE Xplore Part Number: CFP25DN7-ART; ISBN: 979-8-3315-3884-2
+979-8-3315-3884-2/25/$31.00 ©2025 IEEE 537
+Authorized licensed use limited to: China Jiliang University. Downloaded on June 15,2026 at 12:13:06 UTC from IEEE Xplore. Restrictions apply.

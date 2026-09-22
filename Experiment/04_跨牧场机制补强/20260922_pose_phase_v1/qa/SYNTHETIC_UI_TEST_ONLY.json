@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "package_id": "615231d85537ed31fcce4e8e8f615809cbbdf764481cea22f489d4bab30ae93d",
+  "exported_at": "2026-09-22T06:19:09.575Z",
+  "prediction_overlay_shown": false,
+  "records": {
+    "R3-01_t00": {
+      "status": "pending",
+      "visibility": "pending",
+      "regions": {
+        "A": null,
+        "B": null
+      },
+      "notes": "",
+      "annotator": ""
+    },
+    "R3-01_t10": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": {
+          "cx": 486,
+          "cy": 633.5999785632622,
+          "rx": 54,
+          "ry": 57.5999785632622
+        },
+        "B": null
+      },
+      "notes": "",
+      "annotator": "SYNTHETIC_UI_TEST_NOT_REFERENCE",
+      "updated_at": "2026-09-22T06:19:09.543Z"
+    },
+    "R3-01_t20": {
+      "status": "pending",
+      "visibility": "pending",
+      "regions": {
+        "A": null,
+        "B": null
+      },
+      "notes": "",
+      "annotator": ""
+    }
+  },
+  "synthetic_test_only": true
+}

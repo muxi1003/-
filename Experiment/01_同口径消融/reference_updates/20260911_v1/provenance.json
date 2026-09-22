@@ -1,0 +1,9 @@
+{
+  "count_changes": 0,
+  "prediction_source_sha256": "e50f4168550c92d77497430217138de496056db5009228188b966fd6224a0f06",
+  "inference_rerun": false,
+  "parameter_tuning": false,
+  "default_changed": false,
+  "scope": "49 internal windows; 39 completed count labels, not confirmed event references",
+  "ablation_scope": "8 fixed-radius20 arms; historical baseline has a different ROI policy; do not attribute their difference to one factor"
+}

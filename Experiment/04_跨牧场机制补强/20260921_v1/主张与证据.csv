@@ -1,0 +1,12 @@
+claim_id,claim,evidence,status,boundary
+C01,整曲线质量选择改善内部计数,fusion_transfer/metrics.csv;fusion_transfer/rr_contrasts.csv,已验证内部同输入,F1G1P1对F0G1P1且为内部开发集
+C02,该模块外部稳定增益尚未证明,fusion_transfer/rr_contrasts.csv,回顾性点估计改善但区间跨0,不是新独立测试
+C03,同总数不代表事件相同,analysis_v3/count_event_cancellation.csv,已验证R2口径,未匹配可能包括相位时间误差
+C04,拒判解释部分而非全部久福FN,analysis_v3/loss_decomposition.csv,已验证,完整参考216窗而非全271窗
+C05,参考RR分布变化不是全部解释,analysis_v3/rr_strata.csv;analysis_v3/rr_distribution.csv,描述性诊断,不作热应激环境或牧场因果推断
+C06,来源门控局部化仍退化,analysis_v3/candidate_summary.csv,不采用且默认不变,来源掩码不是解剖可见性真值
+C07,播放按Q可能有时间偏差,review24/selection_protocol.json;analysis_v3/tolerance_sensitivity.csv,用户说明加待检验假设,R3未完成不能认定反应延迟是主因
+C08,温标偏差导致RR下降,中文论文初稿.md第5.3节,未证实,静态温差不能统一校正视频且纯仿射在限定归一化条件下抵消
+C09,已实现高精度跨场泛化,中文论文初稿.md结果与限制,禁止主张,R2外部173配对R2仅0.419629且事件F1为0.492010
+C10,可观测性约束的事件方法为有效创新,review24及稿件第5.4节,候选研究方向未验证,当前简单来源门控已否定且不能称原创门控思想
+C11,固定ROI与后处理不同不足以解释主要下降,common_cached_r20/metrics.csv;common_cached_r20/paired_mae_changes.csv,已运行缓存层控制,不能称完整原视频上游检测和温标已统一

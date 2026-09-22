@@ -1,0 +1,996 @@
+--- Page 1 ---
+ETH Library
+Learning end-to-end respiratory
+rate prediction of dairy cows from
+RGB videos
+Journal Article
+Author(s):
+Wang, Meiqing; Li, Siyuan; Peng, Rong 
+ ; Räisänen, Susanna 
+ ; Serviento, Aira Maye 
+ ; Sun, Xiaoge; Wang, Kai 
+ ; Yu,
+Fisher; Niu, Mutian 
+Publication date:
+2024-11
+Permanent link:
+https://doi.org/https://doi.org/10.3929/ethz-b-000686200
+Rights / license:
+Creative Commons Attribution 4.0 International
+Originally published in:
+Journal of Dairy Science 107(11), https://doi.org/10.3168/jds.2023-24601
+This page was generated automatically upon download from the ETH Zurich Research Collection.
+For more information, please consult the Terms of use.
+
+--- Page 2 ---
+9862
+ABSTRACT
+Respiratory rate (RR) is an important indicator of the 
+health and welfare status of dairy cows. In recent years, 
+progress has been made in monitoring the RR of dairy 
+cows using video data and learning methods. However, 
+existing approaches often involve multiple process-
+ing modules, such as region of interest (ROI) detection 
+and tracking, which can introduce errors that propagate 
+through successive steps. The objective of this study 
+was to develop an end-to-end computer vision method 
+to predict RR of dairy cows continuously and automati-
+cally. The method leverages the capabilities of a state-
+of-the-art Transformer model, VideoMAE, which divides 
+video frames into patches as input tokens, enabling 
+the automated selection and featurization of relevant 
+regions, such as a cow’s abdomen, for predicting RR. 
+The original encoder of VideoMAE was retained, and a 
+classification head was added on top of it. Further, the 
+weights of the first 11 layers of the pre-trained model 
+were kept, whereas the weights of the final layer and 
+classifier were fine-tuned using video data collected in 
+a tiestall barn from 6 dairy cows. Respiratory rates mea-
+sured using a respiratory belt for individual cows were 
+serving as the ground truth (GT). The evaluation of the 
+developed model was conducted using multiple metrics, 
+including mean absolute error (MAE) of 2.58 breaths per 
+minute (bpm), root mean squared error (RMSE) of 3.52 
+bpm, root mean squared prediction error (RMSPE; as a 
+proportion of observed mean) of 15.03%, and Pearson r 
+of 0.86. Compared with a conventional method involving 
+multiple processing modules, the end-to-end approach 
+performed better in terms of MAE, RMSE, and RMSPE. 
+These results suggest the potential to implement the 
+developed computer vision method for an end-to-end 
+solution, for monitoring RR of dairy cows automatically 
+in a tiestall setting. Future research on integrating this 
+method with other behavioral detection and animal iden-
+tification algorithms for animal monitoring in a freestall 
+dairy barn can be beneficial for a broader application.
+Key words: precision livestock farming, animal welfare, 
+computer vision, transformer, physiological parameters
+INTRODUCTION
+Health and welfare of dairy cows are essential from 
+food security and ethical perspective, as milk production 
+from dairy cows is a crucial part of ensuring global nu-
+tritional demands and offers economic livelihood to mil-
+lions (Tremetsberger and Winckler, 2015). Among vari-
+ous physiological indicators, respiratory rate (RR) serves 
+as a critical parameter of a cow’s health and welfare sta-
+tus. For example, increased RR is a primary subclinical 
+symptom of respiratory diseases, which, as reported by 
+the USDA National Animal Health Monitoring Service, 
+led to a mortality rate of 2.3% in calves aged between 
+birth and 16 wk (Gorden and Plummer, 2010; Ferraro et 
+al., 2021). In addition, RR plays a key role in monitoring 
+heat stress of animals, as it reflects their physiological 
+response to heat load, which is not immediately aligned 
+with environmental conditions due to cow-based factors, 
+such as breed, age, and production levels (Atkins et al., 
+2018). Unlike indices based solely on environmental 
+parameters, RR provides a direct measure of an animal’s 
+response, capturing the lag in physiological adaptation 
+to heat stress and offering a more accurate reflection 
+of individual cow’s experience (Atkins et al., 2018). 
+Therefore, keeping track of RR offers an opportunity 
+for detection of diseases, heat stress, and other adverse 
+conditions, allowing for timely interventions (Jorquera-
+Chavez et al., 2019) which is important in modern dairy 
+farming practices.
+Traditional methods for monitoring RR in dairy cows 
+involve manual observations of flank movement. This 
+approach is labor-intensive, and its accuracy can be in-
+fluenced by variability between different observers, mak-
+Learning end-to-end respiratory rate prediction of dairy 
+cows from red, green, and blue videos
+M. Wang,1 S. Li,1 R. Peng,1 S. E. Räisänen,1 A. M. Serviento,1 X. Sun,1 K. Wang,1 F. Yu,2 
+and M. Niu1* 
+1Department of Environmental Systems Science, Institute of Agricultural Sciences, ETH Zürich, 8092 Zürich, Switzerland 
+2Department of Information Technology and Electrical Engineering, ETH Zürich, 8092 Zürich, Switzerland
+ 
+J. Dairy Sci. 107:9862–9874
+https://doi.org/10.3168/jds.2023-24601
+© 2024, The Authors. Published by Elsevier Inc. on behalf of the American Dairy Science Association®. 
+This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+The list of standard abbreviations for JDS is available at adsa.org/jds-abbreviations-24. Nonstandard abbreviations are available in the Notes.
+Received December 22, 2023.
+Accepted July 3, 2024.
+*Corresponding author: mutian.niu@
+ usys .ethz .ch
+
+--- Page 3 ---
+9863
+Journal of Dairy Science Vol. 107 No. 11, 2024
+ing it less feasible, especially for large-scale operations 
+(Dißmann et al., 2022). With advancement in precision 
+technologies, a shift is present toward using contact-
+based approaches to predict and monitor RR (Handa and 
+Peschel, 2022). Although contact-based technologies 
+such as accelerometers, pressure sensors, and thermistors 
+can partially replace human observations, they also come 
+with challenges, such as discomfort for animals, altered 
+animals’ natural behavior, and maintenance issues such 
+as battery replacement (Handa and Peschel, 2022). Re-
+cently, noncontact monitoring solutions gained increas-
+ing attention thanks to their ability to address some of 
+these concerns. For instance, Yan et al. (2024) used en-
+vironmental variables such as ambient temperature and 
+relative humidity to predict RR. Although this method 
+is effective, it does not allow for the assessment of RR 
+on an individual basis. To date, improvements in camera 
+and computer vision (CPV) technologies have enabled 
+the monitoring of respiratory rates at the individual level 
+via video footage. Several studies have attempted to 
+predict RR of dairy cows using videos, predominantly 
+utilizing infrared thermography (IRT ), although, a trend 
+exists for using red, green, and blue (RGB) videos. For 
+techniques employing IRT, respiratory patterns were 
+identified by detecting temperature fluctuations between 
+the region of interest (ROI), typically around the nos-
+trils, and the ambient environment (Jorquera-Chavez et 
+al., 2019; Lowe et al., 2019; Zhao et al., 2023). Similarly, 
+by identifying ROI in RGB videos, Wu et al. (2020) and 
+Shu et al. (2024) computed RR based on the changes in 
+pixel intensity related to the cow’s breathing movements. 
+Although these methods have shown to be effective, they 
+depend on multiple processing modules that involve the 
+initial selection and tracking of the ROI, followed by the 
+estimation of RR from respective ROI. The sequential 
+nature of these methods introduced potential complica-
+tions because errors can be introduced during this process 
+and subsequently affect the accuracy of RR predictions. 
+This limitation is why such methods are only effective 
+for short-term predictions of RR, such as those spanning 
+30 s.
+Additionally, methods with multiple processing mod-
+ules might not be convenient for monitoring multiple 
+animals simultaneously in commercial settings, such as 
+a freestall dairy barn, given the increased complexity of 
+detecting and tracking multiple ROIs. In a freestall barn, 
+cows may obstruct other cows from the camera’s view-
+point, leading to partial or complete visual obstruction of 
+the ROI. These overlaps can result in losing target ROI or 
+switching the ROI to other cows. The task of monitoring 
+the RR is to consistently estimate it over specified time 
+intervals (e.g., every minute). The RR for each minute 
+can serve as the label for the video segment of that min-
+ute. This task was meant to accurately assign the labels 
+to their corresponding video segments. Essentially, this 
+represents the categorization of video clips based on 
+their contents, which is aligned with the well-established 
+challenge of video classification in CPV community. 
+Therefore, the RR monitoring task can be restructured as 
+a video classification challenge. This reconstruction aims 
+to simplify the process by eliminating intermediate steps, 
+reducing complexity, and minimizing potential technical 
+challenges. The objective of this study was to develop an 
+end-to-end method for monitoring RR from RGB video 
+data. We hypothesize that this method will outperform 
+conventional methods that involve multiple processing 
+modules. To achieve this, this study employed a state-of-
+the-art methodology known as Transformer (Vaswani et 
+al., 2017).
+MATERIALS AND METHODS
+Animal Experiment and Data Collection
+To perform the study, we collected an ample amount of 
+video and sensor data from dairy cows in a tiestall set-
+ting. The data includes high-quality video data for CPV 
+model consumption and ground-truth RR measurements 
+to train and test the model.
+Data were collected during an animal experiment 
+conducted from October 2022 to June 2023 at AgroVet-
+Strickhof, ETH Zürich, Switzerland, where it investi-
+gated nutritional strategies to decrease methane emis-
+sion in dairy cows (Ma et al., 2023). All procedures 
+were approved by the Cantonal Veterinary office of 
+Zürich, Switzerland (license no. ZH207/2021). The 
+current study used data from 6 dairy cows (1 Holstein 
+Friesian and 5 Brown Swiss) across 3 periods (period 
+1: November 2022; period 2: May 2023; period 3: June 
+2023). Each period involved 2 cows, and each cow was 
+individually kept in her designated stall in a tiestall 
+barn. For each cow, two 2-dimensional (D ) cameras 
+(DAHUA, model: DH-SD1A404XB-GNR, 2.8–12 mm 
+lens) were installed: one on the side and one above, to 
+capture abdominal movements related to respiration. 
+The cameras were linked to a DAHUA network video 
+recorder (NVR, model: DHI-NVR4216-16P-4KS2/L). 
+The NVR was responsible for the synchronization of 
+the cameras, and it automatically recorded and stored 
+videos on its internal hard drives. The positions of the 
+cameras and the infrastructure of the data collection 
+system are illustrated in Figure 1. Videos were recorded 
+continuously for 24 h in each period with a resolution of 
+2,560 × 1,440 pixels and 25 fps. The lighting in the barn 
+generally followed the natural daylight. No supplemen-
+tal lighting was provided at night, meaning that videos 
+from these intervals were captured in grayscale. Fol-
+lowing the recording, videos were screened through the 
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+
+--- Page 4 ---
+Journal of Dairy Science Vol. 107 No. 11, 2024
+9864
+NVR, and relevant clips were selected and saved for 
+further analysis.
+During the data collection periods, each cow wore an 
+Embla XactTrace Respiration Belt (product reference: 
+Single Use Cut-To-Fit Universal Respiratory Inductance 
+Plethysmography Belt) and a recording device (Embletta 
+MPR PG) to collect the RR measurement serving as the 
+ground truth (GT) for the CPV method. The elastic belt 
+measures RR based on Respiratory Inductance Pleth-
+ysmography (RIP), which is embedded with wire coils 
+placed around the chest and abdomen. The expansion and 
+contraction of the chest and abdomen cause the coils to 
+stretch and relax, leading to changes in their inductance. 
+These inductance changes are detected by connected 
+electronics, which then produce an electrical signal cor -
+responding to the magnitude of change. Respiratory rate 
+can be calculated by analyzing the frequency and pattern 
+of these signals. A RIP-based device has been demon-
+strated to work well in measuring RR for humans (Ranta 
+et al., 2019). Generally, the respiratory patterns around 
+the abdomen of cows are clearer compared with humans; 
+thus this study used the RR measurement collected by 
+the respiratory belt as GT. The position of the belt was 
+monitored every 30 min during the data collection and 
+adjusted if needed.
+Data Selection
+To facilitate model training and analysis, we select rep-
+resentative video clips and scenarios from the large-scale 
+data described above. The extraction of RR from RGB 
+videos relies on the computation of RGB values in the 
+image, which can significantly fluctuate under varying 
+lighting conditions. Videos captured during daylight are 
+in color, whereas those taken at night are in grayscale. 
+To ensure a comprehensive analysis, this study selected 
+videos obtained during both day- and night-time, and 
+from both top and side view (Figure 2).
+The essence of RR prediction from video relies on 
+identifying the periodic patterns associated with RR 
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+Figure 1. Illustration of the position of cameras (indicated with red circles): (a) side view; (b) top view. (c) Diagram of the data collection pipeline 
+infrastructure.
+
+--- Page 5 ---
+9865
+Journal of Dairy Science Vol. 107 No. 11, 2024
+around the abdominal region. However, when a cow 
+is moving, these patterns become less recognizable. 
+Figure 3 illustrates the raw readings obtained from the 
+respiratory belt over 1-min intervals of the same cow, 
+comparing its moving and resting states, respectively, 
+further indicating that the respiratory patterns are clear 
+and periodic when the cow is resting based on our data. 
+Therefore, to build a model with more precise GT data, 
+the current study selected videos wherein cows were in 
+resting status with minimal movement. Minor distur -
+bances such as eructation, occurs approximately once per 
+minute in dairy cows, are inevitable and were deemed 
+acceptable in the video selection process. Additionally, 
+motion artifacts from the background, such as move-
+ments from other cows, are also acceptable. This can 
+help with training a more robust model. Based on this 
+selection criteria, a total of 18 video segments (18.18 ± 
+13.73 min; mean ± SD; Table 1) were identified to train 
+and test the model. Further details regarding the samples 
+can be found in Table 1.
+End-to-End RR Prediction from Videos
+To briefly introduce the concept of Transformer, we 
+adopt a similar naming convention as in Vaswani et al. 
+(2017). Let v denote the video, and patch
+i,j,t represents a 
+3D patch from v with a width w , height h , and duration 
+d in time. Each frame in the video sequence is divided 
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+Figure 2. Frame example illustrating the 4 video capture scenarios: (a) side view during the day; (b) top view during the day; (c) side view at 
+night; (d) top view at night.
+Table 1. Summary of the selected samples
+Specification Value
+Samples (n) 18
+Total length (min:s) 327:20
+Total frames (n) 491,000
+Minimum length (min) 5
+Mean (min:s) 18:11
+Maximum length (min:s) 52:46
+SD (min:s) 13:44
+Videos collected during day (n) 8
+Videos collected during night (n) 10
+Videos collected from side view (n) 11
+Videos collected from top view (n) 7
+
+--- Page 6 ---
+Journal of Dairy Science Vol. 107 No. 11, 2024
+9866
+into fixed-size image patches (w × h ), and a sequential 
+collection of these patches across a specified time dura-
+tion (d ) from multiple frames is aggregated to form video 
+batches. Each 3D patch is converted into a 1D vector 
+through the “flatten” function as described in Equation 
+1, followed by a linearly embedding into a higher-dimen-
+sional space apt for model processing. This is crucial for 
+reducing dimensions to comply with the linear embed-
+ding layer’s requirement for 1D input, ensuring uniform 
+patch size for efficient batch processing, and maintaining 
+the integrity of information by reconfiguring the shape 
+without discarding any original values, thus allowing the 
+model to leverage the full information contained within 
+each patch in subsequent processing phases.
+ patch i,j,t = [v (i: i + w, j: j + h, t: t + d)], [1]
+ token i,j,t = We × patch i,j,t + be, [2]
+where We and b e are the embedding weights and biases. 
+Note that spatial and temporal positional information 
+embeddings are also added to tokens to retain positional 
+information.
+The input is projected onto W
+Q, WK, and W V weight 
+metrics to compute the queries (Q ), keys (K ), and values 
+(V). Queries act as probes within the data set, searching 
+for relevant pieces of information. K function as identi-
+fiers, enabling Q to evaluate which parts of the data are 
+pertinent by comparing against them. Values hold the 
+actual information that Q seek, with their importance 
+gauged by the degree of match between the Q and their 
+respective K, ensuring the model emphasizes the most 
+pertinent details for processing. The process unfolds as 
+follows: given a piece of input data, a q is formulated. 
+This q is then compared against all K to assess their 
+relevance. The closer a k aligns with q , the greater the 
+attention weight assigned to its associated v . These atten-
+tion weights are then used to amalgamate the V , yielding 
+an attention score that accentuates the information most 
+applicable in response to the q . Figure 4a illustrates a 
+single-head self-attention block.
+ Q = token × W Q, [3]
+ K = token × W K, [4]
+ V = token × W V, [5]
+ Attentions oftmaxQK V QK
+d
+V
+T
+k
+,  ,   ,() =
+
+
+
+
+
+
+
+
+
+
+
+ [6]
+ [dk = dq, corresponding to the dimension of W k and W Q].
+In single-head self-attention, the input is processed once 
+to generate Q , K, and V matrices. However, for complex 
+vision tasks such as video classification, multihead at-
+tention is usually employed, which replicates the single-
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+Figure 3. Respiratory rate patterns obtained from the respiratory belt in 1-min intervals when: (a) a cow is significantly moving; (b) the cow is 
+resting. The time between 2 consecutive peaks is considered as one respiratory cycle.
+
+--- Page 7 ---
+9867
+Journal of Dairy Science Vol. 107 No. 11, 2024
+head mechanism multiple times in parallel, each with 
+different sets of weight matrices. These parallel “heads” 
+allow the model to focus on different aspects or features 
+of the input simultaneously. After processing through 
+all heads, their respective outputs are concatenated and 
+passed through a final linear layer to produce the mul-
+tihead attention output. The construction of multihead 
+attention is illustrated in Figure 4b.
+In this study, to adapt the Transformer model (Vaswani 
+et al., 2017) for RR prediction, videos were initially seg-
+mented into patches and transformed into a series of vec-
+tors through linearly encoding. Positional encodings were 
+then added to retain spatial context within the sequence. 
+Following this, the model’s self-attention mechanism 
+computed attention scores, allowing it to prioritize video 
+patches based on their relevance to each other. This was 
+a key advancement in RR prediction, as it permitted the 
+model to dynamically focus on patches that are indica-
+tive of respiratory patterns, such as the movement of the 
+cow’s flank. The focused attention on these significant 
+video segments enabled the Transformer model to parse 
+out temporal and spatial features critical for accurate 
+RR prediction. The model subsequently employed these 
+features to estimate RR values using a regression layer at 
+the end of the Transformer architecture, translating the 
+feature data into quantified RR values.
+The training of self-attention-based Transformer 
+models generally involves 2 phases: first, pre-training 
+is performed on a large-scale data set (and sometimes a 
+combination of several available data sets), and later, the 
+pre-trained weights are adapted to the downstream tasks 
+using small-scale data sets. Examples of downstream 
+tasks include video classification, object detection, 
+question-answering, image generation and so on. This 
+pre-training phase demands substantial computational 
+resources, and constructing such large data sets often 
+requires significant efforts, such as rigorous labeling. 
+Given these resource intensive prerequisites, this study 
+followed the second phase and leveraged a pre-trained 
+model and find-tuned it further using the RR monitoring 
+data set.
+The pre-trained model used in this study was Video-
+MAE from Tong et al. (2022). VideoMAE was originally 
+developed for video classification, particularly showing 
+good performance when training on small-scale data sets. 
+The original VideoMAE model adopted a high masking 
+ratio, which reduced computational complexity but still 
+had favorable performance. Further details regarding 
+the model’s architecture can be found in Tong et al. 
+(2022). Based on the architecture, several pre-trained 
+models were provided to the public (https:
+ / / huggingface 
+.co/ MCG -NJU). The one used in this study is the base 
+model, which was trained on Kinetics-400 (Kay et al., 
+2017) over 1,600 epochs (https:
+ / / huggingface .co/ MCG 
+-NJU/ VideoMAE -base).
+We kept the encoder part of the model, which includes 
+12 hidden layers, and each layer has 12 attention heads. 
+The decoder part in the raw model architecture was 
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+Figure 4. The structure of (a) the single-head self-attention block and (b) multihead attention, which consists of multiple attention layers running 
+in parallel. Concat = concatenation.
+Table 2. The configurations for the training parameters
+Training parameter Configuration
+Batch size 4
+Learning rate 5e-5
+epoch 50
+Warmup ration 0.1
+Gradient accumulation step 4
+Flip augmentation Yes
+
+--- Page 8 ---
+Journal of Dairy Science Vol. 107 No. 11, 2024
+9868
+not kept. A classification head was added on top of the 
+encoder, which contains a fully connected linear layer 
+mapping the encoder’s output features to the classifica-
+tion labels. The detail of the architecture is illustrated in 
+Figure 5. The selected videos were segmented to shorter 
+clips, each lasting 1 min, with an overlap of 30 s between 
+consecutive clips. A total of 538 clips were derived from 
+17 videos. This resulted in a total duration of 538 min 
+and a total of 807,000 frames for training and testing the 
+model. Data from 4 cows were allocated for training, and 
+data from 1 cow each were selected for validation and 
+testing, respectively. This process was repeated 6 times, 
+ensuring that data from each cow was tested once inde-
+pendently. Note that the longest video in the data set, 
+with a duration of 52 min and 46 s, was excluded from the 
+training, validation, and testing sets. Instead, this video 
+was segmented into 104 video clips, which were used to 
+assess the model’s performance in continuous monitor -
+ing scenarios, thus providing a more robust evaluation. 
+For each video clip, 64 frames were uniformly extracted, 
+and each frame was resized to a resolution of 224 × 224 
+pixels. To fine-tune the model in an efficient way, the 
+weights of the first 11 layers were frozen in this study, 
+meaning that the weights of the last layer and the classifi-
+cation head were retrained in this study. The fine-tuning 
+was conducted on 2 GPUs (NVIDIA GeForce RTX 4090) 
+with 24 GB memory each, and each training took ~4 h. 
+The details of training parameters and configurations are 
+displayed in Table 2.
+Model Comparison with a Conventional Multimodule 
+Processing Method
+In this study, we conducted a comprehensive com-
+parison between our end-to-end approach and a conven-
+tional multimodule processing method frequently used 
+in previous research (Massaroni et al., 2018; Khanam et 
+al., 2019). The workflow of the method is illustrated in 
+Figure 6. This conventional approach involves initially 
+selecting the ROI manually, followed by predicting the 
+RR from this selected ROI. Specifically, the abdomen 
+area was chosen as the ROI, as depicted in Figure 7, and 
+the prediction of RR from this area was carried out using 
+fast Fourier transform (FFT) technique.
+Unlike the end-to-end method, the conventional meth-
+od does not require a training phase, thus all 18 videos 
+were directly processed using this approach. Each video 
+was segmented into shorter clips using a sliding window. 
+These windows were 3 min in length, with a 1-min over -
+lap between successive windows. This window duration 
+was chosen to balance the trade-off between time and 
+frequency resolution in the FFT analysis. A longer win-
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+Figure 5. Model overview. The video was split into fixed-size patches, which were then linearly embedded and fed to the VideoMAE encoder. To 
+perform classification, an extra learnable classification head was added on top of the encoder.
+Figure 6. Workflow of the generic method for respiratory rate (RR) prediction based on multiple processing modules.
+
+--- Page 9 ---
+9869
+Journal of Dairy Science Vol. 107 No. 11, 2024
+dow improves frequency resolution, facilitating easier 
+identification of the RR frequency, but at the expense 
+of time resolution. Regarding computational require-
+ments, the conventional method is not computationally 
+intensive. Therefore, the analysis was performed on a 
+MacBook Pro equipped with 16 GB of memory. Note 
+that the computation time for the generic method was not 
+recorded. This omission was due to the variability in the 
+time taken to manually select the ROI, as this duration 
+can differ significantly among individuals.
+Model Evaluation
+Following the common practice, mean absolute error 
+(MAE), root mean square error (RMSE) and root mean 
+squared prediction error (RMSPE; as a proportion of 
+observed RR mean) were employed in this study to as-
+sess the model’s performance. The definitions of MAE, 
+RMSE, and RMSPE can be found in Equations 7, 8, and 
+9, respectively. Additionally, correlation and agreement 
+analyses were conducted to further validate the model’s 
+accuracy and reliability.
+ MAE =
+∑−rr rr
+n
+gt CPV
+, [7]
+ RMSE =
+∑−()rr rr
+n
+gt CPV
+2
+, [8]
+ RMSPE RMSE
+mean
+=
+()
+×
+rrgt
+100%, [9]
+where rrgt and rrCPV represent the RR values from GT and 
+the developed CPV method, respectively, with n being 
+the total number of RR values.
+RESULTS AND DISCUSSION
+The attention mechanism, used in the current study, 
+within Transformers enables the videoMAE model to 
+assign varying weights to different patches of an image. 
+It can focus on critical areas, such as the abdomen, to 
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+Figure 7. Illustration of manual selection of region of interest (ROI; red square) in the generic method involving multiple processing modules.
+Table 3. Comparison of respiratory rate predicted by computer vision (CPV) with the ground truth (GT) on the test set (averaged over 6 test sets) 1
+Method Minimum (bpm) Mean (bpm) Maximum (bpm) SD (bpm)
+MAE 
+(bpm)
+RMSE 
+(bpm)
+RMSPE 
+(%) Pearson r
+CPV 16.67 25.23 39.50 6.95 2.58 3.52 15.03 0.86***
+GT 16.50 24.70 40.33 7.55
+***P < 0.001.
+1bpm = breaths per minute.
+
+--- Page 10 ---
+Journal of Dairy Science Vol. 107 No. 11, 2024
+9870
+recognize their importance for respiration. By giving 
+priority to these regions, the model was thereby able 
+to effectively learn and extract breathing patterns from 
+videos, leading to accurate RR predictions as described 
+below.
+Results from End-to-End Method
+The model evaluation outputs from the end-to-end 
+method averaged over the 6 test sets are presented in 
+Table 3. The MAE, RMSE, RMSPE, and Pearson r were 
+2.58 breaths per minute (bpm), 3.52 bpm, 15.03%, and 
+0.86, respectively. The Pearson r and the regression from 
+the highest-performing test sets displayed in Figure 8(a), 
+together, show a strong correlation with the GT. Further -
+more, the Bland-Altman plot shown in Figure 8(b) dem-
+onstrates good agreement between the RR values derived 
+from both CPV and GT.
+To assess the model’s performance during different 
+periods, RR predictions corresponding to the GT from 
+video clips recorded during day and night were com-
+pared. Note that the results shown in Table 4 were calcu-
+lated based on the average from the 6 test sets. The Pear -
+son r derived from the daytime clips was 0.88, which is 
+higher than that obtained during night-time, with values 
+of 0.84. However, the MAE, RMSE, and RMSPE from 
+night-time clips were lower at 2.13 bpm, 3.26 bpm, and 
+13.79%, respectively, compared with 2.59 bpm, 3.68 
+bpm, and 14.64% for the daytime clips. The findings 
+suggest the model performed better at night-time. This 
+may be due to fewer movement artifacts at night, such 
+as disturbances from other cows, which are reduced be-
+cause cows are more likely to rest and lie down during 
+these hours.
+Additionally, Figure 9 displays the evaluation results 
+obtained from the long video: the RR captured by the GT 
+against the predictions made by the CPV method, illus-
+trating the continuous monitoring capabilities of the CPV 
+method. Table 5 shows specific outcomes, listing MAE 
+as 2.49 bpm, RMSE as 2.91 bpm, the RMSPE as 8.78%, 
+and the Pearson r as 0.74. The results demonstrate the 
+applicability for continuous RR monitoring in a different 
+scenario, indicating its potential application in animal 
+health monitoring to improve farm management.
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+Table 4. Comparison of model performance during the day and night on the test set (averaged over 6 test sets) 1
+Time Method Minimum (bpm) Mean (bpm) Maximum (bpm) SD (bpm)
+MAE 
+(bpm)
+RMSE 
+(bpm)
+RMSPE 
+(%) Pearson r
+Day CPV 16.77 23.46 39.43 6.67 2.59 3.68 14.64 0.88***
+ GT 16.82 24.10 39.88 6.94
+Night CPV 17.26 24.65 39.71 6.33 2.13 3.26 13.79 0.84***
+ GT 17.09 25.29 39.63 7.52
+***P < 0.001.
+1bpm = breaths per minute.
+Figure 8. (a) Regression analysis of the relationship between respiratory rate (RR) obtained from ground truth (GT) and the predictions using 
+the end-to-end method (95% CI; bpm = breaths per minute). (b) Bland-Altman plot showing the agreement between RR obtained from GT and the 
+predictions using the end-to-end method. In panel b, the outer dashed lines indicate 95% CI; the solid line indicates mean of the difference between 
+GT and CPV .
+
+--- Page 11 ---
+9871
+Journal of Dairy Science Vol. 107 No. 11, 2024
+Results Comparison with the Conventional Method
+Our approach employed an end-to-end CPV model tai-
+lored to predict RR directly from RGB videos, eliminat-
+ing the need for manual ROI selection. This method sim-
+plifies the process compared with traditional techniques, 
+which typically require multiple processing steps that 
+can lead to the accumulation of errors. Table 6 shows the 
+results of the conventional method when compared with 
+the GT. In terms of MAE, RMSE, and RMSPE, the con-
+ventional method underperformed relative to the results 
+obtained from the end-to-end method, as shown in Table 
+4. However, it exhibited a higher r. In addition, the SD 
+of the prediction results from the end-to-end method was 
+6.95, which is less than that of the conventional method, 
+which had a SD of 10.01. This increased variability could 
+come from the manual selection of the ROI, a process 
+lacking standardization and potentially introducing bias. 
+Figure 10 presents both the regression and Bland-Altman 
+plots in comparison to the GT, further illustrating the 
+conventional method’s inferior performance in relation to 
+the end-to-end approach. Considering both performance 
+metrics and practical applicability, the findings indicate 
+that the end-to-end method for RR prediction enhances 
+both the precision and dependability of RR measure-
+ments and their practical use in actual farming scenarios. 
+This advancement is particularly pertinent in the current 
+shift toward noninvasive and automated monitoring solu-
+tions within precision livestock farming. Such progress 
+is in step with the broader objective of improving animal 
+health and welfare via technological innovation. Utiliz-
+ing readily accessible video data to evaluate a vital physi-
+ological indicator such as RR demonstrates its capacity 
+to provide a significant, albeit modest, advancement in 
+the field. This method offers a scalable and efficient 
+means of monitoring livestock health and seeks to aug-
+ment current practices by prioritizing both accessibility 
+and precision.
+Implications and Future Perspectives
+In the current study, videos were selected wherein 
+cows were in resting status with minimal movement. This 
+selection criterion was established primarily because 
+videos with minimal motion artifacts had more reliable 
+GT. Although videos of good GT quality with slight 
+movements of cows exist, the current study decided not 
+to use them. Such a decision was based on findings from 
+previous studies (e.g., Lowe et al., 2019; Wu et al., 2020; 
+Zhao et al., 2023), where it was suggested that move-
+ment artifacts could affect the model’s performance. This 
+aligns with the common practice of traditional approaches 
+with multiple processing modules. To validate whether 
+predicting RR using videos with more animal movements 
+have a comparable result, model development and evalu-
+ation based on more comprehensive data sets is required. 
+Training with such an expanded data set demands more 
+computational capabilities, especially when employing 
+architectures such as the Transformer model, which has 
+a substantial number of parameters (Khan et al., 2022).
+Regarding the collection of GT data for cows’ RR, 
+manually counting the flank movements in videos has 
+been the predominant method used in prior studies 
+(Jorquera-Chavez et al., 2019; Wu et al., 2020; Zhao 
+et al., 2023; Shu et al., 2024; Yan et al., 2024) . These 
+studies have been exclusively focusing on cows without 
+movements. To the best our knowledge, no existing study 
+has managed to collect RR reference as cows are consis-
+tently moving, due to the above-mentioned challenges. 
+However, dairy cows generally spend ~12 h/d lying 
+down (Tucker et al., 2021), it is plausible to acquire sub-
+stantial RR data during these significant periods of rest. 
+In addition, abrupt changes in RR, potentially caused by 
+acute stressors such as injuries, are often accompanied 
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+Figure 9. Illustration of the evaluation results on the long video: 
+respiratory rate (RR) measured by the ground truth (GT) against the 
+predictions derived from the computer vision (CPV) method.
+Table 5. Comparison of respiratory rate predicted by computer vision (CPV) with the ground truth (GT) on the long videos 1
+Method
+Minimum 
+(bpm) Mean (bpm) Maximum (bpm) SD (bpm)
+MAE 
+(bpm)
+RMSE 
+(bpm)
+RMSPE 
+(%) Pearson r
+CPV 23 31.77 47 3.75 2.49 2.91 8.78 0.74***
+GT 20 33.13 52 4.43
+***P < 0.001.
+1bpm = breaths per minute.
+
+--- Page 12 ---
+Journal of Dairy Science Vol. 107 No. 11, 2024
+9872
+by noticeable behavioral changes. In these cases, behav-
+ioral measurements might offer a more immediate and 
+precise indication of the cow’s condition, rather than RR. 
+Predicting the RR during the resting phases, particularly 
+when the movements are minimal, can be considered as a 
+more readily available technology to be implemented and 
+may be sufficient for routine monitoring of farm animals.
+The focus on behavior detection in dairy cows, such 
+as identifying lying behavior, has grown in recent stud-
+ies due to its significance in assessing heat stress and 
+mastitis risks (Porto et al., 2013; Heinicke et al., 2021; 
+McDonagh et al., 2021). Adopting a methodology akin 
+to ours might be beneficial in identifying lying behavior 
+as a preliminary step to determining RR. This advance-
+ment could facilitate the development of an automated 
+RR prediction system, designed for monitoring multiple 
+subjects in freestall barn environments. Enhancements to 
+this approach, including the integration of cow detection 
+and individual identification, would enable a more per -
+sonalized monitoring of well-being, utilizing RR as a key 
+health indicator for each cow.
+The end-to-end RR monitoring method, whether used 
+for research purposes to compare different algorithms 
+or on-farm monitoring, is currently challenged by the 
+computational power required. This is similar with other 
+computer vision-based methods developed for other 
+purposes. Given the rapid advancements in hardware, 
+it is becoming increasingly important to know how to 
+implement and train robust large models on advanced 
+hardware platforms for agricultural applications. Once 
+the developed method is capable of analyzing larger data 
+sets, then its potential will be elucidated, leading to true 
+value creation by improving our knowledge and imple-
+menting RR monitoring for animal welfare assessment 
+and disease prediction.
+CONCLUSIONS
+The current study presents an end-to-end RR monitor -
+ing method for dairy cows. By reformulating the RR ex-
+traction as a video classification problem, a state-of-the-
+art CPV model, VideoMAE, was used to extract features 
+from the ROI automatically. This method allows for RR 
+to be monitored directly from videos without multiple 
+processing modules. Compared with the GT obtained 
+from the respiratory belt, the method achieved a MAE of 
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+Table 6. Comparison of respiratory rate (RR) predicted by the conventional method involving multiple processing modules with the ground truth 
+(GT)1
+Method Min. (bpm) Mean (bpm) Max. (bpm)
+Standard 
+deviation (bpm)
+MAE 
+(bpm)
+RMSE 
+(bpm)
+RMSPE 
+(%)
+Pearson 
+correlation (r)
+CM 16.85 27.85 49.80 10.01 3.47 4.85 17.43 0.87***
+GT 12 28.51 46 9.07
+***(P < 0.001).
+1bpm: breaths per minute.
+Figure 10. (a) Regression analysis of the relationship between respiratory rate (RR) obtained from ground truth (GT) and the predictions using 
+the conventional method (95% CI; bpm: breaths per minute). (b) Bland-Altman plot showing the agreement between RR obtained from GT and the 
+predictions using the conventional method. In panel b, the outer dashed lines indicate 95% CI; the solid line indicates mean of the dif ference between 
+GT and CPV .
+
+--- Page 13 ---
+9873
+Journal of Dairy Science Vol. 107 No. 11, 2024
+2.58 bpm, RMSE of 3.52 bpm, RMSPE of 15.03%, and a 
+Pearson r of 0.86, averaged across the 6 test sets. When 
+compared with the conventional method, which involves 
+multiple processing modules, the end-to-end method 
+showed better performance in terms of MAE, RMSE, 
+and RMSPE. The developed method could be combined 
+with lying behavior detection and identification algo-
+rithms for monitoring RR of multiple cows in freestall 
+barn settings. With ongoing advancements in hardware 
+technology, future work should focus on implementing 
+and training robust large models on advanced hardware 
+platforms.
+NOTES
+The authors want to thank the barn staff at AgroVet-
+Strickhof in Eschikon (Lindau, Switzerland) for their 
+care of the experimental cows and technical assistance 
+with data collection. The data will be available upon 
+request to the authors. All procedures were approved by 
+the Cantonal Veterinary office of Zürich, Switzerland 
+(license no. ZH207/2021). The authors have not stated 
+any conflicts of interest.
+Nonstandard abbreviations used: bpm = breaths per 
+minute; CPV = computer vision; D = dimensional; FFT 
+= fast Fourier transform; GT = ground truth; IRT = in-
+frared thermography; MAE = mean absolute error; NVR 
+= network video recorder; RGB = red, green, and blue; 
+RIP = respiratory Inductance Plethysmography; RMSE 
+= root mean squared error; RMSPE = root mean squared 
+prediction error; ROI = region of interest; RR = respira-
+tory rate.
+REFERENCES
+Atkins, I. K., N. B. Cook, M. R. Mondaca, and C. Y . Choi. 2018. Con-
+tinuous respiration rate measurement of heat-stressed dairy cows and 
+relation to environment, body temperature, and lying time. Trans. 
+ASABE 61:1475–1485. https:
+ / / doi .org/ 10 .13031/ trans .12451.
+Dißmann, L., J. Heinicke, K. C. Jensen, T
+. Amon, and G. Hoffmann. 
+2022. How should the respiration rate be counted in cattle? Vet. 
+Res. Commun. 46:1221–1225. https:
+ / / doi .org/ 10 .1007/ s11259 -022 
+-09984 -7.
+Ferraro, S., G. Fecteau, J. Dubuc, D. Francoz, M. Rousseau, J.-P. Roy
+, 
+and S. Buczinski. 2021. Scoping review on clinical definition of bo-
+vine respiratory disease complex and related clinical signs in dairy 
+cows. J. Dairy Sci. 104:7095–7108. https:
+ / / doi .org/ 10 .3168/ jds .2020 
+-19471.
+Gorden, P. J., and P. Plummer
+. 2010. Control, management, and preven-
+tion of bovine respiratory disease in dairy calves and cows. Vet. Clin. 
+North Am. Food Anim. Pract. 26:243–259. https:
+ / / doi .org/ 10 .1016/ 
+j .cvfa .2010 .03 .004.
+Handa, D., and J. M. Peschel. 2022. A
+ review of monitoring techniques 
+for livestock respiration and sounds. Front. Anim. Sci. 3:904834. 
+https:
+ / / doi .org/ 10 .3389/ fanim .2022 .904834.
+Heinicke, J., A. Ott, C. 
+Ammon, and T. Amon. 2021. Heat load-induced 
+changes in lying behavior and lying cubicle occupancy of lactating 
+dairy cows in a naturally ventilated barn. Ann. Anim. Sci. 21:1543–
+1553. https:
+ / / doi .org/ 10 .2478/ aoas -2020 -0113.
+Jorquera-Chavez, M., S. Fuentes, F
+. R. Dunshea, R. D. Warner, T. 
+Poblete, and E. C. Jongman. 2019. Modelling and validation of 
+computer vision techniques to assess heart rate, eye temperature, 
+ear-base temperature and respiration rate in cattle. Animals (Basel) 
+9:1089. https:
+ / / doi .org/ 10 .3390/ ani9121089.
+Kay, 
+W., J. Carreira, K. Simonyan, B. Zhang, C. Hillier, S. Vijayanara-
+simhan, F. Viola, T. Green, T. Back, P. Natsev, and M. Suleyman. 
+2017. The kinetics human action video dataset. arXiv:
+ 1705 .06950.
+Khan, S., M. Naseer, M. Hayat, S. W. Zamir
+, F. S. Khan, and M. Shah. 
+2022. Transformers in vision: A survey. ACM Comput. Surv. 54:1–
+41. https:
+ / / doi .org/ 10 .1145/ 3505244.
+Khanam, F.-T
+.-Z., A. Al-Naji, and J. Chahl. 2019. Remote monitoring 
+of vital signs in diverse non-clinical and clinical scenarios using 
+computer vision systems: A review. Appl. Sci. (Basel) 9:4474. https:
+ 
+/ / doi .org/ 10 .3390/ app9204474.
+Lowe, G., M. Sutherland, J. W
+aas, A. Schaefer, N. Cox, and M. Stewart. 
+2019. Infrared thermography—A non-invasive method of measuring 
+respiration rate in calves. Animals (Basel) 9:535. https:
+ / / doi .org/ 10 
+.3390/ ani9080535.
+Ma, X., S. Räisänen, S. Amelchanka, K. Giller
+, I. Zakirul, L. Yang, P. 
+Rong, M. Reichenbach, I. Müller, and N. Mutian. 2023. Comparison 
+of dry matter intake, production, and enteric methane emissions in 
+dairy cows housed in respiration chambers vs. a head-chamber sys-
+tem. Pages 355–356 in GreenFeed. P. Kononoff, ed. Elsevier.
+Massaroni, C., D. S. Lopes, D. Lo Presti, E. Schena, and S. Silvestri. 
+2018. Contactless monitoring of breathing patterns and respiratory 
+rate at the pit of the neck: A single camera approach. J. Sens. 2018:1. 
+https:
+ / / doi .org/ 10 .1155/ 2018/ 4567213.
+McDonagh, J., G. Tzimiropoulos, K. R. Slinger
+, Z. J. Huggett, P. M. 
+Down, and M. J. Bell. 2021. Detecting dairy cow behavior using 
+vision technology. Agriculture 11:675. https:
+ / / doi .org/ 10 .3390/ 
+agriculture11070675.
+Porto, S. M. C., C. Arcidiacono, U. 
+Anguzza, and G. Cascone. 2013. A 
+computer vision-based system for the automatic detection of lying 
+behaviour of dairy cows in free-stall barns. Biosyst. Eng. 115:184–
+194. https:
+ / / doi .org/ 10 .1016/ j .biosystemseng .2013 .03 .002.
+Ranta, J., T
+. Aittokoski, M. Tenhunen, and M. Alasaukko-Oja. 2019. 
+EMFIT QS heart rate and respiration rate validation. Biomed. Phys. 
+Eng. Express 5:025016. https:
+ / / doi .org/ 10 .1088/ 2057 -1976/ aafbc8.
+Shu, H., J. Bindelle, and X. Gu. 2024. Non-contact respiration rate mea-
+surement of multiple cows in a free-stall barn using computer vision
+ 
+methods. Comput. Electron. Agric. 218:108678. https: / / doi .org/ 10 
+.1016/ j .compag .2024 .108678.
+Tong, Z., 
+Y . Song, J. Wang, and L. Wang. 2022. Videomae: Masked 
+autoencoders are data-efficient learners for self-supervised video 
+pre-training. Adv. Neural Inf. Process. Syst. 35:10078–10093.
+Tremetsberger, L., and C. Winckler. 2015. Effectiveness of animal 
+health and welfare planning in dairy herds: A review. Anim. Welf. 
+24:55–67. https:
+ / / doi .org/ 10 .7120/ 09627286 .24 .1 .055.
+Tucker
+, C. B., M. B. Jensen, A. M. de Passillé, L. Hänninen, and J. Rush-
+en. 2021. Invited review: Lying time and the welfare of dairy cows. 
+J. Dairy Sci. 104:20–46. https:
+ / / doi .org/ 10 .3168/ jds .2019 -18074.
+Vaswani, 
+A., N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, 
+Ł. Kaiser, and I. Polosukhin. 2017. Attention is all you need. Pages 
+5998–6008 in 31st Conference on Neural Information Processing 
+Systems, Long Beach, CA.
+Wu, D., X. Yin, B. Jiang, M. Jiang, Z. Li, and H. Song. 2020. Detection 
+of the respiratory rate of standing cows by combining the Deeplab 
+V3+ semantic segmentation model with the phase-based video mag-
+nification algorithm. Biosyst. Eng. 192:72–89. https:
+ / / doi .org/ 10 
+.1016/ j .biosystemseng .2020 .01 .012.
+Yan, G., 
+W. Zhao, C. Wang, Z. Shi, H. Li, Z. Yu, H. Jiao, and H. Lin. 
+2024. A comparative study of machine learning models for respi-
+ration rate prediction in dairy cows: Exploring algorithms, feature 
+engineering, and model interpretation. Biosyst. Eng. 239:207–230. 
+https:
+ / / doi .org/ 10 .1016/ j .biosystemseng .2024 .01 .010.
+Zhao, K., Y
+. Duan, J. Chen, Q. Li, X. Hong, R. Zhang, and M. Wang. 
+2023. Detection of respiratory rate of dairy cows based on infrared 
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS
+
+--- Page 14 ---
+Journal of Dairy Science Vol. 107 No. 11, 2024
+9874
+thermography and deep learning. Agriculture 13:1939. https: / / doi 
+.org/ 10 .3390/ agriculture13101939.
+ORCIDS
+M. Wang https: / / orcid .org/ 0000 -0001 -7675 -5483
+R. Peng https: / / orcid .org/ 0000 -0003 -4167 -897X
+S. E. Räisänen https: / / orcid .org/ 0000 -0001 -9199 -7026
+A. M. Serviento https: / / orcid .org/ 0000 -0002 -2166 -0791
+X. Sun https: / / orcid .org/ 0000 -0002 -0866 -2792
+K. Wang https: / / orcid .org/ 0000 -0002 -6672 -1121
+M. Niu https: / / orcid .org/ 0000 -0003 -4484 -4611
+Wang et al.: RESPIRATORY RATE PREDICTION BY VIDEOS

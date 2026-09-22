@@ -1,0 +1,11 @@
+{
+  "windows": 320,
+  "reference_events": 0,
+  "unobservable_intervals": 0,
+  "prior_counts_copied": false,
+  "algorithm_outputs_read": false,
+  "annotation_round": "R2",
+  "scope": "human_event_entry_tool_not_generated_truth; R1_total_counts_unchanged",
+  "generator_sha256": "b7b0502a11b2ec38be66ae96a9590f7719efd93af876656029e9595546c02f74",
+  "template_sha256": "0ba69ab6f0c917ed68a7150060a4a0e781ebc91489e5aef21c29c085659cd00e"
+}

@@ -1,0 +1,25 @@
+﻿review_id,window_id,frames,first_pts,last_pts,duration_seconds,source_sha256,pts_source
+R3-01,jiufu_bb78a10aeab6d5_first30,264,0.0,29.971666666666668,30.0,dae76f806fad7583c5ef3a07de8e9384f6330b40f1d96c665e9709c3a2494ecb,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-02,jiufu_7cb985938d0a6a_first30,264,0.0,29.983333333333334,30.0,c9af9bfe59f024a58efd81ddb204e28a9691df00e7ea722a7c4c9b0dac21b604,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-03,jiufu_2aaced556ff39d_first30,245,0.0,29.953333333333337,30.0,999a7a0653e9603aed4e24fc3bbefa39eb59ffb2deb413d7e2dd1346f188c196,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-04,zs190621_anchored_30s,260,0.0,29.862792574656982,29.97782881641402,0e373a6f4f2628097a4f27aad40421b2af4e52cd73f689e39f60e37c9d779666,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-05,jiufu_0d1522aef374ec_first30,264,0.0,29.956666666666667,30.0,b7ac9bb12a1b50c41064b1bd1e422f2b176aa91e831e49c08d44f2a089250585,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-06,jiufu_6328167f32f25e_first30,237,0.0,29.94166666666667,30.0,c2632ec86124126fa4261f41c0e0f5dabfba1920d1bc13ea30237eaf4ee22962,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-07,bs200794_anchored_30s,260,0.0,29.838709677419356,29.954269227301413,f07920c93c2da7e7a13af250f29e51a33e6d8613d282a1ee962fc7e5d9daa484,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-08,bs211063_anchored_30s,259,0.0,29.847292919944472,29.963483920367533,1f72cba60a25a0850454b9f010375753697c55883a97aa5efefca818ca47efc3,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-09,jiufu_440a29cebcae1c_first30,264,0.0,29.968333333333334,30.0,b30606e56bb1ca259389c2b7d3de49fb9288fcefeb5cafc98ce1ef0a09fdde67,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-10,jiufu_f920435ef76ec4_first30,264,0.0,29.996666666666673,30.0,a79317eac0d0b2eb8292c7062b7d8c564d1658c98c05c0fb2afc5bee0d266337,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-11,jiufu_13f838ff73e069_first30,264,0.0,29.983333333333334,30.0,871f81ff6d15f8041ab9ef457b21b268dd77fdf3bcc0178b7203df2c40ade204,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-12,ns211095_anchored_30s,260,0.0,29.90416810991802,30.01799876084263,66b95adaa5f348e95a47e942b88e2116b9ee43dc5c72fbcb9cf935183b27df0f,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-13,bs210974_anchored_30s,260,0.0,29.914529914529915,30.03132992327366,f15feb9dbe7289fe2716f149d6d2100cf91b395cb16089ef42fb2f58adfeec38,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-14,jiufu_4f7144680fca9d_first30,246,0.0,29.998333333333335,30.0,669d0f1fdbb08315f1d5f6d28184f079b0748106c62f52bf30e8bfe4712dc1d7,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-15,zs170416_anchored_30s,260,0.0,29.93181555529874,30.046774193548387,30d510d5d79ab82cdc689e7241d5d138a0906e382bd094250beb3bcdf099b1b4,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-16,170272_anchored_30s,261,0.0,29.902242668200117,30.017849344978167,14cd45a09e2d668c87730dbaef597391705a4cc8636ac059cb73294fd6ce9d94,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-17,211070_anchored_30s,262,0.0,29.838801874928546,29.952793167128345,f3a3d44b95c3868052d31017b50eb4b5a7604a0420bd77bea195907d01bc4c62,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-18,bs455_anchored_30s,260,0.0,29.897264227173032,30.0126397515528,a6a19343750fb146202d0a00a9c4ddd35ab5a6c54981854c69c4a9a19487b66d,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-19,16170075_anchored_30s,260,0.0,29.93873540631141,30.05393034825871,d34813d4162545cacb71abe0206c2da54d7d7d0e2c77b08e34fd01386be869a7,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-20,ns196527_anchored_30s,263,0.0,29.93601462522852,30.04931547619048,19904b10747c9f390dc760a49e27d2d13a69495eea6e43f21820bbe6f40c8bd4,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-21,bs189556_anchored_30s,260,0.0,29.88001845869866,29.99621256038647,c6494c5066591941764df1cfd223a8824be482044455c00dc0b7a5c862f43651,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-22,jiufu_bd77cfa7950eaa_first30,260,0.0,29.98166666666667,30.0,e46c40d45c574c6a60220be3039e659128d482eba742802872575b6c1441fdd6,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-23,jiufu_cc60214ff2d564_first30,263,0.0,29.893333333333334,30.0,f9237e8e8539d2e97aa0e217c291f74394ae5759505378bf49c930ccba9f5bd7,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe
+R3-24,jiufu_55441b4c6fe974_first30,264,0.0,29.973333333333336,30.0,17619b5fdd79061134b52ad8de63fec71c8700ed0e3ed0a43b0d4a507c73dfd8,OpenCV FFMPEG decoded presentation timestamps; not independent ffprobe

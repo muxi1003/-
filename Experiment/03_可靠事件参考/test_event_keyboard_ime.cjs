@@ -1,0 +1,44 @@
+const {chromium}=require('C:/Users/muxi/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('assert/strict'),fs=require('fs'),path=require('path'),crypto=require('crypto');
+const {pathToFileURL}=require('url');
+(async()=>{
+ const root=path.resolve(__dirname,'event_workspace/20260914_v3');
+ const out=path.resolve(__dirname,'event_workspace/keyboard_update_20260915_v2');
+ const browser=await chromium.launch({channel:'msedge',headless:true});
+ try{
+  const page=await browser.newPage(),errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(pathToFileURL(path.join(root,'index.html')).href);
+  await page.locator('#file').setInputFiles(await page.evaluate(()=>w().browser_video_path));
+  await page.waitForFunction(()=>document.getElementById('video').readyState>=2);
+  await page.locator('#annotator').fill('IME_QA_NOT_REFERENCE');
+  await page.locator('#hidden').selectOption('true');
+  await page.evaluate(()=>document.activeElement.blur());
+  const seek=async t=>{await page.evaluate(t=>document.getElementById('video').currentTime=t,t);await page.waitForFunction(()=>!document.getElementById('video').seeking)};
+  const ime=(code,composing=true)=>page.locator('body').dispatchEvent('keydown',{key:'Process',code,keyCode:229,isComposing:composing,bubbles:true,cancelable:true});
+  await seek(1);await ime('KeyQ',false);
+  assert.equal(await page.locator('#events li').count(),1,'IME Process/KeyQ must record a confirmed event');
+  await seek(2);await ime('KeyW');
+  assert.deepEqual(await page.evaluate(()=>db.events.map(e=>e.confidence)),['confirmed','uncertain']);
+  await page.locator('#reason').fill('QA interval');await page.evaluate(()=>document.activeElement.blur());
+  await seek(3);await ime('KeyE');
+  await seek(4);await ime('KeyE');
+  assert.deepEqual(await page.evaluate(()=>db.intervals.map(s=>[s.start_seconds,s.end_seconds])),[[3,4]]);
+  const first=await page.locator('#window').inputValue();
+  await ime('KeyD');assert.notEqual(await page.locator('#window').inputValue(),first);
+  await ime('KeyA');assert.equal(await page.locator('#window').inputValue(),first);
+  const current=await page.evaluate(()=>JSON.stringify(db));
+  await page.locator('#notes').focus();
+  for(const code of ['KeyQ','KeyW','KeyE','KeyA','KeyD'])await page.locator('#notes').dispatchEvent('keydown',{key:'Process',code,keyCode:229,isComposing:true,bubbles:true,cancelable:true});
+  assert.equal(await page.evaluate(()=>JSON.stringify(db)),current,'IME typing in input must not alter annotations');
+  assert.equal(await page.locator('#window').inputValue(),first);
+  await page.reload();
+  assert.equal(await page.locator('#events li').count(),2,'Annotation cache must survive reload');
+  await page.evaluate(()=>localStorage.clear());
+  assert.deepEqual(errors,[]);
+  const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+  const before=fs.readFileSync(path.join(out,'index_before.html'),'utf8');
+  assert.equal(html.match(/^const initial=.*;$/m)[0],before.match(/^const initial=.*;$/m)[0]);
+  fs.writeFileSync(path.join(out,'ime_validation.json'),JSON.stringify({status:'PASS',scope:'Edge real video plus synthetic Windows IME-shaped key events; not a live test of the users IME',tested:['Process+KeyQ','composing Process+KeyW','E interval toggle','A/D navigation','IME text input protection','cache persistence','embedded window data unchanged'],errors,html_sha256:crypto.createHash('sha256').update(html).digest('hex'),humanEventsCreated:0},null,2));
+ }finally{await browser.close()}
+})().catch(e=>{console.error(e);process.exit(1)});

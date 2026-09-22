@@ -1,0 +1,3 @@
+﻿variant,frames,visible_frames,expected_nostrils,predicted_points,correct_points,missed_nostrils,off_target_or_extra_points
+baseline,27,22,36,21,15,21,6
+frozen_roi,27,22,36,29,16,20,13

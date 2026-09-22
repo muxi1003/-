@@ -1,0 +1,15 @@
+{
+  "status": "PASS_DETERMINISTIC_CHECKS",
+  "internal_windows_verified": 49,
+  "checks": [
+    "runner_and_adapter_snapshot_hashes",
+    "all_grid_times_inside_frozen_windows",
+    "all_source_indices_and_timestamps_aligned",
+    "all_selected_temperature_values_equal_source_rows",
+    "peak_counts_match_curve_events",
+    "all49_video_and_temperature_sources_unchanged",
+    "all271_plans_retained_and_no_prediction_counts"
+  ],
+  "software_tests": 35,
+  "scope": "internal_sampling_integrity_not_external_RR_validation"
+}

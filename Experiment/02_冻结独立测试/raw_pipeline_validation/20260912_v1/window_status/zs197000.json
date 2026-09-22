@@ -1,0 +1,15 @@
+{
+  "video_id": "zs197000",
+  "raw_source_path": "E:\\real\\use_code\\林甸红外视频\\0806\\B0806正常\\20230806T101554n197000\\20230806T101554n197000.MP4",
+  "raw_source_sha256": "6717760b29617a09ad7870e84fef1a5dd7a69af046dab83be0491dbe682e59f3",
+  "origin_frame_index": 632,
+  "origin_timestamp_seconds": 72.08333333333334,
+  "duration_seconds": 30.0,
+  "predicted_breath_count": null,
+  "predicted_rr_bpm": null,
+  "reference_status": "new_raw_time_window_not_scored",
+  "prediction_status": "abstain",
+  "predicted_count": null,
+  "reason": "long_timestamp_gap",
+  "long_gap_count": 1
+}

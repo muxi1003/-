@@ -1,0 +1,8 @@
+{
+  "status": "POLICY_AND_COUNT_REPLAY_PASS",
+  "windows": 49,
+  "replayed_predicted_windows": 37,
+  "replayed_grid_frames": 9657,
+  "accuracy_validated": false,
+  "predictions_sha256": "3bfc20e2af3ec49ec6aaedf354cd08fbf563802ad9971cf1259a704f0f54739c"
+}

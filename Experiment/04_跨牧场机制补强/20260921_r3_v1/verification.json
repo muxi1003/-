@@ -1,0 +1,15 @@
+{
+  "status": "PASS_WITH_ANNOTATION_CLARIFICATIONS",
+  "submitted_windows": 24,
+  "submitted_events": 448,
+  "submitted_intervals": 0,
+  "csv_json_equal": true,
+  "window_members_and_time_binding_unchanged": true,
+  "eligible_windows": 23,
+  "strict_visible_windows": 20,
+  "matching_independently_verified": true,
+  "source_hashes_unchanged": true,
+  "phase_disagreement_windows": 1,
+  "raw_labels_changed": false,
+  "default_predictions_changed": false
+}

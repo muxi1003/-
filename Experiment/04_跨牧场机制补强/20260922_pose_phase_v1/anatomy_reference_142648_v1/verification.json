@@ -1,0 +1,13 @@
+{
+  "status": "PASS_SUBMISSION_AND_DIAGNOSTIC_CONTROLS",
+  "complete_priority_frames": 36,
+  "human_regions": 50,
+  "source_archive_identical": true,
+  "exactly20_pixels_in_human_ellipses": 0,
+  "strict20_correction_does_not_change_current_controls": true,
+  "candidate_windows": 271,
+  "baseline_peak_replays": 216,
+  "rr_R2_pairs_preserved": 173,
+  "actual_reference_received": true,
+  "full_scientific_goal_complete": false
+}

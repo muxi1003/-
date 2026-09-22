@@ -1,0 +1,52 @@
+[
+  {
+    "file": "E:\\real\\use_code\\yoloV8\\temperature_extraction\\getRandomForestRegress\\1.png",
+    "actual_image_format": "JPEG",
+    "size": [
+      480,
+      640
+    ],
+    "metadata": {
+      "ResolutionUnit": "2",
+      "ExifOffset": "220",
+      "Make": "Teledyne FLIR",
+      "Model": "FLIR ONE Edge Pro",
+      "Software": "Common_fileformat",
+      "Orientation": "1",
+      "DateTime": "2024:07:27 11:48:25",
+      "YCbCrPositioning": "1",
+      "XResolution": "72.0",
+      "YResolution": "72.0"
+    },
+    "exif_capture_fields": {
+      "DateTimeOriginal": "2024:07:27 11:48:25",
+      "DateTimeDigitized": "2024:07:27 11:48:25"
+    },
+    "interpretation": "embedded_metadata_not_independently_verified_fieldwork_record; no_palette_scale_confirmed"
+  },
+  {
+    "file": "E:\\real\\use_code\\yoloV8\\temperature_extraction\\getRandomForestRegress\\20230810T152315.JPG",
+    "actual_image_format": "JPEG",
+    "size": [
+      480,
+      640
+    ],
+    "metadata": {
+      "ResolutionUnit": "2",
+      "ExifOffset": "232",
+      "Make": "Teledyne FLIR",
+      "Model": "FLIR ONE Edge Pro",
+      "Software": "Common_fileformat",
+      "Orientation": "1",
+      "DateTime": "2023:08:10 15:23:15",
+      "YCbCrPositioning": "1",
+      "XResolution": "72.0",
+      "YResolution": "72.0"
+    },
+    "exif_capture_fields": {
+      "DateTimeOriginal": "2023:08:10 15:23:15",
+      "DateTimeDigitized": "2023:08:10 15:23:15"
+    },
+    "interpretation": "embedded_metadata_not_independently_verified_fieldwork_record; no_palette_scale_confirmed"
+  }
+]

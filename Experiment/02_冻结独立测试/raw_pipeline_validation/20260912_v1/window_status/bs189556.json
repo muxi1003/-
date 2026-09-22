@@ -1,0 +1,19 @@
+{
+  "video_id": "bs189556",
+  "raw_source_path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍病牛区\\20230807T082122n189556风机影响大\\20230807T082122n189556风机影响大.MP4",
+  "raw_source_sha256": "b3123cf42cdcd49a1f64411414e43ecc3e7cae44828b99bf2a6388071894f12c",
+  "origin_frame_index": 1046,
+  "origin_timestamp_seconds": 121.37166666666667,
+  "duration_seconds": 30.0,
+  "predicted_breath_count": null,
+  "predicted_rr_bpm": null,
+  "reference_status": "new_raw_time_window_not_scored",
+  "prediction_status": "abstain",
+  "reason": "no_valid_temperature_signal",
+  "source_frames": 264,
+  "target_frames": 261,
+  "reused_source_frames": 13,
+  "max_nearest_time_error_seconds": 0.09971264367815247,
+  "valid_signal_frames": 0,
+  "grid_frames": 261
+}

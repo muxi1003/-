@@ -1,0 +1,86 @@
+{
+  "locked_at": "20260914_142348_622552",
+  "method_name": "frozen_20260909_adaptive_ROI_raw_timestamp_transfer_v1",
+  "release_dir": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\release_20260909_v1",
+  "release_sha256": "623c7154f1a72c79fe9111d2028897e275f3050167d8a864e45dde18c114d3f1",
+  "test_windows_sha256": "fc23ad2e375cb7181769cf00bdf62c74aedcd70b10f0c08c871bdb29a41dac28",
+  "method_snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1",
+  "method_manifest_sha256": "fb88586aaa86f425327210197065e1305b4a62418c6c11f5780c90b66e543bd0",
+  "code": [
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\run_frozen_external.py",
+      "sha256": "5ca5eae4769ca40dca211eb4aea88b46c969102ff1bb4079aaaef841f8ef3af9",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\external_transfer\\20260914_v2\\code_snapshots\\00_run_frozen_external.py"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\timestamp_adapter.py",
+      "sha256": "76dcfdac321876c7bd60ec64fa7c1d4c15bb710238db615c44ef1d8289b9fa05",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\external_transfer\\20260914_v2\\code_snapshots\\01_timestamp_adapter.py"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\validate_raw_pipeline_internal49.py",
+      "sha256": "7a8f85286794e5f91acdd239297799777f8c966043ded5ae8baa9ab2ca30e730",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\external_transfer\\20260914_v2\\code_snapshots\\02_validate_raw_pipeline_internal49.py"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\apply_frozen_roi_to_raw_validation.py",
+      "sha256": "b741a06d3deaff50ae00283664e9f59a7fe924b7d61f8899e03d32b9a12a6bc1",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\external_transfer\\20260914_v2\\code_snapshots\\03_apply_frozen_roi_to_raw_validation.py"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\frozen_rr_evaluation.py",
+      "sha256": "09871bc534b9c41d6a568ddb58e48d6120ec4c05ce68b43d8d42f3cb438c5f9d",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\external_transfer\\20260914_v2\\code_snapshots\\04_frozen_rr_evaluation.py"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\experiment_common.py",
+      "sha256": "b529c344204062c9e612cba0660772b0b57369744e55777b79a2de4abf5e35f5",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\external_transfer\\20260914_v2\\code_snapshots\\05_experiment_common.py"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\holdout_tools.py",
+      "sha256": "fa60b114cf46982b93c275b07ce87e078f52b1b65736144ae7ceaba29f34a0d6",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\external_transfer\\20260914_v2\\code_snapshots\\06_holdout_tools.py"
+    }
+  ],
+  "time_policy": {
+    "version": "timestamp_candidate_20260912_v2",
+    "target_fps": 8.7,
+    "long_gap_seconds": 0.5,
+    "sampling": "nearest_existing_frame_on_half_open_uniform_grid; ties_choose_earlier",
+    "long_gap_action": "abstain_entire_window; never_compress_time_or_fill_breaths",
+    "short_interval_action": "existing_frame_may_be_reused; no_new_temperature_interpolation",
+    "boundary_support_rule": "min(long_gap/2,1.5*median_observed_frame_interval)",
+    "uses_reference_counts": false,
+    "adoption": "candidate_requires_internal_validation"
+  },
+  "spatial_policy": "OpenCV_FFMPEG_display_orientation_native_BGR_full_frame; no_rescale_crop_or_channel_swap; YOLO_keypoints_in_native_coordinates; JPEG95",
+  "spatial_limit": "IRT_source_directory_and_user_provenance; no_independent_anatomical_visibility_or_overlay_mask_validation",
+  "signal_policy": "original_frozen_ROI_and_signal_parameters; no_new_source_guard_or_partial_segment_substitution",
+  "calibration_scope": "RF_mapped_pseudocolor_proxy; absolute_Celsius_and_fixed_palette_not_verified; no_offset_correction",
+  "abstentions": "timestamp_policy_rejection_or_no_finite_bilateral_signal; software_or_decode_errors_stop_not_silently_drop",
+  "outcome_policy": "single_frozen_count_only_external_transfer_evaluation; complete_blinded_manual_counts_AND_ok_predictions; report_all271_and_coverage; cow_cluster_CI; no_event_F1",
+  "reference_counts_used": false,
+  "test_outcomes_used_for_tuning": false,
+  "training_scope": "YOLO_and_RR_heldout_videos; target_farm_separately_captured_RF_calibration_available_not_zero_target_calibration",
+  "internal_evidence": [
+    "raw_pipeline_validation/20260912_v1",
+    "raw_pipeline_validation/20260912_v1/adaptive_roi_20260914_v2"
+  ],
+  "acceptance_scope": "engineering_checked_transfer_evaluation_not_a_claim_of_good_accuracy_or_radiometric_validity",
+  "runtime": {
+    "python": "3.10.20 | packaged by Anaconda, Inc. | (main, Mar 11 2026, 17:42:35) [MSC v.1942 64 bit (AMD64)]",
+    "executable": "E:\\real\\anaconda\\envs\\plant_gpu\\python.exe",
+    "platform": "Windows-10-10.0.26100-SP0",
+    "packages": {
+      "ultralytics": "8.4.40",
+      "torch": "2.12.0.dev20260322+cu128",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "opencv-python": "4.13.0.92",
+      "joblib": "1.5.3"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "status": "SCORED_SUBMITTED_COMPLETE_REFERENCES",
+  "submission": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2",
+  "internal": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\reference_updates\\20260917_r2_v2",
+  "external": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260917_r2_v2",
+  "not_double_blind": true,
+  "not_new_independent_cohort": true,
+  "absolute_temperature_unverified": true,
+  "network_training_ablation_not_run": true,
+  "human_labels_changed": false,
+  "pending_with_notes": 0,
+  "pending_without_notes": 2
+}

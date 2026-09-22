@@ -1,0 +1,9 @@
+{
+  "prediction_status": "ready_for_signal_candidate",
+  "reason": "",
+  "duration_seconds": 30.0,
+  "source_frames": 264,
+  "target_frames": 261,
+  "reused_source_frames": 20,
+  "max_nearest_time_error_seconds": 0.12166666666666792
+}

@@ -1,0 +1,8 @@
+{
+  "disposition": "DO_NOT_ADOPT",
+  "default_changed": false,
+  "retrospective_only": true,
+  "no_anatomical_truth_used_per_prediction": true,
+  "kept_R2_count_pairs": 173,
+  "kept_R2_event_windows": 216
+}

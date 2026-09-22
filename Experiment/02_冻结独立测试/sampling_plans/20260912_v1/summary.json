@@ -1,0 +1,12 @@
+{
+  "released_windows": 271,
+  "timestamp_plan_ready": 218,
+  "timestamp_plan_unavailable": 53,
+  "reason_counts": {
+    "": 218,
+    "long_timestamp_gap": 51,
+    "unsupported_window_end": 2
+  },
+  "is_external_rr_evaluation": false,
+  "default_or_release_changed": false
+}

@@ -1,0 +1,654 @@
+{
+  "schema_version": 1,
+  "package_id": "615231d85537ed31fcce4e8e8f615809cbbdf764481cea22f489d4bab30ae93d",
+  "exported_at": "2026-09-22T06:26:48.115Z",
+  "prediction_overlay_shown": false,
+  "records": {
+    "R3-01_t00": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 640.4503699296358,
+          "cy": 669.77490234375,
+          "rx": 28.609271523178847,
+          "ry": 30.51655629139077
+        },
+        "B": {
+          "cx": 803.205298013245,
+          "cy": 671.68212890625,
+          "rx": 28.60927152317879,
+          "ry": 31.15233728269868
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:18:32.850Z"
+    },
+    "R3-01_t10": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": null,
+        "B": {
+          "cx": 428.1059796668046,
+          "cy": 1083.019857848717,
+          "rx": 34.9669068191225,
+          "ry": 38.14569536423835
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:18:51.218Z"
+    },
+    "R3-01_t20": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": null,
+        "B": {
+          "cx": 420,
+          "cy": 732.1875,
+          "rx": 31.875,
+          "ry": 32.8125
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:19:03.514Z"
+    },
+    "R3-02_t00": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 345,
+          "cy": 722.8125,
+          "rx": 18.75,
+          "ry": 27.1875
+        },
+        "B": {
+          "cx": 443.4375,
+          "cy": 782.8125,
+          "rx": 15.9375,
+          "ry": 29.0625
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:19:34.259Z"
+    },
+    "R3-02_t10": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 471.5625,
+          "cy": 448.125,
+          "rx": 14.0625,
+          "ry": 22.5
+        },
+        "B": {
+          "cx": 576.5625,
+          "cy": 453.75,
+          "rx": 15.9375,
+          "ry": 28.125
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:19:52.914Z"
+    },
+    "R3-02_t20": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 498.75,
+          "cy": 428.4375,
+          "rx": 16.875,
+          "ry": 25.3125
+        },
+        "B": {
+          "cx": 607.5,
+          "cy": 443.4375,
+          "rx": 18.75,
+          "ry": 27.1875
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:20:06.714Z"
+    },
+    "R3-03_t00": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": null,
+        "B": {
+          "cx": 450.9375,
+          "cy": 283.125,
+          "rx": 29.0625,
+          "ry": 28.125
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:20:16.014Z"
+    },
+    "R3-03_t10": {
+      "status": "complete",
+      "visibility": "not_visible",
+      "regions": {
+        "A": null,
+        "B": null
+      },
+      "notes": "鼻子离开摄像区域",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:20:38.901Z"
+    },
+    "R3-03_t20": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 619.6875,
+          "cy": 506.25,
+          "rx": 25.3125,
+          "ry": 26.25
+        },
+        "B": {
+          "cx": 744.375,
+          "cy": 372.1875,
+          "rx": 24.375,
+          "ry": 27.1875
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:20:50.802Z"
+    },
+    "R3-05_t00": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 738.75,
+          "cy": 178.125,
+          "rx": 31.875,
+          "ry": 50.625
+        },
+        "B": {
+          "cx": 908.4375,
+          "cy": 176.25,
+          "rx": 17.8125,
+          "ry": 30
+        }
+      },
+      "notes": "可能会不清晰",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:21:15.058Z"
+    },
+    "R3-05_t10": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": {
+          "cx": 935.625,
+          "cy": 723.75,
+          "rx": 24.375,
+          "ry": 41.25
+        },
+        "B": null
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:21:22.395Z"
+    },
+    "R3-05_t20": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": {
+          "cx": 1046.25,
+          "cy": 728.4375,
+          "rx": 18.75,
+          "ry": 32.8125
+        },
+        "B": null
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:21:30.410Z"
+    },
+    "R3-06_t00": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 537.1875,
+          "cy": 512.8125,
+          "rx": 12.1875,
+          "ry": 15.9375
+        },
+        "B": {
+          "cx": 671.25,
+          "cy": 522.1875,
+          "rx": 11.25,
+          "ry": 17.8125
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:21:40.202Z"
+    },
+    "R3-06_t10": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 293.4375,
+          "cy": 674.0625,
+          "rx": 15.9375,
+          "ry": 21.5625
+        },
+        "B": {
+          "cx": 459.375,
+          "cy": 671.25,
+          "rx": 15,
+          "ry": 22.5
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:21:52.147Z"
+    },
+    "R3-06_t20": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": {
+          "cx": 915.9375,
+          "cy": 545.625,
+          "rx": 23.4375,
+          "ry": 31.875
+        },
+        "B": null
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:22:00.762Z"
+    },
+    "R3-09_t00": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 619.6875,
+          "cy": 742.5,
+          "rx": 14.0625,
+          "ry": 26.25
+        },
+        "B": {
+          "cx": 793.125,
+          "cy": 745.3125,
+          "rx": 13.125,
+          "ry": 19.6875
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:22:12.251Z"
+    },
+    "R3-09_t10": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 495.9375,
+          "cy": 1129.6875,
+          "rx": 12.1875,
+          "ry": 29.0625
+        },
+        "B": {
+          "cx": 679.6875,
+          "cy": 1120.3125,
+          "rx": 15.9375,
+          "ry": 19.6875
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:22:24.026Z"
+    },
+    "R3-09_t20": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 696.5625,
+          "cy": 535.3125,
+          "rx": 19.6875,
+          "ry": 27.1875
+        },
+        "B": {
+          "cx": 866.25,
+          "cy": 528.75,
+          "rx": 16.875,
+          "ry": 26.25
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:22:33.082Z"
+    },
+    "R3-10_t00": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 351.5625,
+          "cy": 500.625,
+          "rx": 14.0625,
+          "ry": 26.25
+        },
+        "B": {
+          "cx": 560.625,
+          "cy": 496.875,
+          "rx": 28.125,
+          "ry": 31.875
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:22:43.146Z"
+    },
+    "R3-10_t10": {
+      "status": "complete",
+      "visibility": "not_visible",
+      "regions": {
+        "A": null,
+        "B": null
+      },
+      "notes": "鼻子离开摄像范围内",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:23:00.410Z"
+    },
+    "R3-10_t20": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 690,
+          "cy": 268.125,
+          "rx": 26.25,
+          "ry": 33.75
+        },
+        "B": {
+          "cx": 932.8125,
+          "cy": 265.3125,
+          "rx": 21.5625,
+          "ry": 21.5625
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:23:11.988Z"
+    },
+    "R3-11_t00": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 570,
+          "cy": 649.6875,
+          "rx": 24.375,
+          "ry": 25.3125
+        },
+        "B": {
+          "cx": 727.5,
+          "cy": 666.5625,
+          "rx": 9.375,
+          "ry": 17.8125
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:23:23.051Z"
+    },
+    "R3-11_t10": {
+      "status": "complete",
+      "visibility": "not_visible",
+      "regions": {
+        "A": null,
+        "B": null
+      },
+      "notes": "鼻子离开摄像范围内",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:23:37.605Z"
+    },
+    "R3-11_t20": {
+      "status": "complete",
+      "visibility": "not_visible",
+      "regions": {
+        "A": null,
+        "B": null
+      },
+      "notes": "鼻子离开摄像范围内",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:23:50.970Z"
+    },
+    "R3-14_t00": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 500.625,
+          "cy": 1290.9375,
+          "rx": 11.25,
+          "ry": 17.8125
+        },
+        "B": {
+          "cx": 660.9375,
+          "cy": 1274.0625,
+          "rx": 10.3125,
+          "ry": 15.9375
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:24:05.870Z"
+    },
+    "R3-14_t10": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 360,
+          "cy": 997.5,
+          "rx": 7.5,
+          "ry": 16.875
+        },
+        "B": {
+          "cx": 503.4375,
+          "cy": 1002.1875,
+          "rx": 14.0625,
+          "ry": 21.5625
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:24:17.626Z"
+    },
+    "R3-14_t20": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 405.9375,
+          "cy": 986.25,
+          "rx": 10.3125,
+          "ry": 15
+        },
+        "B": {
+          "cx": 553.125,
+          "cy": 994.6875,
+          "rx": 13.125,
+          "ry": 17.8125
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:24:28.138Z"
+    },
+    "R3-22_t00": {
+      "status": "complete",
+      "visibility": "not_visible",
+      "regions": {
+        "A": null,
+        "B": null
+      },
+      "notes": "头部朝下，鼻子受到遮挡",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:24:58.355Z"
+    },
+    "R3-22_t10": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": {
+          "cx": 781.875,
+          "cy": 624.375,
+          "rx": 20.625,
+          "ry": 22.5
+        },
+        "B": null
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:25:07.674Z"
+    },
+    "R3-22_t20": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 458.4375,
+          "cy": 1064.0625,
+          "rx": 17.8125,
+          "ry": 23.4375
+        },
+        "B": {
+          "cx": 607.5,
+          "cy": 1065,
+          "rx": 9.375,
+          "ry": 22.5
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:25:19.762Z"
+    },
+    "R3-23_t00": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 591.5625,
+          "cy": 767.8125,
+          "rx": 25.3125,
+          "ry": 30.9375
+        },
+        "B": {
+          "cx": 794.0625,
+          "cy": 782.8125,
+          "rx": 14.0625,
+          "ry": 27.1875
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:25:29.810Z"
+    },
+    "R3-23_t10": {
+      "status": "complete",
+      "visibility": "not_visible",
+      "regions": {
+        "A": null,
+        "B": null
+      },
+      "notes": "鼻子离开摄像范围内",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:25:55.307Z"
+    },
+    "R3-23_t20": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": null,
+        "B": {
+          "cx": 126.5625,
+          "cy": 406.875,
+          "rx": 27.1875,
+          "ry": 24.375
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:26:04.159Z"
+    },
+    "R3-24_t00": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": {
+          "cx": 718.125,
+          "cy": 469.6875,
+          "rx": 18.75,
+          "ry": 21.5625
+        },
+        "B": null
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:26:14.426Z"
+    },
+    "R3-24_t10": {
+      "status": "complete",
+      "visibility": "two_visible",
+      "regions": {
+        "A": {
+          "cx": 295.3125,
+          "cy": 502.5,
+          "rx": 15.9375,
+          "ry": 22.5
+        },
+        "B": {
+          "cx": 464.0625,
+          "cy": 473.4375,
+          "rx": 12.1875,
+          "ry": 19.6875
+        }
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:26:26.914Z"
+    },
+    "R3-24_t20": {
+      "status": "complete",
+      "visibility": "one_visible",
+      "regions": {
+        "A": {
+          "cx": 806.25,
+          "cy": 825,
+          "rx": 20.625,
+          "ry": 26.25
+        },
+        "B": null
+      },
+      "notes": "",
+      "annotator": "1",
+      "updated_at": "2026-09-22T06:26:43.541Z"
+    }
+  }
+}

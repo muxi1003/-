@@ -1,0 +1,31 @@
+{
+  "status": "PASS_DETERMINISTIC_CHECKS",
+  "checks": [
+    "historical_predictions_and_reference_snapshot_hashes_match_original_delivery_index",
+    "lindian49_all_three_original_tables_unchanged_and_byte_exact_snapshot",
+    "jiufu271_all_three_original_tables_unchanged_and_byte_exact_snapshot",
+    "all49_raw_source_paths_starts_durations_and_window_ids_match_frozen_historical_annotation",
+    "all441_rescored_predictions_references_and_durations_match_inputs",
+    "all18_metric_groups_match_independent_formula_recomputation",
+    "all_frozen_method_snapshot_files_unchanged"
+  ],
+  "historical_input_provenance": [
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\matched_windows.csv",
+      "sha256": "37f83d6747e16d31bbb58c3f69d8ab2c32bbf77a8975e14e27610ed60f1297fe",
+      "checked_against": "E:\\real\\use_code\\yoloV8\\Experiment\\FILE_MANIFEST.csv"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\historical_sources\\lindian_anchored30_quality_gated_annotation_template.csv",
+      "sha256": "0c0b74f1d077d831801a77237f9dea78c5a2f46d8892efcf927ac6445d6e0306",
+      "checked_against": "E:\\real\\use_code\\yoloV8\\Experiment\\FILE_MANIFEST.csv"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\runs\\20260909_v1\\paired_predictions.csv",
+      "sha256": "e50f4168550c92d77497430217138de496056db5009228188b966fd6224a0f06",
+      "checked_against": "E:\\real\\use_code\\yoloV8\\Experiment\\FILE_MANIFEST.csv"
+    }
+  ],
+  "verifier_sha256": "4b8fbf8a0d5790edb6c2fc03f540241ce4c7f00b1d5f15ed17b2139aa61bb3aa",
+  "independent_scientific_review": "separate_same_family_review_not_implied_by_deterministic_pass"
+}

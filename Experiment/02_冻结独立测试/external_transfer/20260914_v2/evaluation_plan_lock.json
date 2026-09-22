@@ -1,0 +1,8 @@
+{
+  "scoring_policy": "complete_and_ok_only; 2000 cow-cluster bootstrap; seed20260914; all271 coverage retained; no event metrics",
+  "files": {
+    "score_external_counts.py": "ea56e7b9b44b9f49649904fea36d45fcce1b58726cf9550020baeb7f39e9aa89",
+    "verify_external_transfer.py": "d8043df47ab4ccc2fa51f95fe69f7414d8a2c6e02601a50664c7345a26097f58"
+  },
+  "outcomes_joined": false
+}

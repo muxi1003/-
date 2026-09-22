@@ -1,0 +1,12 @@
+{
+  "status": "COMPLETED_NOT_ANATOMICAL_VALIDATION",
+  "frames": 72,
+  "inferences": 504,
+  "affine_roundtrip_pass": true,
+  "elapsed_seconds": 15.155999999999949,
+  "files": {
+    "frame_manifest.csv": "615231d85537ed31fcce4e8e8f615809cbbdf764481cea22f489d4bab30ae93d",
+    "pose_probes.csv": "dcfe48f1c7c4cd45378074c4193b68d894ec3aa8c0d4485ad77572efab652fab",
+    "pose_keypoints.csv": "4193d9cdcd45bdfecf3af8e46486b07aed82e7946eacb532661814b955559f1f"
+  }
+}

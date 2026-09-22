@@ -1,0 +1,43 @@
+{
+  "role": "retrospective_local_ROI_candidate",
+  "policy": {
+    "candidate_offsets_in_radii": [
+      [
+        0,
+        0
+      ],
+      [
+        -0.5,
+        0
+      ],
+      [
+        0.5,
+        0
+      ],
+      [
+        0,
+        -0.5
+      ],
+      [
+        0,
+        0.5
+      ]
+    ],
+    "inner_radius_fraction": 0.5,
+    "ring_inner_radius_fraction": 1.0,
+    "ring_outer_radius_fraction": 1.5,
+    "min_finite_kernel_fraction": 0.8,
+    "min_RF_temperature_strict": 20.0,
+    "score": "absolute(mean(inner)-mean(ring)); ties retain original then smaller displacement",
+    "anatomy_used_for_policy_motivation": true,
+    "anatomy_not_read_by_predictor": true,
+    "no_default_change": true,
+    "temperature_dependent_center_may_distort_RR_must_validate_temporally": true
+  },
+  "input_hashes": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\20260922_pose_phase_v1\\frame_manifest.csv": "615231d85537ed31fcce4e8e8f615809cbbdf764481cea22f489d4bab30ae93d",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\20260922_pose_phase_v1\\pose_keypoints.csv": "4193d9cdcd45bdfecf3af8e46486b07aed82e7946eacb532661814b955559f1f",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\20260922_pose_phase_v1\\frozen_roi_keypoints.csv": "ce45463efec620a8e464225fa6f3120f7e074a70e03d866a5c34bf730cd0b7e1",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\local_contrast_roi_probe.py": "b17a5b468531783037c61832ed55770162e919c0ce563d2e7ff178d5e6626e88"
+  }
+}

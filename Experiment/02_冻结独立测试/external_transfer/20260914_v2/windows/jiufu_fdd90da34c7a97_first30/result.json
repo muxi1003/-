@@ -1,0 +1,15 @@
+{
+  "window_id": "jiufu_fdd90da34c7a97_first30",
+  "prediction_status": "abstain",
+  "predicted_count": null,
+  "duration_seconds": 30.0,
+  "method_manifest_sha256": "fb88586aaa86f425327210197065e1305b4a62418c6c11f5780c90b66e543bd0",
+  "source_sha256": "9a0edd04b3c0982c775d9a5caff9643c2b2cedfac1228d3ee6e33c9e357ead67",
+  "reason": "long_timestamp_gap",
+  "frame_shape": [
+    1440,
+    1080,
+    3
+  ],
+  "timestamp_policy_status": "abstain"
+}

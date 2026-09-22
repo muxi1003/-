@@ -1,0 +1,15 @@
+{
+  "folds_completed": 3,
+  "heldout_frames": 36,
+  "heldout_cows": 12,
+  "no_cow_crosses_train_val_within_fold": true,
+  "all_predictions_out_of_fold": true,
+  "original_model_unchanged": true,
+  "elapsed_seconds": 81.09400000000005,
+  "files": {
+    "out_of_fold_predictions.csv": "f01a374e9c81e3db89b3a42940c4d6a5447684986a1296e42bf13f196eed6295",
+    "group_split.csv": "5d60a0f0893af445daecd17d02d23127833f3a038132d3826088e3f12e71327e",
+    "fold_checkpoints.csv": "718b14cc3c1e3601505e32911aa05858da08478bc3cb2766db1c000ee2343c1d",
+    "protocol_before_training.json": "fb2f09b82f50fc6de39117143b79345250a78d54bd3e0a8afeb345f5c6f7b0e9"
+  }
+}

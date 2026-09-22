@@ -1,0 +1,7 @@
+{
+  "script_sha256": "ea56e7b9b44b9f49649904fea36d45fcce1b58726cf9550020baeb7f39e9aa89",
+  "predictions_presealed": true,
+  "reference_path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v2\\jiufu271\\count_reference_only.csv",
+  "reference_hash": "12e20dbc196eaea15de17f66919469e263f1d06a0019aac44c4ac19579668843",
+  "test_used_for_tuning": false
+}

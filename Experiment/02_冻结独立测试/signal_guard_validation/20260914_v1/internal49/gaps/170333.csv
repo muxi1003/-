@@ -1,0 +1,8 @@
+﻿start_frame,stop_frame_exclusive,length_frames,boundary,permitted_short_gap
+31,33,2,False,True
+53,54,1,False,True
+62,63,1,False,True
+82,84,2,False,True
+126,146,20,False,False
+224,230,6,False,False
+254,260,6,True,False

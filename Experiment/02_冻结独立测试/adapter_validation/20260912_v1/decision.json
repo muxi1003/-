@@ -1,0 +1,9 @@
+{
+  "status": "DO_NOT_ADOPT_KEEP_BASELINE",
+  "historical_replay_matches": 49,
+  "candidate_count_changes": 35,
+  "candidate_output_windows": 18,
+  "default_modified": false,
+  "external_inference_run": false,
+  "scope_limit": "internal_CFR_MP4_and_existing_temperatures; not raw_video_VFR_or_end_to_end_external_validation"
+}

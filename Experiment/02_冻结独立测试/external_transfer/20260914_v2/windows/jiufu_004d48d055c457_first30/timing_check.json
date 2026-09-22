@@ -1,0 +1,6 @@
+{
+  "prediction_status": "abstain",
+  "duration_seconds": 30.0,
+  "predicted_count": null,
+  "reason": "unsupported_window_end"
+}

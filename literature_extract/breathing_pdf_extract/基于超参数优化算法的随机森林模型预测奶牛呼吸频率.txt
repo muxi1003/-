@@ -1,0 +1,1055 @@
+--- Page 1 ---
+ 
+ 
+基于超参数优化算法的随机森林模型预测奶牛呼吸频率
+严格齐1 ，赵婉莹2 ，于镇伟3 ，焦洪超1※ ，林　海1 ，李　浩4,5 ，
+施正香4,5 ，王朝元4,5
+（1.   山东农业大学动物科技学院，泰安 271018；2.   中国农村技术开发中心，北京 100045；3.   山东农业大学机械与电子工程学
+院，泰安 271018；4.   中国农业大学水利与土木工程学院，北京 100083；5.   农业农村部设施农业工程重点实验室，北京 100083）
+摘　要：奶牛呼吸频率是评估环境造成的奶牛热应激程度的重要指标之一。该研究基于随机森林（random forest，RF）
+算法提出了适用于生产条件下的奶牛个体呼吸频率准确预测模型，为了平衡模型精度与计算效率问题，利用遗传算法
+（genetic  algorithm， GA） 、 差 分 进 化 （ differential  evolution， DE） 算 法 、 粒 子 群 优 化 （ particle  swarm  optimization，
+PSO）算法、贝叶斯优化（Bayesian optimization，BO）算法对模型超参数进行优化，并与网格搜索（grid search，GS）
+下的人工神经网络（artificial neural network，ANN）和极限梯度提升机（extreme gradient boosting，XGBoost）模型进行
+了对比分析。研究结果表明，使用融合环境参数的修正温湿指数（adjusted temperature-humidity index，ATHI）、时间区
+域、奶牛产奶量、泌乳天数、身体姿势以及胎次作为输入特征时，基准RF模型的预测性能最佳。在此基础上，4种智
+能优化算法下的RF模型性能优于GS-ANN和GS-XGBoost，其中BO-RF的综合性能最优，其决定系数、平均绝对误差、
+平均绝对百分比误差以及均方根误差分别为0.614次/min、7.723次/min、14.4%、9.737次/min，超参数优化耗时约为
+DE-RF的1/220。特征重要性分析表明，输入因子对奶牛呼吸频率的影响程度不同，ATHI是影响力最高的因子，相对
+重要性（relative importance，RI）为0.73，其次是时间区域（RI=0.09）和奶牛产奶量（RI=0.07）。研究为奶牛生产、
+健康评价及牛舍环境精准调控提供了有效方法和基础。
+关键词：奶牛；呼吸频率；模型；元启发式算法；贝叶斯优化；随机森林
+doi：10.11975/j.issn.1002-6819.202401090
+中图分类号：S126　　　　文献标志码：A　　　　文章编号：1002-6819(2024)-11-0195-09
+严格齐，赵婉莹，于镇伟，等. 基于超参数优化算法的随机森林模型预测奶牛呼吸频率[J]. 农业工程学报，2024，40(11)：
+195-203. doi: 10.11975/j.issn.1002-6819.202401090　　http://www.tcsae.org
+YAN  Geqi,  ZHAO  Wanying,  YU  Zhenwei,  et  al.  Predicting  respiratory  rate  of  dairy  cows  using  hyperparameter-optimized
+random  forest  models[J].  Transactions  of  the  Chinese  Society  of  Agricultural  Engineering  (Transactions  of  the  CSAE),  2024,
+40(11): 195-203. (in Chinese with English abstract)　　doi: 10.11975/j.issn.1002-6819.202401090　　http://www.tcsae.org
+ 
+0　引　言
+奶牛的呼吸频率不仅能够反映其呼吸系统的健康状
+况，还可用于评估环境造成的奶牛热应激程度[1]。监测
+生产条件下奶牛个体的呼吸频率，及时采取有效的环境
+调控措施，能够提升奶牛的动物福利状况，保障奶牛生
+产性能的发挥。
+目前，奶牛的呼吸频率主要依赖人工观测。然而，
+由于存在牛只重叠以及光线等因素的干扰，该方法不仅
+费时、费力且误差较大。基于温度传感器、压力传感器
+等的头戴式监测设备[2-3]还无法用于规模化养殖环境。在
+奶牛呼吸频率预测方面，由于生产环境复杂和奶牛的个
+体差异，准确预测奶牛呼吸频率较为困难，相关预测模
+型一般通过热环境参数的多元回归构建。已有研究表明，
+热环境对奶牛呼吸频率有直接影响[4-5]，气温在18～34℃
+范围内时，每升高1℃，奶牛的呼吸频率1 min会增加
+3.0次；奶牛周围气流速度提高1 m/s，呼吸频率1 min
+可降低2.8次[6]。另外，奶牛自身的生产、行为等因素与
+奶牛呼吸频率的变化也存在关联性[7-8]。LI等[9]以环境温
+度、相对湿度、风速、产奶量和时间区间为输入参数构
+建了奶牛呼吸频率预测模型，但该模型仅适用于部分日
+间时段奶牛群体的平均呼吸频率预测。也有基于热平衡
+方法建立热调节模型用于奶牛个体呼吸频率逐时预测的
+相关研究[10-11]，但这类模型主要用于描述呼吸频率的变
+化趋势，预测结果取决于奶牛热生理参数的初始条件。
+近年来，随着人工智能浪潮的推动，基于数据驱动
+的机器学习已被用于奶牛的体温、疾病以及生产性能的
+预测[12-15]。与多元回归模型相比，机器学习模型能更好
+地捕捉变量间复杂的非线性关系[16]。已有研究对比了不
+同输入特征下机器学习算法预测奶牛呼吸频率的性能表
+现。GORCZYCA等[17]仅使用环境因素作为输入特征建
+立了预测模型，而SHU等[18]额外考虑了产奶量、产犊
+季节等奶牛生产性因素，并报道这些因素的预测权重高
+  
+收稿日期：2024-01-12　　修订日期： 2024-04-17
+基金项目：国家现代农业产业技术体系资助项目（CARS36）；国家重点
+研发计划项目（2023YFD2000702）
+作者简介：严格齐，博士，研究方向为畜禽健康养殖过程与智能化。
+Email：yangeqi@sdau.edu.cn
+※通信作者：焦洪超，博士，教授，研究方向为畜禽健康养殖过程与智能
+化。Email：hongchao@sdau.edu.cn 
+第 40 卷 　 第 11 期 农  业  工  程  学  报　 Vol.40　No.11
+2024 年 　　 6 月 Transactions of the Chinese Society of Agricultural Engineering June 2024 195
+
+--- Page 2 ---
+于环境因素。这些研究的结果表明，随机森林（random
+forest， RF） 、 人 工 神 经 网 络 （ artificial  neural  network，
+ANN）在奶牛呼吸频率回归任务中的表现优于其他机器
+学习算法[17-18]，而对于奶牛热应激程度预测，RF也同样
+优于其他分类算法[19]。由于应用了袋装抽样和随机特征
+选择[20]，在处理噪声方面，RF具有更好的鲁棒性和较低
+的过拟合风险。机器学习模型的超参数是在模型训练之
+前需要人为设定的参数，其作用是控制模型的学习过程
+和复杂度，从而影响模型的性能和泛化能力。在现有研
+究中，网格搜索（grid search，GS）常被用作确定模型
+超参数的标准方法，这凸显了超参数调优在模型性能优
+化中的关键地位。然而，当面临较大的参数空间时，GS
+所需的计算成本较高。值得注意的是，尽管超参数调优
+的重要性被广泛认可，但在奶牛呼吸频率预测模型领域，
+鲜有研究尝试将优化算法应用于超参数调优，以在模型
+精度与计算效率之间寻找理想的平衡点。
+因此，本研究先选择与奶牛呼吸频率存在一定相关
+性的因素，随后对原始因素进行组合、衍生以丰富数据
+维度，在此基础上采用RF建立预测模型，并运用智能
+优化算法对模型的超参数进行调优，对比分析调优性能
+与效率，最终建立基于RF的奶牛个体呼吸频率准确预
+测模型，并输出各类影响因素的相对重要性，以期为奶
+牛舍精准智能环境调控及奶牛健康生产管理和福利提升
+提供技术与方法支持。 
+1　材料与方法 
+1.1　数据收集
+本研究在国家奶牛产业技术体系天津某综合试验站
+开展，观测期为2020年7月底至10月初。奶牛饲养于
+4个相邻且条件一致的奶牛舍内。牛舍长度为107 m，宽
+度为31 m，舍内采用四列散栏卧床对头式布置，屋顶为
+双坡式。舍内配备风机-喷淋降温，当环境温度高于18 ℃
+时，扰流风机（风量25 430 m3/h，纵向排布间距约6.0 m）
+启动，当温湿指数（temperature-humidity index, THI）高
+于72时，启动喷淋降温。试验期间，奶牛挤奶、饲喂以
+及清粪等均按正常生产管理进行。
+在整个试验期间，选取30 d开展试验，每两个试验
+日间隔2～4 d。每个试验日随机选择90～120头荷斯坦
+奶牛进行观测，共计观测不同泌乳阶段和胎次的826头
+奶牛。每头奶牛在每个试验日仅被观测1次，在整个试
+验期内被观测了1～10次。采集的环境参数包括环境温
+度（ TA， ℃） 、 相 对 湿 度 （ RH， %； HOBO  U23-001，
+美国 Onset  Computer公 司 ， 精 度 ±0.2  ℃、 ±2.5%） 、 风
+速（ WS， m/s； TSI  9565P， 美 国 TSI公 司 ， 精 度 
+±0.015 m/s）、太阳辐射强度（SR，W/m2；TES 1333R，
+中国台湾泰仕电子公司，精度±10 W/m2），采样间隔为
+10 min。舍内温度、相对湿度、太阳辐射强度的测定点
+位于牛舍中部。风速主要受风机开启数量和风机距离影
+响，采集方法为测定每个颈枷处、卧床处的风速，奶牛
+周围风速根据其所在位置确定[21]。为了不干扰挤奶（每
+日07:30、13:30、19:30），奶牛呼吸频率的采集在每个
+试验日的09:00—12:00与14:00—17:00内进行，采集方
+法为记录1 min奶牛胸腹部起伏次数[22]。奶牛胎次、产
+奶量以及泌乳天数等信息个体生产数据通过牧场管理软
+件（Afimilk，以色列阿菲金公司）获取。试验期内共获
+得3 005条记录，其中产奶量、呼吸频率的记录数分别
+为2 945、3 002（表1）。
+  
+表 1    原始变量统计
+Table 1    Statistics of the original variables
+变量
+Variables
+最小值
+Minimum
+最大值
+Maximum
+数据类型
+Data type
+环境温度 Ambient temperature(Ta)/℃ 13.6 36.0 C
+相对湿度 Relative humidity(H)/% 27.6 91.7 C
+风速 Wind speed(U)/(m·s−1) 0 5.40 C
+太阳辐射强度
+Solar radiation(Qsr)/(W·m−2) 0 64 C
+时间区域 Time block 0 1 D
+身体姿势 Body posture 0 1 D
+胎次 Parity 1 4 D
+泌乳天数 Days in milk(DOL)/d 9 1 107 C
+产奶量 Milk yield(MY)/(kg·d−1) 0 79.5 C
+呼吸频率 Respiratory rate(RR)/bpm 19 114 C
+注：C表示连续，D表示离散。时间区域等于0表示上午，等于1表示下午。
+身体姿势等于0表示站立，1表示躺卧。胎次1～3表示对应数量，胎次为4
+表示不少于4次。
+Note: C means continuous variable and D means discrete variable. Time equal to
+0 means morning, and a time zone equal to 1 means afternoon. Body posture equals
+0 for standing and 1 for lying down. Parity equal to 1-3 indicates the corresponding
+number, and 4 indicates no less than 4.
+ 
+奶牛热应激指数通过融合多个环境参数从而具有环
+境综合评价能力[23]，根据前期评估结果，部分奶牛热应
+激指数与呼吸频率有较高的相关性[24-25]。因此，本研究
+构建热应激指数特征以增强模型的预测能力，共选择了
+4种代表性指数，计算方法如表2所示。 
+1.2　模型构建
+本研究构建并确定最优模型的流程如图1所示，实
+施步骤如下：
+1）收集数据，去除含有缺失值的样本，并利用3倍
+标准差方法检测并去除含有离群值的样本。
+2）完成数据清理后，再进行特征构建，探索输入变
+量之间以及与目标变量的潜在关系。根据输入变量的不
+同，将全部样本划分为不同的数据集。在同一数据集下，
+将80%的样本用于训练，20%的样本用于测试。
+3）首先利用基准模型进行初步筛选，确定最优的输
+入变量组合；然后在选定特征集的训练集上，运用智能
+优化算法、网格搜索优化机器学习算法的超参数。在训
+练过程中，将训练数据随机分割，并采用5重交叉验证
+方法；以均方根误差作为控制函数，寻找超参数的最优
+组合。
+4）计算并比较超参数优化后的模型在测试集上的性
+能指标；基于最优模型，对比输入因素的相对重要性。
+　 196 农业工程学报（http://www.tcsae.org） 2024 年
+
+--- Page 3 ---
+ 
+表 2    奶牛热应激评价指数
+Table 2    Thermal index of heat-stress assessment in dairy cows
+热应激评价指数
+Thermal index for heat-stress assessment
+计算式
+Calculation formula
+来源文献
+Source literature
+温湿指数
+Temperature-humidity index（THI）
+THI = (1:8Ta + 32) (0:55 0:0055H)  (1:8Ta 26) [26]
+修正温湿指数
+Adjusted temperature-humidity index（ATHI）
+A THI= 4:51 + (0:8Ta + (H=100)  (Ta 14:4) + 46:4) 1:992U + 0:0068Qsr [27]
+奶牛等效温度指数
+Equivalent temperature index for cows（ETIC）
+ETIC = Ta 0:0038Ta  (100 H) 0:1173U0:707  (39:2 Ta) + 0:000186Ta  Qsr [28]
+奶牛皮肤温度指数
+Skin temperature index for cows（STIC）
+STIC =
+1:73Ta 
+(
+1 H
+100
+)
+ 10
+7:5Ta
+237:3 + Ta + 0:116U0:53  (10Ta 300) + 0:05Qsr + 16:08
+0:116U0:53 + 1
+ 
+[29]
+ 
+  
+原始数据 数据清理 特征构建
+随机森林
+验证 训练 训练 训练 训练
+遗传算法
+差分进化算法
+粒子群群优化
+贝叶斯优化
+优化算法
+… 最终数据集
+基准模型
+80%
+20%
+评估指标
+最优模型
+特征重要性分析
+测试集训练集
+网格搜索
+…
+平均
+预测
+残差
+预测
+残差
+预测
+求和
+…
+极限梯度提升
+人工神经网络
+数据子集1 数据子集2 数据子集M
+5重交叉验证
+数据集
+ 
+图1　最优模型的建立流程
+Fig.1    Flow chart of establishing the optimal model
+  
+1.2.1　机器学习算法
+如前所述，RF在奶牛生理指标回归和热应激分类
+任务中表现较好，是本研究中重点关注的预测算法。为
+更全面评估RF的性能，本研究引入了人工神经网络
+（artificial  neural  network， ANN） 和 XGBoost这 两 种 
+常见机器学习算法进行对比分析。ANN通常包含多个
+隐藏层，能够自动提取和学习数据的特征表示，从而实
+现 对 复 杂 任 务 的 准 确 预 测； XGBoost基 于 Boosting算
+法思想，在每一轮训练中沿着残差减小的负梯度方向
+建立分类回归树，并且引入树模型的复杂度以增强泛化
+性能[30]。
+为使机器学习模型达到最佳性能，需对模型的超参
+数进行优化。RF和XGBoost的基学习器均为决策树，
+因此重要的超参数包括决策树的棵树和最大树深。ANN
+的网络拓扑极为关键，重要的超参数为网络层数、隐层
+神经元个数等。另外，防止模型过拟合的超参数为RF
+中内部节点的最小样本数、叶节点的最小样本数，以及
+ANN、XGBoost中的正则项系数。与模型训练稳定性相
+关的超参数为ANN和XGBoost中的学习率。因此，本
+研究采用的机器学习算法需要优化的超参数及其范围如
+表3所示。 
+1.2.2　超参数优化
+机器学习的超参数优化通常被认为是一个黑箱优化
+问题。元启发式算法通过对决策空间的部分子集进行采
+样来搜索优化解，具有不需要目标函数的梯度信息和适
+用性广等特点，故成为了解决黑箱优化问题的有效途
+径[31]。 代 表 性 元 启 发 式 算 法 有 遗 传 算 法 （ genetic
+algorithm，GA）、差分进化（differential evolution，DE）
+算法、粒子群优化（particle swarm optimization，PSO）
+算法等。GA模拟了自然选择和自然遗传过程中发生的
+繁殖、交叉和基因突变现象，通过不断迭代和优胜劣汰
+的选择机制，逐步搜索问题空间中的最优解，其流程如
+第 11 期 严格齐等：基于超参数优化算法的随机森林模型预测奶牛呼吸频率 197 　
+
+--- Page 4 ---
+图2a所示。DE算法与GA算法都属于进化算法，因此
+DE算法的进化流程（图2b）与GA算法类似，但DE算
+法的表征、算子和策略不同于GA算法。对于连续优化
+问题，DE算法相较于GA算法通常能够更快收敛[32]。
+PSO算法是代表性群智能算法，其基本概念源于对鸟群
+捕食行为的研究，一群鸟在随机空间内搜寻食物的最简
+单有效策略是搜寻目前离食物最近的鸟的周围区域[33]。
+在PSO中，每个优化问题的潜在解都是搜索空间中的一
+只鸟，也被称为“粒子”，粒子的位置和速度更新手段
+是PSO算法的核心。PSO算法的流程如图2c所示。
+贝叶斯优化（Bayesian optimization，BO）是一种基于
+贝叶斯推断和概率代理模型（probabilistic surrogate model）
+模型的优化方法。BO算法的核心思想在于利用先验
+知识逼近未知目标函数的后验分布，然后根据分布选择下
+一个采样的超参数组合[34]。为了尽量接近真实的目标
+函 数， 高 斯 过 程 （ Gaussian  process） 模 型 常 被 用 于 概 
+率建立代理模型，用来合并关于目标函数的先验信息。
+相比于传统优化算法，贝叶斯优化通常需要较少的计算
+资源和采样次数来达到相似的优化效果，这使得它在计
+算资源有限的情况下更加适用。BO算法的流程如图2d
+所示。
+ 
+表 3    研究应用的机器学习算法与需要寻优的超参数
+Table 3    Machine learning algorithms used in this study with
+hyperparameters to be optimized
+算法
+Algorithm
+超参数
+Hyperparameter
+范围
+Range
+随机森林
+Random forest（RF）
+决策树的棵数 [100, 500]
+最大深度 [3, 20]
+内部节点再划分所需的最小
+样本数 [0.002, 0.4]
+叶子节点最少样本数 [0.001, 0.1]
+划分时考虑的最大特征数 [2,7]
+人工神经网络
+Artificial neural
+network（ANN）
+隐藏层
+（150）、
+（150,
+50）、
+（150, 100,
+50）
+正则化系数 [0.001, 0.5]
+学习率 [0.001, 0.1]
+激活函数
+['identity',
+'logistic',
+'tanh', 'relu']
+迭代次数 [500, 1 000]
+极限梯度提升
+Extreme gradient
+boosting（XGBoost）
+决策树的棵数 [100, 500]
+最大深度 [3, 20]
+学习率 [0.001, 0.1]
+最小分裂损失 [5, 10]
+正则化系数 [0.001, 0.5]
+注：ANN中的隐藏层，尺寸（150）表示一个隐藏层，神经元数为150；（150，
+50）表示第一个隐藏层神经元数为150，第二个隐藏层神经元数为50。
+Note: Hidden layer in ANN with dimensions (150) denotes a hidden layer with 150
+neurons; (150, 50) denotes the first hidden layer with 150 neurons and the second
+hidden layer with 50 neurons.
+  
+创建初始种群
+计算适应度
+选择操作
+交叉操作
+变异操作
+满足
+终止条件?
+开始
+结束
+生成下一代种群
+是 
+a. 遗传算法
+a. Genetic algorithm
+(GA)
+b. 差分进化算法
+b. Differential evolution algorithm
+(DE)
+开始
+否 
+满足
+终止条件?
+创建初始种群
+计算适应度
+评价子代适应度
+结束
+是 
+使用差分进化算
+子生成子代种群
+选择进入下一代
+的个体
+开始
+初始化粒子群
+更新每个粒子速度和位置
+计算每个粒子的适应度值
+计算每个粒子的历史
+最优位置
+结束
+满足
+终止条件?
+是 
+否 
+计算粒子群的历史最优位置
+和最优适应度值
+c. 粒子群优化算法
+c. Particle swarm optimization algorithm
+(PSO)
+d. 贝叶斯优化算法
+d. Bayesian optimization algorithm
+(BO)
+开始
+结束
+满足
+终止条件?
+获得对应的初始观测值
+集合
+构建或更新采集函数
+是 
+否 
+初始化n个采样点x1:n
+构建（或更新）概率
+代理模型
+最大化采集函数获得
+下一个评估点
+加入新的评估点xn+k的对应值
+yn+k，更新样本集合
+{x1:n+k, y1:n+k}
+ 
+图2　遗传算法、差分进化、粒子群优化、贝叶斯优化的流程图
+Fig.2    Flow chart of genetic algorithm, differential evolution, particle swarm optimization, and Bayesian optimization 
+ 
+1.3　模型评估
+模型开发所依赖的软硬件配置包括：Windows 11
+（版 本 21H2） 操 作 系 统 ， Python（ 版 本 3.9） 、 scikit-
+learn（版本1.2.2）库，Intel i7-11800H @ 4.6 GHz处理
+　 198 农业工程学报（http://www.tcsae.org） 2024 年
+
+--- Page 5 ---
+器以及32 GB内存。
+本研究使用决定系数（coefficient of determination，
+R2） 、 平 均 绝 对 误 差 （ mean  absolute  error， MAE） 、 平
+均 绝 对 百 分 比 误 差（ mean  absolute  percentage  error，
+MAPE）和均方根误差（root mean squared error，RMSE）
+评估模型性能，计算式如下：
+R2 ( yt; yp
+) = 1 
+∑n
+i=1
+(yt;i yp;i)
+2
+∑n
+i=1
+(
+yt;i 
+ 
+y
+) 2 （1）
+ 
+MAE ( yt; yp
+) = 1
+n
+n 1∑
+i=0
+yt;i yp;i
+ （2）
+ 
+MAPE ( yt; yp
+) = 1
+n
+n 1∑
+i=0
+yt;i yp;i
+
+max
+( yt;i
+
+) （3）
+ 
+RMSE ( yt; yp
+) =
+vt
+1
+n
+n 1∑
+i=0
+( yt;i yp;i
+) 2
+（4）
+ 
+y
+式中yt,i表示第i个样本真实值，yp,i表示第i个样本的预
+测值， 表示样本均值。 
+2　结果与分析 
+2.1　预测变量与奶牛呼吸频率相关性分析
+连续型变量与奶牛呼吸频率的相关性如图3所示。
+由图3可知，环境温度、热应激评价指数与奶牛呼吸频
+率具有较高的相关性，相关系数r在0.70～0.73。相对
+湿度、风速、太阳辐射以及产奶量、泌乳天数与奶牛呼
+吸频率的相关性较低。但相比于单一环境温度，由4个
+环境参数综合形成的热应激评价指数表现出与呼吸频率
+更高的相关性，表明通过结合与目标变量强相关的因素
+和弱相关性因素，可以提高模型的预测能力。强相关性
+因素能够提供有力的预测依据，而弱相关性因素可以提
+供额外的信息。
+  
+H
+U
+DOL
+MY
+THI
+ATHI
+ETIC
+STIC
+RR
+H U DOL MY THI ATHI ETIC STIC
+−0.20
+−0.06 −0.05
+0.02 −0.70
+0.33
+0.35
+0.32
+0.51
+0.28
+−0.06
+−0.07
+−0.07
+−0.07
+−0.11
+0.06
+0.06
+0.06
+0.06
+0.11
+0.99
+0.99
+0.96
+0.70 0.72 0.72 0.73
+0.96 0.96
+0.99
+−0.65
+−0.20
+ġ0.01
+0.02
+0.05
+0.03
+0.09
+−0.07
+0.56
+0.42
+0.48
+0.43
+0.22
+0.01
+0.030.05
+0.05
+0.13
+0.54
+0.48
+0.97
+0.95
+0.95
+0.99
+0.71
+Qsr
+Ta Qsr
+ 
+图3　连续型变量与目标变量的相关性
+Fig.3    Correlation between the continuous variables and
+the target variable
+由于环境温度与热应激评价指数具有极高的相关性
+（r≥0.95），若同时作为机器学习模型的输入会引发特
+征共线问题，可能导致模型预测的不稳定，降低模型的
+可解释性。因此，本研究将原始数据集拆分为5个特征
+集。其中，EP特征集以环境温度、相对湿度、风速和太
+阳辐射作为特征，THI特征集、ATHI特征集、ETIC特
+征集和STIC特征集不包含环境参数，仅包含对应指数。
+此外，这些特征集都以时间区域、身体姿势、泌乳天数、
+胎次以及产奶量作为共有特征。 
+2.2　不同环境输入在基准模型下的预测表现
+基准RF模型的超参数设置如下：决策树棵树为100，
+最大深度为10，内部节点再划分所需的最小样本数为2，
+叶子节点最少样本数为1，最大特征数为全部特征，其
+余超参数保持默认。不同环境输入在基准RF模型下的
+预测结果如表4所示。结果表明，在ETIC特征集下，
+基准RF模型的R2值最高（0.425），ATHI特征集次之。
+另外，在ATHI特征集下，基准RF模型的MAE、MAPE
+以及RMSE值均最低。如前所述，在进行超参数优化时，
+目标函数为最小化RMSE值，因此确定将ATHI特征
+集选定为最终数据集，后续的结果与分析将基于该数据
+集展开。
+  
+表 4    不同环境输入在基准RF下对奶牛呼吸频率的预测性能
+Table 4    Predictive performance of cow respiratory rate under the
+baseline RF with different environmental inputs
+特征集
+Feature set
+性能指标 Performance metrics
+R2 MAE/（次·min-1） MAPE/% RMSE/（次·min-1）
+EP 0.360 8.146 14.9 10.348
+THI 0.385 8.077 14.7 10.248
+ATHI 0.419 7.815 14.2 9.997
+ETIC 0.425 7.879 14.4 10.050
+STIC 0.368 8.065 14.7 10.331
+注：EP表示包含气温、相对湿度、风速和太阳辐射。其他特征集包含对应的
+热应激指数。所有数据集包含非环境变量。MAE为平均绝对误差；MAPE为
+平均绝对百分比误差；RMSE均方根误差。
+Note: EP means including air temperature, relative humidity, wind speed and solar
+radiation. Other data sets contained the corresponding thermal stress indices. All
+datasets contained non-environment variables. MAE is mean absolute error；
+MAPE is mean absolute percentage error; RMSE is root mean squared error.
+  
+2.3　模型超参数优化耗时与性能评估
+进行超参数优化时，GA算法、DE算法以及PSO算
+法的种群数均为50，BO算法的初始点数为50，最大迭
+代次数为200。
+表5为模型在ATHI特征集的训练集和测试集上的
+性能评估指标结果。测试集的相关结果表明，4种智能
+优 化 算 法 优 化的 RF模 型 表 现 均 优 于 GS-ANN与 GS-
+XGBoost，其中DE-RF和BO-RF在测试集上获得更高的
+R2值（R2=0.614），DE-RF在测试集上的预测误差最低
+（MAE=7.708 次/min，MAPE=14.4%，RMSE=9.730 次/
+min） ， 其 次 是 BO-RF（ MAE=7.723次 /min， MAPE=14.4%，
+RMSE=9.737 次/min），然后依次是GA-RF和PSO-RF。
+模型训练耗时的结果表明（图4），在ATHI特征
+集 下， BO-RF获 得 最 佳 超 参 数 的 所 需 时 间 最 短 ， 为
+1.1 min，而DE-RF训练所需时间最长（238.6 min）。如
+果考虑计算耗时，BO-RF以较少的时间实现了较高的计
+第 11 期 严格齐等：基于超参数优化算法的随机森林模型预测奶牛呼吸频率 199 　
+
+--- Page 6 ---
+算精度，综合表现最佳，其计算耗时仅为DE-RF计算耗
+时的1/220。主要原因是贝叶斯优化采用了高斯过程，能
+够考虑之前的参数信息并不断更新先验信息。此外，贝
+叶斯优化对于小维度的调参需求特别适用，因为其迭代
+次数较少，收敛速度较快，而其他智能算法每次迭代评
+估个体适应度的开销较大，导致速度较慢。本研究需要
+优化的RF超参数共有5个，贝叶斯优化显示出了一定
+的优越性。  
+表 5    模型在ATHI训练集和测试集上预测奶牛呼吸频率的性能评估指标
+Table 5    Performance evaluation indicators of the models for predicting cow respiratory rate on the ATHI training set and test set
+模型
+Model
+R2 MAE/（次·min-1） MAPE/% RMSE/（次·min-1）
+训练集
+Training set
+测试集
+Test set
+训练集
+Training set
+测试集
+Test set
+训练集
+Training set
+测试集
+Test set
+训练集
+Training set
+测试集
+Test set
+GA-RF 0.693 0.611 6.772 7.732 12.9 14.4 8.686 9.748
+DE-RF 0.687 0.614 6.830 7.708 13.0 14.4 8.761 9.730
+PSO-RF 0.649 0.611 7.240 7.777 13.7 14.5 9.297 9.751
+BO-RF 0.708 0.614 6.621 7.723 12.6 14.4 8.473 9.737
+GS-ANN 0.599 0.596 7.725 7.841 14.5 14.6 9.914 9.968
+GS-XGBoost 0.646 0.607 7.271 7.762 13.7 14.5 9.320 9.852
+ 
+  
+238.6
+204.1
+138.6
+86.2
+25.8
+1.1
+DE-RF
+GS-XGBoost
+GA-RF
+PSO-RF
+GS-ANN
+BO-RF
+0 50 100 150 200 250
+耗时Time consuming/min
+模型Model
+ 
+图4　模型训练耗时
+Fig.4    Time required for model training  
+2.4　特征重要性结果
+由于BO-RF模型表现出较高的综合性能，故采用
+BO-RF模型对各输入变量的相对重要性进行分析，结果
+如图 5所 示 。 ATHI对 模 型 的 相 对 重 要 性 （ relative
+importance，RI）最高，为0.73，其次是时间区域、奶牛
+的产奶量以及泌乳天数，而奶牛的身体姿势以及胎次对
+模型预测的影响较小。
+  
+0.02
+0.03
+0.06
+0.07
+0.09
+0.73
+0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8
+修正温湿指数
+Adjusted THI
+时间区域
+Time block
+产奶量
+Milk yield
+泌乳天数
+Days of lactation
+身体姿势
+Body posture
+胎次
+Parity
+特征Feature
+相对重要性Relative importance
+ 
+图5　特征重要性结果
+Fig.5    Results of feature importance 
+由图5可知，ATHI对模型的预测起着至关重要的
+作用。ATHI能够综合反映热环境的影响，而热环境是
+引起健康奶牛呼吸频率变化的主要原因。时间区域位列
+重要性第二的因素，与环境温度以及奶牛体内热量积累
+程度有关。通常情况下，日温度在下午或傍晚时达到最
+高点，奶牛体内热量也经历了白天积累、夜间释放的过
+程[35]。因此，上午可能是奶牛体内热量累积较低的时段。
+奶牛的产奶量、泌乳天数、身体姿势等生产、行为因素
+在奶牛呼吸频率预测中表现出一定的重要性，则与奶牛
+产热散热情况相关。产奶量高的奶牛由于代谢产热量大，
+对高温环境更为敏感[36]。此外，身体姿势也会影响奶牛
+的散热效果。研究表明，奶牛在躺卧状态时，可用于散
+热的体表面积降低约16%[37]。因此，在构建预测模型时，
+充分考虑这些因素对于提高预测精度具有重要意义。 
+3　讨　论
+本研究通过构建ATHI这一特热应激指数特征并基
+于贝叶斯优化的随机森林（BO-RF）模型对奶牛个体呼
+吸频率进行预测，与其他模型相比，该模型在预测精度
+和计算耗时方面综合表现最佳。之前的相关研究仅考虑
+如何利用有效的特征构建预测奶牛呼吸频率预测模型。
+GORCZYCA等[17]以线性回归、RF、ANN、梯度提升决
+策树（gradient boosting decision tree）作为基础模型，采
+用网格内随机搜索作为超参数优化技术，报道以环境温
+度、相对湿度、风速和太阳辐射作为输入特征的RF表
+现最佳，该模型的R2为0.610，MAE为7.616 次/min，
+RMSE为9.695 次/min。SHU等[18]也以上述4种算法为
+基础模型，采用了网格搜索超参数，但模型的输入特征
+除了热环境参数，还包括奶牛前3天的产奶量、奶牛的
+产犊季节、出生季节、月龄、泌乳天数、胎次、身体姿
+势 以 及 时 间 区 域， 确 定 的 最 优 模 型 （ GS-ANN） R2为
+0.56，RMSE为13.24 次/min。本研究以ATHI、时间区
+域、产奶量等6个特征为输入，基于RF构建的预测模
+型的预测精度优于之前报道的模型。目前，国内外相关
+研究呈现的趋势是预测模型尽可能考虑多的特征[19,38]。
+尽管机器学习的特点之一是可以处理大量特征，但根据
+SHU等[18]的研究结果，过多特征会增加模型的复杂度、
+降低模型的泛化能力，甚至引入噪音和冗余信息。本研
+究应用的特征仅包括牧场的环境参数和奶牛生产记录，
+实现了特征的数量、质量以及易获取性的平衡。由于之
+前研究未涉及模型的超参数调优方法，但依据本研究的
+结果，贝叶斯优化算法在处理相关模型超参数调优问题
+时表现出的高效性值得关注。
+　 200 农业工程学报（http://www.tcsae.org） 2024 年
+
+--- Page 7 ---
+本研究的局限在于，数据集的大小和来源可能对模
+型的预测性能产生一定影响，未来可以通过扩大数据集
+或采用更多样化的数据源进一步优化模型。在模型提升
+方面，当前研究主要聚焦于集成学习中的Bagging算法
+（RF）和Boosting算法（XGBoost）。未来，可以进一
+步探索堆叠或其他融合方法，将多个模型的预测结果有
+效结合，从而显著提升预测性能。此外，考虑到奶牛的
+呼吸频率具有时序特征，前一时段的呼吸频率与下一时
+段的结果密切相关，因此构建基于深度学习模型的预测
+模型，如长短期记忆网络、门控循环单元等，可能具有
+较大潜力。在模型超参数优化方面，虽然本研究已经使
+用了基于进化算法和群智能算法的经典元启发式优化算
+法，但鉴于该领域正处于快速发展阶段，不断有新的算
+法涌现，可以尝试采用更多新型优化算法来进一步提升
+模型的精度与效率。 
+4　结　论
+为了解决奶牛呼吸频率预测模型精度和计算效率不
+足的问题，本研究通过相关性分析和特征构建对原始特
+征 进 行 筛 选、 组 合 、 衍 生 ， 选 用 遗 传 算 法 （ genetic
+algorithm，GA）、差分进化算法（differential evolution，
+DE） 、 粒 子 群 优 化 （ particle  swarm  optimization， PSO）
+算法、贝叶斯优化（Bayesian optimization，BO）算法结
+合随机森林（random forest，RF）来构建奶牛个体呼吸
+频率预测模型，并与使用网格搜索（grid search，GS）
+的 人 工 神 经 网 络（ artificial  neural  network， ANN） 和
+XGBoost进行了对比，主要结果如下：
+1）环境温度与奶牛呼吸频率的相关性较高，而相对
+湿度、风速、太阳辐射强度与之相关性较低，融合环境
+参数构建修正温湿度指数（adjusted temperature-humidity
+index，ATHI）提高了机器学习模型对奶牛呼吸频率预测
+能力；
+2）4种优化算法下的RF模型性能优于GS-ANN和
+GS-XGBoost，BO-RF展现出较高的预测性能（R2=0.614，
+MAE=7.723  次 /min， MAPE=14.4%， RMSE=9.737  次 /min） ，
+优化耗时仅为DE-RF的1/220，综合表现最佳；
+3）ATHI对预测结果的影响程度最高，相对重要性
+为0.73，而奶牛胎次的特征相对重要性最低。
+在扩大数据集的同时，尝试模型堆叠和深度学习
+模型并结合多种新型优化算法，以持续提升模型预测
+能力。
+[参  考  文  献] 
+ HOFFMANN G, HERBUT P, PINTO S, et al. Animal-related,
+non-invasive  indicators  for  determining  heat  stress  in  dairy
+cows[J]. Biosystems Engineering, 2020, 199: 83-96.
+[1]
+ MILAN  H  F  M,  MAIA  A  S  C,  GEBREMEDHIN  K  G.
+Technical note: Device for measuring respiration rate of cattle
+under  field  conditions[J].  Journal  of  Animal  Science,  2016,
+94(12): 5434-5438.
+[2]
+ STRUTZKE S, FISKE D, HOFFMANN G, et al. Technical note:
+Development  of  a  noninvasive  respiration  rate  sensor  for
+cattle[J]. Journal of Dairy Science, 2018, 102(1): 690-695.
+[3]
+ 杜欣怡，仲玉婷，施正香，等. 奶牛卧床冷水管局部降温系
+统应用效果分析[J]. 农业工程学报，2021，37(15)：197-203.
+DU  Xinyi,  ZHONG  Yuting,  SHI  Zhengxiang,  et  al.  Local
+cooling  performance  and  application  effect  of  cow  bed  with
+cooling  water  pipe[J].  Transactions  of  the  Chinese  Society  of
+Agricultural  Engineering  (Transactions  of  the  CSAE),  2021,
+37(15): 197-203. (in Chinese with English abstract)
+[4]
+ 陈昭辉，任方杰，于桐，等. 加装大风量风机对夏季湿帘
+降温奶牛舍的防暑降温效果分析[J]. 农业工程学报，2021，
+37(5)：198-208.
+CHEN  Zhaohui,  REN  Fangjie,  YU  Tong,  et  al.  Analysis  of
+ventilation  and  cooling  effects  of  installing  axial  fans  in  wet
+curtain cooling dairy cattle barn[J]. Transactions of the Chinese
+Society of Agricultural Engineering (Transactions of the CSAE),
+2021, 37(5): 198-208. (in Chinese with English abstract)
+[5]
+ 施正香，王朝元，许云丽，等. 奶牛夏季热环境控制技术
+研究与应用进展[J]. 中国畜牧杂志，2011，47(10)：41-46.
+[6]
+ PINTO  S,  HOFFMANN  G,  AMMON  C,  et  al.  Influence  of
+barn  climate,  body  postures  and  milk  yield  on  the  respiration
+rate of dairy cows[J]. Annals of Animal Science, 2019, 19(2):
+469-481.
+[7]
+ PINTO  S,  HOFFMANN  G,  AMMON  C,  et  al.  Critical  THI
+thresholds  based  on  the  physiological  parameters  of  lactating
+dairy cows[J]. Journal of Thermal Biology, 2020, 88: 102523.
+[8]
+ LI  G,  CHEN  S,  CHEN  J,  et  al.  Predicting  rectal  temperature
+and  respiration  rate  responses  in  lactating  dairy  cows  exposed
+to heat stress[J]. Journal of Dairy Science, 2020, 103(6): 5466-
+5484.
+[9]
+ LI  J,  NARAYANAN  V,  KEBREAB  E,  et  al.  A  mechanistic
+thermal  balance  model  of  dairy  cattle[J].  Biosystems
+Engineering, 2021, 209: 256-270.
+[10]
+ ZHOU M, GROOT KOERKAMP P W G, HUYNH T T T, et al.
+Development  and  evaluation  of  a  thermoregulatory  model  for
+predicting  thermal  responses  of  dairy  cows[J].  Biosystems
+Engineering, 2022, 223: 295-308.
+[11]
+ JI B, BANHAZI T, PHILLIPS C J C, et al. A machine learning
+framework  to  predict  the  next  month’s  daily  milk  yield,  milk
+composition and milking frequency for cows in a robotic dairy
+farm[J]. Biosystems Engineering, 2022, 216: 186-197.
+[12]
+ 谢秋菊，刘学飞，郑萍，等. 畜禽体温自动监测技术及应
+用研究进展[J]. 农业工程学报，2022，38(15)：212-225.
+XIE  Qiuju,  LIU  Xuefei,  ZHENG  Ping,  et  al.  Technology  and
+application  in  automatic  monitoring  of  the  body  temperature
+for  livestock  and  poultry[J].  Transactions  of  the  Chinese
+Society of Agricultural Engineering (Transactions of the CSAE),
+2022, 38(15): 212-225. (in Chinese with English abstract)
+[13]
+ 冯妍，高志天，郑炜缤，等. 机器学习在奶牛临床疾病预[14]
+第 11 期 严格齐等：基于超参数优化算法的随机森林模型预测奶牛呼吸频率 201 　
+
+--- Page 8 ---
+测中的应用[J]. 动物医学进展，2021，42(6)：115-119.
+FENG Yan, GAO Zhitian, ZHENG Weibin, et al. Application
+of  machine  learning  for  prediction  of  clinical  disease  in  dairy
+cows[J]. Progress in Veterinary Medicine, 2021, 42(6): 115-119.
+(in Chinese with English abstract)
+ 丁涛，蒋雷生，施正香，等. 基于随机森林的寒区奶牛舍
+环 境 因 素 与 产 奶 量 关 系 研 究[J].  农 业 机 械 学 报 ， 2021，
+52(12)：378-385.
+DING  Tao,  JIANG  Leisheng,  SHI  Zhengxiang,  et  al.
+Relationship  between  environmental  factors  and  milk  yield  of
+dairy  cow  house  in  cold  region  based  on  random  forest[J].
+Transactions of the Chinese Society for Agricultural Machinery,
+2021, 52(12): 378-385. (in Chinese with English abstract)
+[15]
+ BAO  J,  XIE  Q.  Artificial  intelligence  in  animal  farming:  A
+systematic  literature  review[J].  Journal  of  Cleaner  Production,
+2022, 331: 129956.
+[16]
+ GORCZYCA  M  T,  GEBREMEDHIN  K  G.  Ranking  of
+environmental  heat  stressors  for  dairy  cows  using  machine
+learning  algorithms[J].  Computers  and  Electronics  in
+Agriculture, 2020, 168: 105124.
+[17]
+ SHU  H,  LI  Y,  BINDELLE  J,  et  al.  Predicting  physiological
+responses  of  dairy  cows  using  comprehensive  variables[J].
+Computers and Electronics in Agriculture, 2023, 207: 107752.
+[18]
+ BECKER C A, AGHALARI A, MARUFUZZAMAN M, et al.
+Predicting  dairy  cattle  heat  stress  using  machine  learning
+techniques[J]. Journal of Dairy Science, 2021, 104(1): 501-524.
+[19]
+ BREIMAN  L.  Random  forests[J].  Machine  Learning,  2001,
+45(1): 5-32.
+[20]
+ YAN G, LIU K, HAO Z, et al. Development and evaluation of
+thermal models for predicting skin temperature of dairy cattle[J].
+Computers and Electronics in Agriculture, 2021, 188: 106363.
+[21]
+ DIßMANN L, HEINICKE J, JENSEN K C, et al. How should
+the  respiration  rate  be  counted  in  cattle?[J].  Veterinary
+Research Communications, 2022, 46(4): 1221-1225.
+[22]
+ HERBUT  P,  ANGRECKA  S,  WALCZAK  J.  Environmental
+parameters  to  assessing  of  heat  stress  in  dairy  cattle-a
+review[J].  International  Journal  of  Biometeorology,  2018,
+62(12): 2089-2097.
+[23]
+ 鲁煜建，王朝元，赵浩翔，等. 东北地区奶牛夏季热应激
+对其行为和产奶量的影响[J]. 农业工程学报，2018，34(16)：
+225-231.
+LU Yujian, WANG Chaoyuan, ZHAO Haoxiang, et al. Effect
+of  heat  stress  of  dairy  cow  on  its  behavior  and  milk  yield  in
+Northeastern  China[J].  Transactions  of  the  Chinese  Society  of
+Agricultural  Engineering  (Transactions  of  the  CSAE),  2018,
+34(16): 225-231. (in Chinese with English abstract)
+[24]
+ YAN G, LI H, ZHAO W, et al. Evaluation of thermal indices
+based on their relationships with some physiological responses
+of  housed  lactating  cows  under  heat  stress[J].  International
+Journal of Biometeorology, 2020, 64(12): 2077-2091.
+[25]
+ 严格齐，李浩，施正香，等. 奶牛热应激指数的研究现状[26]
+及问题分析[J]. 农业工程学报，2019，35(23)：226-233.
+YAN Geqi, LI Hao, SHI Zhengxiang, et al. Research status and
+existing  problems  in  establishing  cow  heat  stress  indices[J].
+Transactions  of  the  Chinese  Society  of  Agricultural
+Engineering (Transactions of the CSAE), 2019, 35(23): 226-233.
+(in Chinese with English abstract)
+ MADER  T  L,  DAVIS  M  S,  BROWN-BRANDL  T.
+Environmental factors influencing heat stress in feedlot cattle[J].
+Journal of Animal Science, 2006, 84(3): 712-719.
+[27]
+ WANG X, GAO H, GEBREMEDHIN K G, et al. A predictive
+model of equivalent temperature index for dairy cattle (ETIC)[J].
+Journal of Thermal Biology, 2018, 76: 165-170.
+[28]
+ YAN  G,  SHI  Z,  CUI  B,  ET  AL.  Developing  a  new  thermal
+comfort  prediction  model  and  web-based  application  for  heat
+stress  assessment  in  dairy  cows[J].  Biosystems  Engineering,
+2022, 214: 72-89.
+[29]
+ 于涛，丁海旭，黄卫民. 面向复杂异质数据的集成学习研
+究综述[J]. 2023，30(8)：1425-1435.
+YU  Tao,  DING  Haixu,  HUANG  Weiming.  A  survey  of
+ensemble learning for complex heterogeneous data[J]. Control
+Engineering  of  China,  2023,  30(8):  1425-1435.  (in  Chinese
+with English abstract)
+[30]
+ 江璞玉，刘均，周奇，等. 大规模黑箱优化问题元启发式
+求解方法研究进展[J]. 中国舰船研究，2021，16(4)：1-18.
+JIANG  Puyu,  LIU  Jun,  ZHOU  Qi,  et  al.  Advances  in  meta-
+heuristic  methods  for  large-scale  black-box  optimization
+problems[J]. Chinese Journal of Ship Research, 2021, 16(4): 1-
+18. (in Chinese with English abstract)
+[31]
+ 刘波，王凌，金以慧. 差分进化算法研究进展[J]. 控制与决
+策，2007，22(7)：721-729.
+LIU  Bo,  WANG  Ling,  JIN  Yihui.  Advances  in  differential
+evolution[J].  Control  and  Decision,  2007,  22(7):  721-729.  (in
+Chinese with English abstract)
+[32]
+ 李爱国，覃征，鲍复民，等. 粒子群优化算法[J]. 计算机工
+程与应用，2002(21)：1-17.
+LI  Aiguo,  QIN  Zheng,  BAO  Fumin,  et  al.  Particle  swarm
+optimization  algorithms[J].  Computer  Engineering  and
+Applications, 2002(21): 1-17. (in Chinese with English abstract)
+[33]
+ 崔佳旭，杨博. 贝叶斯优化方法和应用综述[J]. 软件学报，
+2018，29(10)：3068-3090.
+CUI  Jiaxu,  YANG  Bo.  Survey  on  Bayesian  optimization
+methodology  and  applications[J].  Journal  of  Software,  2018,
+29(10): 3068-3090. (in Chinese with English abstract)
+[34]
+ GAUGHAN J B. Respiration rate-is it a good measure of heat
+stress  in  cattle?[J].  Asian-Australasian  Journal  of  Animal
+Sciences, 2000, 13: 329-332.
+[35]
+ BECKER  C  A,  COLLIER  R  J,  STONE  A  E.  Invited  review:
+Physiological  and  behavioral  effects  of  heat  stress  in  dairy
+cows[J]. Journal of Dairy Science, 2020, 103(8): 6751-6770.
+[36]
+ WANG X, ZHANG G, CHOI C Y. Effect of airflow speed and
+direction on convective heat transfer of standing and reclining
+[37]
+　 202 农业工程学报（http://www.tcsae.org） 2024 年
+
+--- Page 9 ---
+cows[J]. Biosystems Engineering, 2018, 167: 87-98.
+ 郑国生，施正香，滕光辉. 基于不同行为时间的奶牛健康
+状况评价[J]. 农业工程学报，2019，35(19)：238-244.
+ZHENG Guosheng, SHI Zhengxiang, TENG Guanghui. Health
+[38]
+assessment  of  cows  based  on  different  behavior  time[J].
+Transactions  of  the  Chinese  Society  of  Agricultural
+Engineering (Transactions of the CSAE), 2019, 35(19): 238-244.
+(in Chinese with English abstract) 
+Predicting respiratory rate of dairy cows using hyperparameter-optimized
+random forest models
+YAN Geqi1 , ZHAO Wanying2 , YU Zhenwei3 , JIAO Hongchao1※ , LIN Hai1 , LI Hao4,5 ,
+SHI Zhengxiang4,5 , WANG Chaoyuan4,5
+(1. College of Animal Science and Technology, Shandong Agricultural University, Tai’an 271018, China;　2. China Rural Technology
+Development Center, Beijing 100045, China;　3. College of Mechanical and Electronic Engineering, Shandong Agricultural University,
+Tai’an 271018, China;　4. College of Water Resources and Civil Engineering, China Agricultural University, Beijing 100083, China;　
+5. Key Laboratory of Agricultural Engineering in Structure and Environment, Ministry of Agriculture and
+Rural Affairs, Beijing 100083, China)
+Abstract: Heat  stress  has  threatened  dairy  cows  during  periods  of  high  temperatures.  Dairy  farms  can  often  assess  the
+respiratory  rate  (breahts  per  minute,  bpm)  of  dairy  cows,  and  then  implement  timely  environmental  control  measures  to
+mitigate  the  heat  stress,  thus  enhancing  the  welfare  of  animals  and  production  performance.  However,  previous  empirical  or
+numerical  models  cannot  accurately  predict  the  respiratory  rate  of  individual  dairy  cows  in  real  environments.  Data-driven
+machine  learning  models  can  be  expected  to  provide  a  better  representation  of  the  relationship  between  various  variables,
+particularly  on  the  actual  respiratory  rate.  In  this  study,  a  random  forest-based  prediction  model  was  introduced  for  the  cow
+respiration  rate.  Five  hyperparameters  were  fine-tuned  using  genetic  algorithm  (GA),  differential  evolution  algorithm  (DE),
+particle  swarm  optimization  algorithm  (PSO),  and  Bayesian  optimization  (BO).  These  random  forest-based  models  were
+compared with the artificial neural network (ANN) and extreme gradient boosting (XGBoost) models under grid search (GS).
+The  training  data  was  obtained  from  a  commercial  dairy  farm  in  North  China.  The  thermal  environment  parameters  (air
+temperature,  relative  humidity,  wind  speed,  and  solar  radiation)  were  integrated  with  the  sampling  time  blocks  and  cattle-
+related  variables.  The  thermal  environment  variables  were  utilized  as  the  input  features  to  construct  four  heat  stress  indices,
+namely the temperature-humidity index (THI), adjusted temperature-humidity index (ATHI), equivalent temperature index for
+cattle (STIC), and skin temperature index (STIC). The dataset was comprised of 3005 records, with 80% allocated for training
+and  20%  for  testing.  Hyperparameter  optimization  was  conducted  on  the  training  set  using  5-fold  cross-validation.  The
+correlation analysis revealed that there was a highly significant correlation (P<0.01) between all thermal environment variables,
+heat stress indices, and the respiratory rate of cows. Additionally, significant correlations (P<0.01) were observed between the
+thermal environment variables and heat stress indices. In feature collinearity, the overall dataset was partitioned into five sub-
+datasets:  EP,  THI,  ATHI,  ETIC,  and  STIC  dataset.  The  differentiation  among  these  subsets  was  combined  with  the  distinct
+environmental variables. Specifically, the EP dataset comprised four environmental parameters, while the rest dataset's features
+were  the  corresponding  indices.  Results  indicated  that  the  baseline  random  forest  model  achieved  the  highest  prediction
+accuracy, when utilizing the adjusted temperature-humidity index, time block, milk production of the cows, days of lactation,
+body posture, and the number of calving as inputs. On the test set of the ATHI feature, the performance of the RF-based model
+was better than those of the GS-ANN and GS-XGBoost under the four intelligent optimizations. The random forest model was
+optimized by the differential evolution algorithm (DE-RF), indicating the highest accuracy, with a coefficient of determination
+(R2), mean absolute error (MAE), mean absolute percentage error (MAPE), and root mean square error (RMSE) on the testing
+set of 0.614, 7.708 bpm, 14.4%, and 9.730 bpm, respectively. After that, the Bayesian-optimized random forest model (BO-RF)
+was achieved in a coefficient of determination, mean absolute error, mean absolute percentage error, and root mean square error
+on  the  testing  set  of  0.614,  7.723,  14.4%,  and  9.737,  respectively.  Notably,  the  BO-RF  was  only  required  1/200  of  the  time
+taken by the DE-RF. As a result, the BO-RF displayed the most favourable overall performance, in terms of prediction accuracy
+and computational time. Subsequently, the relative importance (RI) of the input features was determined using the BO-RF. The
+feature  importance  analysis  revealed  that  the  adjusted  temperature-humidity  index  held  the  highest  importance  in  the  model
+prediction (RI value = 0.73), followed by time block (RI value = 0.09), milk production of cattle (RI value = 0.07), and days of
+lactation (RI value = 0.06). The body posture of the cattle (RI value = 0.03) and the number of calving (RI value = 0.02) shared
+a  marginal  impact  on  the  model  predictions.  This  finding  can  offer  valuable  insights  into  the  precise  and  intelligent  control
+system in dairy barns.
+Keywords: dairy cow; respiratory rate; models; metaheuristic algorithm; Bayesian optimization; random forest
+第 11 期 严格齐等：基于超参数优化算法的随机森林模型预测奶牛呼吸频率 203

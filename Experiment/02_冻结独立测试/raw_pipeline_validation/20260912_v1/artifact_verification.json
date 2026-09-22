@@ -1,0 +1,13 @@
+{
+  "status": "ARTIFACT_CONSISTENCY_PASS",
+  "windows": 49,
+  "predicted_windows": 37,
+  "abstained_windows": 12,
+  "verified_prediction_frames": 9657,
+  "algorithm_events_not_ground_truth": 895,
+  "frozen_files_unchanged": 12,
+  "executed_runner_sha256": "77c8f656f3fd7210727661eb75aa72171f19ef4cd02a8a57d2b274bce85f8853",
+  "executed_adapter_sha256": "76dcfdac321876c7bd60ec64fa7c1d4c15bb710238db615c44ef1d8289b9fa05",
+  "accuracy_validated": false,
+  "prediction_csv_sha256": "bf578fe4d1533a661f4a482831a1f17ec732a7eed01e650e8cff5dc8e571a9d5"
+}

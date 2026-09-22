@@ -1,0 +1,21 @@
+{
+  "status": "PROGRESS_OBJECTIVE_NOT_COMPLETE",
+  "inferences": 504,
+  "fixed_frames": 72,
+  "diagnostic_variants": 7,
+  "strict_R3_windows": 9,
+  "strict_R3_events": 117,
+  "actual_anatomical_labels_received": false,
+  "default_changed": false,
+  "scientific_gaps": [
+    "anatomical_location_visibility_reference",
+    "independent_physiological_phase_validation"
+  ],
+  "report_sha256": "3a06b2a54b04dad11f9577ab84fad75692c97749ee0d95f5dffc1128397a6382",
+  "reviewed_outputs": [
+    "probe_verification.json",
+    "phase_audit/event_classification_summary.csv",
+    "qa/ui_verification.json"
+  ],
+  "human_reference_entry": "index.html"
+}

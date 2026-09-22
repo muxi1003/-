@@ -1,0 +1,3 @@
+﻿analysis_set,delta_mae_bpm,delta_mae_ci95_low,delta_mae_ci95_high,bootstrap_clusters,bootstrap_draws,bootstrap_seed,scope
+all49,-0.08160718416343114,-0.24492120804023942,0.08151853952884601,49,2000,20260909,exploratory_raw_source_cluster_not_independent_cow_validation
+completed39,-0.10256272476838825,-0.2564902846334171,0.0,39,2000,20260909,exploratory_raw_source_cluster_not_independent_cow_validation

@@ -1,0 +1,11 @@
+{
+  "original_output_peak_replay_verified": 216,
+  "files": {
+    "input_hashes.csv": "7718cb6e530778c903933d612bbf203c5c112805058ec29a71e339e99474f9f6",
+    "prediction_events.csv": "dc285c4f7eb77c7c7ee0d49f587f8ae32a61406b0e8309575572be3968c3374c",
+    "prediction_windows.csv": "bfb06d354386a51fbb89a588b6acea5f43c2aaf732f97c532339a11aae4eecc1",
+    "protocol_before_predictions.json": "614727594dbc477a365a0f1d50faff11e0a56f1e7eeee628f92abd32e2538663",
+    "temperature_mask_audit.csv": "2cbfab16da6135aefb1ef9e2eb5e8c283967249d4470c817e906b768c1727d0c"
+  },
+  "no_reference_read_by_predictor": true
+}

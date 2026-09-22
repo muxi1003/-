@@ -1,0 +1,10 @@
+{
+  "candidate": "local_event_guard",
+  "decision": "DO_NOT_ADOPT",
+  "default_method_changed": false,
+  "reference": "R2 20260918_r2_status_v1, main tolerance 0.30 seconds",
+  "internal_delta_f1": -0.001838504150963649,
+  "external_delta_f1": -0.09031435506504154,
+  "reason": "No demonstrated internal F1 improvement; external event recall and F1 declined. Retain diagnostic evidence only.",
+  "future_review": "R3 may revise understanding of phase/visibility, but does not automatically authorize promoting this failed candidate."
+}

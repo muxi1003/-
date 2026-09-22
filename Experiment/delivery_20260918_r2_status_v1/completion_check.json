@@ -1,0 +1,10 @@
+{
+  "status": "PASS_STATUS_ONLY_REFERENCE_UPDATE",
+  "original_exports_unchanged": true,
+  "no_predictions_rerun": true,
+  "pending": 0,
+  "complete_jiufu": 216,
+  "paired_jiufu": 173,
+  "internal_ablation_unchanged": true,
+  "previous_214_matches_unchanged": true
+}

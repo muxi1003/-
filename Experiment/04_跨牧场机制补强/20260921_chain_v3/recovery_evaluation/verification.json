@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checkpoints_verified": 53,
+  "extra_events": 622,
+  "unchanged_existing_output_windows": 216,
+  "unchanged_RR_pair_count": 173,
+  "full_RR_metrics_changed": false,
+  "no_events_in_unsupported_timestamp_grid": true,
+  "no_full_count_from_partial_events": true,
+  "independent_matching_agrees": true,
+  "phase_shift_fit": false,
+  "old_reference_changed": false
+}

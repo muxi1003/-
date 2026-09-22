@@ -1,0 +1,36 @@
+{
+  "json_files": 2518,
+  "video_groups": 73,
+  "embedded_images": 1855,
+  "decoded_images": 1855,
+  "size_matches": 1855,
+  "unique_pixel_images": 1854,
+  "exact_duplicate_image_rows": 2,
+  "review_exact_pixel_overlap": 0,
+  "shapes": {
+    "nose": 2516,
+    "left_nostril": 2428,
+    "right_nostril": 2242
+  },
+  "shape_types": {
+    "rectangle": 2516,
+    "point": 4670
+  },
+  "files_with_scores": 2314,
+  "files_with_parse_issues": 0,
+  "points": 4670,
+  "points_outside_image": 0,
+  "points_outside_nose_box": 189,
+  "yolo_files_present": 2518,
+  "yolo_parse_ok": 2518,
+  "single_instance_point_comparisons": 2328,
+  "point_delta_gt_1px": 2326,
+  "point_delta_gt_5px": 2118,
+  "median_max_point_delta_px": 11.400146549487435,
+  "max_point_delta_px": 56.03947212456592,
+  "files_unmatched_by_basename": [],
+  "training_eligibility": "UNRESOLVED_LABEL_VERSION_AND_PROVENANCE",
+  "no_training_run": true,
+  "no_original_files_changed": true,
+  "limitation": "exact decoded pixel duplicates only; not near-duplicate or full271 nonoverlap proof; score field does not disprove human review"
+}

@@ -1,0 +1,45 @@
+const fs=require('fs'),path=require('path'),{pathToFileURL}=require('url');
+const {chromium}=require('C:/Users/muxi/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const root=path.join(__dirname,'20260921_v1/review24');
+(async()=>{
+  const browser=await chromium.launch({channel:'chrome',headless:true,args:['--allow-file-access-from-files']});
+  const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(pathToFileURL(path.join(root,'index.html')).href);
+  await page.waitForFunction(()=>document.getElementById('video').readyState>=2,{},{timeout:20000});
+  const ensure=(v,s)=>{if(!v)throw Error(s)};
+  ensure(await page.evaluate(()=>db.windows.length===24&&db.events.length===0&&db.windows.every(w=>w.manual_breath_count===''&&w.annotation_round==='R3')),'Blank R3 state');
+  await page.screenshot({path:path.join(root,'qa_desktop.png'),fullPage:true});
+  await page.locator('#annotator').fill('QA_ONLY');await page.locator('#hidden').selectOption('true');
+  await page.locator('#phase').selectOption('thermal_extremum_only');await page.locator('h1').click();
+  await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>!document.getElementById('video').seeking);
+  const frame1=await page.evaluate(()=>frameIndex());ensure(frame1===1,'Next decoded frame');
+  await page.keyboard.press('ArrowLeft');await page.waitForFunction(()=>!document.getElementById('video').seeking);
+  ensure(await page.evaluate(()=>frameIndex())===0,'Previous decoded frame');
+  await page.evaluate(()=>document.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyQ',key:'Process',isComposing:true,bubbles:true})));
+  ensure(await page.evaluate(()=>db.events.length===1&&db.events[0].confidence==='confirmed'&&db.events[0].marking_mode==='paused_frame_review'),'IME Q');
+  await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>!document.getElementById('video').seeking);
+  await page.keyboard.press('w');ensure(await page.evaluate(()=>db.events.length===2&&db.events[1].confidence==='uncertain'),'W uncertain');
+  await page.keyboard.press('Space');await page.waitForTimeout(250);await page.keyboard.press('q');
+  ensure(await page.evaluate(()=>db.events.length===2),'Reject marks while playing');await page.keyboard.press('Space');
+  await page.locator('#notes').fill('editing');await page.keyboard.press('q');ensure(await page.evaluate(()=>db.events.length===2),'Editable guard');
+  await page.locator('h1').click();await page.keyboard.press('d');await page.waitForFunction(()=>document.getElementById('video').readyState>=2);
+  ensure(await page.evaluate(()=>document.getElementById('window').selectedIndex)===1,'D next');
+  await page.keyboard.press('a');await page.waitForFunction(()=>document.getElementById('video').readyState>=2);
+  ensure(await page.evaluate(()=>document.getElementById('window').selectedIndex)===0,'A previous');
+  await page.evaluate(()=>{document.getElementById('video').currentTime=2});await page.waitForFunction(()=>!document.getElementById('video').seeking);
+  await page.keyboard.press('e');await page.locator('#reason').fill('QA_ONLY');await page.locator('h1').click();
+  await page.evaluate(()=>{document.getElementById('video').currentTime=3});await page.waitForFunction(()=>!document.getElementById('video').seeking);
+  await page.keyboard.press('e');ensure(await page.evaluate(()=>db.intervals.length===1&&begin===null),'E interval toggle');
+  await page.locator('#status').selectOption('complete');ensure(await page.evaluate(()=>w().annotation_status!=='complete'),'Reject complete with uncertain events');
+  const dl=page.waitForEvent('download');await page.locator('#backup').click();const file=await dl;
+  ensure(file.suggestedFilename()==='event_reference_R3_backup.json','R3 export filename');
+  await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(root,'qa_mobile.png'),fullPage:true});
+  ensure(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No mobile horizontal overflow');
+  ensure(errors.length===0,'No page errors: '+errors.join(';'));
+  await browser.close();
+  fs.writeFileSync(path.join(root,'ui_verification.json'),JSON.stringify({status:'PASS',checks:14,errors,
+    original_R2_not_opened:true,temporary_browser_profile:true,actual_user_IME_retest_required:true,
+    limitation:'Decoded PTS stepping tested; no independent physiological phase verification'},null,2));
+  console.log('Review24 QA PASS');
+})().catch(e=>{console.error(e);process.exit(1)});

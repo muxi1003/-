@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "independent_DP_and_formulas": {
+    "folder": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1",
+    "complete": 216,
+    "paired": 173,
+    "tp": 1324,
+    "fp": 1028,
+    "fn": 1706,
+    "status": "PASS"
+  },
+  "previous_214_window_results_unchanged": true,
+  "prior_prediction_seal_sha256": "577663688bc27364d0defaca0c8d60ea6235bf112785cccefa0d14ada2817266",
+  "previous_prediction_adapter_hashes": {
+    "prediction_windows.csv": "c3af52b00fda0b6767be4138fc4c4e7da955ef9541ea2c52b7bb7d586bce0f08",
+    "prediction_events.csv": "5b6de74afcac3be136ebb58f2362ffced6d55d2ead3c20985ede460899dfe608"
+  },
+  "validation_scope": "status_only_revision; reused_prior_verified_time_mapping; no_raw_video_or_inference_rerun"
+}

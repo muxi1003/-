@@ -1,0 +1,470 @@
+--- Page 1 ---
+R
+espiratory heat transfer is a significant pathway
+of heat loss for most mammals (homeotherms)
+under a wide range of environmental conditions
+(Ingram and Mount, 1975). Respiration rate (RR)
+provides an easily observed measure of an animal’s thermal
+state and can be a valuable physiological parameter in
+conjunction with additional information, such as ambient
+temperature (T
+a), humidity, radiation heat loads (Garrett et
+al., 1967; Hahn, 1976), and air velocity (Monteith, 1973).
+Physiological responses of cattle have been studied
+intensively and RR has been shown to behave predictably,
+increasing with rising ambient temperature (Hahn et al.,
+1997; Morrison and Lofgreen, 1979; Webster, 1973; Kibler
+and Brody, 1949). However, RR response is non-linear. As
+T
+a increases beyond a threshold, RR increases more
+rapidly; this threshold occurs near heat stress conditions for
+cattle (Hahn et al., 1997). An understanding of the RR
+response for cattle should allow producers to better
+recognize animal distress and to initiate planned
+intervention to minimize performance losses and reduce
+death losses under stressing conditions (Hahn et al., 1997).
+While RR is easily observable by traditional means
+(e.g., using a stopwatch while counting flank movement),
+long term studies that require frequent measures become
+tedious and labor intensive. There is also a possibility of
+observer influence on the animal. Automated RR
+monitoring is desirable to increase the frequency of
+measures as an evaluation of response dynamics and to
+provide a more robust application of time-series
+techniques; to provide consistent data; and to reduce the
+labor requirements for data collection. Existing automated
+RR equipment is quite limited, and unsuitable for large
+animal applications. A respiratory effort transducer for
+humans (BIOPAC Systems Inc., 1997) incorporates a thin-
+film transducer into a silicone rubber strain assembly that
+changes resistance with changing thoracic or abdominal
+circumference. Most human applications involve subjects
+that are cooperative and conscious of the limitations of
+such monitoring devices. Few devices for free-ranging
+animals are described in the literature. Data Sciences Intl.
+(Data Science Int., 1996) has developed a method that
+provides accurate determination of respiratory rate for free
+moving rats monitored via implanted telemetry sensors.
+The technique is patent-pending and is based on changes in
+cardiovascular data resulting from respiratory effort. The
+application to larger animals is still not fully developed.
+Monitoring of cattle respiration has been accomplished
+using temperature sensors positioned near the nostrils of
+the animals (Hahn, 1998) but this method has not come
+into widespread use. Rugged sensors and data logging
+equipment are needed to provide this response variable.
+The purpose of this work was to develop respiration
+monitors suitable for use on cattle. These units are to
+measure and store respiration data under various laboratory
+and field conditions. Testing of these units was done in
+DEVELOPMENT OF A NEW RESPIRATION RATE MONITOR FOR CATTLE
+R. A. Eigenberg, G. L. Hahn, J. A. Nienaber, T. M. Brown-Brandl, D. E. Spiers
+ABSTRACT. Studies were conducted investigating bioenergetic responses of growing cattle to heat challenges using
+respiration rate as one of the primary measures. Respiration rate (RR) was measured using monitors designed from
+commercially available thin-film pressure sensors and a small battery powered micro-computer. The monitors were
+designed, fabricated, and tested to provide continuous records as a basis for evaluating stress responses associated with
+environmental conditions. This article provides details about the monitors and the suitability of obtained records as an
+indicator of stress, based on measures obtained in environmental chambers during constant and simulated heat wave
+conditions as well as a field study. Representative data from two laboratory studies indicated an association of RR and
+ambient temperature (P < 0.01) with diurnal changes being evident in the cyclic test and step changes being evident in
+the constant ambient temperature tests. A two to three breaths per minute (BPM) rate of change of RR with respect to
+ambient temperature (°C) was observed for steers in the laboratory studies. The field study revealed a striking response of
+RR to the ambient temperature (6.6 BPM/°C rate of change) for a steer that had direct solar load (no-shade) compared to
+a 1.6 BPM/°C rate of change in the shade.
+Keywords. Bioenergetics, Respiration rate monitor, Transducer, Microcomputer, Environmental stress.
+Article was submitted for publication in November 1999; reviewed
+and approved for publication by the Structures & Environment Division
+of ASAE in February 2000. Presented as ASAE Paper No. 99-4211.
+Names are necessary to report factually on available data; however,
+the USDA neither guarantees nor warrants the standard of the product,
+and the use of the name by USDA implies no approval of the product to
+the exclusion of others that may also be suitable.
+The authors are Roger A. Eigenberg , Agricultural Engineer, G.
+Leroy Hahn , ASAE Fellow , Collaborator, John A. Nienaber , ASAE
+Member , Agricultural Engineer, Tami M. Brown-Brandl , ASAE
+Member, Agricultural Engineer, Biological Engineering Research Unit,
+USDA/ARS U.S. Meat Animal Research Center, Clay Center, Nebraska;
+Donald E. Spiers , ASAE Member , Associate Professor, University of
+Missouri, Columbia, Missouri. Corresponding author: Dr. Roger
+Eigenberg, USDA/ARS U.S. Meat Animal Research Center, PO Box 166,
+Clay Center, NE 68933, phone: 402.762.4272, fax: 402.762.4273, e-mail
+<eigenberg@email.marc.usda.gov>. 
+Transactions of the ASAE
+© 2000 American Society of Agricultural Engineers 0001-2351 / 00 / 4303-723 723VOL. 43(3): 723-728
+ se 1808 ms 7/9/01 9:39 AM Page 723
+
+--- Page 2 ---
+laboratory conditions to determine functionality and
+reliability.
+MATERIALS AND METHODS
+A respiration monitoring system was designed with
+three major components: (1) respiration rate sensor and the
+respiration belt that maintains tension and holds the
+transducer in place; (2) a data logging device capable of
+recording the respiration data and transferring it as data
+files for analysis; and (3) the analysis program that allows
+the data to be interpreted. Each of the components are
+described in the sections that follow.
+R
+ESPIRATION RATE SENSOR ASSEMBLY
+A critical component of a RR monitor is the force
+transducer. Ruggedness and reliability are key
+requirements of any transducer used in this application
+while linearity and low hysteresis are less critical. A
+UniForce™ surface mount transducer (Force Imaging
+Technologies, Chicago, Ill.) (fig. 1) was chosen to provide
+an electrical signal in response to pulmonary effort (rib
+cage expansion/ contraction). The thin film transducer was
+constructed with a bottom layer of conducting substrate
+(typically silver) under a layer of a special pressure
+sensitive material applied in the sensing area. The
+transducer acts as a variable resistive element requiring a
+conditioning circuit (this can be a simple voltage divider)
+to provide meaningful input to a data logger. Attachment to
+the sensor assembly is made using the adhesive backing of
+the transducer. Electrical connection was made via the
+adhesive electrical contact material of the force transducer
+which was bonded to two small brass pins providing solder
+points for wires (fig. 1).
+Respiration sensor requirements for cattle include
+rugged construction, reliable operation and ability to
+withstand environmental extremes. The RR sensor used in
+this application was constructed with the force transducer
+mounted to one of two small acrylic cylinders housed in a
+pull/pull dual cylinder arrangement (fig. 2). The two
+plastic cylinders were machined to fit into an outer
+aluminum tube which provided protection and housing for
+the mechanical sliding action. The two inner cylinders were
+free to move within the aluminum tube (fig. 3); any pull on
+either of the attach points resulted in compression against
+the transducer element.
+The belt held the sensor in place and provided a
+constant low force tension (approximately one-third of
+full scale sensor output). The belt must conform to the
+shape of the animal and be unaffected by precipitation,
+manure and urine. After several material considerations, a
+lightweight shock-cord (bungee cord) was chosen for
+availability, structural integrity, elasticity, durability, ease
+of use, low cost, and low resistive drag on the animal hide.
+The mounting method involved using two cords to span the
+abdominal circumference (fig. 4), with each end of the cord
+attached to a ring on either side of the sensor.
+The RR sensor provides relative changes and does not
+give sufficient signal repeatability to provide total volume
+measures or amplitude of breath. An altered force
+transducer and attachment method would be required to
+accurately assess these measures.
+D
+ATA LOGGER
+A micro-power small board computer (TFX-11, Onset
+Computer, 1997) was used as the data collection device
+(fig. 5). The TFX-11 specifications included a small size
+(8.1 cm × 5.33 cm × 1.27 cm), 12-bit A/D converter, built
+in real-time clock, 512 k of EEPROM and an ultra low
+power mode. These specifications met the requirements for
+the RR monitor data capture device. The TFX-11 was
+equipped with 0.1 in. headers for electrical connection to
+an interface board. The user was responsible for
+development of the interface board for their application. An
+interface board was designed based on the prototype unit
+using a CAD (SuperPCB for Windows™, Mental
+Automation Inc.) circuit board design program. All
+communication and analog signals connected to the TFX-
+11 through the interface board with all signal conditioning
+and logger power switching handled on the interface board.
+The complete RR data logging system is shown in figure 6.
+724 TRANSACTIONS OF THE ASAE
+Figure 1–A force transducer (center) (8.9 newton) is attached to an
+acrylic cylinder (left). A second cylinder (right) acts as a pressure
+point. Electrical contact is made to brass contacts with conductive
+adhesive provided on the transducer.
+Figure 2–Detail of the two acrylic cylinders with assembly hardware.
+Figure 3–The cylinders are free to move in the aluminum tube; any
+pull of either of the attach points results in compression against the
+transducer element.
+ se 1808 ms 7/9/01 9:39 AM Page 724
+
+--- Page 3 ---
+RESPIRATION MONITOR SUPPORT SOFTWARE
+Programming the TFX-11 using a modified BASIC
+programming language was accomplished via a
+development program (Onset Computer Corp., Pocasset,
+Mass.). Onset Computer provided specialized commands
+that performed routine tasks such as data acquisition and
+time functions. The data logger program was written to
+support RR signal logging bursts at user defined intervals.
+The logging bursts logged respiration sensor outputs every
+0.1 s. Figure 7 shows a sample RR data output for a one
+minute burst. The data were stored in binary format in the
+on-board EEPROM and offloaded as binary data. The
+TFX-11 EEPROM memory was sufficient for collection of
+RR data over a four-day collection span with 1 min bursts
+acquired every 15 min.
+A second program converted the data from binary to text
+format. The data was processed by a Visual Basic™
+program that transformed the text RR data into graphical
+format for analysis. The program calculated the RR based
+on the entire record for each 1 min interval by counting
+reversals of direction of the transducer signal. The operator
+had the option of either accepting the 1 min record, without
+change, or selecting a more representative portion of the
+data-set. Figure 7 illustrates the importance of operator
+access to the full records. The RR sensor responded not
+only to motion due to breathing but also to any flank
+movement such as from stretching, swatting flies, etc. The
+computer generated RR count for the full record in figure 7
+resulted in a value of 58 breaths per minute (BPM); when
+subsections were examined the values ranged from 66 to
+68 BPM. The process of manually interpreting the data
+required about 4-5 min per 24-h period per animal. A
+program was written to automate the data reduction
+process. Human interpretation and the automated system
+were compared for 363 RR records from the USMARC
+chamber study. Overall the automated system yielded RR
+values that were on average within ± 3.7 BPM of the
+human system. Of the 363 RR records examined about
+10% (35) had RR that deviated by more than 10 BPM. The
+deviation was thought to be due to animal movement, loose
+belts or noisy sensors. The value of having full RR files
+725VOL. 43(3): 723-728
+Figure 4–The sensor is held in place on the animal by using two
+lightweight bungee cords to span the abdominal circumference.
+Figure 5–A micro-power small-board computer (right) is used as the
+data collection device. The interface board (left) provides signal
+conditioning and power control for the data logging application.
+Figure 6–Complete data logging system as used in the studies
+described in this report.
+Figure 7–Sample of respiration data collected from a steer during a 1
+min burst. Sample frequency was 10 records/s.
+ se 1808 ms 7/9/01 9:39 AM Page 725
+
+--- Page 4 ---
+reviewed by a human operator rather than on-board data
+reduction was apparent in these cases.
+ENVIRONMENTAL CHAMBER AND FIELD STUDIES
+The RR monitors were tested during two laboratory
+studies and one field study. The first study was conducted at
+the UMC Brody Environmental Laboratory using
+eight crossbred Bos taurus heifers as part of an evaluation of
+energy budgets during heat challenges. Physiological
+measures included rectal temperature and RR. The heifers
+began the experiment (day 1) in an environment of 18°C at
+approximately 50% relative humidity (RH). The temperature
+was increased for each successive day (28 ± 1°C on day 2, 30
+± 1°C on day 3, and 32 ± 1°C on day 4) with RH remaining
+at approximately 50%. Two heifers from each chamber were
+equipped with USMARC RR monitors for the duration of the
+study, with RR measures four times each hour for a duration
+of 1 min (samples taken every 0.1 s).
+A second study, conducted in the USMARC
+Environmental Laboratory, focused on the impact of heat
+waves on dynamics of feeder cattle thermoregulatory
+response. The protocol imposed simulated heat waves on
+the eight steers in the study with physiological measures of
+RR, feed intake, and body temperature being recorded
+during the 79-day experimental period. The simulated heat
+waves were based on actual dry bulb and dewpoint
+conditions that occurred in Rockport, Missouri, during July
+1995, and Central City, Nebraska, during July-August
+1997. This study also used USMARC RR monitors on each
+of the eight steers assigned to this study. Respiration rates
+were measured four times per hour for a duration of 1 min
+with samples taken every 0.1 s.
+A third study was conducted at the UMC Beef Research
+and Teaching Center using 10 crossbred Bos taurus steers.
+This was an outdoor study to assess thermoregulatory
+responses (RR and implanted body temperature telemetry
+devices) in shade and no-shade conditions. The late July
+study included the installation of USMARC RR monitors
+on four steers that were placed in shaded or unshaded pens
+(individually penned). The short-term (four-day) study
+called for the steers to rotate from shaded pens to unshaded
+pens on alternate days. The remaining steers were group
+penned in other shaded and unshaded pens. Again, RR was
+measured four times per hour for a duration of 1 min with
+samples taken every 0.1 s.
+RESULTS AND DISCUSSION
+The following results and discussion for the studies are
+presented to demonstrate the efficacy of the RR monitors to
+measure this important physiological parameter. This
+section is not intended to be a summary of all of the
+experimental results nor does this section explore all of the
+ramifications of the physiology involved.
+Prior to experimental studies the RR monitors were
+evaluated on test animals with respiration rate determined
+both by the RR monitor and manual counting of flank
+movement; the initial tests resulted in RR that agreed
+within 2-3 BPM.
+E
+NVIRONMENTAL CHAMBER STUDIES
+Representative data from the first study that was
+conducted at the UMC Brody Environmental Laboratory are
+shown for one of the experimental animals in figure 8. The
+impact of environmental temperature is evident in figure 8.
+The RR for the 18°C temperature had a mean value of 39
+± 8 BPM. Following the imposition of heat stress the RR
+increased to a mean value of 71 ± 14, 79 ± 17, and
+81 ± 14 BPM, respectively, for the environments of 28, 30,
+and 32°C. Using RR data for all chamber temperatures for
+this heifer, a straight line fit was found with a change of
+approximately 3.0 ± 0.14 BPM for each °C change
+(BPM/C
+Ta) in the range of ambient temperatures represented
+(fig. 9). The correlation (Pearson correlation coefficient, SAS,
+1985) of RR to temperature change was 0.73 (P < 0.01). The
+RR monitors performed well in this experiment with only
+two minor problems, maintaining tension on the belt,
+and transducer attachment wire breakage, requiring attention.
+The attachment wires were strengthened as a result of this
+experiment and a belt tension protocol was established.
+726 TRANSACTIONS OF THE ASAE
+Figure 8–Respiration rate responses of a Bos taurus heifer to
+chamber temperature (Missouri study).
+Figure 9–Respiration rate versus chamber temperature for a Bos
+taurus heifer (Missouri study). Straight line fit to data shows
+approximately 3.0 respiration per minute change for a 1.0°C
+temperature change in this range of temperatures.
+ se 1808 ms 7/9/01 9:39 AM Page 726
+
+--- Page 5 ---
+The second study, conducted in the USMARC
+Environmental Laboratory, focused on the impact of heat
+waves on dynamics of feeder cattle thermoregulatory
+response. Figure 10 shows RR responses to environmental
+conditions during a 14-day portion of the data-set for a
+representative animal. The heat wave cycles are clearly
+evident as the RR tracks the chamber temperature closely.
+The average value of RR and the variability of RR was
+greater (78 ± 26 BP M/heat stress compared with 45 ±
+16 BPM/thermoneutral) during the imposition of the
+simulated heat wave as compared with the cyclic
+thermoneutral temperature (18 ± 7°C) following the heat
+wave. A straight line fit (fig. 11) to the ambient temperature
+versus RR data showed a change of approximately 2.2
+± 0.1 BPM/C
+Ta for this animal under the imposed
+conditions. The correlation of RR to temperature change
+was 0.64 (P < 0.01). Tests of the RR monitors resulted in
+minor software and hardware changes. A signal conditioner
+for the force transducer was implemented in the new
+design to provide more sensitivity over a wider range of
+respiration conditions. Also, additional checks were written
+in the software startup program to ensure erasure of the
+computer EEPROM; the data was overwritten on one
+occasion when the previous data had not been fully erased.
+F
+IELD STUDY
+The field study conducted at the UMC Beef Research
+and Teaching Center assessed thermoregulatory responses
+(RR and implanted body temperature telemetry devices) to
+shade and no-shade conditions during a hot summer
+727VOL. 43(3): 723-728
+Figure 10–Respiration rate responses of a Bos taurus steer to
+chamber temperature (USMARC study).
+Figure 11–Respiration rate versus chamber temperature for a Bos
+taurus steer (USMARC study). Straight line fit to data shows
+approximately 2.2 respiration per minute change for a 1.0°C
+temperature change in this range of temperatures.
+Figure 12–Respiration rate, body temperature, and ambient
+temperature for the period of the UMC field study for a
+representative steer (sun, days 208 and 210; shade, days 209 and 211).
+Figure 13–Respiration rate as a function of ambient temperature
+during shade and no-shade exposures (data taken from 10:00 A.M.
+through 3:00 P.M. each day) for the same steer.
+ se 1808 ms 7/9/01 9:39 AM Page 727
+
+--- Page 6 ---
+environment. Respiration rate, body temperature, and
+ambient temperature are shown in figure 12 for the period
+of the study for one representative steer. Figure 13 shows
+RR as a function of ambient temperature for both shade
+and no-shade conditions (data taken from 10:00 
+A.M.
+through 3:00 P.M. each day) for the same steer. The
+correlation of the no-shade ambient temperature and RR
+was significant (P < 0.01, R = 0.77) with a linear rate of
+change of 6.4 ± 0.8 BPM/C
+Ta. By comparison, RR was
+weakly correlated with ambient temperature in the shaded
+period (P = 0.06, R = 0.37) and showed a linear rate of
+change of 1.6B ± 0.8 BPM/C
+Ta for this animal. Respiration
+rate as a function of body temperature is shown in figure
+14 for this steer in shade and no-shade conditions (data
+taken from 10:00 
+A.M. through 3:00 P.M. each day).
+Respiration rate was significantly (P < 0.01, R = 0.49)
+correlated to body temperature changes with an
+approximate 18 ± 6 BPM change for each 1°C change of
+body temperature for this animal in the sun. The body
+temperature did not correlate with RR in the shade (P >
+0.09) for this animal.
+SUMMARY
+Rugged respiration monitors for cattle were designed
+and tested. Three separate studies demonstrated the value
+of the automated measurement in evaluating the
+physiological condition of the animals in both laboratory
+and field conditions. The respiration monitoring system
+performed well and with the experience gained from initial
+tests an improved version should prove very useful in
+future experiments and production settings.
+A
+CKNOWLEDGMENTS . The authors would like to
+acknowledge the dedicated effort that was provided by
+John Holman on the mechanical aspects of this project as
+well as Diane Purcell’s contribution to software
+applications related to this work. Additionally, animal
+management assistance was provided by John Holman,
+Bruce Larsen, and Michael Leonard.
+REFERENCES
+BIOPAC Systems Inc. 1997. MP100 Catalog. Santa Barbara, Calif.
+Data Science International. 1996. Telemetry Times10(3): 1.
+Garrett, W. N., T. E. Bond, and N. Pereira. 1967. Influence of
+shade height on physiological responses of cattle during hot
+weather. Transactions of the ASAE10(4): 433-434, 438.
+Hahn, G. L. 1976. Shelter engineering for cattle and other
+domestic animals. In Progress in Animal Biometeorology, ed.
+H. D. Johnson. V ol. 1: 496-503. Amsterdam, The Netherlands:
+Swets & Zeitlinger, B.V .
+Hahn, G. L., A. M. Parkhurst, and J. B. Gaughan. 1997. Cattle
+respiration rate as a function of ambient temperature. ASAE
+Paper No. MC97-121. St. Joseph, Mich.: ASAE.
+Hahn, G. L. 1998. Personal communication. USMARC.
+Webster, A. J. F. 1973. In Heat Loss from Animals and Man, eds. J.
+L. Monteith, and L. E. Mount, Ch. 10: 205-231. London,
+England: Butterworth.
+Ingram, D. L., and L. E. Mount. 1975. In Man and Animals in Hot
+Environments, ed. K. E. Schaefer, Ch. 2: 19-31. New York,
+N.Y .: Springer-Verlag.
+Kibler, H. H., and S. Brody. 1949. Influence of temperature, 50 to
+5F and 50 to 95F, on heat production and cardiorespiratory
+activities in Brahman, Jersey and Holstein cows. Res Bul 450
+(Envron. Physio. and Shelter Eng. Series VII). Columbia, Mo.:
+Missouri Agric. Exp. Sta., Univ. of Missouri. 
+Morrison, S., and G. Lofgreen. 1979. Beef cattle response to air
+temperature. Transactions of the ASAE22(4): 861-862, 872.
+Monteith, J. L. 1973. In Heat Loss from Animals and Man,eds. J.
+L. Monteith, and L. E. Mount, Ch. 1: 1-17. London, England:
+Butterworth.
+Onset Computer Corp. 1997. TFX-11 Remote Datalogger/
+Controller Engine Users’ s Guide.Pocasset, Mass.
+Uniforce Technical Notes and Sensor Design Guide. 1995.
+Chicago, Ill.: Force Imaging Technologies.
+SAS Institute. 1985. SAS User’ s Guide. Cary, N.C.: SAS Institute.
+Webster, A. J. F. 1973. Heat loss from cattle with particular emphasis
+on the effects of cold. In Heat Loss from Animals and Man, eds. J.
+L. Monteith, and L. E. Mount, 205-231. Proc., 20th Easter School
+in Agric. Sci. London, England: Butterworths.
+ABBREVIATIONS
+USMARC = U.S. Meat Animal Research Center
+RR = respiration rate
+T
+a = ambient temperature
+RH = relative humidity
+UMC = University of Missouri at Columbia
+BPM = breaths per minute
+728 TRANSACTIONS OF THE ASAE
+Figure 14–Respiration rate as a function of body temperature for the
+shade and no-shade conditions (data taken from 10:00 A.M. through
+3:00 P.M. each day) for the same steer.
+ se 1808 ms 7/9/01 9:39 AM Page 728

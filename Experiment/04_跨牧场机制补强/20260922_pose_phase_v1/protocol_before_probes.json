@@ -1,0 +1,37 @@
+{
+  "role": "retrospective_mechanistic_diagnosis_not_new_holdout",
+  "hypothesis": [
+    "pose_orientation_or_scale",
+    "pseudocolor_contrast",
+    "anatomical_ROI_error",
+    "extremum_phase_mismatch"
+  ],
+  "sample_times": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25
+  ],
+  "variants": [
+    "baseline",
+    "rotate_minus30",
+    "rotate_plus30",
+    "gray",
+    "clahe_l",
+    "lower75",
+    "center75"
+  ],
+  "detector_imgsz": 640,
+  "box_conf": 0.25,
+  "kpt_conf": 0.5,
+  "crop_bounds": "lower75: full width, bottom75% height; center75: central75% width/height",
+  "rotation": "fixed canvas; inverse native coordinates; no RR from transformed pixels",
+  "truth_times_used_for_detection": false,
+  "original_models_modified": false,
+  "selection": "same12 existing Jiufu review windows, fixed6 timepoints",
+  "interpretation": "detections are predictions, not verified anatomical labels",
+  "weights_sha256": "12c3ad363a00e008ab6d8b859ac6134dbd6582bbfd9cc72afee6884ccd304a09",
+  "script_sha256": "690221e3ef4ef1c76c35810e6c650ed400dfea7cf3a1fe1249b03a653efbb388"
+}

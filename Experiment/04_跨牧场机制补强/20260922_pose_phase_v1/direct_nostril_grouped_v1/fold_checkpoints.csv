@@ -1,0 +1,4 @@
+﻿fold,train_cows,heldout_cows,train_frames,heldout_frames,checkpoint,sha256,epochs
+0,8,4,24,12,E:\real\use_code\yoloV8\Experiment\04_跨牧场机制补强\20260922_pose_phase_v1\direct_nostril_grouped_v1\runs\fold0\weights\last.pt,5d459de55ce3ba41386eabca07bae5baa7f0e6a1a209f05249ec3a32ea7bdb3a,30
+1,8,4,24,12,E:\real\use_code\yoloV8\Experiment\04_跨牧场机制补强\20260922_pose_phase_v1\direct_nostril_grouped_v1\runs\fold1\weights\last.pt,51f1cabbb1d5a3d730abd3c336b73be9438069003397218f31a8b5250df6293e,30
+2,8,4,24,12,E:\real\use_code\yoloV8\Experiment\04_跨牧场机制补强\20260922_pose_phase_v1\direct_nostril_grouped_v1\runs\fold2\weights\last.pt,6e7c65f3a2878dec76701a4165b4a0bb048d74b57d8ea44e0d2d0efb5339d839,30

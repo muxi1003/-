@@ -1,0 +1,14 @@
+{
+  "reviewed_version": "20260911_v1",
+  "reviewer_agent_id": "01a09032-7bff-7c23-81a0-b6141663b05c",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_verdict": "WARN",
+  "reviewer_checks": {"A": "WARN", "B": "WARN", "C": "PASS", "D": "PASS", "E": "PASS", "F": "PASS"},
+  "local_followup_version": "20260911_v2",
+  "local_fixes": ["frozen_identity_and_duration_guards", "bound_input_and_processor_provenance", "submission_specific_blinding_declaration", "count_accuracy_formula_disclosure"],
+  "software_tests_passed": 28,
+  "second_fresh_review_performed": false,
+  "external_rr_performance_claimed": false,
+  "event_f1_claimed": false
+}

@@ -1,0 +1,675 @@
+--- Page 1 ---
+1Department of Animal and Dairy Sciences, University of Wisconsin–Madison, Madison, WI 53706, 2Department of Biological Systems Engineering, 
+University of Wisconsin–Madison, Madison, WI 53706. *Corresponding author: joao.dorea@ wisc .edu. © 2024, The Authors. Published by Elsevier Inc. on 
+behalf of the American Dairy Science Association®. This is an open access article under the CC BY license (http: / / creativecommons .org/ licenses/ by/ 4 .0/ ). 
+Received July 27, 2023. Accepted November 02, 2023.
+JDS
+Communications®
+2024; 5:310–316• AMERICAN
+ DAIRY SCIENCE ASSOCIATION •
+®
+https: / / doi .org/ 10 .3168/ jdsc .2023 -0442
+Short Communication
+Health, Welfare, and Behavior
+The list of standard abbreviations for JDSC is available at adsa.org/jdsc-abbreviations-24. Nonstandard abbreviations are available in the Notes.
+Predicting respiration rate in unrestrained dairy 
+cows using image analysis and fast Fourier transform
+Raphael R. Mantovani,1 Guilherme L. Menezes,1 and João R. R. Dórea1,2* 
+ 
+Graphical Abstract
+Summary
+Respiratory rate (RR) plays a crucial role in monitoring the health of livestock and serves as an indicator for 
+assessing heat stress and respiratory diseases. However, the traditional approach to calculating the RR in 
+cattle involves visually observing movements in the flank area, which is a labor-intensive method with limited 
+scalability. In this study, we have developed an automated technique that uses image analysis and fast Fourier 
+transform to capture the RR of unrestrained, lying dairy cows. Our results demonstrate that this proposed 
+technology offers a faster and more scalable alternative for monitoring RR in cattle.
+Highlights
+• Fast Fourier transform was used to predict respiration rate.
+• Computer vision was used to evaluate respiration rate in cows and calves.
+• Respiratory rate prediction may help in diagnosing heat stress and respiratory disease.
+• The model is capable of predicting respiration rate without training.
+
+--- Page 2 ---
+1Department of Animal and Dairy Sciences, University of Wisconsin–Madison, Madison, WI 53706, 2Department of Biological Systems Engineering, 
+University of Wisconsin–Madison, Madison, WI 53706. *Corresponding author: joao.dorea@ wisc .edu. © 2024, The A
+uthors. Published by Elsevier Inc. on 
+behalf of the American Dairy Science Association®. This is an open access article under the CC BY license (http: / / creativec
+ommons .org/ licenses/ by/ 4 .0/ ). 
+Received July 27, 2023. A
+ccepted November 02, 2023.
+JDS
+Communications®
+2024; 5:310–316• AMERICAN
+ DAIRY SCIENCE ASSOCIATION •
+®
+https: / / doi .org/ 10 .3168/ jdsc .2023 -0442
+Short C
+ommunication
+Health, Welfare, and Behavior
+The list of standard abbreviations for JDSC is available at adsa.org/jdsc-abbreviations-24. Nonstandard abbreviations are available in the Notes.
+Abstract: Respiratory rate (RR) is commonly employed for identifying animals experiencing heat-stress conditions and respiratory 
+diseases. Recent advancements in computer vision algorithms have enabled the estimation of the RR in dairy cows through image-based 
+approaches, with a primary focus on standing positions, thermal imaging, and deep learning techniques. In this study, our objective was 
+to develop a system capable of accurately predicting the RR of lying Holstein cows under unrestrained conditions using red, green, and 
+blue (RGB) and infrared (IR) night vision images. Thirty lactating cows were continuously recorded for 12 h per day over a 3-d period, 
+capturing at least one 30-s video segment of each cow during lying time. A total of 95 videos were manually annotated with rectangular 
+bounding boxes encompassing the flank area (region of interest; ROI) of the lying cows. For future applications, we trained a model for 
+ROI identification using YOLOv8 to avoid manual annotations. The observed RR was determined by visual counting of breaths in each 
+video. To predict the RR, we devised an image processing pipeline involving (1) capturing the ROI for the entire video, (2) reshaping the 
+pixel intensity of each image channel into a 2-dimensional object and calculating its per-frame mean, (3) applying fast Fourier transform 
+(FFT) to the average pixel intensity vector, (4) filtering frequencies specifically associated with respiratory movements, and (5) executing 
+inverse FFT on the denoized data and identifying peaks on the resulting plot, with the count of peaks serving as the predicted RR per 
+minute. The evaluation metrics, root mean squared error of prediction (RMSEP) and R
+2, yielded values of 8.3 breaths/min (17.1% of the 
+mean RR) and 0.77, respectively. To further validate the method, an additional dataset comprising preweaning dairy calves was used, 
+consisting of 42 observations from 25 calves. The RMSEP and R
+2 values for this dataset were 13.0 breaths/min and 0.73, respectively. 
+The model trained to identify the ROI exhibited a precision of 100%, a recall of 71.8%, and an F 1 score of 83.6% for bounding box 
+detection. These are promising results for the implementation of this pipeline in future studies. The application of FFT to signals acquired 
+from both RGB and IR images proved to be an effective and accurate method for computing the RR of cows in unrestrained conditions.
+R
+espiratory rate (RR) is an important trait associated with animal 
+physiology and has been commonly used to assess the health 
+status of livestock (Jorquera-Chavez et al., 2019) and humans 
+(Kakouche et al., 2021). Multiple studies have used this feature as 
+an indicator of heat stress, respiratory diseases, and animal wel-
+fare for dairy cattle (Gaughan et al., 2000; Li et al., 2020), pigs 
+(Jorquera-Chavez et al., 2021), and horses (Rammerstorfer et al., 
+2001). This has made calculating the RR a central concern for pre-
+cision livestock, which is why many methods have been developed 
+to calculate it.
+Traditionally, the RR has been evaluated through the visual 
+inspection of movements in a cow’s flank area (Shu et al., 2021). 
+This method, however, is not only labor intensive but also requires 
+specific training and does not scale well, thereby limiting its use 
+in large-scale operations (Handa and Peschel, 2022). To over -
+come these limitations, several studies have recommended the 
+application of automated technologies such as wearable sensors 
+(Eigenberg et al., 2002), infrared thermal imaging from the nostrils 
+(Stewart et al., 2017; Lowe et al., 2019), and red, green, and blue 
+(RGB) imaging of abdominal movements (Wu et al., 2020, 2023) 
+to assess RR in livestock. Since wearable sensor technologies 
+are typically invasive and do not enable real-time RR monitoring 
+(Wu et al., 2020), video-based techniques have presented various 
+benefits, such as lower costs, enhanced scalability, reduced risk of 
+physical damage, and minimized stress on the animals (Handa and 
+Peschel, 2022).
+Infrared thermal cameras have demonstrated efficacy in capturing 
+the patterns of air inhaled and exhaled through an animal’s nostrils. 
+This capability suggests promising results for calculating RR in 
+research applications (Stewart et al., 2017; Lowe et al., 2019). How-
+ever, implementing this technology in commercial settings presents 
+several challenges. Specifically, these cameras need to be positioned 
+close to the object of interest, unless high resolution cameras are 
+deployed, which can be costly. Additionally, the environmental 
+temperature can affect the camera measurements, resulting in noisy 
+images (Gade and Moeslund, 2014), and thermal imaging cam-
+eras are generally more expensive than simple RGB (surveillance) 
+cameras. For research studies focusing on the animal’s head as the 
+region of interest, precise positioning of the head is required for RR 
+calculation, making it a challenging task due to the animal’s natural 
+movements during handling (Shojaeipour et al., 2021).
+In this context, some researchers have used cameras to record the 
+flank area, a region commonly observed during visual inspection 
+for calculating RR. Wu et al. (2020, 2023) showed promising re-
+sults for tracking RR through RGB videos in dairy cows. Neverthe-
+less, deep learning methods typically need large datasets collected 
+across diverse environments to achieve robust generalization. 
+Therefore, using fast Fourier transform (FFT), a computationally 
+Predicting respiration rate in unrestrained dairy 
+cows using image analysis and fast Fourier transform
+Raphael R. Mantovani,1 Guilherme L. Menezes,1 and João R. R. Dórea1,2* 
+ 
+
+--- Page 3 ---
+JDS Communications 2024; 5: 310–316
+efficient algorithm that breaks down signals into their constituent 
+frequencies, to process the respiratory movements captured via 
+video could be an efficient analytical alternative for monitoring 
+RR in animals. For instance, Wiede et al. (2017) demonstrated that 
+the use of FFT to analyze the average pixel intensity variation over 
+the abdominal area in breathing humans can effectively calculate 
+their RR. However, the environmental conditions for tracking 
+flank area movements in cattle are often more uncontrolled and 
+unpredictable than in humans. This raises the question of whether 
+the same algorithm could accurately predict the RR in cattle, given 
+the potentially noisy signal obtained from unrestrained animals.
+In light of the above-mentioned technologies and their limita -
+tions, this study aimed to apply FFT to the average pixel intensity 
+of both RGB and infrared (IR) videos featuring unrestrained, ly-
+ing dairy cows to assess their RR. The objective was to devise a 
+straightforward yet robust model capable of predicting RR via 
+image analysis. The proposed approach has potential value for au-
+tomatic RR detection in large-scale dairy farming, contributing to 
+the early identification of cows experiencing heat stress, exhibiting 
+abnormal respiratory behaviors, or both.
+The videos for this study were collected in July 2021 at the 
+Dairy Cattle Center of the University of Wisconsin–Madison. Ap-
+proval for all animal evaluations was granted by the Institutional 
+Animal Care and Use Committee of the University of Wiscon-
+sin–Madison, under protocol number A006380. The facility had a 
+combination of artificial and natural lighting throughout all RGB 
+recordings, whereas the night vision videos (IR recordings) had no 
+light. Videos in both RGB and IR were recorded using an Amcrest 
+ASH42-W camera (Amcrest Technologies), which was set at a 
+frame rate of 30 frames per second and had a resolution of 2,560 × 
+1,440 pixels. These cameras include infrared light-emitting diodes, 
+enabling night vision up to 30 m. The cameras were positioned 
+approximately 2 m above the ground and 5 m away from the cows’ 
+flanks, capturing 1 to 4 resting Holstein cows at an angle of ap-
+proximately 65°. Recordings spanned 12 h (1800 to 0600 h) over 3 
+d, resulting in at least one 30-s video segment of each cow obtained 
+daily. In total, 95 videos and 193 observations of the subjects were 
+recorded. The ground truth data (observed data) were collected 
+by 2 observers who visually counted the RR and converted it to 
+breaths per minute.
+After the videos were collected, one frame was extracted from 
+each recording. These images were then exported to the VGG Im-
+age Annotator (Dutta and Zisserman, 2019), where a rectangular 
+bounding box was annotated over the cows’ flank areas. Said anno-
+tations represented the region of interest (ROI) where respiration 
+could be observed. Subsequently, the videos and their correspond-
+ing annotated ROI were imported into Python using the Open cv2 
+library, and the average pixel intensity for each frame and channel 
+(R, G, B) was calculated. A summary of the processing pipeline 
+can be found in Figure 1.
+The frequency domain of the 2-dimensional pixel-intensity 
+signal was obtained using the FFT. To compute the final RR, 2 
+preprocessing steps were implemented to eliminate signal noise. 
+First, only frequencies (Hz) between one-third and twice the video 
+length were selected, since the RR of healthy and moderately heat-
+stressed cows (which represented the conditions of this study) 
+typically range from 26 to 120 breaths per minute (Becker et al., 
+2021). Second, we selected only the frequencies with the top n 
+power spectral densities (PSD).
+To determine the top n PSD values for selecting respiration-
+related frequencies, the dataset was divided into 3 separate training 
+and testing groups. In each division, the training set encompassed 
+all observations from 20 cows, whereas the testing set comprised 
+all observations from the remaining 10 cows. The top n PSD val-
+ues were considered hyperparameters in the model, and tests were 
+conducted for n = 50, 25, 13, 5, 3, 1. For instance, n = 50 indicates 
+the top 50 values of the PSD. The values were evaluated for each 
+training and testing set, and the root mean squared error of predic-
+tion (RMSEP) and R
+2 were calculated accordingly. Subsequently, 
+the n value that resulted in the best performance (lower RMSEP 
+and higher R
+2) was used to perform the data filtering on the entire 
+dataset.
+After performing these processing methods, the cleaned data 
+were transformed back to their original unit (pixel intensity) us-
+ing the inverse FFT and normalized to a scale between 0 and 1 
+using min-max normalization. Finally, the peaks in the resulting 
+signal were identified using the SciPy library, and the peak count 
+was used as the predicted respiration rate, expressed in breaths 
+per minute. The function used to assess respiration rate was scipy.
+signal.find_peaks, keeping all its default parameters. Hence, the 
+input (x) was the inverse-Fourier-Transformed data, the rel_height 
+was equal to 0.5, and the remaining parameters (height, threshold, 
+distance, prominence, width, wlen, and plateau_size) were left as 
+“None.”
+After collecting the predicted RR values, the best combination 
+of PSD was selected to predict RR, and the Z-scores were calcu -
+lated to identify any significantly (P < 0.01) outlying results within 
+the data. It was observed that one video exhibited a Z-score greater 
+than 5 (P < 0.001), indicating a possible outlier. Upon further ex-
+amination of the video, it was determined that the presence of a 
+bright light beam flashing over the ROI where the cows were lying 
+caused this anomalous error. As a result, this video was excluded 
+from the model’s analyses. Consequently, the dataset used to assess 
+the model’s performance consisted of 94 videos and 191 observa-
+tions. The metrics used to evaluate the model’s performance were 
+the R
+2 and the RMSEP.
+Given that the proposed method relies on variations in pixel in-
+tensity throughout the videos, it was deemed crucial to consider the 
+potential impact of lighting changes and non-respiration-related 
+movements on its robustness. To address this concern, an addi-
+tional analysis was conducted using a subset of the original dataset, 
+which consisted of 170 observations. A total of 21 videos were 
+excluded due to various issues: cow movements compromised 11 
+videos (leg motions in 7, hook shifts in 2, head movements in 2); 
+lighting issues affected 6 (lack of flank visibility in night record-
+ings in 5, insect interference in 1); and ROI occlusion led to the 
+exclusion of 4 videos (tube in the tiestall obstruction in 3, adjacent 
+cow in 1). These exclusions were pivotal as they introduced noise 
+and altered the ROI, thereby corrupting the depiction of respiratory 
+movements. Meanwhile, videos with less significant movements 
+(e.g., head or leg movements without a change in the ROI’s posi-
+tion) were retained, as they did not displace the ROI from the flank 
+area. Two human observers were employed to ensure the videos 
+met the filtering criteria. The performance metrics analyzed were 
+the same as those in the previous analysis.
+Finally, the proposed model was also evaluated on an additional 
+dataset comprising 42 videos from 25 calves, which was used to 
+assess the performance of the model on these animals. The videos 
+311Mantovani et al. | Predicting respiration rate in dairy cows
+
+--- Page 4 ---
+JDS Communications 2024; 5: 310–316
+were recorded at a commercial dairy farm in Wisconsin. The cam-
+era specifications and data collection protocols aligned with those 
+described in the preceding sections. The video segments were cap-
+tured from an almost top-down perspective. The evaluation metrics 
+employed for analysis were R
+2 and RMSEP, which were consistent 
+with those used for the Holstein cows.
+Having analyzed the training and testing sets to determine the 
+optimal number of top n PSD values for accurately capturing the 
+RR, it was found that selecting the top 5 values consistently re-
+sulted in the best predictions across all testing sets. These findings 
+are presented in Table 1, which clearly demonstrates that the top 5 
+PSD values achieved the highest R
+2 values and the lowest RMSEP 
+values for each dataset. As a result, the data were filtered, and only 
+the 5 most prominent frequencies were selected to compose the 
+cleaned signal, as depicted in the third image in Figure 1.
+The original and cleaned signals for an arbitrary animal are pre-
+sented in the second and fourth image of Figure 1. In the majority 
+of cases, the method effectively identified the constituent frequen-
+cies of the respiratory movements, resulting in a denoized signal 
+that facilitated the estimation of the RR. Furthermore, as shown 
+in the fifth image described in Figure 1, the application of peak 
+counting on the cleaned signal using the Python function scipy.
+signal.find_peaks accurately captured the respiratory signals of the 
+animals. This finding is consistent with the research conducted by 
+Anishchenko et al. (2019), wherein the same function was used 
+to estimate the RR of humans using bioradar signals and yielded 
+satisfying results.
+For future applications, we trained ROI identification using 
+YOLOv8 (Glenn, 2023). A total of 1,150 images were extracted 
+from 95 different videos, which were captured by 10 different 
+cameras and manually annotated. Seven cameras were selected for 
+the training set, providing 850 images, whereas 3 different cameras 
+capturing different cows were used for the testing set, which con-
+sisted of 300 images. The input image size was set to 640 × 640, 
+the batch size to 32, and the network was trained for 200 epochs. 
+The ROI model was implemented on a Linux server with 40 GB of 
+RAM and an NVIDIA A100 GPU.
+The prediction results for the 30 dairy cows are depicted in Fig-
+ure 2. The method demonstrated an overall performance with an R
+2 
+value of 0.77, indicating the correlation between the predicted and 
+observed number of breaths in the cows over a 30-s video segment. 
+The RMSEP was 8.3 breaths per minute, equivalent to 17.1% of 
+the mean predicted respiration rate. When assessing precision in 
+RGB and IR videos, the model exhibited slightly superior perfor -
+mance in RGB videos (R
+2 = 0.81) compared with IR (R 2 = 0.74). 
+It is noteworthy that the dataset consisted of 79 RGB videos and 
+112 IR videos. These findings suggest that the night vision con-
+ditions posed more demanding lighting conditions for capturing 
+the RR. Nevertheless, the method consistently generated accurate 
+predictions, aligning with the findings of Wiede et al. (2017), who 
+312Mantovani et al. | Predicting respiration rate in dairy cows
+Figure 1. Summary of the proposed method. First image: examples of a red, green, and blue (RGB) and an infrared image captured for the cows with the 
+annotations made. Second image: average pixel intensity variation over the annotated region of interest (ROI). Third image: power spectral density (PSD) of 
+each frequency in the data after performing fast Fourier transformation (FFT); the 5 selected frequencies are represented with an orange ×. Fourth and fifth 
+images: denoized signal after filtering and the peak count performed to calculate the respiration rate.
+
+--- Page 5 ---
+JDS Communications 2024; 5: 310–316
+demonstrated the precise capture of RR through pixel intensity 
+monitoring in RGB images.
+Considering the reduced dataset comprised of 170 observations, 
+the performance results, as depicted in Figure 2, revealed only a 
+marginal increase in R
+2 (0.79) and a slight decrease in RMSEP 
+(from 8.3 [17.1%] to 8.1 [16.6%] breaths per minute) compared 
+with the previous analysis. These findings indicate that our method 
+may possess sufficient robustness to be unaffected by the previ-
+ously specified random movements exhibited by the cows within 
+their stalls. This robustness can be attributed to the utilization 
+of FFT to filter out noisy frequencies originating from random 
+movements and isolate the most prominent signals within the data. 
+However, to fully implement our system, an additional step involv-
+ing automation to accurately capture the ROI during lying time 
+must be developed. Fortunately, this task should not be challenging 
+considering the existing studies that have proposed computer vi-
+sion approaches for object detection and tracking of animal bodies 
+(Nasirahmadi et al., 2017; Bresolin et al., 2023).
+To further evaluate the robustness of our model, we conducted 
+tests to assess its ability to predict the RR for dairy calves using 
+RGB. These calves were housed in different systems and were sig-
+nificantly smaller in size compared with the cows used in the mod-
+el’s development. Despite the differences in dataset, camera, and 
+video acquisition settings, the method consistently and accurately 
+predicted the RR, yielding excellent results. The obtained R
+2 value 
+was 0.73, and the RMSEP was 12.9 breaths per minute, equivalent 
+to 19.4% of the average predicted RR (Figure 1). All previous 
+findings suggest that utilizing FFT on both RGB and IR images 
+to extract frequencies associated with respiration could serve as 
+an alternative method for automated RR monitoring in cattle. This 
+is particularly noteworthy as current studies in this field, such as 
+the work of Lowe et al. (2019), have primarily focused on thermal 
+imaging of nostrils and wearable sensors (Hughes and Iida, 2018).
+Considering the satisfying prediction results presented above 
+and the long-distance RR assessment performed with both top-
+down (for the calves) and angle views (for the cows), the proposed 
+method offers several advantages over other similar technolo -
+gies. For example, compared with thermal imaging methods that 
+position cameras near the cows’ nostrils (Lowe et al., 2019; 
+Jorquera-Chavez et al., 2019) and are susceptible to environmental 
+temperature variations resulting in noisy images (Gade and Moes-
+lund, 2014), our study offers the advantage of significantly reduced 
+chances of animal interaction and device damage during data col-
+lection. Additionally, our method was employed using standard 
+security cameras that can be deployed in unrestrained conditions, 
+which better reflects real-world farm settings.
+Concerning previous studies using the flank area as a ROI, 
+Wu et al. (2020, 2023) demonstrated a high prediction accuracy 
+of respiration rate through RGB videos. Nevertheless, their study 
+was conducted in a highly controlled environment and employed a 
+sequence of deep learning algorithms to achieve accurate results. 
+For this matter, our study presents the advantage of utilizing FFT 
+for video processing, which eliminates the need for extensive data 
+collection and annotation while potentially improving generaliza -
+tion across diverse environments and imaging conditions. This 
+advantage is especially noticeable with smaller training sets, where 
+training deep neural networks might be impractical or produce 
+models that cannot generalize to new farms or images from dif-
+313Mantovani et al. | Predicting respiration rate in dairy cows
+Table 1. Model performance metrics for every top n power spectral density value tested in each different testing and training set
+Dataset2 N
+Power spectral density1
+Top 50
+ 
+Top 25
+ 
+Top 13
+ 
+Top 5
+ 
+Top 3
+ 
+Top 1
+R2 RMSEP R 2 RMSEP R 2 RMSEP R 2 RMSEP R 2 RMSEP R 2 RMSEP
+Train 1 59 0.36 21.1 0.39 18.8 0.65 12.1 0.78 8.4 0.60 10.7 0.32 15.7
+Test 1 36 0.33 19.2 0.31 18.3 0.65 11.1 0.76 8.0 0.61 9.6 0.39 12.6
+Train 2 65 0.37 20.3 0.40 18.2 0.68 11.5 0.78 8.1 0.56 11.0 0.30 15.3
+Test 2 30 0.31 21.0 0.32 19.3 0.61 12.2 0.75 8.5 0.68 9.2 0.41 13.8
+Train 3 66 0.31 20.2 0.31 18.9 0.62 11.7 0.75 8.2 0.64 9.4 0.40 13.2
+Test 3 29 0.41 21.3 0.48 18.1 0.70 12.0 0.80 8.3 0.53 12.3 0.23 17.8
+1n = total number of observations (videos); RMSEP = root squares mean prediction error (breaths/min).
+2Training and test 1 were defined with 20 and 10 cows, respectively.
+
+--- Page 6 ---
+JDS Communications 2024; 5: 310–316
+ferent scenes. In our research, the model trained using dairy cows 
+demonstrated effectiveness with calves in both RGB and IR videos.
+While it is important to contextualize our findings with prior 
+literature, we must be cautious when making direct accuracy com-
+parisons due to the difference in datasets used to train the models, 
+as well as the validation methods. The lack of benchmark datasets 
+in animal science studies precludes direct method comparisons. 
+A potential solution is to reimplement other methodologies into a 
+study, allowing direct comparisons using identical datasets, if this 
+aligns with the research objectives. However, the animal science 
+field lacks in providing code documentation, which hinders the 
+replication of analyses from published scientific works for direct 
+contrasts. While fields like computer science regularly create and 
+share public repositories such as ImageNet and COCO datasets 
+(Deng et al., 2009; Lin et al., 2014) for developing and evaluating 
+deep neural networks, similar initiatives are absent for animal sci-
+entists. In this scenario, it is not appropriate to compare our results 
+with studies that lacked external validation, sourced videos solely 
+from one farm, or assessed RR using images from different body 
+parts (Lowe et al., 2019; Jorquera-Chavez et al., 2019; Wu et al., 
+2020, 2023). To counter these challenges, Oliveira et al. (2021) 
+suggested establishing communal databases for model validation 
+in precision livestock farming research. Furthermore, Steibel et 
+al. (2023) introduced a Coordinated Innovation Network initia -
+tive, aiming to produce expansive, well-annotated image datasets, 
+providing the scientific community with public resources for algo-
+rithm development and assessment.
+Given that Gaughan et al. (2000) have demonstrated the RR as a 
+reliable indicator of cows’ thermal load, the proposed system holds 
+significant potential for monitoring the health conditions of cattle. 
+Ouellet et al. (2021) reported a substantial increase in the RR of 
+dry cows in subtropical weather when the temperature-humidity 
+index exceeds 77, indicating a state of heat stress. However, the 
+traditional visual observation–based method for calculating the RR 
+does not allow for continuous monitoring of the animals’ respira-
+tory conditions, underscoring the value of the proposed automated 
+technology as an alternative that enables both accurate RR calcula-
+tion and consistent monitoring of cows’ health status.
+Furthermore, evaluating RR may aid in monitoring bovine 
+respiratory disease (BRD). Maier et al. (2019) emphasized the 
+importance of a noninvasive system that employs visual scores 
+to diagnose the disease without physically handling the calves. 
+They assessed ambient temperature and clinical signs, including 
+abnormal respiration with increased RR and effort, as predictors of 
+BRD. Animals displaying abnormalities during the initial screen-
+ing underwent rectal temperature measurement. The model with 
+clinical and environmental signs achieved a sensitivity of 84.2% 
+but a low specificity of 45.7%. However, when rectal temperature 
+was included, the specificity increased to 62.6%. Despite being an 
+advancement in respiratory disease screening, this approach neces-
+sitates skilled labor and can be laborious in large herds. Conse-
+quently, utilizing the proposed method for continuous RR tracking 
+of resting cattle, in conjunction with other computer vision tech -
+niques for behavior tracking, may facilitate the early identification 
+of BRD in these animals.
+For future applications, annotating the ROI should not be a sig-
+nificant issue. The model trained to identify the ROI exhibited a 
+precision of 100%, a recall of 71.8%, and an F
+1 score of 83.6% for 
+314Mantovani et al. | Predicting respiration rate in dairy cows
+Figure 2. Regression analysis of predicted versus observed breaths. The graphs in the top row represent (a) the entire dataset, composed of 191 observations, 
+and (b) a reduced dataset of 170 observations, excluding observations with non-respiration-related cow movements (e.g., change of position). The graphs 
+in the second row represent (on the left) the entire dataset, analyzing the performance for infrared night vision (blue) and RGB (black) videos separately, and 
+(on the right) the calves’ dataset, with 42 observations. The performance metrics are shown in the left corner of the images, where RMSEP is the root mean 
+squared error of prediction. RGB = red, green, and blue.
+
+--- Page 7 ---
+JDS Communications 2024; 5: 310–316
+bounding box detection. These results are promising due to high 
+ROI precision. In all predicted images, the bounding box targeted 
+the cow’s flank. Despite the satisfying results, we acknowledge 
+that the proposed model must still be further developed for imple-
+mentation in a commercial setting. Among possible improvements, 
+we highlight the potential of combining the ROI object detector 
+with other detection networks, such as behavior detectors for lying 
+and standing positions. This integration could automate the entire 
+pipeline, enabling decision-making related to changes in respira-
+tory frequency that may contribute to improving animal welfare.
+In conclusion, the proposed method demonstrated its robustness 
+by consistently achieving accurate predictive performance across 
+different image types and in unrestrained lying conditions. This 
+approach presents several advantages over other technologies 
+with similar objectives, such as its applicability in unrestrained 
+environments and its ability to generalize well for both cows and 
+calves. Nonetheless, future studies could be conducted to imple-
+ment disease-detecting algorithms using the proposed method and 
+combine the ROI object detector with other detection networks, 
+thereby facilitating the application of this method in real-world 
+scenarios.
+References
+Anishchenko, L., K. Evteeva, L. Korostovtseva, M. Bochkarev, and Y . Sviry-
+aev. 2019. Respiratory rate determination during sleep by CW Doppler 
+radar. Pages 248–255 in International Conference on Biomedical Innova-
+tions and Applications. IEEE, Varna, Bulgaria. https:
+ / / doi .org/ 10 .1109/ 
+BIA48344 .2019 .8967462.
+Becker, C. 
+A., A. Aghalari, M. Marufuzzaman, and A. E. Stone. 2021. Predict-
+ing dairy cattle heat stress using machine learning techniques. J. Dairy Sci. 
+104:501–524. https:
+ / / doi .org/ 10 .3168/ jds .2020 -18653.
+Bresolin, T
+., R. Ferreira, F. Reyes, J. Van Os, and J. R. R. Dórea. 2023. Assess-
+ing optimal frequency for image acquisition in computer vision systems 
+developed to monitor feeding behavior of group-housed Holstein heifers. J. 
+Dairy Sci. 106:664–675. https:
+ / / doi .org/ 10 .3168/ jds .2022 -22138.
+Deng, J., W
+. Dong, R. Socher, L. J. Li, K. Li, and L. Fei-Fei. 2009. Imagenet: 
+A large-scale hierarchical image database. Pages 248–255 in 2009 IEEE 
+Conference on Computer Vision and Pattern Recognition. https:
+ / / doi .org/ 
+10 .1109/ CVPR .2009 .5206848.
+Dutta, A., and 
+A. Zisserman. 2019. The VIA annotation software for images, 
+audio and video. Pages 2276–2279 in Proceedings of the 27th ACM In-
+ternational Conference on Multimedia. ACM. https:
+ / / doi .org/ 10 .1145/ 
+3343031 .3350535.
+Eigenberg, R. 
+A., T. Brown-Brandl, and J. A. Nienaber. 2002. Development of 
+a respiration rate monitor for swine. Trans. ASAE 45:1599–1603. https: / / 
+doi .org/ 10 .13031/ 2013 .11066.
+Gade, R., and 
+T. B. Moeslund. 2014. Thermal cameras and applications: A 
+survey. Mach. Vis. Appl. 25:245–262. https: / / doi .org/ 10 .1007/ s00138 -013 
+-0570 -5.
+Gaughan, J. B., 
+S. M. Holt, G. L. Hahn, T. L. Mader, and R. A. Eigenberg. 
+2000. Respiration rate - Is it a good measure of heat stress in cattle? Asian-
+Australas. J. Anim. Sci. 13:329–332.
+Glenn, J. 2023. Ultralytics YOLOv8. https:
+ / / github .com/ ultralytics/ ultralytics.
+Handa, D., and J. M. Peschel. 2022. A review of monitoring techniques for 
+livestock respiration and sounds. Front. Anim. Sci. 3:904834. 
+https: / / doi 
+.org/ 10 .3389/ fanim .2022 .904834.
+Hughes, J., and F
+. Iida. 2018. Multi-functional soft strain sensors for wear -
+able physiological monitoring. Sensors (Basel) 18:3822. https: / / doi .org/ 10 
+.3390/ s18113822.
+Jorquera-Chavez, 
+M., S. Fuentes, F. R. Dunshea, R. D. Warner, T. Poblete, 
+and E. C. Jongman. 2019. Modelling and validation of computer vision 
+techniques to assess heart rate, eye temperature, ear-base temperature and 
+respiration rate in cattle. Animals (Basel) 9:1089. https:
+ / / doi .org/ 10 .3390/ 
+ani9121089.
+Jorquera-Chavez, M., S. Fuentes, 
+F. R. Dunshea, R. D. Warner, T. Poblete, R. 
+R. Unnithan, R. S. Morrison, and E. C. Jongman. 2021. Using imagery 
+and computer vision as remote monitoring methods for early detection of 
+respiratory disease in pigs. Comput. Electron. Agric. 187:106283. https:
+ / / 
+doi .org/ 10 .1016/ j .compag .2021 .106283.
+Kakouche, I., A. Maali, 
+M. N. El Korso, A. Mesloub, and M. S. Azzaz. 2021. 
+Fast and cost-effective method for non-contact respiration rate tracking 
+using UWB impulse radar. Sens. Actuators A Phys. 329:112814. https:
+ / / doi 
+.org/ 10 .1016/ j .sna .2021 .112814.
+Li, G., S. Chen, J. Chen, D. Peng, and X. Gu. 2020. Predicting rectal 
+tem-
+perature and respiration rate responses in lactating dairy cows exposed to 
+heat stress. J. Dairy Sci. 103:5466–5484. https:
+ / / doi .org/ 10 .3168/ jds .2019 
+-16411.
+Lin, T
+. Y ., M. Maire, S. Belongie, J. Hays, P. Perona, D. Ramanan, P. Dollár, 
+and C. L. Zitnick. 2014. Microsoft COCO: Common objects in context. 
+Pages 740–755 in Computer Vision–ECCV 2014: 13th European Confer -
+ence. Lecture Notes in Computer Science, vol. 8693. D. Fleet, T. Pajdla, 
+B. Schiele, and T. Tuytelaars, ed. Springer. https:
+ / / doi .org/ 10 .1007/ 978 -3 
+-319 -10602 -1 _48.
+Lowe, G., M. Sutherland, J. W
+aas, A. Schaefer, N. Cox, and M. Stewart. 2019. 
+Infrared thermography—A non-invasive method of measuring respiration 
+rate in calves. Animals (Basel) 9:535. https:
+ / / doi .org/ 10 .3390/ ani9080535.
+Maier, G. U., J. D. Rowe, 
+T. W. Lehenbauer, B. M. Karle, D. R. Williams, J. 
+D. Champagne, and S. S. Aly. 2019. Development of a clinical scoring 
+system for bovine respiratory disease in weaned dairy calves. J. Dairy Sci. 
+102:7329–7344. https:
+ / / doi .org/ 10 .3168/ jds .2018 -15474.
+Nasirahmadi, A., S. 
+A. Edwards, and B. Sturm. 2017. Implementation of 
+machine vision for detecting behaviour of cattle and pigs. Livest. Sci. 
+202:25–38. https:
+ / / doi .org/ 10 .1016/ j .livsci .2017 .05 .014.
+Oliveira, D., L. G. Pereira, 
+T. Bresolin, R. Ferreira, and J. Dorea. 2021. A re-
+view of deep learning algorithms for computer vision systems in livestock. 
+Livest. Sci. 253:104700. https:
+ / / doi .org/ 10 .1016/ j .livsci .2021 .104700.
+Ouellet, V
+., I. M. Toledo, B. Dado-Senn, G. E. Dahl, and J. Laporta. 2021. Criti-
+cal temperature-humidity index thresholds for dry cows in a subtropical 
+climate. Front. Anim. Sci. 2:706636. https:
+ / / doi .org/ 10 .3389/ fanim .2021 
+.706636.
+Rammerstorfer, C., G. D. Potter, G. 
+W. Brumbaugh, P. G. Gibbs, D. D. Varner, 
+and E. H. Rammerstorfer. 2001. Physiologic responses of acclimatized 
+or non-acclimatized mature reining horses to heat stress: I. Heart rate, 
+respiration rate, lactate, rectal temperature, cortisol and packed cell 
+volume. J. Equine Vet. Sci. 21:431–438. https:
+ / / doi .org/ 10 .1016/ S0737 
+-0806(01)70017 -2.
+Shojaeipour, 
+A., G. Falzon, P. Kwan, N. Hadavi, F. C. Cowley, and D. Paul. 
+2021. Automated muzzle detection and biometric identification via few-
+shot deep transfer learning of mixed breed cattle. Agronomy (Basel) 
+11:2365. https:
+ / / doi .org/ 10 .3390/ agronomy111
+12365.
+Shu, H., W. Wang, L. Guo, and J. Bindelle. 2021. Recent advances on early 
+detection of heat strain in dairy cows using animal-based indicators: A 
+review. Animals (Basel) 11:980. https:
+ / / doi .org/ 10 .3390/ ani11040980.
+Steibel, 
+J. P., T. Brown-Brandi, G. J. M. Rosa, J. M. Siegford, E. Psota, M. 
+Benjamin, D. Morris, J. R. R. Dorea, and T. Norton. 2023. Progress report 
+on the coordinated innovation network for advancing computer vision in 
+precision livestock farming. Pages 146–150 in Conference Proceedings of 
+the 2nd US Precision Livestock Farming Conference. Proceedings Com-
+mittee of the 2nd US Precision Livestock Farming Conference.
+Stewart, M., M. T. Wilson, A. L. Schaefer, F. Huddart, and M. A. Sutherland. 
+2017. The use of infrared thermography and accelerometers for remote 
+monitoring of dairy cow health and welfare. J. Dairy Sci. 100:3893–3901. 
+https:
+ / / doi .org/ 10 .3168/ jds .2016 -12055.
+Wiede, C., J. Richter
+, M. Manuel, and G. Hirtz. 2017. Remote respiration rate 
+determination in video data—Vital parameter extraction based on optical 
+flow and principal component analysis. Pages 326–333 in Proceedings of 
+the 12th International Joint Conference on Computer Vision, Imaging and 
+Computer Graphics Theory and Applications. V ol. 4. https:
+ / / doi .org/ 10 
+.5220/ 0006095003260333.
+Wu, D., M. Han, H. Song, L. Song, and 
+Y . Duan. 2023. Monitoring the respira-
+tory behavior of multiple cows based on computer vision and deep learn-
+ing. J. Dairy Sci. 106:2963–2979. https:
+ / / doi .org/ 10 .3168/ jds .2022 -22501.
+Wu, D., X. 
+Yin, B. Jiang, M. Jiang, Z. Li, and H. Song. 2020. Detection of the 
+respiratory rate of standing cows by combining the Deeplab v3+ semantic 
+segmentation model with the phase-based video magnification algorithm. 
+Biosyst. Eng. 192:72–89. https:
+ / / doi .org/ 10 .1016/ j .biosystemseng .2020 .01 
+.012.
+315Mant
+ovani et al. | Predicting respiration rate in dairy cows
+
+--- Page 8 ---
+JDS Communications 2024; 5: 310–316
+Notes
+Raphael R. Mantovani https: / / orcid .org/ 0009 -0005 -5835 -8819
+Guilherme L. Menezes https: / / orcid .org/ 0000 -0002 -9317 -3239
+João R. R. Dórea https: / / orcid .org/ 0000 -0001 -9849 -7358
+This research was funded by the USDA National Institute of Food and 
+Agricul-
+ture (Washington, DC; grant 2023-68014-39821/accession no. 1030367) and 
+the Dairy Innovation Hub (Madison, WI).
+Approval for all animal evaluations was granted by the Institutional Animal 
+Care and Use Committee of the University of Wisconsin–Madison.
+The authors have not stated any conflicts of interest.
+Nonstandard abbreviations used: BIA = Biomedical Innovations and Appli-
+cations; BRD = bovine respiratory disease; FFT = fast Fourier transform; IR = 
+infrared; PSD = power spectral density; RGB = red, green, and blue; RMSEP = 
+root mean squared error of prediction; ROI = region of interest; RR = respira-
+tory rate.
+316Mantovani et al. | Predicting respiration rate in dairy cows

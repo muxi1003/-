@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-09",
+  "exposure": {
+    "date": "2026-09-09",
+    "evidence_type": "user_statement_not_forensic_proof",
+    "first_answer": "都没有用于YOLO训练",
+    "followup_scope": "排除已知开发数据后剩余271个候选窗口的呼吸率调参和预测结果查看经历",
+    "followup_answer": "都没有",
+    "does_not_confirm": [
+      "cow_id_filename_semantics",
+      "event_reference",
+      "RGB_synchronization",
+      "environment_measurements"
+    ],
+    "candidate_ids_sha256": "f706f60ce7a9cb8d4f78dc6e3b2744b7641d03cdb9b626bd35f6ccc016ee5797"
+  },
+  "filename_example": "20240729T084330-1479.MP4",
+  "user_answer": "1479是牛号，084330是拍摄时间",
+  "rule": "YYYYMMDD T HHMMSS - cow_id",
+  "grouping": "farm plus cow_id across recording dates",
+  "sampling": "all 271 eligible candidate recordings, first 30 seconds; no outcome-based selection"
+}

@@ -1,0 +1,2 @@
+﻿cohort,variant,complete_reference_windows,algorithm_output_coverage_on_complete,tp,fp,fn,precision,recall,f1,n,rr_r2,rr_mae_bpm,rr_rmse_bpm,count_mae,exact_count,within_one_count,mean_count_accuracy_percent,bias_bpm,loa_low_bpm,loa_high_bpm
+jiufu271,frozen_transfer_20260914_v2,214,0.8037383177570093,1318,1018,1686,0.5642123287671232,0.4387483355525965,0.4936329588014981,172,0.4192216831998704,5.186046511627907,7.879912642651183,2.5930232558139537,37,76,80.59577513266095,-1.2325581395348837,-16.531617657708637,14.066501378638868

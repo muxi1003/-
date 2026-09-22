@@ -1,0 +1,7 @@
+﻿fold,schedule,final_epoch,final_cls_loss,final_box_loss
+0,30 epochs,30,2.93895,3.03074
+0,200 epochs,200,0.87131,1.17599
+1,30 epochs,30,2.34871,3.02141
+1,200 epochs,200,0.96217,1.05609
+2,30 epochs,30,2.95722,2.70232
+2,200 epochs,200,0.91674,1.16575

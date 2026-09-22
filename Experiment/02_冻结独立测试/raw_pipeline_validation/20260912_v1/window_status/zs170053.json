@@ -1,0 +1,19 @@
+{
+  "video_id": "zs170053",
+  "raw_source_path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B二舍正常0938\\20230807T094302n170053\\20230807T094302n170053.MP4",
+  "raw_source_sha256": "fe8abb2df39f76655168f9bc36860a27f57f0824ecae1f2bfad5efc756c102b8",
+  "origin_frame_index": 33,
+  "origin_timestamp_seconds": 3.6783333333333337,
+  "duration_seconds": 30.0,
+  "predicted_breath_count": 23,
+  "predicted_rr_bpm": 46,
+  "reference_status": "new_raw_time_window_not_scored",
+  "prediction_status": "predicted_internal_only",
+  "reason": "",
+  "source_frames": 263,
+  "target_frames": 261,
+  "reused_source_frames": 21,
+  "max_nearest_time_error_seconds": 0.1149425287356322,
+  "valid_signal_frames": 261,
+  "grid_frames": 261
+}

@@ -1,0 +1,10 @@
+{
+  "runner": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\preflight_frozen_videos.py",
+  "runner_sha256": "b70e5ff3139f3a5c1d9d472e13423b14ce57eacedb325db36e2cf4173ee88fe8",
+  "manifest_sha256": "fc23ad2e375cb7181769cf00bdf62c74aedcd70b10f0c08c871bdb29a41dac28",
+  "opencv_version": "4.13.0",
+  "reference_files_read": [],
+  "model_inference": false,
+  "timestamp_source": "OpenCV FFMPEG CAP_PROP_POS_MSEC",
+  "limitation": "Backend presentation timestamps; not an independent ffprobe cross-check or calibration validation"
+}

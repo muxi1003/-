@@ -1,0 +1,21 @@
+{
+  "status": "DIAGNOSIS_AND_BOUNDED_REPAIRS_VERIFIED",
+  "scope": "full271 stage audit; R2 full216 events and173 counts; separate R3 review11 events and7 counts",
+  "tests_passed": 18,
+  "ROI_replay_count": 29,
+  "localization_probes": 27,
+  "partial_inference_windows": 53,
+  "original_input_hashes_unchanged": true,
+  "combined_whole_window_counts_unchanged": true,
+  "original_models_and_references_unchanged": true,
+  "successful_scope": "opt-in partial-event output only",
+  "full_RR_solution": "not established",
+  "rejected": "observed-only periodicity selector",
+  "date": "2026-09-22",
+  "report_sha256": "5afc2d69cf8c0ed0075a2441c983d806099cfd4ae9a08e368f74715f10bc6f16",
+  "combined_files": {
+    "prediction_events.csv": "96263a784481edc067c38d0a97a26db592bdc1986708113ca2cf6ec841cb7f4f",
+    "prediction_windows.csv": "544776566aa53cd7cd4e6c4ef479939a0c6819eeec7edf8495b587fb38175c03",
+    "README.md": "26195c0762c4b6a4486114684f3f6d376b5b6b138b5b3e3ab919ff976b5d57f1"
+  }
+}

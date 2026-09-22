@@ -1,0 +1,5 @@
+﻿cohort,analysis_set,n,rr_r2,rr_mae_bpm,rr_rmse_bpm,role
+anchored49,all_numeric,49,0.8809440013919597,2.815783130136477,3.906243971064354,internal_development_fixed_r20_not_external_baseline
+anchored49,primary_completed,39,0.930343561137288,2.3581841286331464,3.1694660805816426,internal_development_fixed_r20_not_external_baseline
+internal73,all_numeric,73,0.9447702357801692,1.615614978628677,3.05736332336174,internal_development_fixed_r20_not_external_baseline
+jiufu271,complete_reference_AND_algorithm_ok,122,0.19370446193558233,5.360655737704918,8.256145252248746,frozen_transfer_adaptive_ROI_count_reference_only

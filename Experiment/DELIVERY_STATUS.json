@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-09",
+  "ablation": {
+    "status": "RUN_INTERNAL_ONLY",
+    "paired_predictions": 976,
+    "analyses": 24,
+    "default_changed": false
+  },
+  "independent_test": {
+    "status": "DATA_AND_SIGNAL_POLICY_FROZEN_END_TO_END_PENDING",
+    "windows": 271,
+    "filename_cow_labels": 168,
+    "external_metrics": null,
+    "exposure": "user_confirmed_no_training_no_RR_tuning_no_RR_result_viewing"
+  },
+  "event_reference": {
+    "status": "FORMS_AND_SCORER_READY_AWAIT_HUMAN_EVENTS",
+    "internal_windows": 49,
+    "external_windows": 271,
+    "completed": 0
+  },
+  "integrity": {
+    "all_original_sources_unchanged": true,
+    "historical_replay_matches": "122/122",
+    "curve_csv_files": 976,
+    "review_scope": "deterministic_checks_and_local_self_review_not_external_reviewer"
+  },
+  "not_done": [
+    "YOLO_retraining",
+    "full_end_to_end_external_inference",
+    "human_event_annotation",
+    "RGB_synchronization",
+    "double_blind_annotation"
+  ]
+}

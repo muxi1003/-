@@ -1,0 +1,32 @@
+{
+  "created_at": "20260917_200508_073479",
+  "round": "R2",
+  "tolerance_seconds": 0.3,
+  "primary": "complete_only; all_abstained_reference_events_count_as_FN",
+  "pending_user_clarification": "2026-09-17 user: 152 pending windows have notes explaining why not annotated; retain original status and notes",
+  "no_tuning": true,
+  "no_phase_offset_fitting": true,
+  "scope": "new_reference_evaluation_of_existing_internal_ablation_and_presealed_external_predictions; not_new_independent_test",
+  "source_exports": [
+    {
+      "source": "C:\\Users\\muxi\\Downloads\\annotation_windows (1).csv",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v1\\raw\\annotation_windows.csv",
+      "sha256": "42edd1833860ca2c7a4e68c2c27d0afea62137ed6cf9bace25d2a22d568a8e88"
+    },
+    {
+      "source": "C:\\Users\\muxi\\Downloads\\reference_events.csv",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v1\\raw\\reference_events.csv",
+      "sha256": "b4fdd824a1ac2df5475bf5b49fcf36136607da5a76fc7ec10df0b83ab849ebfc"
+    },
+    {
+      "source": "C:\\Users\\muxi\\Downloads\\unobservable_intervals.csv",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v1\\raw\\unobservable_intervals.csv",
+      "sha256": "b7ce893423123eee16c180950c7a06f5a99dd692f8ea0643b097d95552e3ffd8"
+    },
+    {
+      "source": "C:\\Users\\muxi\\Downloads\\event_reference_R2_backup.json",
+      "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v1\\raw\\backup.json",
+      "sha256": "8ba7748da84bf844e36f02c4ee8be11fcf8351ee33f1de78098f059c0354253f"
+    }
+  ]
+}

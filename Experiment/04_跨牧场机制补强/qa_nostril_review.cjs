@@ -1,0 +1,44 @@
+const {chromium}=require('C:/Users/muxi/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs=require('fs');
+const path=require('path');
+const {pathToFileURL}=require('url');
+const root=path.join(__dirname,'20260922_pose_phase_v1');
+async function main(){
+ const browser=await chromium.launch({headless:true,channel:'msedge'});
+ const context=await browser.newContext({acceptDownloads:true,viewport:{width:1440,height:1000}});
+ const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(pathToFileURL(path.join(root,'index.html')).href);
+ await page.waitForFunction(()=>document.querySelector('canvas').clientHeight>100&&document.querySelector('canvas').width===1080);
+ await page.waitForFunction(()=>loaded);
+ if((await page.locator('#frameid').innerText())!=='R3-01_t00')throw Error('Wrong first frame');
+ await page.evaluate(()=>{document.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyD',key:'Process',bubbles:true}));});
+ if((await page.locator('#frameid').innerText())!=='R3-01_t10')throw Error('IME physical next key failed');
+ await page.locator('#notes').focus();await page.keyboard.press('a');
+ if((await page.locator('#frameid').innerText())!=='R3-01_t10')throw Error('Editable guard failed');
+ await page.locator('#notes').fill('');await page.locator('#visibility').selectOption('one_visible');
+ await page.locator('#annotator').fill('SYNTHETIC_UI_TEST_NOT_REFERENCE');
+ const box=await page.locator('canvas').boundingBox();
+ const x=box.x+box.width*.4,y=box.y+box.height*.4;
+ await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+box.width*.1,y+box.height*.08);await page.mouse.up();
+ const text=await page.locator('#shapeA').innerText();
+ if(!text.includes('486.0, 633.6'))throw Error('Native coordinate mapping failed: '+text);
+ await page.locator('#undo').click();if(await page.locator('#shapeA').innerText()!=='未标记')throw Error('Undo failed');
+ await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+box.width*.1,y+box.height*.08);await page.mouse.up();
+ await page.locator('#done').click();if(await page.locator('#frameid').innerText()!=='R3-01_t20')throw Error('Save/next failed');
+ const download=page.waitForEvent('download');await page.locator('#export').click();const file=await download;
+ const qa=path.join(root,'qa');fs.mkdirSync(qa,{recursive:true});const fixture=path.join(qa,'SYNTHETIC_UI_TEST_ONLY.json');await file.saveAs(fixture);
+ const data=JSON.parse(fs.readFileSync(fixture,'utf8'));if(data.records['R3-01_t10'].status!=='complete')throw Error('Export incomplete');
+ data.synthetic_test_only=true;fs.writeFileSync(fixture,JSON.stringify(data,null,2));
+ await page.reload();page.once('dialog',d=>d.accept());await page.locator('#file').setInputFiles(fixture);
+ await page.waitForFunction(()=>records['R3-01_t10']?.status==='complete');
+ // New isolated context for evidence screenshots, with no synthetic annotation data.
+ const clean=await browser.newContext({viewport:{width:1440,height:1000}});const p=await clean.newPage();await p.goto(pathToFileURL(path.join(root,'index.html')).href);
+ await p.waitForFunction(()=>loaded);
+ await p.screenshot({path:path.join(qa,'desktop.png'),fullPage:true});
+ await p.setViewportSize({width:390,height:844});await p.screenshot({path:path.join(qa,'mobile.png'),fullPage:true});
+ const overflow=await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);if(overflow)throw Error('Mobile overflow');
+ if(errors.length)throw Error(errors.join('\n'));
+ fs.writeFileSync(path.join(qa,'ui_verification.json'),JSON.stringify({status:'PASS',imePhysicalKey:true,editableGuard:true,nativeCoordinates:true,undo:true,export:true,mobileNoHorizontalOverflow:true,syntheticDataNeverResearchReference:true,pageErrors:errors},null,2));
+ await browser.close();console.log('UI QA PASS');
+}
+main().catch(e=>{console.error(e);process.exit(1);});

@@ -1,0 +1,41 @@
+{
+  "source_inventory": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\inventories\\20260909_v1",
+  "source_inventory_sha256": "2b4b733101a5cae4c0cb2b1ff182f556c90dd65a698b35044f4f007d853163de",
+  "candidate_manifest_sha256": "f706f60ce7a9cb8d4f78dc6e3b2744b7641d03cdb9b626bd35f6ccc016ee5797",
+  "method_snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1",
+  "method_manifest_sha256": "fb88586aaa86f425327210197065e1305b4a62418c6c11f5780c90b66e543bd0",
+  "created_at": "20260909_201346_618584",
+  "status": "USER_EXPOSURE_AND_FILENAME_IDENTITY_CONFIRMED_PENDING_RELEASE_AUDIT",
+  "counts_by_farm_media_status": [
+    {
+      "farm": "jiufu",
+      "media_status": "apple_sidecar_not_video",
+      "n": 350
+    },
+    {
+      "farm": "jiufu",
+      "media_status": "metadata_readable_not_full_decode_audited",
+      "n": 692
+    },
+    {
+      "farm": "lindian",
+      "media_status": "apple_sidecar_not_video",
+      "n": 467
+    },
+    {
+      "farm": "lindian",
+      "media_status": "metadata_readable_not_full_decode_audited",
+      "n": 1070
+    }
+  ],
+  "candidate_windows": 271,
+  "verified_test_windows": 0,
+  "deduplication": "sampled fingerprint screening only; selected sources get full SHA256 at release",
+  "scope": "Jiufu only; excludes known development sessions/cows and sampled matches; other files retained in audit",
+  "prior_curation": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\curated_20260909_v2",
+  "exposure_statement": "User confirmed no YOLO training, RR tuning, or RR result viewing for the remaining 271 candidates",
+  "candidate_full_hashes_sha256": "e44e1977a46a61fae2839b57ea2a63f406e1f773ea34a256dbf6ed290b5d9b50",
+  "unique_cow_labels": 168,
+  "identity_basis": "user-confirmed filename cow labels, not framewise biometric verification",
+  "modality_basis": "dataset label, thermal filename pattern and consistent 1080x1440 metadata; visual/calibration audit pending"
+}

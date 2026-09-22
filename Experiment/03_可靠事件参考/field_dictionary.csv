@@ -1,0 +1,14 @@
+﻿file,field,meaning,initial_value
+annotation_windows.csv,manual_breath_count,人工确认事件数；complete时为全窗次数，partial时不能当全窗真值,blank_until_reviewed
+annotation_windows.csv,annotation_status,pending/complete/partial/unobservable,pending
+annotation_windows.csv,predictions_hidden,本轮未展示算法结果填yes，不能冒称历史从未接触,blank
+annotation_windows.csv,annotator,实际标注人或固定匿名编号,blank
+annotation_windows.csv,annotation_round,R1首次；R2另一次独立复核，不覆盖R1,R1
+reference_events.csv,event_time_seconds,"相对本观看窗口起点的真实秒数，范围[0,T)",blank
+reference_events.csv,event_id,同一窗口同轮次唯一，例如e001,blank
+reference_events.csv,event_type,统一呼气相代表时点expiration_peak，不能确认则记不确定,expiration_peak
+reference_events.csv,confidence,confirmed或uncertain；uncertain不能进入complete主参考,blank
+reference_events.csv,event_start_seconds/event_end_seconds,可选相位不确定范围，必须包含代表时点；不自动扩大评分容差,blank
+unobservable_intervals.csv,start_seconds/end_seconds,真正不可观察时段，起点小于终点，区间不得重叠,blank
+unobservable_intervals.csv,reason,鼻孔出视野/遮挡/运动模糊/相位无法分辨等实际原因,blank
+prediction_windows_template.csv,timebase,必须是annotation_video_seconds，且timebase_verified=yes才可事件评分,blank

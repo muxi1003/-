@@ -1,0 +1,18 @@
+{
+  "role": "single_anatomy_informed_retrospective_counterfactual",
+  "rule": "mask finite temperature when source is not detected; retain frozen fusion/repair/peak rules",
+  "hypothesis": "inferred ROI temperatures contaminate waveform",
+  "fallback": "if no direct temperatures anywhere, retain frozen result and flag fallback",
+  "annotation_used_to_design_rule": true,
+  "reference_read_by_predictor": false,
+  "no_human_coordinate_substitution": true,
+  "original_abstentions_retained": true,
+  "no_default_change": true,
+  "no_new_model": true,
+  "no_claim_of_independent_external_validation": true,
+  "input_sha256": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1\\method_config.json": "c2e1d9c4bf315f0f7efd9683e9dc67ad5e55b106cc01e1f0c9a0eb5f076daa93",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1\\scripts\\paper_repro_rr.py": "3c211f52fe3f1a6a3104a38f2b275cdf40fe5f21ff4ca042052cee8424947ec9",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\run_direct_roi_control.py": "4b5211bab0d70daf1950338712fc98b1f4f6d752e22abc1a47e3f851a2e1dded"
+  }
+}

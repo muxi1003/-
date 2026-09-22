@@ -1,0 +1,49 @@
+{
+  "group_basis": "verified_cow_for_jiufu; raw_source_video_for_lindian_not_verified_cow",
+  "event_f1": {
+    "clusters": 47,
+    "draws": 2000,
+    "seed": 20260917,
+    "low": 0.7069103649702448,
+    "high": 0.796262179649767
+  },
+  "counts": {
+    "clusters": 47,
+    "draws": 2000,
+    "seed": 20260917,
+    "method": "percentile_bootstrap_cow_clusters_keep_all_windows_per_sampled_cow",
+    "scope": "paired_complete_and_ok_set_conditional_on_coverage_not_missing_outcome_imputation",
+    "intervals": {
+      "rr_r2": {
+        "low": 0.8232172717695273,
+        "high": 0.9327386663554047,
+        "finite_draws": 2000
+      },
+      "rr_mae_bpm": {
+        "low": 2.381500960001591,
+        "high": 3.6167435710613,
+        "finite_draws": 2000
+      },
+      "rr_rmse_bpm": {
+        "low": 3.0309962637244037,
+        "high": 4.346272313756401,
+        "finite_draws": 2000
+      },
+      "count_mae": {
+        "low": 1.1914893617021276,
+        "high": 1.8085106382978724,
+        "finite_draws": 2000
+      },
+      "mean_count_accuracy_percent": {
+        "low": 92.1180292840219,
+        "high": 94.9313481492852,
+        "finite_draws": 2000
+      },
+      "bias_bpm": {
+        "low": -0.08530241062464822,
+        "high": 1.9141450441599683,
+        "finite_draws": 2000
+      }
+    }
+  }
+}

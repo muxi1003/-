@@ -1,0 +1,9 @@
+{
+  "status": "PASS_PIXEL_ROI_REPLAY",
+  "replayed_roi_count": 29,
+  "max_absolute_error": 3.552713678800501e-15,
+  "caveat": "exact pseudocolor mapping replay, not absolute radiometric or anatomical accuracy",
+  "predictor_scope": "27 single-frame diagnostic probes, not all271 improvement",
+  "default_changed": false,
+  "weights_sha256": "12c3ad363a00e008ab6d8b859ac6134dbd6582bbfd9cc72afee6884ccd304a09"
+}

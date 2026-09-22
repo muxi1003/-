@@ -1,0 +1,7 @@
+{
+  "inventory": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\inventories\\20260909_v1",
+  "matched_inputs": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1",
+  "reference_forms": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\20260909_v1",
+  "method_snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1",
+  "created_at": "2026-09-09T19:58:25.253508+08:00"
+}

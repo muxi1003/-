@@ -1,0 +1,81 @@
+{
+  "lindian49": {
+    "windows": 49,
+    "numeric_counts": 49,
+    "status_counts": {
+      "completed": 39,
+      "uncertain": 10
+    },
+    "event_rows": 0,
+    "interval_rows": 0,
+    "predictions_hidden_user_confirmed": false,
+    "window_identity_check": "PASS",
+    "count_coverage": 1.0,
+    "source_hashes": [
+      {
+        "source": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\20260909_v1\\annotation_windows.csv",
+        "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v2\\lindian49\\original_bytes\\annotation_windows.csv",
+        "sha256": "64b6522745dd7d212a501d4f5ef5f02c17fec943b96947e08957656ba735c214",
+        "encoding": "gb18030",
+        "rows": 49,
+        "source_modified": false
+      },
+      {
+        "source": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\20260909_v1\\reference_events.csv",
+        "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v2\\lindian49\\original_bytes\\reference_events.csv",
+        "sha256": "07f20862189cc5332d83675326d0ab69e3bad560a83c2af9db6aeb558e70a65d",
+        "encoding": "utf-8-sig",
+        "rows": 0,
+        "source_modified": false
+      },
+      {
+        "source": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\20260909_v1\\unobservable_intervals.csv",
+        "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v2\\lindian49\\original_bytes\\unobservable_intervals.csv",
+        "sha256": "a23f7ec7e6fe923c3e0d9ef0b8c5877139f615981eb92e30404705e65b7cdc18",
+        "encoding": "utf-8-sig",
+        "rows": 0,
+        "source_modified": false
+      }
+    ],
+    "count_changes_from_20260909": 0
+  },
+  "jiufu271": {
+    "windows": 271,
+    "numeric_counts": 157,
+    "status_counts": {
+      "complete": 157,
+      "unobservable": 114
+    },
+    "event_rows": 0,
+    "interval_rows": 0,
+    "predictions_hidden_user_confirmed": true,
+    "window_identity_check": "PASS",
+    "count_coverage": 0.5793357933579336,
+    "source_hashes": [
+      {
+        "source": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\jiufu271_frozen_v1\\annotation_windows.csv",
+        "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v2\\jiufu271\\original_bytes\\annotation_windows.csv",
+        "sha256": "004f8ec22fafd28770782dceae1e26c71598a0efe1803f8aa17c99024b09b41a",
+        "encoding": "gb18030",
+        "rows": 271,
+        "source_modified": false
+      },
+      {
+        "source": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\jiufu271_frozen_v1\\reference_events.csv",
+        "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v2\\jiufu271\\original_bytes\\reference_events.csv",
+        "sha256": "07f20862189cc5332d83675326d0ab69e3bad560a83c2af9db6aeb558e70a65d",
+        "encoding": "utf-8-sig",
+        "rows": 0,
+        "source_modified": false
+      },
+      {
+        "source": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\annotations\\jiufu271_frozen_v1\\unobservable_intervals.csv",
+        "snapshot": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260911_v2\\jiufu271\\original_bytes\\unobservable_intervals.csv",
+        "sha256": "a23f7ec7e6fe923c3e0d9ef0b8c5877139f615981eb92e30404705e65b7cdc18",
+        "encoding": "utf-8-sig",
+        "rows": 0,
+        "source_modified": false
+      }
+    ]
+  }
+}

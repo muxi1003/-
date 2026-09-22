@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "replayed_frames": 36,
+  "predicted_boxes_at_conf025": 25,
+  "folds": 3,
+  "epochs_each": 200,
+  "cow_isolation_verified": true,
+  "original_model_and_reference_unchanged": true,
+  "prediction_seal_verified": true,
+  "training_rerun": false
+}

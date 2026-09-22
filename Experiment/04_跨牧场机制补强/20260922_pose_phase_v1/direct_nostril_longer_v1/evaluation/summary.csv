@@ -1,0 +1,4 @@
+﻿method,frames,cows,expected_nostrils,predicted_points,correct_points,precision,recall,point_f1,no_correct_visible_frames
+direct_nostril_oof,36,12,50,25,18,0.72,0.36,0.48,16
+no_keypoint_fallback_oof,36,12,50,31,20,0.6451612903225806,0.4,0.49382716049382713,14
+original_pose,36,12,50,27,18,0.6666666666666666,0.36,0.4675324675324675,16

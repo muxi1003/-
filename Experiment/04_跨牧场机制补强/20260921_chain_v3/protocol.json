@@ -1,0 +1,13 @@
+{
+  "role": "retrospective_failure_diagnosis",
+  "original_predictions_unchanged": true,
+  "annotation_version": "R2 full and R3 review kept separate",
+  "initial_hypotheses": [
+    "no_pose_or_bad_coordinates",
+    "ROI_temperature_loss",
+    "interpolation_waveform_artifact",
+    "fusion_peak_rules"
+  ],
+  "visual_sampling": "six fixed times per Jiufu review window, not outcome optimized",
+  "new_model_selection_requires_same_input_comparison": true
+}

@@ -1,0 +1,15 @@
+{
+  "seed": "SHA256(20260921:window_id)",
+  "counts": {
+    "lindian_complete_distinct_sources": 12,
+    "jiufu_complete_output_distinct_cows": 8,
+    "jiufu_complete_abstain_distinct_cows": 4
+  },
+  "prior_counts_or_errors_used_in_selection": false,
+  "previous_events_loaded": false,
+  "source_windows_sha256": "d9de65abfde3fec2b564286c7bdf45eb8f4aad1b771ed48df947202f9864ab35",
+  "template_sha256": "d700d3c097cf11be2d0f2a3ee19758db90cce81bff56bdee16092739751bad2f",
+  "purpose": "phase and visibility mechanism review; deliberately enrich abstentions; not prevalence sample",
+  "repeat_observer_not_second_independent_observer": true,
+  "original_references_unchanged": true
+}

@@ -1,0 +1,1 @@
+Superseded development output. QA found the raw-source anchor incorrectly used as the playback origin for already cut Lindian clips. No human reference events were created. v3 separates source_start_seconds from view_start_seconds (0), retaining original provenance. Use ../20260914_v3/index.html.

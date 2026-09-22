@@ -1,0 +1,17 @@
+{
+  "reference_round": "R2",
+  "metrics": {
+    "n": 173,
+    "rr_r2": 0.4196293950907666,
+    "rr_mae_bpm": 5.15606936416185,
+    "rr_rmse_bpm": 7.857105322333587,
+    "count_mae": 2.578034682080925,
+    "exact_count": 38,
+    "within_one_count": 77,
+    "mean_count_accuracy_percent": 80.70793828218315,
+    "bias_bpm": -1.2254335260115607,
+    "loa_low_bpm": -16.481059901010426,
+    "loa_high_bpm": 14.030192848987303
+  },
+  "policy": "complete_reference_AND_ok_only; abstentions_not_zero; no_phase_or_tolerance_fitting"
+}

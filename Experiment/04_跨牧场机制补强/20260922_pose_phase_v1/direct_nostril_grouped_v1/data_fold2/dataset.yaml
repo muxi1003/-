@@ -1,0 +1,5 @@
+names:
+  0: nostril
+path: E:\real\use_code\yoloV8\Experiment\04_跨牧场机制补强\20260922_pose_phase_v1\direct_nostril_grouped_v1\data_fold2
+train: images/train
+val: images/val

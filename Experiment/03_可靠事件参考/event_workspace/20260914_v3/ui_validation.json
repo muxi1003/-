@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "windows": 320,
+  "farmFilter": true,
+  "actualLocalVideoLoaded": true,
+  "videoPixelRange": 255,
+  "eventAddDelete": true,
+  "eventJumpCorrectOrigin": true,
+  "intervalAddDelete": true,
+  "invalidCompleteRejected": true,
+  "changedOriginBackupRejected": true,
+  "csvDownload": true,
+  "desktopOverflow": false,
+  "mobileOverflow": false,
+  "errors": [],
+  "syntheticQAOnly": true,
+  "humanEventsCreated": 0
+}

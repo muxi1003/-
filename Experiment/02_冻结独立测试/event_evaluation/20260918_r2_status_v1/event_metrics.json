@@ -1,0 +1,25 @@
+{
+  "status": "SCORED_HUMAN_EVENT_REFERENCE",
+  "reference_round": "R2",
+  "matching_rule": "one_to_one_max_cardinality_then_min_time_error",
+  "tolerance_seconds": 0.3,
+  "all_annotation_windows": 271,
+  "complete_reference_windows": 216,
+  "reference_window_coverage": 0.7970479704797048,
+  "algorithm_output_coverage_on_complete": 0.8009259259259259,
+  "tp": 1324,
+  "fp": 1028,
+  "fn": 1706,
+  "precision": 0.5629251700680272,
+  "recall": 0.43696369636963694,
+  "f1": 0.4920104050538833,
+  "abstention_policy": "reference events in abstained complete windows count as FN; coverage reported",
+  "partial_reference_policy": "excluded from complete-window primary score; excluded windows explicitly listed",
+  "input_hashes": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260918_r2_status_v1\\jiufu271\\annotation_windows.csv": "abdf0215d7ca9306f5396d7cf9c18586c7828c492174e5ccbcef34845b80d3e5",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260918_r2_status_v1\\jiufu271\\reference_events.csv": "c333c7b8583789bbcc3241cce95b27f430e4cdb5947660759f96c1d44bdf6825",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260918_r2_status_v1\\jiufu271\\unobservable_intervals.csv": "a23f7ec7e6fe923c3e0d9ef0b8c5877139f615981eb92e30404705e65b7cdc18",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1\\prediction_events.csv": "5b6de74afcac3be136ebb58f2362ffced6d55d2ead3c20985ede460899dfe608",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1\\prediction_windows.csv": "c3af52b00fda0b6767be4138fc4c4e7da955ef9541ea2c52b7bb7d586bce0f08"
+  }
+}

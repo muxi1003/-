@@ -1,0 +1,19 @@
+{
+  "stage": "adaptive_ROI_stage_runtime_not_retroactive_v1_process_capture",
+  "python": "3.10.20 | packaged by Anaconda, Inc. | (main, Mar 11 2026, 17:42:35) [MSC v.1942 64 bit (AMD64)]",
+  "executable": "E:\\real\\anaconda\\envs\\plant_gpu\\python.exe",
+  "platform": "Windows-10-10.0.26100-SP0",
+  "packages": {
+    "ultralytics": "8.4.40",
+    "torch": "2.12.0.dev20260322+cu128",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.15.3",
+    "opencv-python": "4.13.0.92",
+    "joblib": "1.5.3"
+  },
+  "loaded_rr_module": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1\\scripts\\paper_repro_rr.py",
+  "loaded_roi_module": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1\\scripts\\evaluate_lindian_adaptive_roi.py",
+  "rf_sha256": "26b8e7dd25afb7780798f3609aaf16592089598157d58e11bc1e1dffd7bb03d5"
+}

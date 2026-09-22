@@ -1,0 +1,10 @@
+{
+  "fold": 0,
+  "train_cows": 8,
+  "heldout_cows": 4,
+  "train_frames": 24,
+  "heldout_frames": 12,
+  "checkpoint": "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\20260922_pose_phase_v1\\direct_nostril_grouped_v1\\runs\\fold0\\weights\\last.pt",
+  "sha256": "5d459de55ce3ba41386eabca07bae5baa7f0e6a1a209f05249ec3a32ea7bdb3a",
+  "epochs": 30
+}

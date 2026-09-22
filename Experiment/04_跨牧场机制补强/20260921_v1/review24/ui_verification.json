@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": 14,
+  "errors": [],
+  "original_R2_not_opened": true,
+  "temporary_browser_profile": true,
+  "actual_user_IME_retest_required": true,
+  "limitation": "Decoded PTS stepping tested; no independent physiological phase verification"
+}

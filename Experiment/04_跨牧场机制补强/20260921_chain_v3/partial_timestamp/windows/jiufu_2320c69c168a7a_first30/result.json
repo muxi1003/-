@@ -1,0 +1,11 @@
+{
+  "window_id": "jiufu_2320c69c168a7a_first30",
+  "original_status": "abstain",
+  "original_reason": "long_timestamp_gap",
+  "status": "partial_events_only",
+  "full_window_count": null,
+  "full_window_rr_bpm": null,
+  "partial_event_count": 11,
+  "eligible_seconds": 26.896551724137932,
+  "signal_segments": 2
+}

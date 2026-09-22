@@ -1,0 +1,12 @@
+{
+  "windows": 49,
+  "predicted_windows": 37,
+  "abstention_reasons": {
+    "long_timestamp_gap": 9,
+    "unsupported_window_end": 2,
+    "no_valid_temperature_signal": 1
+  },
+  "human_reference_scored": false,
+  "external_predictions": 0,
+  "adopted": false
+}

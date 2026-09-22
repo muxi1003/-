@@ -1,0 +1,12 @@
+path: /home/ubuntu/mx/yoloV8/Dataset_new
+train: images/train
+val: images/val
+nc: 1
+names:
+- nose
+kpt_shape:
+- 2
+- 3
+flip_idx:
+- 1
+- 0

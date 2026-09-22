@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>呼吸事件标注 R2 · 20260915.2</title>
+<style>
+*{box-sizing:border-box;letter-spacing:0}body{margin:0;background:#f5f7f8;color:#172c33;font:15px 'Microsoft YaHei',sans-serif}header{background:white;border-bottom:1px solid #ccd6da;padding:14px 22px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}h1{font-size:21px;margin:0}button,select,input{font:inherit;padding:7px 10px;border:1px solid #adbcc2;border-radius:4px;background:white;color:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:default}button.primary{background:#16745c;border-color:#16745c;color:white}main{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;padding:20px;max-width:1600px;margin:auto}video{width:100%;height:65vh;min-height:260px;background:#111;object-fit:contain}aside{min-width:0}label{display:block;margin:10px 0 6px}input[type=text],select{max-width:100%;width:100%}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:0 1 auto}section{border-bottom:1px solid #ccd6da;padding:12px 0}h2{font-size:17px;margin:8px 0}#path{overflow-wrap:anywhere;font:12px monospace;color:#556b73;min-height:40px}#message{color:#a52c35;min-height:25px}#clock{font:22px monospace;margin:12px 0}ul{margin:8px 0;padding:0;list-style:none;max-height:200px;overflow:auto}li{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #dde4e6;font-size:13px}li span{flex:1}footer{padding:15px 20px;border-top:1px solid #ccd6da;background:white;display:flex;gap:10px;flex-wrap:wrap}#window{max-width:570px;width:100%}small{color:#637680}@media(max-width:900px){main{grid-template-columns:1fr}video{height:48vh}aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}aside>section:first-child{grid-column:1/-1}}@media(max-width:560px){aside{display:block}main{padding:12px}header{padding:12px}button{white-space:normal}}
+</style>
+<header><h1>呼吸事件标注 <small>R2</small></h1><select id="farm"><option value="all">全部窗口</option><option value="lindian49">林甸49窗</option><option value="jiufu271">久福271窗</option></select><select id="window" aria-label="窗口"></select></header>
+<main><div><div id="path"></div><video id="video" controls preload="metadata"></video><div class="row"><label>选择对应视频 <input id="file" type="file" accept="video/*"></label><button id="restart" title="返回窗口起点">回到起点</button></div><div id="clock">0.000 s</div><div class="row"><button id="event" class="primary">记录呼气峰</button><select id="confidence" aria-label="事件置信度" style="width:auto"><option value="confirmed">确认</option><option value="uncertain">不确定</option></select><button id="begin">记录不可观察起点</button><button id="end" disabled>记录不可观察终点</button></div><label>不可观察原因<input type="text" id="reason"></label><div id="message" role="status"></div></div>
+<aside><section><label>标注者<input id="annotator" type="text"></label><label>本轮算法预测是否隐藏<select id="hidden"><option value="">待确认</option><option value="true">已隐藏</option><option value="false">未隐藏 / 已接触结果</option></select></label><label>本窗状态<select id="status"><option value="pending">待标注</option><option value="complete">完整确认</option><option value="partial">部分可观察 / 有不确定事件</option><option value="unobservable">无法可靠计数</option></select></label><label>本轮备注<input id="notes" type="text"></label><div id="history"></div></section><section><h2 id="event-title">人工事件</h2><ul id="events"></ul></section><section><h2>不可观察区间</h2><ul id="intervals"></ul></section></aside></main>
+<footer><button id="csv-w">导出窗口表</button><button id="csv-e">导出事件表</button><button id="csv-i">导出区间表</button><button id="backup">导出JSON备份</button><label>导入备份 <input id="restore" type="file" accept=".json"></label></footer>
+<script>
+'use strict';
+const initial=__WINDOW_DATA__;
+const $=id=>document.getElementById(id), storage='cow-rr-event-R2-20260914-v1';
+let db={windows:structuredClone(initial),events:[],intervals:[]}, current=initial[0].window_id, begin=null, blobURL=null;
+function validateBackup(x){if(!x||!Array.isArray(x.windows)||!Array.isArray(x.events)||!Array.isArray(x.intervals)||x.windows.length!==initial.length)throw Error('备份格式错误');const byId=new Map(initial.map(w=>[w.window_id,w]));const seen=new Set();for(const w of x.windows){const base=byId.get(w.window_id);if(!base||seen.has(w.window_id))throw Error('窗口清单不一致');seen.add(w.window_id);for(const k of ['video_path','source_path','source_start_seconds','view_start_seconds','browser_video_path','duration_seconds','annotation_round'])if(w[k]!==base[k])throw Error('窗口来源或时长被更改');}for(const e of x.events){const w=byId.get(e.window_id);if(!w||e.annotation_round!=='R2'||!Number.isFinite(e.event_time_seconds)||e.event_time_seconds<0||e.event_time_seconds>=Number(w.duration_seconds))throw Error('事件时间错误');}for(const s of x.intervals){const w=byId.get(s.window_id);if(!w||s.annotation_round!=='R2'||!Number.isFinite(s.start_seconds)||!Number.isFinite(s.end_seconds)||!(0<=s.start_seconds&&s.start_seconds<s.end_seconds&&s.end_seconds<=Number(w.duration_seconds)))throw Error('区间错误');}return x;}
+try{const saved=localStorage.getItem(storage);if(saved)db=validateBackup(JSON.parse(saved));}catch(e){$('message').textContent='未读取缓存：'+e.message;}
+function w(){return db.windows.find(x=>x.window_id===current)}
+function msg(t){$('message').textContent=t}
+function save(){try{localStorage.setItem(storage,JSON.stringify(db));}catch(e){msg('缓存失败，请立即导出JSON备份：'+e.message)}}
+function list(){const items=db.windows.filter(x=>$('farm').value==='all'||x.cohort===$('farm').value);$('window').replaceChildren(...items.map(x=>{const o=document.createElement('option');o.value=x.window_id;o.textContent=x.video_id+' · '+x.annotation_status;return o}));if(!items.some(x=>x.window_id===current))current=items[0].window_id;$('window').value=current;}
+function load(){begin=null;$('end').disabled=true;const x=w();$('path').textContent=x.browser_video_path+' | 播放起点 '+x.view_start_seconds+' s | 时长 '+x.duration_seconds+' s';for(const [id,key] of [['annotator','annotator'],['hidden','predictions_hidden'],['status','annotation_status'],['notes','reference_notes']])$(id).value=x[key];$('history').textContent=x.cohort==='lindian49'?'林甸：存在历史算法接触，不能宣称原始盲法。':'久福：本轮接触情况请如实登记。';if(blobURL){URL.revokeObjectURL(blobURL);blobURL=null}$('video').src='file:///'+x.browser_video_path.replaceAll('\\','/');render();}
+function time(){return $('video').currentTime-Number(w().view_start_seconds)}
+function ready(){if(!$('video').readyState){msg('先加载对应视频。');return false}if(!$('annotator').value.trim()||!$('hidden').value){msg('先填写标注者及本轮隐藏情况。');return false}return true}
+function updateCount(){const x=w(), n=db.events.filter(e=>e.window_id===current&&e.confidence==='confirmed').length;x.manual_breath_count=['complete','partial'].includes(x.annotation_status)?String(n):'';}
+function invalidateCompletion(){if(w().annotation_status==='complete'){w().annotation_status='partial';$('status').value='partial';}updateCount();}
+function render(){const events=db.events.filter(e=>e.window_id===current).sort((a,b)=>a.event_time_seconds-b.event_time_seconds);$('event-title').textContent='人工事件：确认 '+events.filter(e=>e.confidence==='confirmed').length+' / 不确定 '+events.filter(e=>e.confidence==='uncertain').length;$('events').replaceChildren(...events.map(e=>{const li=document.createElement('li'),t=document.createElement('span'),jump=document.createElement('button'),del=document.createElement('button');t.textContent=e.event_time_seconds.toFixed(3)+' s · '+e.confidence;jump.textContent='定位';jump.onclick=()=>{$('video').currentTime=Number(w().view_start_seconds)+e.event_time_seconds};del.textContent='删除';del.onclick=()=>{db.events=db.events.filter(x=>x!==e);invalidateCompletion();save();render()};li.append(t,jump,del);return li}));$('intervals').replaceChildren(...db.intervals.filter(s=>s.window_id===current).map(s=>{const li=document.createElement('li'),t=document.createElement('span'),del=document.createElement('button');t.textContent=s.start_seconds.toFixed(3)+'–'+s.end_seconds.toFixed(3)+' s '+s.reason;del.textContent='删除';del.onclick=()=>{db.intervals=db.intervals.filter(x=>x!==s);save();render()};li.append(t,del);return li}));}
+$('farm').onchange=()=>{list();load()};$('window').onchange=()=>{current=$('window').value;load()};$('restart').onclick=()=>{$('video').currentTime=Number(w().view_start_seconds)};
+$('video').onloadedmetadata=()=>{if($('video').duration+0.01<Number(w().view_start_seconds)+Number(w().duration_seconds))msg('视频时长不足，核对文件。');$('video').currentTime=Number(w().view_start_seconds)};
+$('video').ontimeupdate=()=>{const t=time();$('clock').textContent=t.toFixed(3)+' / '+Number(w().duration_seconds).toFixed(3)+' s';if(t>=Number(w().duration_seconds))$('video').pause()};
+$('video').onerror=()=>msg('自动加载失败时，请选择此窗口对应的本地视频。');
+$('file').onchange=()=>{const f=$('file').files[0];if(!f)return;const expected=w().browser_video_path.replaceAll('\\','/').split('/').pop();if(f.name!==expected){msg('文件名不匹配：应为 '+expected);return}if(blobURL)URL.revokeObjectURL(blobURL);blobURL=URL.createObjectURL(f);$('video').src=blobURL;msg('')};
+for(const [id,key] of [['annotator','annotator'],['hidden','predictions_hidden'],['notes','reference_notes']])$(id).oninput=()=>{w()[key]=$(id).value;save()};
+$('status').onchange=()=>{const s=$('status').value,events=db.events.filter(e=>e.window_id===current),spans=db.intervals.filter(e=>e.window_id===current);if(['complete','partial'].includes(s)&&(!w().annotator.trim()||!w().predictions_hidden)){msg('先确认标注者和隐藏情况。');$('status').value=w().annotation_status;return}if(s==='complete'&&(events.some(e=>e.confidence!=='confirmed')||spans.length)){msg('仍有不确定事件或不可观察区间，不能标完整。');$('status').value=w().annotation_status;return}if(s==='complete'&&!events.length&&!confirm('确认本窗完整可观察，并且确实没有任何呼吸事件？')){$('status').value=w().annotation_status;return}w().annotation_status=s;updateCount();save();list();};
+$('event').onclick=()=>{if(!ready())return;const t=Number(time().toFixed(3));if(!(t>=0&&t<Number(w().duration_seconds))){msg('事件必须处于本窗内。');return}if(db.events.some(e=>e.window_id===current&&e.event_time_seconds===t)||db.intervals.some(s=>s.window_id===current&&s.start_seconds<=t&&t<s.end_seconds)){msg('该时间重复或位于不可观察区间。');return}db.events.push({window_id:current,annotation_round:'R2',event_id:crypto.randomUUID(),event_time_seconds:t,event_start_seconds:'',event_end_seconds:'',event_type:'expiration_peak',confidence:$('confidence').value,annotator:w().annotator,notes:''});invalidateCompletion();save();render();msg('已记录人工事件。')};
+$('begin').onclick=()=>{if(!ready())return;const t=time();if(t<0||t>=Number(w().duration_seconds))return;begin=Number(t.toFixed(3));$('end').disabled=false;msg('不可观察起点 '+begin+' s')};
+$('end').onclick=()=>{if(begin===null||!ready())return;const end=Math.min(Number(time().toFixed(3)),Number(w().duration_seconds)),reason=$('reason').value.trim();if(end<=begin||!reason){msg('终点必须晚于起点，并填写原因。');return}if(db.intervals.some(s=>s.window_id===current&&begin<s.end_seconds&&end>s.start_seconds)||db.events.some(e=>e.window_id===current&&e.confidence==='confirmed'&&begin<=e.event_time_seconds&&e.event_time_seconds<end)){msg('区间重叠或含已确认事件，请先复核。');return}db.intervals.push({window_id:current,annotation_round:'R2',start_seconds:begin,end_seconds:end,reason,annotator:w().annotator});begin=null;$('end').disabled=true;invalidateCompletion();save();render()};
+function download(name,text,type){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
+function csv(name,rows,keys){const cell=x=>'"'+String(x??'').replaceAll('"','""')+'"';download(name,'\ufeff'+[keys.map(cell).join(','),...rows.map(r=>keys.map(k=>cell(r[k])).join(','))].join('\r\n'),'text/csv;charset=utf-8')}
+$('csv-w').onclick=()=>csv('annotation_windows.csv',db.windows,Object.keys(initial[0]));
+$('csv-e').onclick=()=>csv('reference_events.csv',db.events,['window_id','annotation_round','event_id','event_time_seconds','event_start_seconds','event_end_seconds','event_type','confidence','annotator','notes']);
+$('csv-i').onclick=()=>csv('unobservable_intervals.csv',db.intervals,['window_id','annotation_round','start_seconds','end_seconds','reason','annotator']);
+$('backup').onclick=()=>download('event_reference_R2_backup.json',JSON.stringify(db,null,2),'application/json');
+$('restore').onchange=async()=>{try{const value=validateBackup(JSON.parse(await $('restore').files[0].text()));if(!confirm('用此备份替换当前浏览器内的标注？请先导出当前备份。'))return;db=value;save();list();load();msg('备份已导入。')}catch(e){msg(e.message)}};
+function shortcutKey(event){
+ if(event.ctrlKey||event.altKey||event.metaKey)return null;
+ if(event.composedPath().some(node=>node instanceof Element&&(node.matches('input,textarea,select')||node.isContentEditable)))return null;
+ // Windows IMEs can report key="Process" even outside editable controls.
+ const physical={Space:' ',KeyQ:'q',KeyW:'w',KeyE:'e',KeyA:'a',KeyD:'d'};
+ const key=physical[event.code]??(event.isComposing?'':(event.key||'').toLowerCase());
+ return [' ','q','w','e','a','d'].includes(key)?key:null;
+}
+function stepVideo(direction){
+ const select=$('window'), next=select.selectedIndex+direction;
+ if(next<0||next>=select.options.length){msg(direction<0?'已经是第一个视频。':'已经是最后一个视频。');return;}
+ select.selectedIndex=next;
+ select.dispatchEvent(new Event('change',{bubbles:true}));
+ msg('');
+}
+// Capture before native video/button controls so Space only toggles once.
+document.addEventListener('keydown',event=>{
+ const key=shortcutKey(event);
+ if(key===null)return;
+ event.preventDefault();
+ event.stopImmediatePropagation();
+ if(event.repeat)return;
+ if(key===' '){
+  const video=$('video');
+  if(!video.readyState){msg('先加载对应视频。');return;}
+  if(video.paused)video.play().catch(()=>msg('无法开始播放，请检查视频是否已加载。'));
+  else video.pause();
+ }else if(key==='q'||key==='w'){
+  $('confidence').value=key==='q'?'confirmed':'uncertain';
+  $('event').click();
+ }else if(key==='e')$(begin===null?'begin':'end').click();
+ else stepVideo(key==='a'?-1:1);
+},true);
+document.addEventListener('keyup',event=>{
+ if(shortcutKey(event)!==' ')return;
+ event.preventDefault();
+ event.stopImmediatePropagation();
+},true);
+for(const [id,key,title] of [['video','Space','播放 / 暂停（空格）'],['event','Q W','记录呼气峰（Q确定 / W不确定）'],['begin','E','记录不可观察起点（E）'],['end','E','记录不可观察终点（E）'],['window','A D','切换视频（A上一个 / D下一个）']]){
+ $(id).setAttribute('aria-keyshortcuts',key);
+ $(id).title=title;
+}
+list();load();
+</script></html>
