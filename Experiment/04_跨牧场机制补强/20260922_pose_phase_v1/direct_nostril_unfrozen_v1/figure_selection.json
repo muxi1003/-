@@ -1,0 +1,15 @@
+{
+  "rule": "largest gain/loss in correct count then lexical ID",
+  "cases": [
+    {
+      "kind": "gain",
+      "frame_id": "R3-22_t20",
+      "delta_correct": 2
+    },
+    {
+      "kind": "loss",
+      "frame_id": "R3-23_t20",
+      "delta_correct": -1
+    }
+  ]
+}

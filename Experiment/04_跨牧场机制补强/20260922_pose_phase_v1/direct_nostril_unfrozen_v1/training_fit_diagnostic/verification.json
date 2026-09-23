@@ -1,0 +1,8 @@
+{
+  "label_files_roundtrip_checked": 108,
+  "image_dimensions_checked": true,
+  "train_frame_model_pairs": 72,
+  "heldout_frame_model_pairs": 36,
+  "same_training_frame_appears_in_two_models": true,
+  "no_new_independent_validation": true
+}

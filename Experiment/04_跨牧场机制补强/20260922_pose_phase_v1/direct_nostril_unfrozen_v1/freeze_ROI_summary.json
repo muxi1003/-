@@ -1,0 +1,7 @@
+{
+  "paired_regions": 19,
+  "frozen_median": 0.3739061256961018,
+  "unfrozen_median": 0.4017501988862371,
+  "median_paired_change": 0.0,
+  "restriction": "Fixed r20 diagnostic; matched-only subset, approximate anatomical ellipses, not absolute background truth"
+}

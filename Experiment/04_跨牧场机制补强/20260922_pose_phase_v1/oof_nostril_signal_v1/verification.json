@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "replayed_curves": 18,
+  "pooled_temperature_recomputed": true,
+  "all18_peak_arrays_reproduced": true,
+  "original_R3_full11_reproduced": [
+    41,
+    42,
+    102
+  ],
+  "scope": "Saved detection temperatures pooled and signal calculation replayed; not independent physiological truth",
+  "default_changed": false
+}

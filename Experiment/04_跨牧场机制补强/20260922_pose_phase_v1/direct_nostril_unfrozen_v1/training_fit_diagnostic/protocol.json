@@ -1,0 +1,13 @@
+{
+  "purpose": "distinguish failure to fit training targets from held-out generalization",
+  "thresholds": [
+    0.25,
+    0.001
+  ],
+  "max_det": 2,
+  "iou": 0.7,
+  "imgsz": 640,
+  "low_threshold_diagnostic_only": true,
+  "default_changed": false,
+  "reference_sha256": "2f7a8af055d1fab3b6454764818a2ecd87e8967645233414887f0fe8e981ba36"
+}

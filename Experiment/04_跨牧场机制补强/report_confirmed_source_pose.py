@@ -18,7 +18,7 @@ def main():
     ref=json.loads((ROOT/'anatomy_reference_142648_v1/reference_original.json').read_text(encoding='utf-8'))['records']
     predictions={v:{p['frame_id']:p for p in json.loads((OUT/f'{v}_predictions.json').read_text(encoding='utf-8'))}
                  for v in ['baseline','candidate']}
-    figures=OUT/'figures';figures.mkdir(exist_ok=False)
+    figures=OUT/'figures';figures.mkdir(exist_ok=True)
     diff=detail.pivot(index='frame_id',columns='variant',values='correct')
     diff['change']=diff.candidate-diff.baseline
     diff=diff.sort_values(['change','frame_id'],ascending=[False,True])
@@ -43,11 +43,16 @@ def main():
                     ax.plot(x,y,'r+',ms=7)
                 count=detail[(detail.variant==variant)&(detail.frame_id==fid)].iloc[0]
                 ax.set_title(f'{variant}: {count.correct}/{count.expected} regions; {count.predicted} points')
+                ax.set_xlim(-.5,p['width']-.5)
+                ax.set_ylim(p['height']-.5,-.5)
                 ax.axis('off')
             fig.suptitle(fid+' | green: human ellipse; red: predicted ROI r=20; cyan: predicted nose',fontsize=10)
             fig.tight_layout(rect=[0,0,1,.97]);fig.savefig(figures/f'{category}.png',dpi=180);plt.close(fig)
             examples.append(dict(category=category,frame_id=fid,correct_point_change=int(diff.loc[fid,'change'])))
-    write_json(OUT/'figure_selection.json',dict(rule='Largest per-frame correct-point gain/loss, then lexical ID; first unchanged ID',examples=examples))
+    selection=dict(rule='Largest per-frame correct-point gain/loss, then lexical ID; first unchanged ID',examples=examples)
+    if (OUT/'figure_selection.json').exists():
+        assert json.loads((OUT/'figure_selection.json').read_text())==selection
+    else:write_json(OUT/'figure_selection.json',selection)
     losses=read(OUT/'runs/fold0/results.csv')
     fig,axs=plt.subplots(1,3,figsize=(12,3.3))
     for ax,col in zip(axs,['train/box_loss','train/pose_loss','train/kobj_loss']):
@@ -57,9 +62,12 @@ def main():
     paired=json.loads((OUT/'paired_ROI_summary.json').read_text())
     location_promising=bool(c.correct_points>b.correct_points and c.point_precision>=b.point_precision and c.visible_no_box<=b.visible_no_box)
     decision='定位候选值得进一步回顾性验证，尚不替换默认RR流程' if location_promising else '不采用为默认定位模型；未达到同时改善召回并保持精度的条件'
-    write_json(OUT/'decision.json',dict(location_screen_pass=location_promising,
+    decision_data=dict(location_screen_pass=location_promising,
         gate='correct points strictly improve, point precision no worse, visible no-box frames no greater',
-        default_adopted=False,RR_validated=False,retrospective=True))
+        default_adopted=False,RR_validated=False,retrospective=True)
+    if (OUT/'decision.json').exists():
+        assert json.loads((OUT/'decision.json').read_text())==decision_data
+    else:write_json(OUT/'decision.json',decision_data)
     lines=['# 最终JSON源域分组训练与久福定位对照','',
            '2026-09-23；固定第0折，1942训练帧/573验证帧，40轮last.pt。久福未参与本轮训练或权重选择，但已用于先前多轮诊断，不是新独立外测。',
            '', '## 1. 已核验鼻孔上的定位结果','',

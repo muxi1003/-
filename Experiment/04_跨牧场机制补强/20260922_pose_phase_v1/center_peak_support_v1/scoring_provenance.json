@@ -1,0 +1,16 @@
+{
+  "r2_reference_sha256": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260918_r2_status_v1\\raw\\annotation_windows.csv": "d9de65abfde3fec2b564286c7bdf45eb8f4aad1b771ed48df947202f9864ab35",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260918_r2_status_v1\\raw\\reference_events.csv": "77b472549c7bd796c6a294fbe4fac55b1bf766f09bb8dfc4269c38d73a72cc3a"
+  },
+  "r3_reference_sha256": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\20260921_r3_v1\\raw\\annotation_windows.csv": "13260e89a6d03f4a005730c991c18952538b091b36a753bba751569fe60dfe95",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\20260921_r3_v1\\raw\\reference_events.csv": "9724ad32e4997aef760b9aa928d6d6dfdeff1613f8a441b9d8ac823779b66852",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\04_跨牧场机制补强\\20260921_r3_v1\\annotation_audit.csv": "eb747d8bc8fd838f6f4420ebab69e2fb8351c7329fa9285590c589ae3d08a91e"
+  },
+  "baseline_R2_replayed": true,
+  "matching_tolerance_seconds": 0.3,
+  "count_pairs_unchanged": 173,
+  "peak_filter_read_only_presealed": true,
+  "default_changed": false
+}

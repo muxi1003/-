@@ -1,0 +1,9 @@
+{
+  "disposition": "DO_NOT_ADOPT",
+  "default_changed": false,
+  "goal_complete": false,
+  "reference_sha256": "2f7a8af055d1fab3b6454764818a2ecd87e8967645233414887f0fe8e981ba36",
+  "restriction": "small retrospective cow-grouped adaptation feasibility, no full-video RR or independent-farm proof",
+  "all36_frames_evaluated_even_zero_predictions": true,
+  "training_used_only_other_cows_in_each_fold": true
+}

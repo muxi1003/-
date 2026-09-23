@@ -1,0 +1,12 @@
+{
+  "checked_windows": 271,
+  "output_windows": 216,
+  "original_peaks": 2832,
+  "kept_peaks": 2267,
+  "files": {
+    "candidate_events.csv": "ec44bedc9d17ce1e7199deddf886890fca984c6401d128d7d5a27f87e06f7c53",
+    "peak_support.csv": "7601ca4c07a3af3c885d266993c6be5bbe730f36cde84170a796a5f9887600ba",
+    "input_hashes.csv": "6188bc05df6ad9148a4d3ad57f6952c4b25960661567e06fb60166cad52475de",
+    "protocol_before_prediction.json": "cce57c82150345637685f9e8798100df9f5d4ed5b647bd11bb8c467a7666537f"
+  }
+}

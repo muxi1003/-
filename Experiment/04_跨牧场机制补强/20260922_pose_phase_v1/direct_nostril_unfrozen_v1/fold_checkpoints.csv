@@ -1,0 +1,4 @@
+﻿fold,checkpoint,sha256,epochs
+0,E:\real\use_code\yoloV8\Experiment\04_跨牧场机制补强\20260922_pose_phase_v1\direct_nostril_unfrozen_v1\runs\fold0\weights\last.pt,772ca0a11efce463187cd3b1114bc619b60e50bcd8e66b6b959b01fb4c4d17a8,200
+1,E:\real\use_code\yoloV8\Experiment\04_跨牧场机制补强\20260922_pose_phase_v1\direct_nostril_unfrozen_v1\runs\fold1\weights\last.pt,97be56d49b757d65da51b23f44a886ef906a4cf8e0e58ac6e3b6e541425395da,200
+2,E:\real\use_code\yoloV8\Experiment\04_跨牧场机制补强\20260922_pose_phase_v1\direct_nostril_unfrozen_v1\runs\fold2\weights\last.pt,d96adc6f2c4ab29f8cce004d6854256416fe06f0fe9014e5169def7e7fdef157,200

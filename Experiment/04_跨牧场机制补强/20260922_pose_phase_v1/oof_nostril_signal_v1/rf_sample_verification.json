@@ -1,0 +1,116 @@
+{
+  "status": "PASS",
+  "sampled_ROIs": 18,
+  "selection": "first saved detection per method/window",
+  "samples": [
+    {
+      "method": "frozen_direct",
+      "window_id": "jiufu_7cb985938d0a6a_first30",
+      "frame_index": 1,
+      "frame_sha256": "db3dec765b224ad003d6a186d4d5cfd1ff0739db37570a5e8b9765032d2c7afd"
+    },
+    {
+      "method": "frozen_direct",
+      "window_id": "jiufu_cc60214ff2d564_first30",
+      "frame_index": 0,
+      "frame_sha256": "460223278a5a55ccd82622284db2a2003e3d0ddbc5a14c284c5e49d6e4460cbf"
+    },
+    {
+      "method": "frozen_direct",
+      "window_id": "jiufu_55441b4c6fe974_first30",
+      "frame_index": 2,
+      "frame_sha256": "6bef2df76b0a6f7ad688360253d870085aa5c689e5ad325f467e6b31906401bd"
+    },
+    {
+      "method": "frozen_direct",
+      "window_id": "jiufu_bb78a10aeab6d5_first30",
+      "frame_index": 94,
+      "frame_sha256": "6c7a1763187646d8ffb7b2e8739fb8b336140fde3254cf59318fddebfe424497"
+    },
+    {
+      "method": "frozen_direct",
+      "window_id": "jiufu_0d1522aef374ec_first30",
+      "frame_index": 48,
+      "frame_sha256": "b0c4d91a4a353a37698d7de96ac1971f295e467750fa3f7e31f6795e0b9c23c9"
+    },
+    {
+      "method": "frozen_direct",
+      "window_id": "jiufu_13f838ff73e069_first30",
+      "frame_index": 1,
+      "frame_sha256": "064b61d029e28e93ceae7e77f0331a3929bc506ed7cc4b59496ddc9905dc59c9"
+    },
+    {
+      "method": "frozen_direct",
+      "window_id": "jiufu_440a29cebcae1c_first30",
+      "frame_index": 0,
+      "frame_sha256": "89bb3c46c01e82220ded4182ae757a91eb25ea9dcb3e9c221faccb6b99c11bab"
+    },
+    {
+      "method": "frozen_direct",
+      "window_id": "jiufu_f920435ef76ec4_first30",
+      "frame_index": 0,
+      "frame_sha256": "b4c18e7a3dc217a62d0d781c0e972686f7afd6146c298fe0eb54c2c29bd838d4"
+    },
+    {
+      "method": "frozen_direct",
+      "window_id": "jiufu_bd77cfa7950eaa_first30",
+      "frame_index": 2,
+      "frame_sha256": "fa413007290bc9bba12dccd69f365e51db82d29d64d3a538e289d607ee63dc8a"
+    },
+    {
+      "method": "unfrozen_direct",
+      "window_id": "jiufu_7cb985938d0a6a_first30",
+      "frame_index": 3,
+      "frame_sha256": "afaf55712560e2d010d5105ed85fc070bd690a66c562d3422d15e25908bb6fb6"
+    },
+    {
+      "method": "unfrozen_direct",
+      "window_id": "jiufu_cc60214ff2d564_first30",
+      "frame_index": 0,
+      "frame_sha256": "460223278a5a55ccd82622284db2a2003e3d0ddbc5a14c284c5e49d6e4460cbf"
+    },
+    {
+      "method": "unfrozen_direct",
+      "window_id": "jiufu_55441b4c6fe974_first30",
+      "frame_index": 0,
+      "frame_sha256": "ce540ab8bd9cce27f617caab156e884c93d922d97c1b02f86f1fe9e38f350cc2"
+    },
+    {
+      "method": "unfrozen_direct",
+      "window_id": "jiufu_bb78a10aeab6d5_first30",
+      "frame_index": 77,
+      "frame_sha256": "7c78add90f7685867219a153d6ae11ee12787d462b4ffbb053e8edb864c0cef8"
+    },
+    {
+      "method": "unfrozen_direct",
+      "window_id": "jiufu_0d1522aef374ec_first30",
+      "frame_index": 8,
+      "frame_sha256": "1ed2bd676836be48eaf7175d1a3f84333dbf20ea5dab783d2ff5a45d1db4324b"
+    },
+    {
+      "method": "unfrozen_direct",
+      "window_id": "jiufu_13f838ff73e069_first30",
+      "frame_index": 10,
+      "frame_sha256": "f4b7cded1df4952096d28dca11cc4f8e1baa622315c49e30362481ddc9394181"
+    },
+    {
+      "method": "unfrozen_direct",
+      "window_id": "jiufu_440a29cebcae1c_first30",
+      "frame_index": 0,
+      "frame_sha256": "89bb3c46c01e82220ded4182ae757a91eb25ea9dcb3e9c221faccb6b99c11bab"
+    },
+    {
+      "method": "unfrozen_direct",
+      "window_id": "jiufu_f920435ef76ec4_first30",
+      "frame_index": 0,
+      "frame_sha256": "b4c18e7a3dc217a62d0d781c0e972686f7afd6146c298fe0eb54c2c29bd838d4"
+    },
+    {
+      "method": "unfrozen_direct",
+      "window_id": "jiufu_bd77cfa7950eaa_first30",
+      "frame_index": 3,
+      "frame_sha256": "3d6fd47793aec0f15e1b36f6239fbeb43d287514b9100990dc0f6f392033697d"
+    }
+  ],
+  "scope": "Native pixels, saved center, fixed radius20, BGR RF and strict>20C cutoff; not all ROI pixels re-inferred"
+}

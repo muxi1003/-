@@ -1,0 +1,11 @@
+{
+  "cows": 12,
+  "resamples": 5000,
+  "seed": 20260923,
+  "recall_change": 0.1,
+  "cluster_bootstrap_recall_change_CI95": [
+    0.0,
+    0.2127659574468085
+  ],
+  "limitation": "Paired resampling of12 selected cows; not independent external confirmation or causal isolation of unarchived initialization randomness"
+}

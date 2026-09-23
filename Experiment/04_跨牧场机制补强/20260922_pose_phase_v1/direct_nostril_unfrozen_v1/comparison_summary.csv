@@ -1,0 +1,5 @@
+﻿frames,cows,expected_nostrils,predicted_points,correct_points,precision,recall,point_f1,no_correct_visible_frames,variant
+36.0,12.0,50.0,27.0,18.0,0.6666666666666666,0.36,0.4675324675324675,16.0,original_pose
+36.0,12.0,50.0,25.0,18.0,0.72,0.36,0.48,16.0,frozen_direct200
+36.0,12.0,50.0,31.0,23.0,0.7419354838709677,0.46,0.5679012345679012,13.0,unfrozen_direct200
+36.0,12.0,50.0,34.0,21.0,0.6176470588235294,0.42,0.5,13.0,unfrozen_fallback

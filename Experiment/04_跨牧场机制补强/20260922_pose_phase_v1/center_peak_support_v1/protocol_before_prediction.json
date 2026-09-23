@@ -1,0 +1,18 @@
+{
+  "role": "retrospective, anatomy-informed peak-support filter; no new peak locations",
+  "rule": "selected contributing side directly measured at peak OR same side directly measured at both adjacent frames",
+  "side_selection": "saved normalized left/right/mean/min/max fusion mode; same-side bridge spans one missing sample",
+  "detector_and_fusion_unchanged": true,
+  "original_abstentions_unchanged": true,
+  "event_reference_not_read_by_predictor": true,
+  "reference_time_shift": 0,
+  "selection": "fixed from physical observability, not selected using reference score",
+  "baseline_input_sha256": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1\\prediction_events.csv": "5b6de74afcac3be136ebb58f2362ffced6d55d2ead3c20985ede460899dfe608",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\event_evaluation\\20260918_r2_status_v1\\prediction_windows.csv": "c3af52b00fda0b6767be4138fc4c4e7da955ef9541ea2c52b7bb7d586bce0f08",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\external_transfer\\20260914_v2\\prediction_windows.csv": "d4dd3253785753da5b7ba48f16d73b84effbbb7570446ab413186e52504d0aa5"
+  },
+  "new_independent_test": false,
+  "default_changed": false,
+  "script_sha256": "3f5f4e70f3aad5ed51d7363275ef5768f14af07b0664aaead39707a3a18e2e8b"
+}

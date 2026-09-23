@@ -1,0 +1,14 @@
+{
+  "reference": "R3 existing eligible_full_window and strict_visible_phase",
+  "tolerance_seconds": 0.3,
+  "original_full11_counts_reproduced": [
+    41,
+    42,
+    102
+  ],
+  "count_cohort": "intersection of output windows across all3 methods within each reference set",
+  "abstention": "No output treated as no predicted events in event recall; never imputed zero count for RR pairs",
+  "restrictions": "Not full271 evaluation, not new independent external test; time-policy rejected windows remain abstentions",
+  "original_pipeline_not_same_pooling_control": true,
+  "default_changed": false
+}

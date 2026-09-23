@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "epochs": 40,
+  "training_config_matches": true,
+  "keypoint_shape": [
+    2,
+    3
+  ],
+  "unique_candidate_predictions": 645,
+  "replayed_predictions": 92,
+  "replay_scope": "all72 Jiufu diagnostic frames plus every29th of573 sorted source validation frames",
+  "summary_arithmetic_pass": true,
+  "init_and_source_manifest_unchanged": true,
+  "scope_limit": "No full RR evaluation or independent anatomical re-annotation"
+}

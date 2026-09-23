@@ -1,0 +1,20 @@
+{
+  "rule": "Largest per-frame correct-point gain/loss, then lexical ID; first unchanged ID",
+  "examples": [
+    {
+      "category": "largest_gain",
+      "frame_id": "R3-22_t20",
+      "correct_point_change": 2
+    },
+    {
+      "category": "largest_loss",
+      "frame_id": "R3-05_t10",
+      "correct_point_change": -1
+    },
+    {
+      "category": "unchanged_first",
+      "frame_id": "R3-01_t00",
+      "correct_point_change": 0
+    }
+  ]
+}

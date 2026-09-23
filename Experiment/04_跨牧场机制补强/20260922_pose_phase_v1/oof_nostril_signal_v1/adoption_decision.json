@@ -1,0 +1,7 @@
+{
+  "disposition": "DO_NOT_ADOPT_CONTINUOUS_BRANCH",
+  "reason": "RR MAE on identical output windows worsened despite event F1 gain",
+  "default_changed": false,
+  "not_all271": true,
+  "goal_complete": false
+}

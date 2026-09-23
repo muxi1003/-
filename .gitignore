@@ -111,3 +111,14 @@ Thumbs.db
 id_rsa*
 id_ed25519*
 .git-credentials
+
+# ---------- 本地临时脚本与 PDF/色图提取残留 ----------
+# 这些是分析过程中产生的中间文件（例如从论文 PDF 抽取文本/色图），
+# 不是项目产物，可随时由脚本重新生成，不入库。
+_tmp_*
+_cmap*
+chen_cmap.json
+chen_paper_raw.txt
+chen_paper_text.txt
+outputs_n302_deck_text.txt
+

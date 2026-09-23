@@ -1,0 +1,13 @@
+{
+  "direct_detector": "PROMISING_FOR_RETROSPECTIVE_SIGNAL_VALIDATION_ONLY",
+  "direct_vs_original_pose": "23 vs18 correct; 8 vs9 false/off-target points on36 frames",
+  "direct_vs_frozen200_detector": "23 vs18 correct; 8 vs7 false/off-target points",
+  "fallback": "DO_NOT_ADOPT: 3 added correct points but4 added false/off-target points versus original Pose",
+  "existing_adoption_file_scope": "evaluation/adoption_decision.json uses the fallback gate; it is not evidence that direct detector has no point-level gain",
+  "uncertainty": "12 selected cows; recall delta CI95 against frozen200 touches0",
+  "ROI": "No demonstrated r20 containment improvement on the19 common assigned regions",
+  "default_changed": false,
+  "RR_validated": false,
+  "goal_complete": false,
+  "next": "Evaluate continuous held-out-cow sequences before considering replacement; preserve original timestamps and event references"
+}

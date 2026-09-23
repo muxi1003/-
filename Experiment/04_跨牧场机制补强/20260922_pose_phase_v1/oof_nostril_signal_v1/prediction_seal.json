@@ -1,0 +1,11 @@
+{
+  "rows": 24,
+  "windows": 12,
+  "files": {
+    "prediction_windows.csv": "26ccd30b4cc6f26fc6bc443058d676e2b263c818258fa1639b2724be787df572",
+    "prediction_events.csv": "2e30ac4304a3bb942f0aa0d6905b61e36364a4594d9e001556294e17c25fa214",
+    "input_output_hashes.csv": "75acc72d7aacb9e57c71d8709cca39b5fdf313440ded98a860e19797dbb484ed",
+    "protocol_before_predictions.json": "d01a779c0822758a509c200da982323d8442652c39d2e7418504cc525b21fc4f"
+  },
+  "default_changed": false
+}

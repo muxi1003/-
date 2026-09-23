@@ -1,0 +1,15 @@
+{
+  "rule": "first window/time for TP and FP, no manual best-case selection",
+  "examples": [
+    {
+      "status": "TP",
+      "window_id": "jiufu_0d1522aef374ec_first30",
+      "predicted_time": 7.356321839080461
+    },
+    {
+      "status": "FP",
+      "window_id": "jiufu_0d1522aef374ec_first30",
+      "predicted_time": 6.0919540229885065
+    }
+  ]
+}

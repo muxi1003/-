@@ -1,0 +1,10 @@
+{
+  "disposition": "DO_NOT_ADOPT",
+  "reason": "Same-reference event F1 decreased and 173-pair RR MAE increased",
+  "removed_peaks_all271": 565,
+  "removed_matched_R3_TP": 5,
+  "removed_unmatched_R3_FP": 17,
+  "candidate_generation_script_modified_after_seal": "Scoring block moved to separate script after an argument error; source hash in protocol identifies executed pre-split version",
+  "no_reference_or_default_change": true,
+  "goal_complete": false
+}

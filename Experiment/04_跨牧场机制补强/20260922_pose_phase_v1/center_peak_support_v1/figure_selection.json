@@ -1,0 +1,23 @@
+{
+  "rule": "first rejected TP and first rejected FP sorted by window/frame",
+  "cases": [
+    {
+      "status": "TP",
+      "review_id": "R3-24",
+      "window_id": "jiufu_55441b4c6fe974_first30",
+      "event_id": "p111",
+      "frame_index": 111,
+      "peak_seconds": 12.758620689655173,
+      "reference_seconds": 12.707
+    },
+    {
+      "status": "FP",
+      "review_id": "R3-09",
+      "window_id": "jiufu_440a29cebcae1c_first30",
+      "event_id": "p53",
+      "frame_index": 53,
+      "peak_seconds": 6.0919540229885065,
+      "reference_seconds": null
+    }
+  ]
+}
