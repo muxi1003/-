@@ -480,6 +480,43 @@
 
 ---
 
+## D012 P2g 测试执行（选项 A）：通道提取器已建成并通过位精确验证，全量提取后台运行中
+
+- **日期**：2026-09-22，Asia/Shanghai
+- **来源**：用户指令「按 A 开跑」
+- **改动文件**：
+
+| 路径 | 说明 |
+|---|---|
+| `deepseek/11_P2g测试/extract_p2g_signals.py` | 新增，通道提取器 |
+| `deepseek/11_P2g测试/score_p2g.py` | 新增，评分脚本（草稿，待补齐对照） |
+| `deepseek/11_P2g测试/02_执行状态_20260922.md` | 新增，执行状态 |
+| `deepseek/11_P2g测试/.gitignore` | 新增，排除 `signals/` 中间数据 |
+
+- **关键设计（选项 A）**：
+  - 帧重建：导入项目**活动模块** `frames_from_anchor`（`validate_raw_pipeline_internal49.py`）
+    + `sample_map`（`timestamp_adapter.py`），解码源视频后 **JPEG q95 编码**；
+  - **位一致性验证**：重建帧 SHA256 与项目 `frame_hashes.csv` **逐帧比对**；
+  - ROI：用 `temperatures.csv` 的**逐帧 `adaptive_roi_radius`**（与当前外测一致）；
+  - 通道：8 个（gray/blue/green/red/hue/lab_a/lab_b/red_minus_blue），圆形掩膜，**逐行复刻**
+    `build_rr_calibration_free_thermal_index.roi_means()`。
+- **试点结果（3 窗）**：**783 / 783 帧哈希逐位一致**（`hash_ok=261, hash_bad=0` × 3）
+  → 帧重建与当时外测运行完全相同。
+  通道合理性：`corr(left_gray, left_temp)=0.9989`、`corr(right_gray, right_temp)=0.9988`。
+- **全量提取**：待处理 **218 窗**（有 `map.csv` 的非弃权窗；53 窗为时间轴弃权、无采样映射），
+  后台运行中，每窗 261 帧、哈希逐位一致；预计 1–1.5 小时。
+- **评分设定（已定，未执行）**：通道与显著度用**内部冻结值**
+  （7 成员 `gray:direct;lab_b:direct;red_minus_blue:inverted;blue:direct;lab_b:inverted;lab_a:inverted;red_minus_blue:direct`，
+  prominence=0.05）；组合规则 = 逐成员 `fused_curve`+`estimate_curve` 后取 **7 个 RR 的均值**；
+  config = `derive_config(内部 73 集 summary, fps=8.7)`；参考 = R2 20260918（216 完整 / 173 配对）；
+  对照 = RF 绝对代理 E055（R²=0.419629、MAE=5.156069）；按牛号聚类配对 bootstrap 5000 次。
+- **⚠️ 必须记录的设计事实**：P2g 的 **duration gate 在 271 窗上恒为激活**，
+  故本次等价于"**纯相对伪彩集合 vs RF 绝对温度代理**"，duration gate 不构成差异来源。
+- **事前判据（不变）**：ΔR² 的 95% CI 不跨 0 且为正 → 方向成立；跨 0 → 转路线 C。
+- **合规**：未修改任何项目文件；项目模块仅只读导入；`signals/` 中间数据（约 20 MB）已排除出仓库。
+
+---
+
 ## 节点模板（后续复制使用）
 
 ```markdown
