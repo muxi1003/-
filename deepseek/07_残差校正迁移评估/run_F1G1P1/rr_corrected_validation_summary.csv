@@ -1,0 +1,5 @@
+label,videos,rr_valid_videos,rr_r2,rr_pearson_r2,rr_mae,rr_rmse,count_valid_videos,count_mae,exact_count,within_one_count,abs_count_error_ge2,evaluation_note,confidence_threshold,margin_threshold,applied_corrections
+baseline_default,47,47,0.8909020547292683,0.9035976468037838,2.9780554739909335,3.712381482817838,47,1.4893617021276595,9,26,21,existing_default_outputs,,,
+fixed_default_threshold_quality_residual,47,47,0.8983009436795933,0.903825476077709,2.9355671496097804,3.5842869718304398,47,1.4680851063829787,8,26,21,fixed_threshold_existing_out_of_fold_predictions_confidence_0.540_margin_0.260,0.54,0.26,7.0
+best_grid_threshold_quality_residual,47,47,0.9009884319705664,0.9076487747184045,2.8505405297429114,3.5366109019371472,47,1.425531914893617,9,27,20,threshold_selected_on_existing_out_of_fold_predictions,0.56,0.1,5.0
+nested_threshold_cv_quality_residual,47,47,0.8942717728034042,0.903517782571894,2.9355245954394404,3.654599472902703,47,1.4680851063829787,9,26,21,nested_threshold_cv,,,

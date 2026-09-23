@@ -1,0 +1,13 @@
+metric,estimate,ci_low_2_5,ci_high_97_5,bootstrap_samples,note
+baseline_rr_r2,0.8909020547292683,0.8231055142110493,0.932615789641602,5000,paired_video_level_bootstrap
+corrected_rr_r2,0.8983009436795933,0.834681118583934,0.9361743445845654,5000,paired_video_level_bootstrap
+delta_rr_r2,0.007398888950325033,-0.004022193304066387,0.02279668228837527,5000,paired_video_level_bootstrap
+baseline_rr_mae,2.9780554739909335,2.3818555901549776,3.617289155603642,5000,paired_video_level_bootstrap
+corrected_rr_mae,2.9355671496097804,2.3818084053392647,3.531483047287005,5000,paired_video_level_bootstrap
+delta_rr_mae,-0.04248832438115313,-0.255242716405474,0.17023053601027896,5000,paired_video_level_bootstrap
+baseline_rr_rmse,3.712381482817838,3.044354506233866,4.3277213135873245,5000,paired_video_level_bootstrap
+corrected_rr_rmse,3.5842869718304398,2.9738586647209684,4.166626154063822,5000,paired_video_level_bootstrap
+delta_rr_rmse,-0.1280945109873981,-0.35334342430407656,0.07033233455539037,5000,paired_video_level_bootstrap
+baseline_exact_count,9.0,4.0,14.0,5000,paired_video_level_bootstrap
+corrected_exact_count,8.0,3.0,13.0,5000,paired_video_level_bootstrap
+delta_exact_count,-1.0,-4.0,2.0,5000,paired_video_level_bootstrap

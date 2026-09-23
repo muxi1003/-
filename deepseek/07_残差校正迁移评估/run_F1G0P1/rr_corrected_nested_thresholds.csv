@@ -1,0 +1,6 @@
+label,videos,rr_valid_videos,rr_r2,rr_pearson_r2,rr_mae,rr_rmse,count_valid_videos,count_mae,exact_count,within_one_count,abs_count_error_ge2,evaluation_note,confidence_threshold,margin_threshold,applied_corrections,outer_fold
+threshold_candidate,37,37,0.8928473501117066,0.902280857894359,2.755902545798363,3.431653242621563,37,1.3783783783783783,8,21,16,existing_out_of_fold_predictions_threshold_scan,0.54,0.1,4,1
+threshold_candidate,37,37,0.8995793936775562,0.9110146156869082,2.8641484263160457,3.494755086756542,37,1.4324324324324325,7,20,17,existing_out_of_fold_predictions_threshold_scan,0.58,0.1,3,2
+threshold_candidate,38,38,0.9060544829411727,0.9126866048971991,2.8414689662602886,3.6120224706681108,38,1.4210526315789473,10,19,19,existing_out_of_fold_predictions_threshold_scan,0.54,0.1,6,3
+threshold_candidate,38,38,0.8868843303430106,0.895885714810216,2.9471356529298567,3.6418403263840595,38,1.4736842105263157,7,21,17,existing_out_of_fold_predictions_threshold_scan,0.62,0.1,0,4
+threshold_candidate,38,38,0.9027383679376809,0.9101212334036725,2.94613972277306,3.697687432768385,38,1.4736842105263157,7,22,16,existing_out_of_fold_predictions_threshold_scan,0.5,0.24,5,5

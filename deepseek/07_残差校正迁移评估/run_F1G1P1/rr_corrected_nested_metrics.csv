@@ -1,0 +1,3 @@
+label,videos,rr_valid_videos,rr_r2,rr_pearson_r2,rr_mae,rr_rmse,count_valid_videos,count_mae,exact_count,within_one_count,abs_count_error_ge2,evaluation_note
+nested_threshold_cv_baseline_default,47,47,0.8909020547292683,0.9035976468037838,2.9780554739909335,3.712381482817838,47,1.4893617021276595,9,26,21,same_rows_baseline
+nested_threshold_cv_quality_residual,47,47,0.8942717728034042,0.903517782571894,2.9355245954394404,3.654599472902703,47,1.4680851063829787,9,26,21,nested_threshold_cv

@@ -1,0 +1,3 @@
+label,videos,rr_valid_videos,rr_r2,rr_pearson_r2,rr_mae,rr_rmse,count_valid_videos,count_mae,exact_count,within_one_count,abs_count_error_ge2,evaluation_note
+baseline_default,47,47,0.8942729480277254,0.9056973672947759,2.935487509480244,3.6545791614578125,47,1.4680851063829787,9,26,21,existing_default_outputs
+quality_residual_corrected_cv,47,47,0.8983009436795933,0.903825476077709,2.9355671496097804,3.5842869718304398,47,1.4680851063829787,8,26,21,out_of_fold_predictions_thresholded_confidence_0.540_margin_0.260
