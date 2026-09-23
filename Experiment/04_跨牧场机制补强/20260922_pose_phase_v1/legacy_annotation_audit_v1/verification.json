@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "scope": "file consistency and split constraints only; not human anatomical adjudication",
+  "source_json_hashes_rechecked": 2518,
+  "current_training_label_hashes_rechecked": 2518,
+  "strict_converter_preserves_points_on_valid_records": 4668,
+  "two_orphan_points_quarantined_not_zeroed": true,
+  "same_video_and_numeric_group_cross_fold_overlap": 0,
+  "draft_still_not_training_enabled": true,
+  "independent_reviewer_used": false
+}

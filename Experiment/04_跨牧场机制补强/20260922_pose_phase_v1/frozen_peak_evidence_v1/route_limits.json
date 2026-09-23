@@ -1,0 +1,8 @@
+{
+  "scope": "strict9 R3 windows; 84 frozen false negatives only",
+  "routes": "observed pipeline conditions, not exclusive physiological causes",
+  "raw_extrema_on_abstained_windows": "existing partial-time diagnostic outputs are not frozen whole-window predictions",
+  "spatial_ground_truth_not_propagated": true,
+  "no_counterfactual_count_or_threshold_change": true,
+  "maximum_near_reference_does_not_prove_recoverable_true_breath": true
+}

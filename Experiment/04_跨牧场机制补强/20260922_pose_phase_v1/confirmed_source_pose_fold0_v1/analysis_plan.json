@@ -1,0 +1,14 @@
+{
+  "written_before_candidate_scoring": true,
+  "primary_anatomy_cohort": "36 completed frames, 30 visible frames, 50 human ellipses",
+  "primary_thresholds": {"box_conf": 0.25, "keypoint_conf": 0.5, "imgsz": 640},
+  "matching": "Highest-confidence nose box; unordered one-to-one keypoints inside human ellipse",
+  "ROI_radius_for_diagnostic": 20,
+  "location_screen": "Candidate correct points must strictly exceed baseline, precision must not decrease, and visible frames with no box must not increase",
+  "screen_limit": "A pass only supports further retrospective evaluation, never automatic deployment or an RR improvement claim",
+  "report_all_regressions": true,
+  "source_validation_limit": "Old frozen model may have seen source validation videos; only candidate uses the new grouped split",
+  "checkpoint": "Fixed epoch40 last.pt only",
+  "no_threshold_or_epoch_selection_from_Jiufu": true,
+  "default_unchanged": true
+}

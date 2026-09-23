@@ -1,0 +1,5 @@
+﻿scope,mode,tp,fp,fn,f1,matching
+eligible11,frozen_all,41,42,102,0.36283185840707965,fixed original one-to-one pairs; no re-matching after subsetting
+eligible11,diagnostic_keep_all_direct_only,29,23,114,0.29743589743589743,fixed original one-to-one pairs; no re-matching after subsetting
+strict9,frozen_all,33,35,84,0.3567567567567568,fixed original one-to-one pairs; no re-matching after subsetting
+strict9,diagnostic_keep_all_direct_only,24,18,93,0.3018867924528302,fixed original one-to-one pairs; no re-matching after subsetting

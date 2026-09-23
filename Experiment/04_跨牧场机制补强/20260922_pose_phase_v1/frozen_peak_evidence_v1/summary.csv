@@ -1,0 +1,5 @@
+﻿scope,temporal_match,peaks,all_contributors_direct,at_least_one_inferred_ROI,any_temperature_interpolated,any_same_image_anatomical_review,all_contributors_have_correct_anatomical_reference
+eligible11,FP,42,23,13,13,1,0
+eligible11,TP,41,29,7,6,2,0
+strict9,FP,35,18,11,11,1,0
+strict9,TP,33,24,6,4,1,0

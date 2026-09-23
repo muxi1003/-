@@ -1,0 +1,23 @@
+{
+  "current_train_frames": 5991,
+  "current_val_frames": 1497,
+  "train_video_groups": 73,
+  "val_video_groups": 73,
+  "shared_video_groups": 73,
+  "validation_frames_with_training_video": 1497,
+  "validation_frames_with_train_neighbor_le1": 1442,
+  "validation_frames_with_train_neighbor_le3": 1497,
+  "manual_json_single_current_match": 2518,
+  "labels_match_json_converter": 2518,
+  "labels_match_legacy_txt": 0,
+  "replay_point_drops": 0,
+  "drop_files": 0,
+  "embedded_current_image_compared": 1855,
+  "median_image_pixel_MAE": 1.1580431461334229,
+  "max_image_pixel_MAE": 2.990893602371216,
+  "thumbnail_corr_min": 0.9936188093435179,
+  "interpretation": "current local layout only; historical Ubuntu training image manifest is absent; no checkpoint lineage claim",
+  "current_layout_not_independent_video_validation": true,
+  "no_original_files_changed": true,
+  "no_training_or_RR_changes": true
+}

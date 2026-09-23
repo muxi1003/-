@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "verified_images": 2515,
+  "pixel_exact_to_selected_source": true,
+  "verified_labels": 2515,
+  "visible_points": 4664,
+  "grouped_folds": 5,
+  "quarantine_excluded": 3,
+  "scope": "File conversion and partition integrity, not anatomical accuracy or detector performance",
+  "manifest_sha256": "10467194bf8e20a018d4b798bca763a2e257edf389ba3d69045952a7b916d077"
+}

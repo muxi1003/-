@@ -1,0 +1,21 @@
+{
+  "status": "MATERIALIZED_NOT_TRAINED",
+  "confirmation_date": "2026-09-23",
+  "label_source": "X-AnyLabeling assisted JSON; user manually reviewed and confirmed final version",
+  "legacy_txt": "User manually labeled separate version; preserved, not used or declared incorrect",
+  "included_frames": 2515,
+  "quarantined_frames": 3,
+  "visible_points": 4664,
+  "image_source_counts": {
+    "json_embedded": 1853,
+    "external_basename_size_association": 662
+  },
+  "association_limit": "External-only images match basename and size; correspondence is not independently established",
+  "grouping": "Video plus equal numeric identifier after stripping letter prefix; not verified biological cow identity",
+  "evaluation_limit": "Grouped internal development only; frozen pose initialization may have seen these groups. Viewed Jiufu remains retrospective.",
+  "training_started": false,
+  "default_model_or_rr_changed": false,
+  "draft_manifest_sha256": "79e9f3439c8f4590f361396b0b751deca68b51c383b14c5ccecfde7dbc6877ed",
+  "converter_sha256": "f5086c2871e636f3e0843ca49b4631275a5d8114955fb972e6d1cb1d76ca7a8b",
+  "manifest_sha256": "10467194bf8e20a018d4b798bca763a2e257edf389ba3d69045952a7b916d077"
+}

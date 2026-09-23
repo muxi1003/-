@@ -1,0 +1,14 @@
+{
+  "files": 2518,
+  "statuses": {
+    "valid_geometry_only": 2517,
+    "quarantined_geometry_conflict": 1
+  },
+  "conflict_reasons": {
+    "nostril point without nose box": 1
+  },
+  "training_labels_generated": false,
+  "original_annotations_changed": false,
+  "provenance_still_unconfirmed": true,
+  "geometry_validation_is_not_anatomical_truth_validation": true
+}

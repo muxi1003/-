@@ -1,0 +1,16 @@
+{
+  "path": "E:/real/use_code/yoloV8/Experiment/04_跨牧场机制补强/20260922_pose_phase_v1/legacy_annotation_audit_v1/confirmed_json_pose_v1",
+  "train": "fold2_train.txt",
+  "val": "fold2_val.txt",
+  "names": {
+    "0": "nose"
+  },
+  "kpt_shape": [
+    2,
+    3
+  ],
+  "flip_idx": [
+    1,
+    0
+  ]
+}

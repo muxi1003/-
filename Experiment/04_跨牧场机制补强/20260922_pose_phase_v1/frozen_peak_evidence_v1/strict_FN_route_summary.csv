@@ -1,0 +1,6 @@
+﻿observed_route,events,windows
+maximum_only_in_nonselected_side,4,3
+no_ROI_temperature_near_reference,11,4
+no_raw_extremum_near_reference,20,5
+selected_signal_or_peak_rule_difference,2,2
+whole_window_abstention,47,3

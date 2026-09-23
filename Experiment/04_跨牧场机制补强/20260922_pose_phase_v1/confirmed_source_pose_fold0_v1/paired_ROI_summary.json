@@ -1,0 +1,7 @@
+{
+  "paired_regions": 26,
+  "baseline_median": 0.3985680190930787,
+  "candidate_median": 0.5310262529832935,
+  "median_paired_change": 0.028639618138424833,
+  "warning": "Conditional on both models having an assigned point; cannot replace full-region recall"
+}

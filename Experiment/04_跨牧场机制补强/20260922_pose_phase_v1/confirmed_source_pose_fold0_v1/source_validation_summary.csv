@@ -1,0 +1,3 @@
+﻿variant,frames,expected_boxes,matched_boxes_iou50,box_recall_iou50,expected_points,correct_points_pck10,pck10_all_annotated
+baseline,573,572,473,0.8269230769230769,1096,874,0.7974452554744526
+candidate,573,572,523,0.9143356643356644,1096,907,0.8275547445255474

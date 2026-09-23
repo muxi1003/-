@@ -1,0 +1,20 @@
+{
+  "status": "DRAFT_NOT_A_TRAINING_DATASET",
+  "training_allowed": false,
+  "frames": 2518,
+  "partition_groups": 71,
+  "video_groups": 73,
+  "quarantined_frames": 3,
+  "label_source_choice_pending_user_confirmation": true,
+  "grouping": "same video plus equal numeric identifiers after stripping letter prefix; conservative aliases, not verified biological cow IDs",
+  "same_video_train_validation_overlap": 0,
+  "split_count": 5,
+  "frozen_weights_may_have_seen_all_source_groups": true,
+  "independent_validation_requires_training_provenance_and_untouched_test": true,
+  "no_original_images_labels_weights_or_RR_changed": true,
+  "source_hashes": {
+    "file_audit.csv": "4ca84ad92a46f37e0e237bd18f6473a5b697b74af3c540fea04bb989c9121cda",
+    "current_layout/manual_to_current.csv": "569a074464218774e06a8d171a7accff5851402e41a57d7e4feeeece492aa5c3",
+    "strict_conversion_dry_run_v2.csv": "0ae863aa9af2910923aad7816e8085f49d6c2fc9be638cfc379111858c0d9921"
+  }
+}

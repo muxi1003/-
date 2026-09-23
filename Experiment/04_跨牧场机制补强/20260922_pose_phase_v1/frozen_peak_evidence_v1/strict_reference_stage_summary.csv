@@ -1,0 +1,11 @@
+﻿matching_status,classification,events
+FN,both_extrema_nearby,11
+FN,maximum_only,14
+FN,minimum_only,3
+FN,no_extremum_within_tolerance,25
+FN,no_observed_ROI_sample,31
+TP,both_extrema_nearby,3
+TP,maximum_only,22
+TP,minimum_only,2
+TP,no_extremum_within_tolerance,3
+TP,no_observed_ROI_sample,3

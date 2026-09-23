@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "eligible_windows": 11,
+  "strict_windows": 9,
+  "actual_predictions_replayed": 83,
+  "reference_events": 143,
+  "tp": 41,
+  "fp": 42,
+  "fn": 102,
+  "MAF3_saved_values_verified": true,
+  "no_default_or_reference_changes": true,
+  "exact_frame_anatomy_required_no_nearest_time_label_substitution": true
+}

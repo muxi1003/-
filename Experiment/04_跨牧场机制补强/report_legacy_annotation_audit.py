@@ -1,0 +1,108 @@
+"""Report observed label lineage and frame-level partition limitations."""
+import json
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
+from analyze_transfer import read
+from audit_legacy_localization_data import OUT, SOURCE, YOLO, read_shapes, parse_yolo
+from probe_pose_mechanism import load_bgr
+
+
+def main():
+    s=json.loads((OUT/'summary.json').read_text(encoding='utf-8'))
+    layout=json.loads((OUT/'current_layout/summary.json').read_text(encoding='utf-8'))
+    geometry=json.loads((OUT/'strict_conversion_summary_v2.json').read_text(encoding='utf-8'))
+    plan=json.loads((OUT/'grouped_rebuild_draft/protocol.json').read_text(encoding='utf-8'))
+    files=read(OUT/'file_audit.csv').set_index('frame_id')
+    current=read(OUT/'current_layout/manual_to_current.csv').set_index('frame_id')
+    figs=OUT/'figures'; figs.mkdir(exist_ok=False)
+    selected=['16170075_frame_000000', files.max_point_delta_px.idxmax(), 'bs177611_frame_000012']
+    for fid in dict.fromkeys(selected):
+        data=json.loads((SOURCE/(fid+'.json')).read_text(encoding='utf-8-sig'))
+        im=load_bgr(current.loc[fid,'image_path'])[:,:,::-1]
+        w,h=data['imageWidth'],data['imageHeight']
+        fig,axes=plt.subplots(1,2,figsize=(8,6),constrained_layout=True)
+        for ax in axes: ax.imshow(im); ax.axis('off')
+        for shape in data['shapes']:
+            if shape['shape_type']=='point':
+                x,y=shape['points'][0]; axes[0].plot(x,y,'+',color='#00e6ef',markersize=8)
+            elif shape['shape_type']=='rectangle':
+                xx=[p[0] for p in shape['points']]; yy=[p[1] for p in shape['points']]
+                axes[0].add_patch(Rectangle((min(xx),min(yy)),max(xx)-min(xx),max(yy)-min(yy),
+                                           fill=False,color='#00e6ef',linewidth=1.2))
+        for row in parse_yolo((YOLO/(fid+'.txt')).read_text(),w,h):
+            for side in ['left','right']:
+                if row[side+'_visibility']>0:
+                    x,y=row[side+'_nostril'];axes[1].plot(x,y,'+',color='#ffd21c',markersize=8)
+        axes[0].set_title('JSON coordinates / nose box',fontsize=10)
+        axes[1].set_title('Legacy labels1 TXT coordinates',fontsize=10)
+        fig.suptitle(fid+'\nCurrent local training TXT reproduces JSON converter; anatomical truth not newly adjudicated',fontsize=8)
+        fig.savefig(figs/(fid+'_versions.png'),dpi=160);plt.close(fig)
+    text=f'''# 旧定位标注与本地训练划分核验
+
+2026-09-22至2026-09-23；N066实验附件。文件一致性核验，不是独立评审，也不是新的RR实验。
+
+## 1. 最重要的结论
+
+1. 两套旧标注确实不一致，但**当前本地训练标签对应JSON，而不是旧labels1 TXT**。2518个当前标签均能由对应JSON按现有批量脚本复现，0个与旧TXT完全一致。不能把旧TXT的坐标偏差直接归咎为当前训练错误。
+2. 本地训练/验证采用同视频混合帧：5991张训练图和1497张验证图都覆盖73个视频。1497张验证图全部有训练图来自同视频，1442张有相距不超过1帧的训练邻居，全部1497张有不超过3帧的邻居。它不能证明新视频、新牛或新牧场泛化。
+3. 找到1处明确标注结构冲突：`bs177611_frame_000012`只有两个鼻孔点、没有鼻部框，当前TXT为0字节。它涉及2/4670个JSON鼻孔点，约0.043%，不能被夸大为全量退化主因。
+4. 本轮没有训练、替换模型、改变人工事件或重算RR；原173配对久福RR R²=0.419629仍是原冻结结果。
+
+## 2. 文件与图像核验
+
+| 项目 | 结果 |
+|---|---:|
+| JSON文件 / 视频组 | {s['json_files']} / {s['video_groups']} |
+| JSON鼻孔点 | {s['points']} |
+| 可解码嵌入图片 / 尺寸一致 | {s['decoded_images']} / {s['size_matches']} |
+| 无嵌入图像，但能定位到当前同名图片 | {s['json_files']-s['embedded_images']} |
+| 带score字段的文件 | {s['files_with_scores']} |
+| 可单实例比较JSON与旧TXT的文件 | {s['single_instance_point_comparisons']} |
+| 每帧最大鼻孔坐标差>1像素 / >5像素 | {s['point_delta_gt_1px']} / {s['point_delta_gt_5px']} |
+| 最大点差的中位数 / 最大值 | {s['median_max_point_delta_px']:.3f} / {s['max_point_delta_px']:.3f}像素 |
+| 当前本地标签匹配JSON转换 / 旧TXT | {layout['labels_match_json_converter']} / {layout['labels_match_legacy_txt']} |
+
+1855对嵌入图/当前同名图尺寸一致，像素平均绝对差中位数{layout['median_image_pixel_MAE']:.3f}/255、最大{layout['max_image_pixel_MAE']:.3f}/255，缩略图相关系数最低{layout['thumbnail_corr_min']:.6f}。图像高度相似，但不是逐像素相同；不能由此证明全部采样时刻完全一致。663份没有嵌入图像的记录只有当前同名/尺寸对应，不能冒充已完成原始图像内容核验。
+
+`bs210974_frame_000012`和`bs210974_frame_000015`的嵌入图像像素完全一致，后一份imagePath也指向前者；当前两份外部图片的文件哈希不同。暂列配对核实，不擅自决定删除或改标。未发现与72张久福复核帧的精确解码像素重复，不等于完成全271视频的近重复/同牛隔离证明。
+
+score字段可以来自辅助标注并被人工修改保留；它既不能证明全部自动生成，也不能证明已人工核准。已询问用户最终版本及核准情况，尚未获得回答。
+
+## 3. 更正group_id与几何位置的混淆
+
+初始统计字段`points_outside_nose_box=189`实际包含“找不到同group_id鼻部框”，不是189个几何框外点。明确关联的4481点均在框内。其余点中，缺少分组号但只有唯一包含框的情况可以在派生转换时确定关联，不需要删点或请用户重标。
+
+严格转换初版仅按group_id匹配，拒绝187帧。修订为“缺失分组时仅允许唯一包含框”后，2517帧通过几何检查，只剩上述无鼻部框的1帧待处理。旧初版结果保留；新结果为`strict_conversion_summary_v2.json`。通过几何检查不等于鼻孔解剖真值正确。
+
+原批量转换已用全部矩形点取min/max，2518份当前标签重放一致。在有框实例里没有发现框内筛选造成的丢点；无框那一帧则完全不产生实例行。原单文件转换仍只取矩形前两点，四角格式存在零高度隐患，但未证明历史训练实际使用过该错误路径。
+
+## 4. 对内部有效、换牧场下降的解释
+
+当前本地划分的近邻帧混入，使验证集与训练集具有同牛脸、同机位、同背景和短时间相邻状态。这样的定位验证主要检验近似场景上的插值能力，不能替代跨牛/跨场验证。
+
+这与N065新检测器训练帧95%召回、未见牛号36%召回的差距相互一致，但二者是不同实验，不能合并成同一指标。它支持“泛化证据不足，应先改变训练与验证组织”的判断，而不是证明任何一个因素贡献了多少RR误差。
+
+特别限制：冻结训练记录指向Ubuntu路径，缺少当时逐图训练清单。这里只能证明**当前本地7488帧布局**有上述重叠，不能追认历史冻结模型一定使用了完全相同的目录，也不能将现有73视频RR R²直接重算或宣称全部失效。
+
+## 5. 已完成的防护与下一步
+
+- 新增隔离的`strict_pose_label_converter.py`：兼容2/4点矩形、不截断小数；保留边界上的真实标注；只在缺分组且唯一包含时恢复关联；真正歧义、无框有点、点在框外明确报错，不静默置不可见。9项单元测试通过。
+- 原标注、原转换源码、训练图和权重均未覆盖。只执行了2518文件的干运行，没有生成正式训练标签。
+- `grouped_rebuild_draft/partition_manifest.csv`给出五折草案，73视频按同数字标号保守合并成{plan['partition_groups']}组，所有同视频及同数字前缀别名保持同折。2515帧待来源确认，3帧暂隔离。数字标号分组不是已经证实的生物个体身份。
+- 草案明确`training_allowed=false`。需要先确认标注来源，再决定是否重建训练资料。继续沿用可能已见过全部源视频的冻结权重，也不能把新划分包装成独立验证。
+
+鼻孔定位、ROI与逐呼气极值三个目标仍未全部完成。已有36帧新参考不用重填；本轮没有成功的新自动定位或呼吸计数算法。
+
+## 6. 真实图像对照
+
+下面选取首个抽查帧、JSON/旧TXT差异最大的帧和无框有点帧，属于诊断示例，不代表平均表现。左侧坐标来自JSON，右侧来自旧TXT，不将任一方未经确认地标为解剖金标准。
+'''
+    for fid in dict.fromkeys(selected):text+=f'\n![{fid}](figures/{fid}_versions.png)\n'
+    text+='\n完整证据：file_audit.csv、point_audit.csv、current_layout/inventory.csv、manual_to_current.csv、validation_training_neighbors.csv与两版严格转换干运行表。\n'
+    (OUT/'旧标注与训练划分核验报告.md').write_text(text,encoding='utf-8')
+    print('Read-only audit report and full-frame comparisons written.')
+
+
+if __name__=='__main__':main()

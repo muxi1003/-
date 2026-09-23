@@ -1,0 +1,11 @@
+{
+  "reference_sha256": "2f7a8af055d1fab3b6454764818a2ecd87e8967645233414887f0fe8e981ba36",
+  "completed_frames": 36,
+  "match": "unordered one-to-one inside human ellipse",
+  "radius": 20,
+  "source_PCK": "correct labeled side, confidence >=.5, box IoU >=.5, distance <= .1 reference box diagonal; denominator all annotated points",
+  "ROI_limit": "Approximate ellipse containment, not pixelwise background truth; assigned pairs differ across models",
+  "not_RR_evaluation": true,
+  "not_new_external_validation": true,
+  "default_changed": false
+}

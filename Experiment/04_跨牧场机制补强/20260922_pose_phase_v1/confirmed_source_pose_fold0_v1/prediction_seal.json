@@ -1,0 +1,9 @@
+{
+  "default_changed": false,
+  "files": {
+    "candidate_predictions.json": "346b6ddf36321f1cc7a688404a7e62ac24b007f38b89b72282214beb31e11d15",
+    "baseline_predictions.json": "72d5e077cb176a6480d44b507986dc16a2da7222474e1b07b615e4e2c5036b4b",
+    "training_complete.json": "be33710b40b9dbe1220de14104a7e6e67f1213ac5943e13874081e429644e87c"
+  },
+  "elapsed_seconds": 2354.188000000002
+}

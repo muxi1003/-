@@ -1,0 +1,15 @@
+{
+  "files": 2518,
+  "statuses": {
+    "valid_geometry_only": 2331,
+    "quarantined_geometry_conflict": 187
+  },
+  "conflict_reasons": {
+    "ambiguous or missing instance group": 186,
+    "nostril point without nose box": 1
+  },
+  "training_labels_generated": false,
+  "original_annotations_changed": false,
+  "provenance_still_unconfirmed": true,
+  "geometry_validation_is_not_anatomical_truth_validation": true
+}
