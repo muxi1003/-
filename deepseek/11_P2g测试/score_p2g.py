@@ -1,19 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-D012  P2g 评分：把冻结的 7 通道相对伪彩集合接到当前 271 窗 R2 参考上。
+D013  P2g 评分（终版）：把内部冻结的 7 通道相对伪彩集合，放到当前 271 窗 R2 参考上，
+与 RF 绝对温度代理（E055）在同一批 173 配对窗上做配对对照。
 
-做法：
-  - 复用项目模块 build_rr_calibration_free_thermal_index 的 fused_curve / estimate_curve
-    / selected_member_predictions，**通道与门限一律用内部冻结值，不重排、不调参**；
-  - 只把 extract_video_signals 换成读取 deepseek/11_P2g测试/signals/ 下我提取的通道表
-    （选项 A：ROI 与当前外测一致，仅替换信号定义）；
-  - 参考用 R2 20260918 状态修订版（216 完整参考 / 173 计数配对窗）；
-  - 配对 bootstrap 按牛号聚类。
-
+规则全部冻结，不重排通道、不调 prominence、不按外部结果选参。
 只读项目文件；产物写 deepseek/11_P2g测试/。
 """
 from __future__ import annotations
-import io, os, sys, csv, math, random
+import sys, math, random
+from dataclasses import replace
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -24,29 +19,16 @@ import build_rr_calibration_free_thermal_index as p2g   # noqa: E402
 
 SIGDIR = REPO / "deepseek" / "11_P2g测试" / "signals"
 OUT = REPO / "deepseek" / "11_P2g测试"
-RELEASE = REPO / "Experiment" / "02_冻结独立测试" / "release_20260909_v1" / "test_windows.csv"
-WINROOT = REPO / "Experiment" / "02_冻结独立测试" / "external_transfer" / "20260914_v2" / "windows"
-R2DISP = (REPO / "Experiment" / "03_可靠事件参考" / "submissions"
-          / "20260918_r2_status_v1" / "window_dispositions.csv")
-RF_METRICS = (REPO / "Experiment" / "02_冻结独立测试" / "event_evaluation"
-              / "20260918_r2_status_v1")
-INTERNAL_SUMMARY = (REPO / "Dataset_new" / "72video" / "al_images" / "paper_repro_summary.csv")
+PAIRED = (REPO / "Experiment" / "02_冻结独立测试" / "event_evaluation"
+          / "20260918_r2_status_v1" / "paired_count_results.csv")
+INTERNAL_SUMMARY = REPO / "Dataset_new" / "72video" / "al_images" / "paper_repro_summary.csv"
 
-# 内部冻结的 7 个成员与显著度（来自 paper_p2g_..._provisional_metrics.csv）
 MEMBERS_TEXT = ("gray:direct;lab_b:direct;red_minus_blue:inverted;blue:direct;"
                 "lab_b:inverted;lab_a:inverted;red_minus_blue:direct")
 PROMINENCE = 0.05
 FPS = 8.7
-
-
-def load_csv_any(path):
-    for enc in ("utf-8-sig", "gb18030", "utf-8"):
-        try:
-            with io.open(path, encoding=enc, newline="") as f:
-                return list(csv.DictReader(f))
-        except Exception:
-            continue
-    raise IOError(path)
+SEED = 20260922
+DRAWS = 5000
 
 
 def r2_score(pred, ref):
@@ -62,69 +44,95 @@ def mae(pred, ref):
     return float(np.abs(pred[m] - ref[m]).mean())
 
 
+def rmse(pred, ref):
+    pred, ref = np.asarray(pred, float), np.asarray(ref, float)
+    m = np.isfinite(pred) & np.isfinite(ref)
+    return float(math.sqrt(((pred[m] - ref[m]) ** 2).mean()))
+
+
 def main():
-    # ---- 参考：R2 20260918 ----
-    disp = load_csv_any(R2DISP)
-    truth = {}
-    for r in disp:
-        if r.get("cohort") != "jiufu271":
-            continue
-        if r.get("annotation_status") != "complete":
+    paired = pd.read_csv(PAIRED)
+    print("E055 配对窗: %d" % len(paired))
+
+    internal = pd.read_csv(INTERNAL_SUMMARY)
+    config = p2g.derive_config(internal, FPS)
+    config = replace(config, base_prominence=PROMINENCE)
+    members = [tuple(m.split(":")) for m in MEMBERS_TEXT.split(";")]
+    print("冻结成员 %d 个；prominence=%.3f" % (len(members), PROMINENCE))
+
+    rows = []
+    miss = 0
+    for r in paired.itertuples(index=False):
+        wid = str(r.window_id)
+        f = SIGDIR / (wid + "_calibration_free_signals.csv")
+        if not f.exists():
+            miss += 1
             continue
         try:
-            c, d = float(r["manual_breath_count"]), float(r["duration_seconds"])
-        except Exception:
-            continue
-        truth[r["window_id"]] = dict(count=c, dur=d, rr=60.0 * c / d,
-                                     cow=str(r.get("verified_cow_id") or r.get("video_id")))
-    print("R2 久福完整参考窗: %d" % len(truth))
+            table = pd.read_csv(f)
+            est = [p2g.estimate_curve(p2g.fused_curve(table, s, p == "inverted", config), config)[0]
+                   for s, p in members]
+            rr = float(np.mean(est))
+        except Exception as e:
+            print("  FAILED %s: %s" % (wid, e))
+            rr = math.nan
+        rows.append(dict(window_id=wid, cow=str(r.verified_cow_id),
+                         p2g_rr_bpm=rr,
+                         rf_rr_bpm=float(r.predicted_rr_bpm),
+                         truth_rr_bpm=float(r.truth_rr_bpm),
+                         truth_count=float(r.truth_count),
+                         predicted_count_rf=float(r.predicted_count)))
+    pred = pd.DataFrame(rows)
+    print("成功评分 %d 窗（缺信号 %d）" % (len(pred), miss))
+    ok = pred[np.isfinite(pred["p2g_rr_bpm"])].copy()
+    print("P2g 给出有限预测: %d / %d" % (len(ok), len(pred)))
+    pred.to_csv(OUT / "p2g_vs_rf_paired_predictions.csv", index=False, encoding="utf-8")
 
-    # ---- 待评窗口：有已提取信号的 ----
-    sig = sorted(p.stem.replace("_calibration_free_signals", "") for p in SIGDIR.glob("*_calibration_free_signals.csv"))
-    ids = [w for w in sig if w in truth]
-    print("有信号且进入完整参考的窗: %d" % len(ids))
-    if not ids:
-        print("尚无可用信号，退出。")
-        return
-
-    # ---- 配置：沿用内部派生的冻结配置 ----
-    internal_summary = pd.read_csv(INTERNAL_SUMMARY)
-    config = p2g.derive_config(internal_summary, FPS)
-    config = p2g.replace(config, base_prominence=PROMINENCE)
-    members = [tuple(m.split(":")) for m in MEMBERS_TEXT.split(";")]
-    print("成员 %d 个: %s" % (len(members), MEMBERS_TEXT))
-
-    # ---- 把信号源换成我提取的通道表 ----
-    def patched_extract(video_dir, prefix, radius, overwrite):
-        wid = Path(video_dir).name
-        return pd.read_csv(SIGDIR / (wid + "_calibration_free_signals.csv"))
-
-    p2g.extract_video_signals = patched_extract
-
-    summary = pd.DataFrame({"video_id": ids})
-    preds = p2g.selected_member_predictions(SIGDIR, "paper_repro", summary, config,
-                                            members, 20, "external_p2g")
-    preds = preds[["video_id", "rr_bpm", "selected_members"]].copy()
-    preds["window_id"] = preds["video_id"]
-    preds["truth_rr"] = [truth[w]["rr"] for w in preds["video_id"]]
-    preds["truth_count"] = [truth[w]["count"] for w in preds["video_id"]]
-    preds["cow"] = [truth[w]["cow"] for w in preds["video_id"]]
-    preds.to_csv(OUT / "p2g_predictions_on_271.csv", index=False)
-
-    # ---- 与 RF 代理（E055）在同一配对集上比较 ----
-    rf_path = WINROOT / ".." / ".." / "event_evaluation" / "20260918_r2_status_v1"
-    rf_pred = None
-    for cand in [rf_path / "paired_counts.csv", rf_path / "rr_metrics.csv"]:
-        if cand.exists():
-            rf_pred = pd.read_csv(cand)
-            print("RF 预测表:", cand.name, list(rf_pred.columns)[:10])
-            break
+    ref = ok["truth_rr_bpm"].to_numpy(float)
+    p = ok["p2g_rr_bpm"].to_numpy(float)
+    r = ok["rf_rr_bpm"].to_numpy(float)
 
     print()
-    print("=== P2g 在 %d 个完整参考窗上的结果（自评，未配对）===" % len(preds))
-    print("  RR R2 = %.6f   MAE = %.4f" % (r2_score(preds["rr_bpm"], preds["truth_rr"]),
-                                          mae(preds["rr_bpm"], preds["truth_rr"])))
-    print("  非有限预测数: %d" % (~np.isfinite(preds["rr_bpm"].astype(float))).sum())
+    print("=" * 74)
+    print("同一批 %d 个配对窗（R2 20260918 参考）" % len(ok))
+    print("%-26s %9s %9s %9s" % ("method", "R2", "MAE", "RMSE"))
+    print("%-26s %9.6f %9.4f %9.4f" % ("RF 绝对温度代理 (E055)", r2_score(r, ref), mae(r, ref), rmse(r, ref)))
+    print("%-26s %9.6f %9.4f %9.4f" % ("P2g 相对伪彩集合", r2_score(p, ref), mae(p, ref), rmse(p, ref)))
+    print("%-26s %+9.6f %+9.4f %+9.4f" % ("Δ (P2g − RF)", r2_score(p, ref) - r2_score(r, ref),
+                                          mae(p, ref) - mae(r, ref), rmse(p, ref) - rmse(r, ref)))
+    print()
+    print("完全计数(P2g 取整): %d / %d" % ((np.round(p) == ok["truth_count"].to_numpy(float)).sum(), len(ok)))
+    print("完全计数(RF):       %d / %d" % ((ok["predicted_count_rf"].to_numpy(float) == ok["truth_count"].to_numpy(float)).sum(), len(ok)))
+
+    # ---- 配对 bootstrap：按牛号聚类 ----
+    cows = ok["cow"].astype(str).to_numpy()
+    uniq = sorted(set(cows))
+    idx_by_cow = {c: np.where(cows == c)[0] for c in uniq}
+    print()
+    print("按牛号聚类配对 bootstrap（%d 次，%d 个牛号，seed=%d）" % (DRAWS, len(uniq), SEED))
+    rng = random.Random(SEED)
+    dR2, dMAE, dRMSE = [], [], []
+    for _ in range(DRAWS):
+        pick = [uniq[rng.randrange(len(uniq))] for _ in range(len(uniq))]
+        ii = np.concatenate([idx_by_cow[c] for c in pick])
+        rr_, pp_, ff_ = ref[ii], p[ii], r[ii]
+        dR2.append(r2_score(pp_, rr_) - r2_score(ff_, rr_))
+        dMAE.append(mae(pp_, rr_) - mae(ff_, rr_))
+        dRMSE.append(rmse(pp_, rr_) - rmse(ff_, rr_))
+
+    def ci(v):
+        v = sorted(v)
+        return float(np.mean(v)), v[int(0.025 * len(v))], v[int(0.975 * len(v)) - 1]
+
+    res = []
+    for name, v in [("delta_rr_r2", dR2), ("delta_rr_mae", dMAE), ("delta_rr_rmse", dRMSE)]:
+        m, lo, hi = ci(v)
+        verdict = "跨0 -> 无显著差异" if lo < 0 < hi else ("P2g 更好" if hi < 0 else "P2g 更差")
+        if name == "delta_rr_r2":
+            verdict = "跨0 -> 无显著差异" if lo < 0 < hi else ("P2g 更好" if lo > 0 else "P2g 更差")
+        print("  %-16s %+9.4f  95%%CI [%+9.4f, %+9.4f]  %s" % (name, m, lo, hi, verdict))
+        res.append(dict(metric=name, estimate=m, ci_low=lo, ci_high=hi, verdict=verdict))
+    pd.DataFrame(res).to_csv(OUT / "p2g_vs_rf_bootstrap.csv", index=False, encoding="utf-8")
 
 
 if __name__ == "__main__":
