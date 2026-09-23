@@ -361,6 +361,73 @@
 
 ---
 
+## D010 审阅旧手稿与 Q2+ 路线图：**第三次更正（D007 撤销）** + 旧线评估
+
+- **日期**：2026-09-22，Asia/Shanghai
+- **来源**：用户提供 `docs/thermal_rr_manuscript_draft.md`（sha256 `1e18bd69…`）与
+  `.../paper_literature_q2_plus_innovation_roadmap.md`（sha256 `78a4868c…`），要求评估"不行再转入路线 C"
+- **改动文件**：
+
+| 路径 | 说明 |
+|---|---|
+| `deepseek/06_B73来源核查/02_B73P真值调整最终结论_20260922.md` | 新增，更正 D007 |
+| `deepseek/08_旧手稿与路线图评估/01_旧研究线评估与裁决_20260922.md` | 新增，旧线评估 |
+
+### 🔴 更正 D007：D006 原本是对的，D007 的"更正"错了
+
+- 项目内存在**两份 73 集 summary**：
+  `innovation_repro_summary.csv`（R²=**0.928992**，**未调整**真值）与
+  `paper_repro_summary.csv`（R²=**0.946595** = B73-P，**已调整**真值）。
+- 两者 `truth_count` 差异**恰好 4 个视频**（`210994`/`211049`/`ns196527`/`ns211117`），
+  **四个全部被改成与算法预测完全一致，误差全部归零**。
+- **D007 的检查是循环论证**：我拿"被调整后的 73 表"当"未调整基准"去比对，必然一致。
+  正确基准是更早的 `innovation_repro_summary.csv`。**教训：判断真值是否被改，必须与更早的时间快照比对。**
+- **连带解释 D006 悬案**：49 窗表 `short_clip_reference_rr_bpm_not_window_truth` 与 73 表 `rr` 的 2 行不一致中，
+  `ns196527` 正是被调整的 4 个视频之一（旧计数 10 → 新 11，66.7 → 73.3），
+  **是同一次真值调整在两表中未同步**，不是"两个并行版本"。
+  （另一处 `bs170227` 不在这 4 个之中，成因待追溯。）
+- **已核实的干净文件**：`paper_repro_signal_aware_safe_policy_predictions.csv` 与
+  `paper_repro_quality_residual_predictions.csv` 的真值 vs innovation **0 处不同** → **旧研究线建立在未调整真值上**。
+
+### 旧研究线评估（`thermal_rr_manuscript_draft.md` + Q2+ roadmap）
+
+**这条线比总记录呈现的强得多，且是干净的**，但过不了它自己设的 Q2 门槛。
+
+- **内部结果（已独立复算，均用未调整真值）**：
+
+| 方法 | R² | MAE | exact |
+|---|---:|---:|---:|
+| default（innovation，诚实基线） | 0.928992 | 1.9713 | 49/73 |
+| quality-aware residual correction（固定 OOF） | 0.942885 | 1.6187 | 53/73 |
+| signal-consensus 补充 | 0.946345 | 1.4955 | 55/73 |
+| signal-aware residual（固定 OOF） | 0.949482 | 1.3631 | 58/73 |
+| **safe gate（固定 OOF）** | **0.951993** | **1.2884** | **59/73** |
+| signal-aware（prefix-group） | 0.909734 | 1.8243 | 54/73（≥2 误差 2） |
+| **safe gate（prefix-group）** | **0.949883** | **1.3569** | **58/73（≥2 误差 0）** |
+
+  → **default → safe gate = +0.0230 R²、MAE −0.683、exact +10**。
+  ⚠️ 但 `..._quality_residual_bootstrap_ci.csv` 显示 **residual correction 单独 vs default 的 ΔR²=+0.0139 `[−0.0059,+0.0411]` 跨 0** ——显著性来自多级叠加。
+  ⚠️ 手稿摘要的 safe-gate-vs-default CI `[0.0020, 0.0545]` **源文件未定位，未独立复算**。
+- **跨场（久福 94 clips，provisional）**：baseline **−0.8628** → **P2g 相对伪彩集合 0.4973**
+  （vs offline context ΔR²=+0.2687，CI `[0.0899,0.6365]` 不跨 0）。**这是全项目唯一的大幅跨场改进。**
+- **辅助线**：Bland–Altman LoA 13.400→11.009 bpm；选择性报告（strict auto n=13 / coverage 0.178 / R²=0.9999）；
+  conformal 覆盖率 0.904 / 宽度 11.79 bpm；89 特征块消融；`ns` prefix-group 全方法不过门槛；双盲 A/B 包**已备好但从未执行**。
+- **三条致命问题**：
+  1. 根本约束未变（73 视频 / 单牧场 / 无身份·日期·相机元数据；roadmap 自评 `Q2 readiness = not_ready`）；
+  2. 增益本质是"±1 次呼吸修正"，而基线 **73/73 都已在 1 次以内**；
+  3. **5 级流水线（corrector→consensus→signal-aware→safe gate→rollback）全部在同一批 73 视频上设计**，
+     `nested CV` **只嵌套阈值、未嵌套架构搜索**，prefix-group 只是文件名前缀代理 → **+0.023 无法排除选择偏差**。
+- **与当前记录的冲突（必须解决）**：久福 94-clip / 0.4973（相对伪彩）vs 271 窗 / 0.4196（RF 绝对代理）；
+  两条线模型、真值、样本都不同，**数字不可比**；且**总记录完全没有覆盖旧线**。
+- **采用决定**：**不建议直接改写旧稿投稿**（过不了自设 Q2 gate）。
+- **建议的下一步（用户决定）**：
+  1. **先做一件有界测试**：把 **P2g 相对伪彩集合**接到**当前 271 窗 R2 参考**上测一次。
+     **事前判据**：R² 显著高于 0.4196 且配对 CI 不跨 0 → 论文有了真正的跨场方法贡献；否则 → 转路线 C。
+  2. 无论走哪条路，先**在总记录登记 B73-P 使用调整真值**，并把旧线补进总记录；
+  3. 排查还有哪些 `paper_repro_*` 继承了这个调整真值。
+
+---
+
 ## 节点模板（后续复制使用）
 
 ```markdown
