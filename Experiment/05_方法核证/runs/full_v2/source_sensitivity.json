@@ -1,0 +1,19 @@
+{
+  "analysis_set": "R2_complete47",
+  "source_peak_rule": "prominence=.035,width=1,plateau_size=1,distance=6",
+  "paper_peak_rule": "prominence=.05,distance=6,other_defaults",
+  "changed_count_windows": 13,
+  "mean_abs_rr_formula_difference_bpm": 0.19906631523294582,
+  "max_abs_rr_formula_difference_bpm": 0.7973667559709554,
+  "n": 47,
+  "rr_r2": 0.7875344509564205,
+  "rr_mae_bpm": 3.2771434547940093,
+  "rr_rmse_bpm": 5.180701525471919,
+  "count_mae": 1.6382978723404256,
+  "exact_count": 15,
+  "within_one_count": 29,
+  "mean_count_accuracy_percent": 92.65972400022198,
+  "bias_bpm": 1.4039799826132142,
+  "loa_low_bpm": -8.475883736217162,
+  "loa_high_bpm": 11.283843701443589
+}

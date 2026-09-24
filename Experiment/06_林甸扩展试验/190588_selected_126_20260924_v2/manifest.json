@@ -1,0 +1,66 @@
+{
+  "scope": "190588 same-source development pilot; three windows are not independent cows",
+  "selected": [
+    "000_030",
+    "030_060",
+    "180_210"
+  ],
+  "arms": [
+    "C0P0",
+    "C1P0",
+    "C0P1",
+    "C1P1"
+  ],
+  "radius": 20,
+  "min_temp": 20.0,
+  "keypoint_confidence": 0.5,
+  "event_tolerance_seconds": 0.3,
+  "duration_seconds": 30,
+  "input": "decoded original MP4 BGR frames; no viewing-copy pixels",
+  "files": [
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\190588标注\\lindian190588_annotation_windows.csv",
+      "sha256": "3f0264d6e6e0d8836453dd6621bf5fae48dffdf78cff9041db29d0c4ea6bc901"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\190588标注\\lindian190588_reference_events.csv",
+      "sha256": "cb9da93702757ff1144b7a7052ffc2308dc7bcf1921948e9361a32904ae75c7d"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\190588标注\\lindian190588_unobservable_intervals.csv",
+      "sha256": "b7ce893423123eee16c180950c7a06f5a99dd692f8ea0643b097d95552e3ffd8"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\190588_source30_v1\\segments.csv",
+      "sha256": "d664148a39bcfc50cae8afff1ebbaba3fec6a4299b61bd196560bfc5edef917a"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\190588_source30_v1\\frame_time_map.csv",
+      "sha256": "310bcc11e839f34865907acd95ce0b5463cf0243b02bd37cc1d638e402a28401"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0805\\B1号舍泌乳牛下午0805时间405挤奶之后进食\\20230805T164945n190588\\20230805T164945n190588.MP4",
+      "sha256": "48a355a2850dc5637b1310a5c4441cd787db43bd030c68de7a0d17081f4c0c79"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\models\\best.pt",
+      "sha256": "b9c318b33323a2f3887bd786b3997a8c6cf6c2098ec8fdf0d1f9b91ad3b5fbe7"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\temperature_extraction\\getRandomForestRegress\\clf_model_RGB_20240906.pkl",
+      "sha256": "26b8e7dd25afb7780798f3609aaf16592089598157d58e11bc1e1dffd7bb03d5"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\score_190588_selected.py",
+      "sha256": "6867f13218a0e129e7ff0afbd79e3cee9d0e3743f24efab7cdfb2a2883c61589"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\05_方法核证\\run.py",
+      "sha256": "385cc92e342bd4da5e944248fc58870d014e021b2d3b9b25786c1a5f40c08139"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\scripts\\paper_repro_rr.py",
+      "sha256": "3c211f52fe3f1a6a3104a38f2b275cdf40fe5f21ff4ca042052cee8424947ec9"
+    }
+  ]
+}

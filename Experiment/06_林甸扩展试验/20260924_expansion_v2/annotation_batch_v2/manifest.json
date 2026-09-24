@@ -1,0 +1,16 @@
+{
+  "annotation_round": "LX-20260924-P1",
+  "cohort": "lindian_expansion",
+  "source_candidates": 8,
+  "clips": 8,
+  "technical_exclusions": [],
+  "selection_hash": "59e99ef1ea1fa3a84c9186eb8ba263b8f359cc16f21d5472094a9679ab88c3fc",
+  "generator_hash": "62e276ed449a23aa1bed18d952b8b0148636d6303f801fea39c9b95b94ef0dd4",
+  "template_hash": "994c8cafe06022ef4699265c71161231a723947eba6ee00a426540219086fc3d",
+  "source_time_window_seconds": 30,
+  "max_interframe_gap_seconds": 0.5,
+  "max_edge_distance_seconds": 0.25,
+  "algorithm_predictions_read": false,
+  "manual_truth_present": false,
+  "warning": "Cows parsed from filenames only; YOLO training provenance not checked; not pristine holdout"
+}

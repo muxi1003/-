@@ -1,0 +1,693 @@
+{
+  "stage": "full",
+  "protocol": "v1",
+  "files": [
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\05_方法核证\\PROTOCOL.md",
+      "sha256": "d4dda289f52d6130e626b1a06019935f8ebbeeac4421dd3299fba013a7ad6e1e",
+      "bytes": 3796
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\05_方法核证\\run.py",
+      "sha256": "19c0eebcb7f33550e57d5bfbe8bde4a96e9337c875445f6ae3b503791c02a46c",
+      "bytes": 20298
+    },
+    {
+      "path": "E:\\real\\学习\\呼吸文献\\1-s2.0-S0306456525001111-main.pdf",
+      "sha256": "3585d5d898038d2c2259784a8f732625cc3357948f2626ccfe6d5f00fd1507d4",
+      "bytes": 13684349
+    },
+    {
+      "path": "E:\\real\\use_code\\代码\\站立呼吸\\yoloV8\\temperature_extraction\\single_nose\\double_noses0117_20.py",
+      "sha256": "583b7f5406aee50345cb7e69193c1494984dab8e29780208cefa1e95e68865ed",
+      "bytes": 10605
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\scripts\\paper_repro_rr.py",
+      "sha256": "3c211f52fe3f1a6a3104a38f2b275cdf40fe5f21ff4ca042052cee8424947ec9",
+      "bytes": 214762
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\experiment_common.py",
+      "sha256": "b529c344204062c9e612cba0660772b0b57369744e55777b79a2de4abf5e35f5",
+      "bytes": 4167
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\reference_tools.py",
+      "sha256": "eda7ea4b78a26216e92f9868e0548990cffe4419658d5bccfd073cb48e091cf3",
+      "bytes": 13786
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\matched_windows.csv",
+      "sha256": "37f83d6747e16d31bbb58c3f69d8ab2c32bbf77a8975e14e27610ed60f1297fe",
+      "bytes": 65591
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\input_hashes.csv",
+      "sha256": "85b73c7851ee545b5ed25bc7023344c581d75762950d1e4e0dd7c0a917256b85",
+      "bytes": 47454
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Dataset_new\\72video\\al_images\\innovation_repro_summary.csv",
+      "sha256": "51a3acc2b02729a4d49fc298100d6ef1e0d30449ae39658415e99c933275b1fe",
+      "bytes": 69622
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\lindian49\\annotation_windows.csv",
+      "sha256": "7164be3aa7f440be2c899d06ad6f74c6c01a0440617057c579b89e283d955259",
+      "bytes": 22632
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\lindian49\\reference_events.csv",
+      "sha256": "e7b8096c800a56ddc4894baf5885d0987c3c1c1425d140d00465df0fb865fb3c",
+      "bytes": 117165
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\lindian_frame_time_bindings.csv",
+      "sha256": "6a0fb2a12afc01d43d9c30850eabdaf3e9d61986006eab6864a00dc8305cde5b",
+      "bytes": 397588
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\16170075.csv",
+      "sha256": "b0ce2f0f6f71049a5d197385ba51360b383473b4cde0c1c16ebf7c47671e03b9",
+      "bytes": 24486
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\170272.csv",
+      "sha256": "61fe64f884e1128b0ac9a7ab1bc609d6f6d0d5a0375a557601fd02dc5c05dc10",
+      "bytes": 20567
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\170333.csv",
+      "sha256": "ffff9aad7d7b69cf94f342b9b64972ecf27679c51d73f6a3d854daa9251aec15",
+      "bytes": 17635
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\170334.csv",
+      "sha256": "7fddb716a0a9a046ebd22c465eb40807274e1ea7c002b4665b3af9870a9ee9f9",
+      "bytes": 27252
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\177395.csv",
+      "sha256": "a2501a57bb741358f0ab798a7033eb1e934cb90879b743d98f7dee09794d26e4",
+      "bytes": 14116
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\190546.csv",
+      "sha256": "4d502d68cd3de406783e04733150e8b20c98259077dbbe238d4a3966b8f8b4cd",
+      "bytes": 20992
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\190588.csv",
+      "sha256": "c3a040e445ae5091c14582073df128cffcee27fe3453337fce754471bfccf208",
+      "bytes": 18807
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\196434.csv",
+      "sha256": "166708a2c2c84f16c144e0d1ca290bbd2376351a332fff22d27293e04a9cbeb2",
+      "bytes": 25249
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\200653.csv",
+      "sha256": "d2c8440542234cf77f4db9446d3317014a638ab77524324fc4a7080f1ead6f40",
+      "bytes": 21986
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\200713.csv",
+      "sha256": "4c347095745059aff4e8fc23bf88bc868dc0672f111ba13b0535433809a6c6b4",
+      "bytes": 27620
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\200718.csv",
+      "sha256": "865f1f6fe5b239c8ecf92d7315715a47ff709094bb6270d1518a3f2960f24855",
+      "bytes": 28186
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\200937.csv",
+      "sha256": "fb15d145fbf733a7dedee019b241de960ad8630c4cac459a40113e1972404173",
+      "bytes": 17951
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\200939.csv",
+      "sha256": "9fc14ad8ed6e7351ceeb36dc5a1fcc7aed2e275b69ff192c5e82716b5ff31414",
+      "bytes": 15905
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\210944.csv",
+      "sha256": "bba667cf9d91683e1a61377161f0e293cd5f45545ac6ebbb07210098e7e49f04",
+      "bytes": 13303
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\210989.csv",
+      "sha256": "873ec293301c6ed4e8e045ced3918bf92c30d3c4216555f9d3c35efdb1cf5391",
+      "bytes": 27345
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\210994.csv",
+      "sha256": "8d87b87104c1f4683b6b23b0ba509f8c0ae467ff47ea56f34fef08a4fefe3382",
+      "bytes": 18198
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\211040.csv",
+      "sha256": "a97b5d3a790dfb5d9622715407c61fa6e98ec904ed20a9f58423e41a77154bfa",
+      "bytes": 17175
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\211049.csv",
+      "sha256": "609ac3b863444d734fb42935bdcb308089f4d9394e9d00a71a33c9d766559608",
+      "bytes": 12128
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\211056.csv",
+      "sha256": "b4a2024dfcf0d8e97d9a4f8a8e09dfcfd6d8311f1c9d189a10dde3f2b442f325",
+      "bytes": 22581
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\211070.csv",
+      "sha256": "156ff27da80f49380449dc49f44d0f1361913743e2201572df364e4a29e33252",
+      "bytes": 17084
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ba170296.csv",
+      "sha256": "5392dceb7d77ded72a155acfea9211347d847f9f0ea7b5d1fee9c7ff288f7dc6",
+      "bytes": 20837
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ba177610.csv",
+      "sha256": "e3a64611d4ffc7849ffe6471851a4d798f91bd762253ab968fe14d728d561584",
+      "bytes": 22753
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ba455.csv",
+      "sha256": "e432cebc0163715fbd6554d41b84ae4384a21dd9f114d2b5581b6c98fe999056",
+      "bytes": 17576
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ba6516.csv",
+      "sha256": "569ac6e5c6634f4f7b63656ce419ef7d3fdbdfa708d6ca8be68ccbd9646eaa01",
+      "bytes": 13642
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs0514.csv",
+      "sha256": "fd1dabccd6fd663c8cac489d857d647c1687bc791937035bd299c378e769857a",
+      "bytes": 20589
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs1479.csv",
+      "sha256": "7ca0eea4c622cd255c5a7fdcd9586b2359b8aceef61ea96946a68bef07f637f8",
+      "bytes": 15440
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs170227.csv",
+      "sha256": "db4d82e07574ce9e0cd20076978b93ad5572d88b87a47a4341d6dc6ef6d0caa5",
+      "bytes": 26146
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs177611.csv",
+      "sha256": "d92e122359263684a97311a9c2378ed6a1b1b69ed5747039c739bd123f8a321f",
+      "bytes": 25908
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs189556.csv",
+      "sha256": "bb9596dd49449c77dab22e8ca005c518445105cd8d5cfaecf0b13379fd162728",
+      "bytes": 34623
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs190624.csv",
+      "sha256": "50d4346eb3a9c345746848aa791d4a244be394e3e6ca448a319213b220d0aa6d",
+      "bytes": 12426
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs190625.csv",
+      "sha256": "dc14b7c0e71bed12fece7bf7f9a0995ba4adf5fdadb9599ba790ccd322e69009",
+      "bytes": 22612
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs196399.csv",
+      "sha256": "eba2b029fb44d9cd80c98da7d61e98ca51ceb81a590e72fa7063004d23b2f47c",
+      "bytes": 19215
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs200673.csv",
+      "sha256": "7c90f6c42b2ada86abfbaa3c5b1142b88d5b308e9182660a9732041ebaa46f8c",
+      "bytes": 14171
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs200723.csv",
+      "sha256": "d2501d2c10249978ee30ced85f47b39e54d143f62805c3ef30e12fe7999fe7a5",
+      "bytes": 26046
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs200794.csv",
+      "sha256": "64705b3e3c918b4444de551e00c089b070b2416f6a113832fd677fc7e0fc6d2d",
+      "bytes": 17439
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs210974.csv",
+      "sha256": "42f95ebb3aeaccb3e257a0e6968a01a5a305d785c013aec6a41b3ce0dd9f4fc6",
+      "bytes": 15811
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs210984.csv",
+      "sha256": "44a9258e3f5d4631f60d3fbb5d76d10c9ea8d2e8d068579fb687b2cc7741f102",
+      "bytes": 16887
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs211046.csv",
+      "sha256": "61e1e540c4aea966a651bfda2ee4a071d0e3964a14a868d82554103b9f667b7d",
+      "bytes": 22318
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs211063.csv",
+      "sha256": "7686c2f33823fb352ad65cd40f6dc986969aaee71e62d289b478c98cd48bd9a9",
+      "bytes": 19797
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs3015.csv",
+      "sha256": "1693415bf3b22b58cafdef382f3f7785e3e295f0f67888455ecd08fe1393cfcd",
+      "bytes": 17369
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs450.csv",
+      "sha256": "47c0813f5548970902099da79b10560c1bd837667ebfaffcdc9c5426162490de",
+      "bytes": 13909
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs455.csv",
+      "sha256": "232cb9d7b385eeff9db02e4c97c5ed0a52ac1a4050f79d1f2e9e954aaf6e70b4",
+      "bytes": 20680
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs4717.csv",
+      "sha256": "fee95dc42cf59945cbe6525bb0990ec07f6bbcf563ec81536dbc2783afb60289",
+      "bytes": 15318
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\bs6516.csv",
+      "sha256": "71972de9e3e2867860a6a209fe24c95daf8a17b558ad492cb52be175ae4bd167",
+      "bytes": 18621
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns153017.csv",
+      "sha256": "24339899c49ffa9f786d965b588ad74f607fb1c18a538b4ceaee226cc79ac183",
+      "bytes": 17334
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns170082.csv",
+      "sha256": "14aefd95a4f0654be4454e993bab5b3f855b0cd5fac68a67fca5e53ee313286e",
+      "bytes": 15825
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns179166.csv",
+      "sha256": "085bdfa9b6dff55f5a5d2d7747c7f9bcc04a594ae65eef64ad90e4656ea9fb8a",
+      "bytes": 13974
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns196527.csv",
+      "sha256": "716fffa498f64689d15b5795cc42e3f2e81763b9fb5cc080076b286d515ef572",
+      "bytes": 16133
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns200886.csv",
+      "sha256": "c6a0fc0b56603792380a33008eb407c86d38949b4ee98eb7a6636433aa010800",
+      "bytes": 20896
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns210947.csv",
+      "sha256": "9b64f10f1086311b01d85ba4b0d8c6d0f20d02baae272c6b246c9a45aa206ad5",
+      "bytes": 22594
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns211003.csv",
+      "sha256": "bc2563580fb3008af0be8e7933f44b80f724f1079e739250c34ae1d140e08a14",
+      "bytes": 23947
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns211013.csv",
+      "sha256": "9346d6aa01a341af2bd21f959931a671572363053af0b855abf6236c4eda6ef9",
+      "bytes": 12308
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns211030.csv",
+      "sha256": "464a2beb8d4122bf5aeb1fa167b6a865a3b5a3fb31fd30bb21d29a8fec9772ea",
+      "bytes": 23802
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns211095.csv",
+      "sha256": "4b8ef52586934f3a0166c4ae5bf2c82f6354a4fe2a5de6107d9aaa7f16ad2c3f",
+      "bytes": 19060
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns211117.csv",
+      "sha256": "c4d73985574c6bd7fce8221decc5e1ad75d9c7bbd6eb788d0fed5a1ee700717a",
+      "bytes": 15969
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns211146.csv",
+      "sha256": "b2e44560ce66e7155dce97e29466cde8fb05f0054dedd7c1acb39f8a64f7b718",
+      "bytes": 15874
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns211154.csv",
+      "sha256": "bdc99da59fd63a5adc7e5dae8b0aad1b31760b371b839c779c806ec9dcf1b53a",
+      "bytes": 23011
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\ns5364.csv",
+      "sha256": "29243eac2272f15a2ead02152094ea28a85e5e3db2a3c4b09f8b97dc9e057254",
+      "bytes": 19104
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs16110159.csv",
+      "sha256": "5cfd9066348e6d96c467bdd4120ec8ead71a2e62791903d9275df14954719185",
+      "bytes": 28614
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs16110577.csv",
+      "sha256": "8cd55dcdf730c49ad29d30e185b764596aa94720bfa234806b8ce1720a845218",
+      "bytes": 14163
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs170053.csv",
+      "sha256": "2d2229c357cec89ccc3e62582acb93096e09c4815bf4d884e3a50d7d1c7e0b71",
+      "bytes": 22348
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs170065.csv",
+      "sha256": "dc64c51c1bf9be3081156e3046bff58868906bbd492974464d4d45330666219b",
+      "bytes": 25618
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs170236.csv",
+      "sha256": "bc0b0fa419aab39243c08b12ede45912f6bdac374e33b1c08348d58f145fe524",
+      "bytes": 20942
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs170416.csv",
+      "sha256": "20bbaa21bc5ab980abf6f038e9ab3cf31adca9b34b593f1a573f1441f3b4bcea",
+      "bytes": 24856
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs170419.csv",
+      "sha256": "6668e81b4a6a7e59c409c32c1f453ca59c6174e79eae7d97c8ea95c965de6c1b",
+      "bytes": 29868
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs170554.csv",
+      "sha256": "79ff68fe83c20c6d1f7349b2a4fbaefa18a2c730f177fb91b2dd911d1b11688c",
+      "bytes": 22449
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs179187.csv",
+      "sha256": "2b17341ee560de30f1282d692ffab69e6d0721e5db468b382a48cb28bdb0346e",
+      "bytes": 29770
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs190621.csv",
+      "sha256": "40511f80236044de51f4602d60e568dd848ce4979bd1ab1ac08ea15ee4f9f7c7",
+      "bytes": 17548
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs197000.csv",
+      "sha256": "2032df1534482364d2290073adfb66bbc61090e0172b8a726550073a69634ec3",
+      "bytes": 21058
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs200751.csv",
+      "sha256": "8dd95a579cd0ff592f9cb52b83a88e9829f64ad2337fdbb1799ee53660d84572",
+      "bytes": 17099
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs200783.csv",
+      "sha256": "343e40cf38e682f4cd291cf3374f2a12bd02c8f4f63f8adfe65bea345d28fb0b",
+      "bytes": 27584
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs200796.csv",
+      "sha256": "2ad025245e3d296eb472440855ddcc1869ab2da78e3b9c0d2a04cf54f19920d3",
+      "bytes": 24882
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\internal73\\zs211062.csv",
+      "sha256": "bf63c01cefe5c3e38ff2723527fe5c360cb812cf014bc04c35f0d9d850e9ce87",
+      "bytes": 27488
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\16170075.csv",
+      "sha256": "bac1b0f20b52948ccd10611852ab3909bb04ac9031799e6abcd5d8faf8a4d696",
+      "bytes": 191743
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\170272.csv",
+      "sha256": "1ada003b6d970ad1ecb576e79fcb2a41e1d9fdddbef90e2bb397c817f50cd38e",
+      "bytes": 192578
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\170333.csv",
+      "sha256": "14e20f5f7d0e358a40a604ac8fe8fd2ca631d0d9bfc4f26b6705081d98236cd6",
+      "bytes": 179002
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\170334.csv",
+      "sha256": "22c029ca7feac19e8273aa058e1af23c07bcdf4f02a00e503a780d12c51c054e",
+      "bytes": 188845
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\177395.csv",
+      "sha256": "4b56f6a7b3775cd4cc996421b3a9561359ad2dba02db2d8d57246ea80b704f9a",
+      "bytes": 191768
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\190546.csv",
+      "sha256": "11dd67642ef8069248433980c0f30673b44b600d0ce47abff036046dd0cbafbb",
+      "bytes": 191019
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\190588.csv",
+      "sha256": "9566ffd516bf7973c92114a6395b8ec615aecb5a72a26ea832c3f2010a4021fe",
+      "bytes": 167351
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\196434.csv",
+      "sha256": "62fde6c8364894adabb77e25b7679331c26150f49512adfe32694d45d7c580fd",
+      "bytes": 179945
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\200713.csv",
+      "sha256": "d830424ef3c508d695ffd7b8903afddbd0b74d6cfbce269860742098d84d3298",
+      "bytes": 154579
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\200718.csv",
+      "sha256": "5a5b5e1efd95285040b9b8bc53ebd52311ddd05c0efd41942067a1f82690c6aa",
+      "bytes": 192602
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\210989.csv",
+      "sha256": "4d09ee0ffbacf1c81e6838b557a1b77ae615453ea992426f2b5212f352e7cc08",
+      "bytes": 190590
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\211056.csv",
+      "sha256": "fd5cbc66207fd5e60519d07f15b24afd9a3950fa325ff19ec0ea0bfe5a7cbfba",
+      "bytes": 192521
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\211070.csv",
+      "sha256": "8ebe7e651e3c2f93761c10e63265e4d8b064e34dc058041f159f88b3478a0d53",
+      "bytes": 193575
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ba170296.csv",
+      "sha256": "00f5d39d4e80dd5ec52fa7988b6b46f01086fed209e533414f22a8ea504f8d39",
+      "bytes": 193529
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ba177610.csv",
+      "sha256": "387209a325294449106d7ae827f65fa9b56e9359a3b01d25dc6a72ecb06262be",
+      "bytes": 191218
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ba455.csv",
+      "sha256": "58a41feae6f90ddd31102973d240e22211714de9c1d07690914b48d15ed5479c",
+      "bytes": 191300
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ba6516.csv",
+      "sha256": "b8f388645799acb025bd53fb844d5d0cb510ae7d2b56209580fc02f352f9e77b",
+      "bytes": 183749
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs0514.csv",
+      "sha256": "52d929a255b0f22d00643f7877586577ca7d580b49ceb8eb649245001f57d04a",
+      "bytes": 192365
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs170227.csv",
+      "sha256": "adce51134356b1a930cdce2f0d712bc6dd0177b74e98b0fc868c48d79046f33e",
+      "bytes": 193105
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs177611.csv",
+      "sha256": "f6b95ec825aab85bab83e4130bc99747a0c04d137a35552680ae5ff7d17eb404",
+      "bytes": 184845
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs189556.csv",
+      "sha256": "dfb1a1cff82562edca1d920a8c3bcddd68dbfc96e0b75810fd9ca9be90998d4b",
+      "bytes": 164851
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs190624.csv",
+      "sha256": "abf7947b18058519316b286aa59bc2056432d83e00e9553fe94e4c3a4f1b6313",
+      "bytes": 156885
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs200673.csv",
+      "sha256": "86d96cbe1169356bb3fa5460ce071d15a4343149dfbd41464046887b71a649bb",
+      "bytes": 193918
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs200794.csv",
+      "sha256": "09fa8171774b8be236d2dbe3741fe87e4deac5c581416275888db12a2415d187",
+      "bytes": 191105
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs210974.csv",
+      "sha256": "1a9e85339303e03ba170bbfbffe4afd786609866de4d8c697a25074d042c331d",
+      "bytes": 177856
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs211046.csv",
+      "sha256": "5668995353ba172940ffdc136e66dcfc63157de7af17c42bcf72d3850a4590f3",
+      "bytes": 191055
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs211063.csv",
+      "sha256": "f156d3048e73b6d4cfcccbeef8223e77a3da9a507c0299dd70c2d51524140404",
+      "bytes": 189779
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs450.csv",
+      "sha256": "af9a93b5be8eeb73d2e46f71d066dac84acb864db3a8811bca46f5fd0b9ba844",
+      "bytes": 180069
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs455.csv",
+      "sha256": "345c90e0a3f8a02d76b980e8ac275f2e1993f87ad6d3f9599c1fbffa6d67b74a",
+      "bytes": 173516
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs4717.csv",
+      "sha256": "d835f492e277c92a384c49dc2261f11adc669cbd71f3cd1950992609adf21641",
+      "bytes": 190895
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\bs6516.csv",
+      "sha256": "7830dd96ba35d0b2a97579ab3adf8250ddc95f846e65b33a11e7ac97a31efa03",
+      "bytes": 155643
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ns170082.csv",
+      "sha256": "294f31e70285f1aeebfcb0e8815744143922cd7c27dcbee74a63985ac7d97da4",
+      "bytes": 185765
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ns179166.csv",
+      "sha256": "b081e245d6f48595a0025ef9af84c79ddc20039e48c15258acd659002ca15d01",
+      "bytes": 191719
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ns196527.csv",
+      "sha256": "2444f334f0528b28aeba59b44159b23cb2998918cada2ad9962e76b09cf0523b",
+      "bytes": 193151
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ns200886.csv",
+      "sha256": "3e474c1b15a1c676b11f2ee0c9991723000925e7d2cb15104088043d3c3af238",
+      "bytes": 195859
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ns210947.csv",
+      "sha256": "b863c4a145b25918c4fffc709016d3a3b1f1b8921f6432280e14a0c273cb12c4",
+      "bytes": 181707
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ns211003.csv",
+      "sha256": "0c21737275bae8bf394f19265efc729d95e9e19f268134e80945e940d1831a09",
+      "bytes": 183617
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ns211095.csv",
+      "sha256": "55baa1c052f8ad655e2f1e23b8b73b31d79763d8779447cac8de7fc8d0b4fc0f",
+      "bytes": 191435
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ns211117.csv",
+      "sha256": "11e2d7039c1eeae7e8c02452e8c6e44414f3b185c748a3a8ee8ec075aa124960",
+      "bytes": 193613
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\ns211146.csv",
+      "sha256": "c912947c1be17b646b2f4faf01928174afd8c06a739fe7d129887aa423f61b38",
+      "bytes": 189455
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\zs170053.csv",
+      "sha256": "de6adc5ebcb67624a73449d6b9364cef93c41ec83fe1ad9fa0166b29ea0959d4",
+      "bytes": 191943
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\zs170236.csv",
+      "sha256": "822eb40a9e05c0418ba48e0bf4a2e4cd38e92af8e41b2515b9c4732d4baf63d7",
+      "bytes": 195619
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\zs170416.csv",
+      "sha256": "40857d92e8fa1f169ff819311f98070f5448b2bf5d4d7402f17bbbc1d7c7feec",
+      "bytes": 193022
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\zs170554.csv",
+      "sha256": "06d7742f181c9adb5b5d24b4464ae8bb9ea4600fadfdd9513a2163eabec218a3",
+      "bytes": 184356
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\zs190621.csv",
+      "sha256": "9fe8a331b18187b8f4d72ba51a7e3ecb5d0df524facdde8be0a4aab0d6f98220",
+      "bytes": 192949
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\zs197000.csv",
+      "sha256": "c9ba50e2ee8ba1b7b534c15229129f50fdc9c575d646df7bf5c0107f5f37b5a6",
+      "bytes": 190781
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\zs200751.csv",
+      "sha256": "bab0880679d7c305f9f4100750d00113127ef6875a31257e6034719617459b3f",
+      "bytes": 165754
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\zs200783.csv",
+      "sha256": "870dd374c52a398326ceadc20b2e5d1668561d8e3a79ba3fe6041a08a10f8fc7",
+      "bytes": 190067
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\inputs\\anchored49\\zs211062.csv",
+      "sha256": "bf386a3c07785e49b2a4b346ee2eddf641df9e3ed6fa20044afd148e5e879106",
+      "bytes": 182006
+    }
+  ],
+  "arms": [
+    "C0P0",
+    "C1P0",
+    "C0P1",
+    "C1P1"
+  ],
+  "pilot_ids": [
+    "16170075",
+    "170333",
+    "zs197000"
+  ],
+  "note": "Frozen sources hashed in place; no complete original-model replay"
+}

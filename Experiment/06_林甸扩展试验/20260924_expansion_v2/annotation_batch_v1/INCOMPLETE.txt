@@ -1,0 +1,1 @@
+The initial annotation batch used relative clip paths in the page, which could prevent browser playback. Do not annotate from this page. Use annotation_batch_v2 instead. The encoded clips remain for audit.

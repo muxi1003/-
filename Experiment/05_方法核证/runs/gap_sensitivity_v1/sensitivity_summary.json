@@ -1,0 +1,35 @@
+{
+  "status": "separate_sensitivity_only_not_adopted",
+  "n": 47,
+  "source_run": "E:\\real\\use_code\\yoloV8\\Experiment\\05_方法核证\\runs\\full_v2",
+  "model_path": "E:\\real\\use_code\\yoloV8\\Experiment\\02_冻结独立测试\\method_snapshots\\20260909_v1\\weights\\clf_model_RGB_20240906.pkl",
+  "model_sha256": "26b8e7dd25afb7780798f3609aaf16592089598157d58e11bc1e1dffd7bb03d5",
+  "main_manifest_sha256": "f3c437bae2ae0cfb737851b74348dbc1f4cf38ae19175098fa838da6e5d1eea8",
+  "code_sha256": "b08f83a914d02f644b4dec192b946d23519b82915c0856315dcbc0237940f02a",
+  "remeasured_side_frames": 24,
+  "changed_prediction_windows": 1,
+  "rr_metrics": {
+    "n": 47,
+    "rr_r2": 0.8627950061214756,
+    "rr_mae_bpm": 2.977030682497917,
+    "rr_rmse_bpm": 4.16321914009418,
+    "count_mae": 1.4893617021276595,
+    "exact_count": 13,
+    "within_one_count": 28,
+    "mean_count_accuracy_percent": 93.55334449921719,
+    "bias_bpm": 1.0215106781777807,
+    "loa_low_bpm": -6.974476522321092,
+    "loa_high_bpm": 9.017497878676654
+  },
+  "paired_vs_C1P1_no_gap": {
+    "delta_mae_bpm": 0.04247434959857391,
+    "delta_mae_ci95_low": -9.070758328852342e-16,
+    "delta_mae_ci95_high": 0.12742304879572292,
+    "bootstrap_clusters": 47,
+    "bootstrap_draws": 10000,
+    "bootstrap_seed": 20260924
+  },
+  "event_f1": 0.7611940298507462,
+  "event_f1_no_gap": 0.7624066754501537,
+  "decision": "No effect on the main four-arm adjudication; this is a post-main sensitivity."
+}

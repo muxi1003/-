@@ -1,0 +1,1 @@
+Inventory v1 included two videos under a source directory named '无法分辨', so its selected_sources.csv must not be used as a cow-identity-qualified batch. The immutable first pass is retained for audit. Use the v2 selection instead.

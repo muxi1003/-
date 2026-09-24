@@ -1,0 +1,1 @@
+This first attempt stopped before writing complete scores due to a video-id bookkeeping error. Do not use it for results. The complete rerun is in ../190588_selected_126_20260924_v2/.

@@ -1,5 +1,7 @@
 # Thermal RR Manuscript Claim Update
 
+> **2026-09-24 status correction (N077): Superseded as a main-method claim.** A new frozen-input 2x2 signal-rule replay on 47 complete R2 Lindian windows gave C0P0 RR MAE 3.362 and C1P1 2.935 breaths/min, but paired Delta MAE -0.428 had 95% CI [-1.834, 0.722], and exact counts fell 15/47 to 13/47. The pre-specified method-gain criterion failed. Do not copy the residual-correction/safe-gate claims below into a current abstract or slide as established primary innovation. See `Experiment/05_方法核证/runs/full_v2/RESULTS.md`. This file is retained for historical traceability.
+
 This file is generated from current paper assets. Use it to update `docs/thermal_rr_manuscript_draft.md` without copying stale metrics.
 
 ## Conservative Abstract Replacement

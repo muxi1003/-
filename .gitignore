@@ -33,7 +33,10 @@ Dataset_new/
 dataset/images1/
 dataset/cow_frames/
 dataset/extracted_frames/
-runs/
+# 注意：必须写成 /runs/ 锚定仓库根目录。
+# 曾误写为 runs/，导致 Experiment/*/runs/ 下的实验产物被静默排除（含 01_同口径消融
+# 与 05_方法核证 的 runs）。此处修正，实验 run 产物应入库。
+/runs/
 scripts/runs/
 models/
 outputs/
@@ -59,6 +62,8 @@ Experiment/tools_deps/
 *.wmv
 *.flv
 *.gif
+*.webm
+*.WEBM
 
 # 模型权重与序列化模型
 *.pt
