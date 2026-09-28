@@ -1,0 +1,98 @@
+{
+  "scope": "Lindian same-farm development batch; not independent validation",
+  "round": "LX-20260924-P1",
+  "arms": [
+    "C0P0",
+    "C1P0",
+    "C0P1",
+    "C1P1"
+  ],
+  "roi_radius": 20,
+  "min_temperature": 20.0,
+  "keypoint_confidence": 0.5,
+  "event_tolerance_seconds": 0.3,
+  "duration_seconds": 30,
+  "input": "original MP4 BGR frames mapped to annotation playback time",
+  "files": [
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260924-P1\\lindian_expansion_annotation_windows.csv",
+      "sha256": "105835f5709edb21261881e33bd62fa05598b543941d96d60193659fda471c17"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260924-P1\\lindian_expansion_reference_events.csv",
+      "sha256": "36edd18d63a5d4a5e7f9bb6499a39d03621d6ec4b1427477ce896a6f48e13d54"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260924-P1\\lindian_expansion_unobservable_intervals.csv",
+      "sha256": "b7ce893423123eee16c180950c7a06f5a99dd692f8ea0643b097d95552e3ffd8"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260924-P1\\lindian_expansion_event_backup.json",
+      "sha256": "4f831b17ace5c48fc650c7f5e28d1f06182f5524f70976c538ea2998767b4f2f"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260924_expansion_v2\\annotation_batch_v2\\segments.csv",
+      "sha256": "67779871a78e8ba0ca938c504eba568e3852ff556267e0083bdd1bf8e22e8525"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260924_expansion_v2\\annotation_batch_v2\\frame_time_map.csv",
+      "sha256": "f48f18b072818c5fa47a1b298610c268f77e80b53e27c904b653accaf1c0db19"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\models\\best.pt",
+      "sha256": "b9c318b33323a2f3887bd786b3997a8c6cf6c2098ec8fdf0d1f9b91ad3b5fbe7"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\temperature_extraction\\getRandomForestRegress\\clf_model_RGB_20240906.pkl",
+      "sha256": "26b8e7dd25afb7780798f3609aaf16592089598157d58e11bc1e1dffd7bb03d5"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\score_lindian_expansion.py",
+      "sha256": "7b25b5ad3785c74e560a4b565a378cd2321cbf80fe56b8655ae2c0f07030f485"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\05_方法核证\\run.py",
+      "sha256": "385cc92e342bd4da5e944248fc58870d014e021b2d3b9b25786c1a5f40c08139"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\scripts\\paper_repro_rr.py",
+      "sha256": "3c211f52fe3f1a6a3104a38f2b275cdf40fe5f21ff4ca042052cee8424947ec9"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\reference_tools.py",
+      "sha256": "eda7ea4b78a26216e92f9868e0548990cffe4419658d5bccfd073cb48e091cf3"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍新产牛\\ff\\20230807T074242n200891.MP4",
+      "sha256": "68f93b26d929c572273faacfd463a11af261aee7649ad6f2a0d65a3ff53b7a5a"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B二舍正常0938\\20230807T093702n196376.MP4",
+      "sha256": "ed8bc89bd7187957fbc2dc81d32e45386d5630b17198ab92d5ace4606118bc8e"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T171039n164189\\20230808T171039n164189.MP4",
+      "sha256": "9b898a1c70b0c88568007c911c6fdb51a999ec94a289b5820d7f326ff8aa3afa"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\B三舍病牛区\\20230808T082508n205256\\20230808T082508n205256.MP4",
+      "sha256": "90e8ff23eb984a65311878a88980009655c5471ed985bbbc5d8bee732fe3baf1"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\20230809T082528n170320\\20230809T082528n170320.MP4",
+      "sha256": "fe60fee2c1f63b4a956ec04bb35973b5b6b983c5a1776037e51a8061d50817b5"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\ff\\20230809T080543n200798.MP4",
+      "sha256": "348827b68e6f89bb8d81d4dfa980d480a1097e8bad96acc202f0604047496cf1"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\20230810T145819n16110251\\20230810T145819n16110251.MP4",
+      "sha256": "d8bd68bdfe49aaf2907f3d76a2c0b5abd54501b86fa023f495ad1883807b141d"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\上午\\B三号舍新产区\\ff\\20230810T073708n211158.MP4",
+      "sha256": "4e25bb5ee920bff58435f3ef3fc3319dc229d5bd4ebc0e6a248eb72d359a664f"
+    }
+  ]
+}

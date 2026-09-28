@@ -1,0 +1,25 @@
+{
+  "p2_complete_queued": 6,
+  "r1_complete": 5,
+  "r1_partial": 1,
+  "paired_complete_count_exact": 4,
+  "paired_complete_count_disagreements": [
+    "20230808T163447n200646_000_030"
+  ],
+  "same_day_repeat": true,
+  "r1_not_independent_blind_reference": true,
+  "p2_frozen_score_unchanged": true,
+  "rr_rescored": false,
+  "input_sha256": {
+    "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-P2\\lindian_expansion_annotation_windows.csv": "4731da8bf5de90a3ae81d5052f13b902bb85260c877df58503e68f28b28e0ee5",
+    "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-P2\\lindian_expansion_reference_events.csv": "ae8802309da3e58720084b8edbe5f0a1f682a1fee8edb093812d011dc27ae1f3",
+    "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-P2\\lindian_expansion_unobservable_intervals.csv": "b7ce893423123eee16c180950c7a06f5a99dd692f8ea0643b097d95552e3ffd8",
+    "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-P2\\lindian_expansion_event_backup.json": "e28e2d4e72285e7f0caed689a12a4da0e7a44ee3f9ee347e96456a54e587a08d",
+    "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-R1\\lindian_expansion_annotation_windows.csv": "208fb101c4de7b9fac388c592516a468f773a40af4adf082af462a7aaeee29b7",
+    "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-R1\\lindian_expansion_reference_events.csv": "b61ed67d7044f4de45d84dc5e82efb8baeef2cf7adcc4379831a3a66f61857f2",
+    "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-R1\\lindian_expansion_unobservable_intervals.csv": "b7ce893423123eee16c180950c7a06f5a99dd692f8ea0643b097d95552e3ffd8",
+    "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-R1\\lindian_expansion_event_backup.json": "6a94d1ac8ef9b3b3705b0c5344f3016cec9b384e66b77ba58e47f3269468749a"
+  },
+  "queue_sha256": "f7151b4c80663b0131ff498dd582b63ae05aa587efb379cb56855650cefe3d73",
+  "matcher_sha256": "eda7ea4b78a26216e92f9868e0548990cffe4419658d5bccfd073cb48e091cf3"
+}

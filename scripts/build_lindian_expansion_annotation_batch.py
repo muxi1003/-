@@ -43,22 +43,42 @@ def replace_exact(text: str, old: str, new: str, count: int = 1) -> str:
     return text.replace(old, new)
 
 
-def make_page(windows: list[dict]) -> str:
+def make_page(windows: list[dict], round_id: str, strict_full_window: bool = False) -> str:
     page = TEMPLATE.read_text(encoding="utf-8")
-    page = replace_exact(page, "R2", ROUND, 8)
-    page = replace_exact(page, "20260915.2", "20260924")
+    page = replace_exact(page, "R2", round_id, 8)
+    page = replace_exact(page, "20260915.2", round_id.split("-")[1])
     page = replace_exact(page, '<option value="lindian49">林甸49窗</option><option value="jiufu271">久福271窗</option>',
                          f'<option value="{COHORT}">林甸扩展批次</option>')
     page = replace_exact(page,
                          "x.cohort==='lindian49'?'林甸：存在历史算法接触，不能宣称原始盲法。':'久福：本轮接触情况请如实登记。'",
                          "'按原视频逐窗标注；同一牛或同一来源的窗口不能当作独立牛。算法输出未嵌入本页。'")
-    page = replace_exact(page, "cow-rr-event-LX-20260924-P1-20260914-v1",
-                         "cow-rr-event-LX-20260924-P1-batch-v1")
+    page = replace_exact(page, f"cow-rr-event-{round_id}-20260914-v1",
+                         f"cow-rr-event-{round_id}-batch-v1")
     page = replace_exact(page, "'annotation_windows.csv'", "'lindian_expansion_annotation_windows.csv'")
     page = replace_exact(page, "'reference_events.csv'", "'lindian_expansion_reference_events.csv'")
     page = replace_exact(page, "'unobservable_intervals.csv'", "'lindian_expansion_unobservable_intervals.csv'")
-    page = replace_exact(page, "event_reference_LX-20260924-P1_backup.json",
+    page = replace_exact(page, f"event_reference_{round_id}_backup.json",
                          "lindian_expansion_event_backup.json")
+    if strict_full_window:
+        page = replace_exact(page, '<label>本窗状态<select id="status">',
+                             '<label>整30秒逐次计数依据<select id="basis">'
+                             '<option value="">待核查</option>'
+                             '<option value="nose_visible_throughout">鼻部全程可见</option>'
+                             '<option value="independent_body_signal">离画期间有连续独立呼吸线索</option>'
+                             '<option value="none">存在不能计数的时段</option>'
+                             '</select></label><label>本窗状态<select id="status">')
+        page = replace_exact(page, "['notes','reference_notes']])$(id).value=x[key]",
+                             "['notes','reference_notes'],['basis','full_window_basis']])$(id).value=x[key]")
+        page = replace_exact(page, "$('status').onchange=()=>{",
+                             "$('basis').onchange=()=>{w().full_window_basis=$('basis').value;"
+                             "if(w().annotation_status==='complete')invalidateCompletion();save();list()};"
+                             "$('status').onchange=()=>{")
+        page = replace_exact(page, "w().annotation_status=s;updateCount();save();list();};",
+                             "if(s==='complete'&&!['nose_visible_throughout','independent_body_signal'].includes(w().full_window_basis)){"
+                             "msg('没有整30秒逐次计数依据，不能标完整。');$('status').value=w().annotation_status;return}"
+                             "if(s==='complete'&&w().full_window_basis==='independent_body_signal'&&!w().reference_notes.trim()){"
+                             "msg('请在备注中写明离画时可计数的独立线索和时段。');$('status').value=w().annotation_status;return}"
+                             "w().annotation_status=s;updateCount();save();list();};")
     payload = json.dumps(windows, ensure_ascii=False).replace("<", "\\u003c")
     return replace_exact(page, "__WINDOW_DATA__", payload)
 
@@ -67,9 +87,17 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--selection", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--annotation-round", default=ROUND)
+    parser.add_argument("--protocol", type=Path)
+    parser.add_argument("--strict-full-window", action="store_true",
+                        help="Require explicit full-30-second count basis before complete status")
     args = parser.parse_args()
+    if not args.annotation_round.startswith("LX-") or len(args.annotation_round.split("-")) != 3:
+        raise ValueError("Expected annotation round LX-YYYYMMDD-Pn")
     args.selection = args.selection.resolve(strict=True)
     args.output = args.output.resolve()
+    if args.protocol:
+        args.protocol = args.protocol.resolve(strict=True)
     if args.output.exists():
         raise FileExistsError(f"Refusing existing output: {args.output}")
     with args.selection.open(newline="", encoding="utf-8-sig") as stream:
@@ -129,13 +157,16 @@ def main() -> None:
                          "max_interframe_gap_seconds": segment["max_interframe_gap_seconds"],
                          "source_fps_metadata": fps, "clip_path": str(clip), "clip_sha256": digest(clip)})
         frame_map.extend({"video_id": uid, **row} for row in mapped)
-        windows.append({"window_id": uid + "_source30s", "video_id": uid, "video_path": str(clip),
+        window = {"window_id": uid + "_source30s", "video_id": uid, "video_path": str(clip),
                         "source_path": str(source), "source_start_seconds": str(segment["source_start_seconds"]),
-                        "duration_seconds": "30", "cohort": COHORT, "annotation_round": ROUND,
+                        "duration_seconds": "30", "cohort": COHORT, "annotation_round": args.annotation_round,
                         "annotator": "", "annotation_status": "pending", "manual_breath_count": "",
                         "event_definition": "expiration_peak", "predictions_hidden": "", "reference_notes": "",
                         "prior_algorithm_exposure": "not_verified; annotator must report", "browser_video_path": str(clip),
-                        "view_start_seconds": "0"})
+                        "view_start_seconds": "0"}
+        if args.strict_full_window:
+            window["full_window_basis"] = ""
+        windows.append(window)
         print(f"{uid}: {count} source frames, first valid PTS bin {segment['segment_id']}", flush=True)
 
     write_csv(args.output / "segments.csv", segments)
@@ -143,13 +174,17 @@ def main() -> None:
     write_csv(args.output / "annotation_windows_pending.csv", windows)
     if excluded:
         write_csv(args.output / "technical_exclusions.csv", excluded)
-    (args.output / "index.html").write_text(make_page(windows), encoding="utf-8")
+    (args.output / "index.html").write_text(
+        make_page(windows, args.annotation_round, strict_full_window=args.strict_full_window),
+        encoding="utf-8")
     (args.output / "manifest.json").write_text(json.dumps({
-        "annotation_round": ROUND, "cohort": COHORT, "source_candidates": len(selected),
+        "annotation_round": args.annotation_round, "cohort": COHORT, "source_candidates": len(selected),
         "clips": len(windows), "technical_exclusions": excluded,
         "selection_hash": digest(args.selection), "generator_hash": digest(Path(__file__)),
         "template_hash": digest(TEMPLATE), "source_time_window_seconds": 30,
+        "protocol_hash": digest(args.protocol) if args.protocol else None,
         "max_interframe_gap_seconds": 0.5, "max_edge_distance_seconds": 0.25,
+        "strict_full_window_reference": args.strict_full_window,
         "algorithm_predictions_read": False, "manual_truth_present": False,
         "warning": "Cows parsed from filenames only; YOLO training provenance not checked; not pristine holdout",
     }, ensure_ascii=False, indent=2), encoding="utf-8")

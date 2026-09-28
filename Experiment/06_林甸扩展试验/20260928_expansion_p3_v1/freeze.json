@@ -1,0 +1,21 @@
+{
+  "scope": "P3 same-farm existing-archive annotation queue; no RR predictions or truth consulted",
+  "selected_sources": 59,
+  "unique_filename_cows": 59,
+  "annotation_batches": {
+    "A": 30,
+    "B": 29
+  },
+  "selection": "per cow minimum SHA256 of UTF-8 relative raw path; A/B by SHA256 of casefold cow ID",
+  "window": "first PTS-contiguous 30 s, no visibility or error based replacement",
+  "inputs_sha256": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_confirmation_gate_v1\\p3_candidate_pool_unselected.csv": "e2413df99c006f7f2144d8324530df95a8e1e3575e820ef1272c8bcf780b4fdc",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260924_expansion_v2\\selected_sources.csv": "59e99ef1ea1fa3a84c9186eb8ba263b8f359cc16f21d5472094a9679ab88c3fc",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\selected_sources.csv": "d66a4fe91ba3e02caddc141a1983bebd96fc3631e198f187974488210fac172b",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_p3_pre_score_protocol.md": "ae427e3cb1f81790a2e880428d1e35aa8fbea9e4dc93fbd542a78a4347766077",
+    "E:\\real\\use_code\\yoloV8\\models\\best.pt": "b9c318b33323a2f3887bd786b3997a8c6cf6c2098ec8fdf0d1f9b91ad3b5fbe7",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\select_lindian_p3.py": "6686b92aa18ad93de766cd141d9e8507809f1600fffd167667a354fff0979ed1"
+  },
+  "selected_sources_sha256": "661c294ccafe4df0ceff11b4a7c6d3da356aee1cecc13a7e516daddf5b188a73",
+  "training_limit": "current directory IDs nonoverlap, historical per-image frozen membership unavailable"
+}

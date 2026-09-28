@@ -39,9 +39,21 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--per-day", type=int, default=2)
+    parser.add_argument("--exclude-selected", type=Path, help="Earlier selected_sources.csv; exclude its paths and cow IDs")
+    parser.add_argument("--protocol", type=Path, help="Frozen protocol to hash with the selection")
     args = parser.parse_args()
     if args.output.exists() or args.per_day < 1:
         raise ValueError("Output must be new and per-day positive")
+    excluded_paths, excluded_cows = set(), set()
+    if args.exclude_selected:
+        with args.exclude_selected.open(newline="", encoding="utf-8-sig") as stream:
+            previous = list(csv.DictReader(stream))
+        if not previous or any(not row["cow_id"] for row in previous):
+            raise ValueError("Previous selection is empty or has unknown cow IDs")
+        excluded_paths = {str(Path(row["source_path"]).resolve()).casefold() for row in previous}
+        excluded_cows = {row["cow_id"].casefold() for row in previous}
+    if args.protocol and not args.protocol.is_file():
+        raise FileNotFoundError(args.protocol)
 
     with MATCHED.open(newline="", encoding="utf-8-sig") as stream:
         matched = list(csv.DictReader(stream))
@@ -76,6 +88,8 @@ def main() -> None:
             known_cow = cow_id.casefold() in old_cows if cow_id else False
             if existing:
                 disposition = "known_source"
+            elif str(path.resolve()).casefold() in excluded_paths or cow_id.casefold() in excluded_cows:
+                disposition = "previous_batch_cow_or_source"
             elif "无法分辨" in str(path):
                 disposition = "source_identity_uncertain"
             elif not cow_id:
@@ -106,7 +120,7 @@ def main() -> None:
                 continue
             selected.append({"batch_order": len(selected) + 1, **row,
                              "source_sha256": file_hash(Path(row["source_path"])),
-                             "selection_reason": "two_per_day_new_cow_path_hash_order"})
+                             "selection_reason": f"{args.per_day}_per_day_new_cow_path_hash_order"})
             seen_cows.add(row["cow_id"].casefold())
             if sum(item["date"] == day for item in selected) == args.per_day:
                 break
@@ -116,12 +130,14 @@ def main() -> None:
     write_csv(args.output / "selected_sources.csv", selected)
     (args.output / "freeze.json").write_text(json.dumps({
         "date_dirs": DATE_DIRS, "inventory_count": len(inventory), "selection_count": len(selected),
-        "selection": "up to two per date; unknown/known cow, uncertain-identity directory, and old source excluded; deterministic path hash; metadata duration >=30.25 s",
+        "selection": f"up to {args.per_day} per date; unknown/known/previous-batch cow, uncertain-identity directory, and old source excluded; deterministic path hash; metadata duration >=30.25 s",
         "limits": ["Metadata duration is not verified PTS continuity", "Known source list covers the matched 73+49 input snapshot only",
                    "Cow IDs are parsed from filename n-suffix, not independently verified",
                    "YOLO training provenance has not been audited; this is not a pristine holdout",
                    "File-size equality is not used as proof of duplicate content"],
-        "input_hashes": {"matched_windows": file_hash(MATCHED), "generator": file_hash(Path(__file__))},
+        "input_hashes": {"matched_windows": file_hash(MATCHED), "generator": file_hash(Path(__file__)),
+                         "previous_selection": file_hash(args.exclude_selected) if args.exclude_selected else None,
+                         "protocol": file_hash(args.protocol) if args.protocol else None},
     }, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Inventory: {len(inventory)} sources; selected: {len(selected)}")
     for day in DATE_DIRS:

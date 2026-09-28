@@ -1,0 +1,26 @@
+{
+  "date_dirs": [
+    "0805",
+    "0806",
+    "0807",
+    "0808",
+    "0809",
+    "0810"
+  ],
+  "inventory_count": 293,
+  "selection_count": 16,
+  "selection": "up to 4 per date; unknown/known/previous-batch cow, uncertain-identity directory, and old source excluded; deterministic path hash; metadata duration >=30.25 s",
+  "limits": [
+    "Metadata duration is not verified PTS continuity",
+    "Known source list covers the matched 73+49 input snapshot only",
+    "Cow IDs are parsed from filename n-suffix, not independently verified",
+    "YOLO training provenance has not been audited; this is not a pristine holdout",
+    "File-size equality is not used as proof of duplicate content"
+  ],
+  "input_hashes": {
+    "matched_windows": "37f83d6747e16d31bbb58c3f69d8ab2c32bbf77a8975e14e27610ed60f1297fe",
+    "generator": "d01cb9d400933e3e8d7f74900c17e671863e49fdb4666becfde8edb345276b3f",
+    "previous_selection": "59e99ef1ea1fa3a84c9186eb8ba263b8f359cc16f21d5472094a9679ab88c3fc",
+    "protocol": "360fc3bbb5a9842af700a10472bf987284d2fe4880ef99c5583fb7cc77089acc"
+  }
+}

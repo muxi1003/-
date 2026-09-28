@@ -1,0 +1,4 @@
+﻿candidate,control,complete_windows,cluster_unit,delta_mae_bpm,ci95_low,ci95_high,bootstrap_draws,seed
+C1P0,C0P0,6,one source per distinct filename cow ID; unverified farm ID,0.0,-3.0,3.0,10000,20260928
+C0P1,C0P0,6,one source per distinct filename cow ID; unverified farm ID,0.6666666666666666,0.0,1.3333333333333333,10000,20260928
+C1P1,C0P0,6,one source per distinct filename cow ID; unverified farm ID,0.3333333333333333,-2.6666666666666665,3.0,10000,20260928

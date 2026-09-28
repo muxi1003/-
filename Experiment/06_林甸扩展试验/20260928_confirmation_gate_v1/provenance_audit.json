@@ -1,0 +1,38 @@
+{
+  "scored_model": {
+    "path": "E:\\real\\use_code\\yoloV8\\models\\best.pt",
+    "sha256": "b9c318b33323a2f3887bd786b3997a8c6cf6c2098ec8fdf0d1f9b91ad3b5fbe7"
+  },
+  "matching_training_run_checkpoint": {
+    "path": "E:\\real\\use_code\\yoloV8\\runs\\pose\\runs\\pose\\cow_nose_pose\\weights\\best.pt",
+    "sha256": "b9c318b33323a2f3887bd786b3997a8c6cf6c2098ec8fdf0d1f9b91ad3b5fbe7"
+  },
+  "different_legacy_checkpoint": {
+    "path": "E:\\real\\use_code\\yoloV8\\runs\\pose\\YOLO11n_cow_pose\\weights\\YOLO11n-best.pt",
+    "sha256": "12c3ad363a00e008ab6d8b859ac6134dbd6582bbfd9cc72afee6884ccd304a09"
+  },
+  "matching_run_args_path": "E:\\real\\use_code\\yoloV8\\runs\\pose\\runs\\pose\\cow_nose_pose\\args.yaml",
+  "matching_run_args_sha256": "565e6e33d6cf03b02451091cb189c91b01ab6746e65af906051ff482fb1cd9f0",
+  "matching_run_data_argument": "E:\\real\\use_code\\yoloV8\\Dataset_new\\dataset.yaml",
+  "matching_run_data_argument_exists_now": false,
+  "current_local_training_images": {
+    "train_count": 5991,
+    "val_count": 1497,
+    "train_group_count": 73,
+    "val_group_count": 73,
+    "train_val_group_overlap_count": 73
+  },
+  "p1_p2_filename_cow_group_direct_matches_current_layout": [],
+  "historical_per_image_training_membership": "not_proven_by_checkpoint_or_current_directory",
+  "farm_record_identity": "not_supplied; user confirms n suffix naming rule only",
+  "p2_complete_windows_for_count_blind_repeat": 6,
+  "remaining_p3_candidate_sources_not_yet_selected": 82,
+  "input_sha256": {
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260924_expansion_v2\\selected_sources.csv": "59e99ef1ea1fa3a84c9186eb8ba263b8f359cc16f21d5472094a9679ab88c3fc",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\selected_sources.csv": "d66a4fe91ba3e02caddc141a1983bebd96fc3631e198f187974488210fac172b",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\source_inventory.csv": "e3e7bce584ad122b42050047ab7907d300d3d3e54835736ffa89b6cd777c1385",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\annotation_batch_v1\\annotation_windows_pending.csv": "7acb54a37ff0eb516b995fc28d9f501215ec78f6a69e341d52c7a2410698d578",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\annotation_batch_v1\\segments.csv": "64da8a796b34b9d0584dfc3b8f38eefe5574db078ab8cff7999b5c5a2abc8982",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_lx_p2_v1\\reference_disposition.csv": "a1502fa5025d564bba8177e76077f3273bfa10740b46cb667add049545af6227"
+  }
+}

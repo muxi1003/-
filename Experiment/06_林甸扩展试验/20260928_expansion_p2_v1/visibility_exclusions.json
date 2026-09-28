@@ -1,0 +1,10 @@
+{
+  "annotation_round": "LX-20260928-P2",
+  "basis": "User confirmed on 2026-09-28 that only breaths while the nose was in camera view were marked, with no independent full-window count for these clips. This analysis-only override was frozen before P2 inference; original annotation exports are unchanged.",
+  "window_ids": [
+    "20230807T085441n210965_000_030_source30s",
+    "20230807T070239n4541_000_030_source30s",
+    "20230808T151456n210950_000_030_source30s",
+    "20230809T084407n210993_000_030_source30s"
+  ]
+}

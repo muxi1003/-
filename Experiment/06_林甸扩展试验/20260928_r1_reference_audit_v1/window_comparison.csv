@@ -1,0 +1,7 @@
+﻿window_id,video_id,p2_status,p2_count,r1_status,r1_count_visible,r1_full_window_basis,r1_unobservable_intervals,r1_count_minus_p2,time_matched_at_0p30s,p2_only_times_seconds,r1_only_times_seconds,event_time_match_scope,reference_issue
+20230809T074426n190587_000_030_source30s,20230809T074426n190587_000_030,complete,40,complete,40,nose_visible_throughout,0,0,40,,,paired_full_window,
+20230809T091946n196094_000_030_source30s,20230809T091946n196094_000_030,complete,17,complete,17,nose_visible_throughout,0,0,14,1.631;10.094;14.869,2.010;10.534;28.010,paired_full_window,
+20230808T155935n200674_000_030_source30s,20230808T155935n200674_000_030,complete,23,complete,23,nose_visible_throughout,0,0,22,22.591,28.450,paired_full_window,
+20230808T163447n200646_000_030_source30s,20230808T163447n200646_000_030,complete,24,complete,23,nose_visible_throughout,0,-1,22,18.032;25.611,6.416,paired_full_window,
+20230810T154633n170071_000_030_source30s,20230810T154633n170071_000_030,complete,16,partial,15,none,0,-1,12,5.347;19.308;23.676;29.610,5.042;9.709;18.998,partial_diagnostic_only,missing_unobservable_interval_bounds
+20230807T075433n0514_000_030_source30s,20230807T075433n0514_000_030,complete,19,complete,19,nose_visible_throughout,0,0,17,23.806;28.540,13.479;29.979,paired_full_window,
