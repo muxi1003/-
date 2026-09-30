@@ -1,0 +1,36 @@
+{
+  "segment_counts": {
+    "P1": 8,
+    "P2": 16,
+    "P3": 53,
+    "R3_jiufu": 12,
+    "anchored49": 49,
+    "short73": 73
+  },
+  "frame_counts": {
+    "P1": 2114,
+    "P2": 4227,
+    "P3": 13972,
+    "R3_jiufu": 3099,
+    "anchored49": 12741,
+    "short73": 7488
+  },
+  "group_counts": {
+    "jiufu/train": 10,
+    "jiufu/val": 2,
+    "lindian/train": 116,
+    "lindian/val": 29
+  },
+  "split_frames": {
+    "train": 34842,
+    "val": 8799
+  },
+  "split_labeled_frames": {
+    "train": 5990,
+    "val": 1498
+  },
+  "pending_review_frames": 36153,
+  "seed": 20260929,
+  "split_unit": "farm + numeric filename cow ID",
+  "status": "extracted; 36153 unlabeled frames pending manual review; no model training"
+}

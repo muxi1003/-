@@ -1,0 +1,6 @@
+{
+  "frames_sha256": "f251e9423386554c18bdf6683b678b92aed1214a5795bcd6c27e9c5f243eb405",
+  "segments_sha256": "f0584820a4c177472875be25474bb16551a44f0f8c55d2a7c831ff56f76f92c3",
+  "review_rows": 36153,
+  "semantics": "approved means each frame was manually inspected, including empty labels"
+}

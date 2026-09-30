@@ -1,0 +1,9 @@
+﻿video_id,window_id,arm,export_status,analysis_disposition,truth_count,predicted_count,truth_rr_bpm,predicted_rr_bpm,absolute_rr_error_bpm,exact_count,tp,fp,fn,event_f1,fusion,prominence,left_valid,right_valid
+20230809T084030n170020_030_060,20230809T084030n170020_030_060_source30s,C0P0,unobservable,count_only_claim_excluded_primary,36.0,24,72.0,48,24.0,False,,,,,framewise_max,0.05,189,198
+20230809T084030n170020_030_060,20230809T084030n170020_030_060_source30s,C1P0,unobservable,count_only_claim_excluded_primary,36.0,17,72.0,34,38.0,False,,,,,left,0.05,189,198
+20230809T084030n170020_030_060,20230809T084030n170020_030_060_source30s,C0P1,unobservable,count_only_claim_excluded_primary,36.0,24,72.0,48,24.0,False,,,,,framewise_max,0.035,189,198
+20230809T084030n170020_030_060,20230809T084030n170020_030_060_source30s,C1P1,unobservable,count_only_claim_excluded_primary,36.0,20,72.0,40,32.0,False,,,,,left,0.035,189,198
+20230809T073104n200792_060_090,20230809T073104n200792_060_090_source30s,C0P0,complete,count_only_claim_excluded_primary,36.0,31,72.0,62,10.0,False,,,,,framewise_max,0.05,37,263
+20230809T073104n200792_060_090,20230809T073104n200792_060_090_source30s,C1P0,complete,count_only_claim_excluded_primary,36.0,32,72.0,64,8.0,False,,,,,right,0.05,37,263
+20230809T073104n200792_060_090,20230809T073104n200792_060_090_source30s,C0P1,complete,count_only_claim_excluded_primary,36.0,30,72.0,60,12.0,False,,,,,framewise_max,0.035,37,263
+20230809T073104n200792_060_090,20230809T073104n200792_060_090_source30s,C1P1,complete,count_only_claim_excluded_primary,36.0,30,72.0,60,12.0,False,,,,,right,0.035,37,263

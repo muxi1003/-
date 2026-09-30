@@ -1,0 +1,3 @@
+ultralytics_config/
+training_runs/
+yolo_dataset_*/

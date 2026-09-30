@@ -1,0 +1,38 @@
+{
+  "source": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_audit_v1",
+  "user_decision": "2026-09-29: set 20230808T164507n211023_000_030 to partial",
+  "change": {
+    "window_id": "20230808T164507n211023_000_030_source30s",
+    "annotation_status": [
+      "pending",
+      "partial"
+    ],
+    "manual_breath_count": [
+      "",
+      "10"
+    ],
+    "reason": "10 confirmed visible events and two unobservable intervals; not full 30 s truth"
+  },
+  "other_annotation_rows_changed": false,
+  "source_files_sha256": {
+    "A/lindian_expansion_annotation_windows.csv": "74a227096ba80eb3a1db522b7b8d11800b49b0adc36cb6ae5e63003bfed693d7",
+    "A/lindian_expansion_reference_events.csv": "ecbe36c47e31d81de8abff8c17c2a8802dfd687b374a1bc9515945b8b9be77d4",
+    "A/lindian_expansion_unobservable_intervals.csv": "025d9f43f583e0867d165f1ec2869d6c234cd3f1b83fe2738cc9437d88ebface",
+    "A/lindian_expansion_event_backup.json": "f843454b77c9fbfd8e5e7726c25919d002f824d7fbd31fc9c9f8c9565a888667",
+    "B/lindian_expansion_annotation_windows.csv": "62d616bca9489b664056c10614095db719b9a63661c147f9106efaf3da91d616",
+    "B/lindian_expansion_reference_events.csv": "445b9106b9c1a3f780313b08fd9b8a28ac410a15723f51fb318e9b7444e6604d",
+    "B/lindian_expansion_unobservable_intervals.csv": "88be65e63c0134d88398e75c922a74782e8ce74f4cd53742770606512318572c",
+    "B/lindian_expansion_event_backup.json": "16879bad89a869402205ec80fdb5a94459e64372a060d86638da8ff67f9e7372"
+  },
+  "output_files_sha256": {
+    "A/lindian_expansion_annotation_windows.csv": "a1b718f4c3bdf579d7d27ac2ddd4a954ee4da0a32e191187feb6617d072dbce8",
+    "A/lindian_expansion_reference_events.csv": "ecbe36c47e31d81de8abff8c17c2a8802dfd687b374a1bc9515945b8b9be77d4",
+    "A/lindian_expansion_unobservable_intervals.csv": "025d9f43f583e0867d165f1ec2869d6c234cd3f1b83fe2738cc9437d88ebface",
+    "A/lindian_expansion_event_backup.json": "359f12e69f2b46a4a5ef48126ea6728e8cee324638cdc1bffa7d84e8ef3c1236",
+    "B/lindian_expansion_annotation_windows.csv": "62d616bca9489b664056c10614095db719b9a63661c147f9106efaf3da91d616",
+    "B/lindian_expansion_reference_events.csv": "445b9106b9c1a3f780313b08fd9b8a28ac410a15723f51fb318e9b7444e6604d",
+    "B/lindian_expansion_unobservable_intervals.csv": "88be65e63c0134d88398e75c922a74782e8ce74f4cd53742770606512318572c",
+    "B/lindian_expansion_event_backup.json": "16879bad89a869402205ec80fdb5a94459e64372a060d86638da8ff67f9e7372"
+  },
+  "note": "Structured re-export generated from frozen snapshot; not a new human peak annotation."
+}

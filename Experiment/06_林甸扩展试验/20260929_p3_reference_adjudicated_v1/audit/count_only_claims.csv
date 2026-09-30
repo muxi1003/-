@@ -1,0 +1,3 @@
+﻿batch,window_id,video_id,user_reported_30s_count,reported_rr_bpm,source,event_timing,frozen_primary_rr,event_f1,export_status,export_confirmed_events
+A,20230809T084030n170020_030_060_source30s,20230809T084030n170020_030_060,36,72,user_message_2026-09-29,unreliable_not_supplied,excluded,not_scored,unobservable,0
+B,20230809T073104n200792_060_090_source30s,20230809T073104n200792_060_090,36,72,user_message_2026-09-29,unreliable_not_supplied,excluded,not_scored,complete,0

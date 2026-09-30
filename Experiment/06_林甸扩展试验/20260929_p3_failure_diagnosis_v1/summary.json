@@ -1,0 +1,9 @@
+{
+  "scope": "eight preselected cases, frozen P3 outputs; no re-scoring",
+  "main_windows": 24,
+  "main_paired_absolute_error_sum_delta_bpm": 6.0,
+  "two_largest_regressions_sum_delta_bpm": 20.0,
+  "other_main_windows_sum_delta_bpm": -14.0,
+  "case_count": 8,
+  "changed_timed_events": 29
+}

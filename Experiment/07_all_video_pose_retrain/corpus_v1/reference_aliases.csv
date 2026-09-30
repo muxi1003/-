@@ -1,0 +1,19 @@
+﻿reference_round,reference_window_id,included_segment_id,reason
+R1,20230807T075433n0514_000_030,P2_20230807T075433n0514_000_030,"P2 reannotation, same source frames"
+R1,20230808T155935n200674_000_030,P2_20230808T155935n200674_000_030,"P2 reannotation, same source frames"
+R1,20230808T163447n200646_000_030,P2_20230808T163447n200646_000_030,"P2 reannotation, same source frames"
+R1,20230809T074426n190587_000_030,P2_20230809T074426n190587_000_030,"P2 reannotation, same source frames"
+R1,20230809T091946n196094_000_030,P2_20230809T091946n196094_000_030,"P2 reannotation, same source frames"
+R1,20230810T154633n170071_000_030,P2_20230810T154633n170071_000_030,"P2 reannotation, same source frames"
+R3_lindian,16170075_anchored_30s,A49_16170075,Already in anchored49
+R3_lindian,170272_anchored_30s,A49_170272,Already in anchored49
+R3_lindian,211070_anchored_30s,A49_211070,Already in anchored49
+R3_lindian,bs189556_anchored_30s,A49_bs189556,Already in anchored49
+R3_lindian,bs200794_anchored_30s,A49_bs200794,Already in anchored49
+R3_lindian,bs210974_anchored_30s,A49_bs210974,Already in anchored49
+R3_lindian,bs211063_anchored_30s,A49_bs211063,Already in anchored49
+R3_lindian,bs455_anchored_30s,A49_bs455,Already in anchored49
+R3_lindian,ns196527_anchored_30s,A49_ns196527,Already in anchored49
+R3_lindian,ns211095_anchored_30s,A49_ns211095,Already in anchored49
+R3_lindian,zs170416_anchored_30s,A49_zs170416,Already in anchored49
+R3_lindian,zs190621_anchored_30s,A49_zs190621,Already in anchored49

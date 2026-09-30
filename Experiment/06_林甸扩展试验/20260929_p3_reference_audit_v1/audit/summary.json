@@ -1,0 +1,58 @@
+{
+  "scope": "pre-prediction P3 annotation audit; no RR model outputs read",
+  "raw_export_sha256": [
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_audit_v1\\raw_A\\lindian_expansion_annotation_windows.csv",
+      "sha256": "74a227096ba80eb3a1db522b7b8d11800b49b0adc36cb6ae5e63003bfed693d7"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_audit_v1\\raw_A\\lindian_expansion_reference_events.csv",
+      "sha256": "ecbe36c47e31d81de8abff8c17c2a8802dfd687b374a1bc9515945b8b9be77d4"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_audit_v1\\raw_A\\lindian_expansion_unobservable_intervals.csv",
+      "sha256": "025d9f43f583e0867d165f1ec2869d6c234cd3f1b83fe2738cc9437d88ebface"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_audit_v1\\raw_A\\lindian_expansion_event_backup.json",
+      "sha256": "f843454b77c9fbfd8e5e7726c25919d002f824d7fbd31fc9c9f8c9565a888667"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_audit_v1\\raw_B\\lindian_expansion_annotation_windows.csv",
+      "sha256": "62d616bca9489b664056c10614095db719b9a63661c147f9106efaf3da91d616"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_audit_v1\\raw_B\\lindian_expansion_reference_events.csv",
+      "sha256": "445b9106b9c1a3f780313b08fd9b8a28ac410a15723f51fb318e9b7444e6604d"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_audit_v1\\raw_B\\lindian_expansion_unobservable_intervals.csv",
+      "sha256": "88be65e63c0134d88398e75c922a74782e8ce74f4cd53742770606512318572c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_audit_v1\\raw_B\\lindian_expansion_event_backup.json",
+      "sha256": "16879bad89a869402205ec80fdb5a94459e64372a060d86638da8ff67f9e7372"
+    }
+  ],
+  "export_status_counts": {
+    "complete": 25,
+    "unobservable": 10,
+    "partial": 17,
+    "pending": 1
+  },
+  "analysis_disposition_counts": {
+    "complete_primary": 24,
+    "not_primary": 27,
+    "count_only_claim_excluded_primary": 2
+  },
+  "issue_counts": {
+    "unobservable_basis_conflict": 5,
+    "partial_missing_unobservable_interval": 1,
+    "user_36_count_event_times_unreliable": 2,
+    "pending_status": 1,
+    "export_complete_zero_contradicts_user_count": 1
+  },
+  "frozen_primary_eligible": 24,
+  "selected_sources": 53,
+  "count_only_user_claims_not_primary": 2
+}
