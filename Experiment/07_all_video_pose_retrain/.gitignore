@@ -7,3 +7,6 @@ pipeline_logs/
 replay_lindian_*/temperatures/
 replay_lindian_*/curves/
 replay_lindian_*/plots/
+# 逐帧人工复核标签（约 33k 个 txt，仅 2.45MB 但文件数过多，拖慢 git status）
+# 8:2/分组划分以各 run 的 manifest 与 annotation_queue.csv 为权威记录，标签本体留在磁盘不入库
+corpus_v1/manual_labels/
