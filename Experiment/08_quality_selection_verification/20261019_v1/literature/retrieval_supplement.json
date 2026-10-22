@@ -1,0 +1,8 @@
+[
+  {
+    "id": "infant2020",
+    "original_failure_preserved": "SSLError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /europepmc/webservices/rest/PMC7510882/fullTextXML (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')))",
+    "status": "retrieval_failed",
+    "error": "500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7510882/fullTextXML"
+  }
+]

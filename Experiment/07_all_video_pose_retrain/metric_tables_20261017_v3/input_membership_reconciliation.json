@@ -1,0 +1,41 @@
+{
+  "user_supplied_review_table": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\corpus_v1\\manual_review_status.csv",
+  "reviewed_new_frames": 33054,
+  "reviewed_new_segment_count": 126,
+  "approved_new_frames_equal_replayed_new_frame_keys": true,
+  "review_frame_counts_by_cohort": {
+    "P1": 2114,
+    "P2": 4227,
+    "P3": 13972,
+    "anchored49": 12741
+  },
+  "actual_replayed_frame_counts_by_cohort": {
+    "P1": 2114,
+    "P2": 4227,
+    "P3": 13972,
+    "anchored49": 12741,
+    "short73": 7488
+  },
+  "anchored_frame_directories": 50,
+  "anchored_replayed_segments": 49,
+  "anchored_directories_not_in_replay": [
+    "bs1479"
+  ],
+  "example": {
+    "old_id": "S73_16170075",
+    "old_frames": 124,
+    "new_30s_id": "A49_16170075",
+    "new_30s_frames": 260,
+    "review_json_count": 260,
+    "materialized_training_image_matches_source": true,
+    "materialized_training_label_matches_reviewed_label": true
+  },
+  "ppt_path": "E:\\real\\汇报+论文\\组会\\第三次工作汇报材料\\cow_rr_group_meeting_20260908_v4.pptx",
+  "ppt_sha256": "fc789b5923fb1ed7430002496316ac6b2c86d7545001de1aa5465399b0c149aa",
+  "ppt_slide_text_evidence": {
+    "4": "数据与证据边界 | 三套数据不能合并成一个统一精度结论 | 分析集 | n | 窗口 | 参考状态 | 用途 | 主要限制 | B73-P 内部集 | 73 | 6–20 s | 已有人工计数 | 复现与内部消融 | 不是统一30秒；参数曾在同集调整 | 林甸 anchored30 | 49 | 约30 s | 39 completed / 10 uncertain | 窗口稳定性与敏感性 | 与73数据有关联；不能当外场 | 久福牧场开发集 | 94 | 分段视频 | 单标注者，开发性 | 跨牧场域偏移压力测试 | 不是冻结、双盲、确认性外测 | 73 | 内部视频：当前paper_repro口径 | 49 | 林甸约30秒窗口 | 39 | 可靠标注主分析 | 94 | 久福开发性片段 | 必须分账：0.928992与0.946595是不同73视频结果快照；49全量与39可靠主分析也必须分别报告。 | 来源：docs/cow_rr_project_log.md，B73-I、B73-P、B49-MA、B49-MP | 04",
+    "12": "73段内部视频结果 | B73-P：当前已保存paper_repro口径，窗口时长6–20秒 | 0.946595 | RR R² | 1.6917 | MAE（次/min） | 3.0064 | RMSE（次/min） | 51 / 73 | 完全计数正确 | 73 / 73 计数误差不超过1次 | 平均计数准确度 96.672% | 文件：Dataset_new/72video/al_images/paper_repro_metrics.csv；R²为identity-line决定系数 | 12",
+    "16": "三项可汇报的创新 | 每项创新均说明应用位置、计算表达和当前证据等级 | 1 观测约束的短缺口修复 | 位置：左右温度序列之后、候选曲线构造之前 | |G|≤3；sₐ=sᵦ=detected | ‖pᵦ−pₐ‖₂≤r | G是内部缺口；s是观测来源；p是鼻孔关键点；r是ROI半径。只补短内部缺失。 | 证据：54段问题子集2段改善、52段不变、0段恶化 | 2 曲线级双鼻孔质量选择 | 位置：左右归一化之后、MAF和峰值检测之前 | C={L,R,Mean,Max,Min} | Q(c)=2A−0.5CV−2M；c*=arg max Q(c) | A是幅值；CV是峰间隔变异；M是缺失比例。算法选择整条候选曲线，避免逐帧切换阶跃。 | 证据：当前73段选择Left 30、Right 25、Min 14；仍需单因素对照 | 3 可审计的峰值解码 | 位置：融合曲线之后、呼吸率换算之前 | Pfinal=Merge(Pinitial)+Eedge | RR=60×|Pfinal|/T | Pinitial是初始峰；Pfinal是最终峰；Eedge是满足条件的端点事件。每个增删峰保留帧号和原因。 | 证据：73段51段完全计数正确，全部误差不超过1次 | YOLO11、随机森林和固定20像素ROI属于复现基础；创新集中在温度序列可靠性与呼吸事件决策 | 16"
+  },
+  "interpretation": "Reviewed 30s frames and labels were used; pipeline also retains old73 as a separate cohort. Do not infer source from R2."
+}

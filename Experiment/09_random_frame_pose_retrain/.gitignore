@@ -1,0 +1,10 @@
+# 与 Experiment/07 同口径：只保留协议、清单、指标与脚本。
+# 保留 frame_split_manifest.csv 作为 8:2 划分的唯一权威记录，故不纳入转换后的标签。
+*/dataset/images/
+*/dataset/labels/
+dataset_preparation_interrupted_*/
+*/training_runs/
+*/runtime/
+*/rr_replay/temperatures/
+*/rr_replay/curves/
+*.cache

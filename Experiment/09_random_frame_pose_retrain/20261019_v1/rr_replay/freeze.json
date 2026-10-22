@@ -1,0 +1,621 @@
+{
+  "files": [
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260924-P1\\lindian_expansion_annotation_windows.csv",
+      "sha256": "105835f5709edb21261881e33bd62fa05598b543941d96d60193659fda471c17"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260924-P1\\lindian_expansion_event_backup.json",
+      "sha256": "4f831b17ace5c48fc650c7f5e28d1f06182f5524f70976c538ea2998767b4f2f"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260924-P1\\lindian_expansion_reference_events.csv",
+      "sha256": "36edd18d63a5d4a5e7f9bb6499a39d03621d6ec4b1427477ce896a6f48e13d54"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260924-P1\\lindian_expansion_unobservable_intervals.csv",
+      "sha256": "b7ce893423123eee16c180950c7a06f5a99dd692f8ea0643b097d95552e3ffd8"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-P2\\lindian_expansion_annotation_windows.csv",
+      "sha256": "4731da8bf5de90a3ae81d5052f13b902bb85260c877df58503e68f28b28e0ee5"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-P2\\lindian_expansion_event_backup.json",
+      "sha256": "e28e2d4e72285e7f0caed689a12a4da0e7a44ee3f9ee347e96456a54e587a08d"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-P2\\lindian_expansion_reference_events.csv",
+      "sha256": "ae8802309da3e58720084b8edbe5f0a1f682a1fee8edb093812d011dc27ae1f3"
+    },
+    {
+      "path": "C:\\Users\\muxi\\Desktop\\实验\\呼吸事件标注 LX-20260928-P2\\lindian_expansion_unobservable_intervals.csv",
+      "sha256": "b7ce893423123eee16c180950c7a06f5a99dd692f8ea0643b097d95552e3ffd8"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Dataset_new\\72video\\al_images\\innovation_repro_summary.csv",
+      "sha256": "51a3acc2b02729a4d49fc298100d6ef1e0d30449ae39658415e99c933275b1fe"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\01_同口径消融\\input_snapshots\\20260909_v1\\matched_windows.csv",
+      "sha256": "37f83d6747e16d31bbb58c3f69d8ab2c32bbf77a8975e14e27610ed60f1297fe"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\reference_tools.py",
+      "sha256": "eda7ea4b78a26216e92f9868e0548990cffe4419658d5bccfd073cb48e091cf3"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\lindian49\\annotation_windows.csv",
+      "sha256": "7164be3aa7f440be2c899d06ad6f74c6c01a0440617057c579b89e283d955259"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\lindian49\\reference_events.csv",
+      "sha256": "e7b8096c800a56ddc4894baf5885d0987c3c1c1425d140d00465df0fb865fb3c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\submissions\\20260917_r2_v2\\lindian_frame_time_bindings.csv",
+      "sha256": "6a0fb2a12afc01d43d9c30850eabdaf3e9d61986006eab6864a00dc8305cde5b"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\05_方法核证\\run.py",
+      "sha256": "385cc92e342bd4da5e944248fc58870d014e021b2d3b9b25786c1a5f40c08139"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260924_expansion_v2\\annotation_batch_v2\\frame_time_map.csv",
+      "sha256": "f48f18b072818c5fa47a1b298610c268f77e80b53e27c904b653accaf1c0db19"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260924_expansion_v2\\annotation_batch_v2\\segments.csv",
+      "sha256": "67779871a78e8ba0ca938c504eba568e3852ff556267e0083bdd1bf8e22e8525"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\annotation_batch_v1\\frame_time_map.csv",
+      "sha256": "4c6ed6f0714413b8f4f98015b481a2a80c9fd5f95898d2cc33ddcf87180331a4"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\annotation_batch_v1\\manifest.json",
+      "sha256": "466e1ab1b3f5d2abe3abb84915d5ebcbdb121bcf3b35c532558ff3a15c1198cb"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\annotation_batch_v1\\segments.csv",
+      "sha256": "64da8a796b34b9d0584dfc3b8f38eefe5574db078ab8cff7999b5c5a2abc8982"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\freeze.json",
+      "sha256": "e71c8f12541e97ad662e94a01e32932fd0084ddbcaf181384368c4a940be5243"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\selected_sources.csv",
+      "sha256": "d66a4fe91ba3e02caddc141a1983bebd96fc3631e198f187974488210fac172b"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p2_v1\\visibility_exclusions.json",
+      "sha256": "74ba1771882a4a1258bb7fba60a6bd770c785697b825bb547eba4c28d395576f"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p3_v2\\annotation_batch_A\\frame_time_map.csv",
+      "sha256": "e7ca47414c0533f1fd648f432eeecaa770963687428a9e374bb8017d694d330a"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p3_v2\\annotation_batch_A\\manifest.json",
+      "sha256": "135f232a7729fb855b80894bd6bd526e800e2b45a80bacc84803c40556199be2"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p3_v2\\annotation_batch_A\\segments.csv",
+      "sha256": "7e111165ae863f610f2284da360f2e462a6105baeb7709c9cb06bb46e2d8455f"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p3_v2\\annotation_batch_B\\frame_time_map.csv",
+      "sha256": "1a1003e08aea39678af3c6000b2639e587a6f0deb7dc06c9a2949991fb978ca9"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p3_v2\\annotation_batch_B\\manifest.json",
+      "sha256": "f71db970b7fcccf55975386f9d61925d60648a4d793b600e1545ad991ea90f78"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p3_v2\\annotation_batch_B\\segments.csv",
+      "sha256": "6e5558d26ac4fea1a4e6d1c0e7caca4c722908d485cef6d6c27e2fb50bd5bc3a"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p3_v2\\selected_sources_A.csv",
+      "sha256": "a10f5888c83530b6fcb9b29db6b11a37d99e8ab5ab22d0b08221d4b90eaf342b"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_expansion_p3_v2\\selected_sources_B.csv",
+      "sha256": "bfedd2058b641550b16fbdfba18f56551580f2d3f80310711f911a8fde0efcd7"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_p2_rr_mae_protocol.md",
+      "sha256": "360fc3bbb5a9842af700a10472bf987284d2fe4880ef99c5583fb7cc77089acc"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260928_p3_pre_score_protocol_v2.md",
+      "sha256": "8b59082f7e354b3c0ce0c3269272e1bf55b5a46c7b116cf926133657d284fa32"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\adjudication.json",
+      "sha256": "0c11613e0f8b23c7a972f2b3f737b223f1e98363ed1543e949b88f894f3d9819"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\audit\\count_only_claims.csv",
+      "sha256": "4d239a61b4375abb1e210c0b04e85159ea0cee92aed058f5472bbbdd3ed071cd"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\audit\\summary.json",
+      "sha256": "25f32f5b899f574ada0bac03366311194fe66fd41683a0ddb7ba9e14edddf960"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\audit\\window_audit.csv",
+      "sha256": "938ba6b4b7d8a4fd64af4f93af9d5cb8b8d42dc4596d24b76ae935698ba4e53d"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\raw_A\\lindian_expansion_annotation_windows.csv",
+      "sha256": "a1b718f4c3bdf579d7d27ac2ddd4a954ee4da0a32e191187feb6617d072dbce8"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\raw_A\\lindian_expansion_event_backup.json",
+      "sha256": "359f12e69f2b46a4a5ef48126ea6728e8cee324638cdc1bffa7d84e8ef3c1236"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\raw_A\\lindian_expansion_reference_events.csv",
+      "sha256": "ecbe36c47e31d81de8abff8c17c2a8802dfd687b374a1bc9515945b8b9be77d4"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\raw_A\\lindian_expansion_unobservable_intervals.csv",
+      "sha256": "025d9f43f583e0867d165f1ec2869d6c234cd3f1b83fe2738cc9437d88ebface"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\raw_B\\lindian_expansion_annotation_windows.csv",
+      "sha256": "62d616bca9489b664056c10614095db719b9a63661c147f9106efaf3da91d616"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\raw_B\\lindian_expansion_event_backup.json",
+      "sha256": "16879bad89a869402205ec80fdb5a94459e64372a060d86638da8ff67f9e7372"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\raw_B\\lindian_expansion_reference_events.csv",
+      "sha256": "445b9106b9c1a3f780313b08fd9b8a28ac410a15723f51fb318e9b7444e6604d"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\20260929_p3_reference_adjudicated_v1\\raw_B\\lindian_expansion_unobservable_intervals.csv",
+      "sha256": "88be65e63c0134d88398e75c922a74782e8ce74f4cd53742770606512318572c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\score_lindian_expansion.py",
+      "sha256": "7b25b5ad3785c74e560a4b565a378cd2321cbf80fe56b8655ae2c0f07030f485"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\score_lindian_expansion_p2.py",
+      "sha256": "68f21b3fc89b68a2486311097767863c1c96e3d5638775dc5338f507b6170edd"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\06_林甸扩展试验\\score_lindian_expansion_p3.py",
+      "sha256": "e07d535cde8fd7e1d1f9b840853876ecdb5ce02dd8a47460fff615c88e70c08b"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\corpus_v1\\frames.csv",
+      "sha256": "f251e9423386554c18bdf6683b678b92aed1214a5795bcd6c27e9c5f243eb405"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\corpus_v1\\segments.csv",
+      "sha256": "f0584820a4c177472875be25474bb16551a44f0f8c55d2a7c831ff56f76f92c3"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\frame_times.csv",
+      "sha256": "96f753825318e968ecabcc73f65e40941d6a36ba892e734d09f58281ed4d9351"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\frames.csv",
+      "sha256": "5316632e098c14eaafe8acc0e85289798d8c93d6b62497d1e44c841f354bb277"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\predictions.csv",
+      "sha256": "108f98623c0ece9882bd6e75fe401a131f49183aab321197a36a2831bcd707b8"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\reference_events.csv",
+      "sha256": "a0f490ac25edd71ceecac268ae109c80d99204f227e60460a19dccd8b9b27be3"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\reference_registry.csv",
+      "sha256": "95110e724cb2eefe3156371f8cb7a789b250ba71c1449da49be84a7d2e56904c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_reviewed_corpus.py",
+      "sha256": "292407918391d7e10c066f20f181e658ef04aa896eeab0209d37067a73640325"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\train_grouped_pose.py",
+      "sha256": "9662612f4d3f8493842a037d6f69a9ab01ef6f27580a76d0c3b52ddb336165d2"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\yolo_dataset_lindian_20261016_v1\\label_hashes.csv",
+      "sha256": "3a9b2845c1168d5aa49b9fe91b92e8e44892882a629ffd74bb91f39358611c2c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\yolo_dataset_lindian_20261016_v1\\READY.json",
+      "sha256": "e1568df218531ec43437f30270594692c657e6afcbced455f9a9479869c22826"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\PROTOCOL.md",
+      "sha256": "27774545c8a64dc2fdc8de84f561d26e39bbf878fb5ac427cbe361b5ec65a915"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\run.py",
+      "sha256": "1c80dfe1ba73c7410f0df2c8eb733fb6fab11c401e4dd2499e7f8a24867fada0"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\test_run.py",
+      "sha256": "a55fdba3bf22edce1993f834861a1bed1cf1e559c46405b33bf0ba33488e6a9c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\models\\best.pt",
+      "sha256": "b9c318b33323a2f3887bd786b3997a8c6cf6c2098ec8fdf0d1f9b91ad3b5fbe7"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\scripts\\paper_repro_rr.py",
+      "sha256": "3c211f52fe3f1a6a3104a38f2b275cdf40fe5f21ff4ca042052cee8424947ec9"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\temperature_extraction\\getRandomForestRegress\\clf_model_RGB_20240906.pkl",
+      "sha256": "26b8e7dd25afb7780798f3609aaf16592089598157d58e11bc1e1dffd7bb03d5"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\yolo11n-pose.pt",
+      "sha256": "869e83fcdffdc7371fa4e34cd8e51c838cc729571d1635e5141e3075e9319dc0"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍新产牛\\ff\\20230807T074242n200891.MP4",
+      "sha256": "68f93b26d929c572273faacfd463a11af261aee7649ad6f2a0d65a3ff53b7a5a"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍病牛区\\1\\20230807T065625n170296fei.MP4",
+      "sha256": "8934a6b15d51ab81510f393ef946a591073aaf6c54c3dffadc3edfbb48a8b4e2"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍病牛区\\1\\20230807T070239n4541.MP4",
+      "sha256": "1f05ae0510217c004543b940ff7c0e15007ef9f07149d6481b3e4db2ae6db8b4"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍病牛区\\1\\20230807T085014n2106.MP4",
+      "sha256": "dfc1d07fb4a157496cc3ac5ce79f1d4b6875dc115d1e507a78638d07759cf233"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍病牛区\\1\\20230807T085441n210965.MP4",
+      "sha256": "66e1f294762b8295c269fc63a744a4247f130b3cdc0a6e3dfbb0ce18411acb4b"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B三舍病牛区\\20230807T075433n0514\\20230807T075433n0514.MP4",
+      "sha256": "6fee4d5516f5f9d2e4d4445a510cc254cf8e3dedd02d100cde18d9ed08aa9a9a"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0807\\上午\\B二舍正常0938\\20230807T093702n196376.MP4",
+      "sha256": "ed8bc89bd7187957fbc2dc81d32e45386d5630b17198ab92d5ace4606118bc8e"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\B三舍病牛区\\20230808T082508n205256\\20230808T082508n205256.MP4",
+      "sha256": "90e8ff23eb984a65311878a88980009655c5471ed985bbbc5d8bee732fe3baf1"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\B三舍病牛区\\20230808T083831n0748\\20230808T083831n0748.MP4",
+      "sha256": "25d084c8f257607e2926dac4ba526df8476a48d848034af803af03c93ce822b2"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\B三舍病牛区\\20230808T085434n16110514\\20230808T085434n16110514.MP4",
+      "sha256": "6d0557716a8acd2f50a214f74c05d5814479b845563cff1d94d5dd42534b8895"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\B三舍病牛区\\20230808T090855n211036\\20230808T090855n211036.MP4",
+      "sha256": "1e2bfa568b66c7fdb18697c2815c3839868058469ea31a79a3a78415a707239f"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\B三舍病牛区\\20230808T092117n190514\\20230808T092117n190514.MP4",
+      "sha256": "b448bde03ebaa697bc33f07cc72abf5a5aa64a0c1533170e5b3a9c021fcc026f"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\B三舍病牛区\\20230808T093014n211075\\20230808T093014n211075.MP4",
+      "sha256": "e844b74512a3ff5a3f37df44c475ef62dd8bf026d394c51a05bebef180d77d3c"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\B三舍病牛区\\ff\\20230808T085813n190450.MP4",
+      "sha256": "be5c8f6969681f2ea2325dd88fc3cbc13f6ed589b6cce5ed5f89ce291cdd5242"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\三舍新产区\\B视频\\20230808T071449n211035\\20230808T071449n211035.MP4",
+      "sha256": "ee4a0f442c7e050c51744c9f07d2e380b2d5586669c01aabf6cb6be1f19f1ed1"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\上午\\三舍新产区\\B视频\\ff\\20230808T071028n196653.MP4",
+      "sha256": "75e9eb39c3a5287f927c9f6836b14454ee48a0f388e367154eb053160db4db15"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T160944n200636\\20230808T160944n200636.MP4",
+      "sha256": "761e1b9b0e3dc6a72b715663330fc5b57ee7f0ce38afe6f276f84db7fe3a3f79"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T161329n16110075\\20230808T161329n16110075.MP4",
+      "sha256": "b55be6cb46d9b66cbcd42bd263cfc68265b73f6760255a413767a7757c516a11"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T161706n211078\\20230808T161706n211078.MP4",
+      "sha256": "eed11942b8c321a2d61da2114bf61bb0dd08d2fd99a0044735628662c6d85172"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T163059n170203\\20230808T163059n170203.MP4",
+      "sha256": "db81ac524e0bfc64c6209153b9cc8cecff46117c81e56feb80cf94b650172130"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T164507n211023\\20230808T164507n211023.MP4",
+      "sha256": "750c488e8d28a4a0909d6ea854ffce353a4a062c8be3db4a279069b5198b2ab8"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T165332n211053\\20230808T165332n211053.MP4",
+      "sha256": "98cbf821ebeb49b6799d9e9746699ab366743d01d83bdae473d3eea2fcbcc0c4"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T170018n164157\\20230808T170018n164157.MP4",
+      "sha256": "f2e33efd41ee67210b0fee7d0952b98c22b65005f5bebc405745461667d6d06a"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T170359n197250\\20230808T170359n197250.MP4",
+      "sha256": "026a7769f02b3b5882c6fe9ea7d3a9d6849a2e2ef6bde7e8876147844ba238ab"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\20230808T171039n164189\\20230808T171039n164189.MP4",
+      "sha256": "9b898a1c70b0c88568007c911c6fdb51a999ec94a289b5820d7f326ff8aa3afa"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\ff\\20230808T162719n343.MP4",
+      "sha256": "42f14988b8cc9cd66beb48d070fc19a23fe154600ecbb9874b93b38671827376"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\ff\\20230808T163447n200646.MP4",
+      "sha256": "f0353c12498274ec8319b3bde8d8ac07228026a20a4c2fe525ec757e17858996"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\ff\\20230808T164124n436.MP4",
+      "sha256": "fb6a508a9028714d679d6dd0617dd074df229648b28d82afa0763751e47380eb"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\ff\\20230808T164842n200742.MP4",
+      "sha256": "86d7210fa576d883c9bec82de96f3c1da7dca092a79d7bdf13cbe3fb6775073f"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B一号舍高产泌乳下午0410采\\ff\\20230808T171902n200851.MP4",
+      "sha256": "c5baefb4c18e19208042a6165dd2d8998657ccb13d4b611b2d68e3fe458be503"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B下午三号舍病牛区\\20230808T151456n210950\\20230808T151456n210950.MP4",
+      "sha256": "683678f023eb42b7129031d3729b44b34c7519d6198abc6b913f02cfa9522a6d"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B下午三号舍病牛区\\20230808T152238n177301\\20230808T152238n177301.MP4",
+      "sha256": "a990143f0bf4115e65656068183a0d43eae1f2cab770f88df3c27dd1382b8273"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0808\\下午\\B下午三号舍病牛区\\20230808T155935n200674\\20230808T155935n200674.MP4",
+      "sha256": "9daec9848ebd7fe2d8dae355e5a07b734a5a493dcfd7ab8a907d0d3952410a40"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍新产区\\20230809T071543n6527\\20230809T071543n6527.MP4",
+      "sha256": "94a664769fd258a36425443288c9e6bc54260b58b29048e63ca2c6edf592a38c"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍新产区\\20230809T073104n200792\\20230809T073104n200792.MP4",
+      "sha256": "ef5f04a0dc2b4642ef071b223fccae3a03ab0a4439c0996cbcae4669cdb62078"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍新产区\\20230809T074426n190587\\20230809T074426n190587.MP4",
+      "sha256": "9d2b73b5999faba7507a38752c537b03967402a2d2522e4ba4a3948d5c20cc13"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\20230809T080304n170240\\20230809T080304n170240.MP4",
+      "sha256": "10b74274e4a72aab26a9a8799de1464478251443df8213675854c28073d328f2"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\20230809T081148n200700\\20230809T081148n200700.MP4",
+      "sha256": "5120168fda89c98bcc604187a16cd27df4b8ba3f1ae66d902eb101bfa5d7c5b8"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\20230809T082528n170320\\20230809T082528n170320.MP4",
+      "sha256": "fe60fee2c1f63b4a956ec04bb35973b5b6b983c5a1776037e51a8061d50817b5"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\20230809T082820n16110673\\20230809T082820n16110673.MP4",
+      "sha256": "94868a80b236c53b98bf8a57fd7720ec63537123dcdfea3f0db1cedf5ea8efa4"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\20230809T084030n170020\\20230809T084030n170020.MP4",
+      "sha256": "64062e9bdc3817d78b5067ec169ef2081e08dc89a2edbf18bdf38e01c7e1ae2e"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\20230809T084642n197580\\20230809T084642n197580.MP4",
+      "sha256": "d5218d6c33e3e37c2bdc26d54ff61a03b12731f81f5fbc8b6f418a09a78b7109"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\ff\\20230809T080543n200798.MP4",
+      "sha256": "348827b68e6f89bb8d81d4dfa980d480a1097e8bad96acc202f0604047496cf1"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\ff\\20230809T084407n210993.MP4",
+      "sha256": "9e33f2f5ff69fb93a20fc16ee08149aee6e124a8377d9b8b6970f6867939cc41"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\ff\\20230809T085629n200702.MP4",
+      "sha256": "db000e53fa2f1069018a269e4f2ea2f162f592946dbc76b2c813d196d165394b"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B三号舍病牛区\\ff\\20230809T090350n211043.MP4",
+      "sha256": "f386c67276dea0ed25b4dec29ac9ed52755b35afa6097a23ef806d4f1b85843d"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B二号舍外侧\\20230809T091946n196094\\20230809T091946n196094.MP4",
+      "sha256": "112588346174de3df9793a935fd09766097f9373ee83507abaca400f20152e04"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B二号舍外侧\\20230809T092245n190601\\20230809T092245n190601.MP4",
+      "sha256": "fc39aa5e4c72ec3607c48ec38652ffcfdc95c3f10ae351a2b9bda9a558b78d2b"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B二号舍外侧\\20230809T092540n205230\\20230809T092540n205230.MP4",
+      "sha256": "965f4bb7cc73b850594866453af32dd41fa29e32a9d91cdf34a58276b55b63f8"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B二号舍外侧\\20230809T094015n170097\\20230809T094015n170097.MP4",
+      "sha256": "87dc985d81a5781e2c39703eb33e561fd22259ef29ea2d9885bdd4882d8abb1c"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B二号舍外侧\\ff\\20230809T091711n200927.MP4",
+      "sha256": "d35aa76cf33dc9a616f6323473d1e247ba9f1f5ff2b6b218f621d688c40aad5a"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0809\\上午\\B二号舍外侧\\ff\\20230809T093655n16110010.MP4",
+      "sha256": "34c6d5ad9858cd15a7561ae14bfc771fd1b4660836458b8fd79e5721455a5d71"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\上午\\B三号舍新产区\\20230810T070609n16110432\\20230810T070609n16110432.MP4",
+      "sha256": "ca78aa442ec030ac50bef20c8d9b38fb78546023be364303f512e026e5098733"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\上午\\B三号舍新产区\\20230810T071310n211109\\20230810T071310n211109.MP4",
+      "sha256": "b9783b32ab441b509248b3d7a48194f8bc21e86eef656786c6b532416a1d5180"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\上午\\B三号舍新产区\\20230810T075510n211153\\20230810T075510n211153.MP4",
+      "sha256": "6ce68f423adcc5df06c91f565ea75ca3905e4c89f3d59e9b3a506da62aa7413d"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\上午\\B三号舍新产区\\ff\\20230810T073708n211158.MP4",
+      "sha256": "4e25bb5ee920bff58435f3ef3fc3319dc229d5bd4ebc0e6a248eb72d359a664f"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\上午\\G二号舍青年牛\\20230810T101944n221230.MP4",
+      "sha256": "a54334725e10d7db67281e518a91b6fdca80c9235a36c4ee61e0dc744d7d8e9e"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\上午\\G二号舍青年牛\\20230810T103638n221332.MP4",
+      "sha256": "9fb1fbc68b06ec4c2f5c75fee5af8aa8cf7c7ad9ea1578f67e3d7a29f862865a"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍新牛区\\20230810T151043n196647\\20230810T151043n196647.MP4",
+      "sha256": "3ab1e61c6bda7067a6a4692d991f876d7decf682e41e20f4b2390c7d2319949e"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍新牛区\\FF\\20230810T152513n210030.MP4",
+      "sha256": "38b85ad113ab032e8c91137c96e6e07c45cc13b82d867cd4b2f88c4e348f593e"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\20230810T145443n170131\\20230810T145443n170131.MP4",
+      "sha256": "db9a6b4db63048f086c8c41354f9841271afd1e87defb880e05568ee385fa715"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\20230810T145819n16110251\\20230810T145819n16110251.MP4",
+      "sha256": "d8bd68bdfe49aaf2907f3d76a2c0b5abd54501b86fa023f495ad1883807b141d"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\20230810T150031n190455\\20230810T150031n190455.MP4",
+      "sha256": "a7f9103b8577e0373584215cd2a699b049dbf5c13857061021ddc5afc8734a6b"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\20230810T152946n16110463\\20230810T152946n16110463.MP4",
+      "sha256": "e0407e774c250cc133822cdfe13136910c4d1f63b49be9f845aacc121cd78dea"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\20230810T154021n189417\\20230810T154021n189417.MP4",
+      "sha256": "490cfd1d291fef99abac565ee55fdb2a9fa34ddddf9c1b515d1df4a8ec598f7e"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\20230810T155021n170355\\20230810T155021n170355.MP4",
+      "sha256": "4fd020f7c4533a12a4a256494f2930499fd350acccca2721c1ce0dd40fe15899"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\20230810T161526n189556\\20230810T161526n189556.MP4",
+      "sha256": "5f9808e2e96f055bcf13ce72091390965bd482d25048a4291beae21948fd1c22"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\ff\\20230810T154633n170071.MP4",
+      "sha256": "2d0f2002b8a48b5515ffb923b5e5809a395e663c1b29f57cb30d07eac95134b5"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B三号舍病牛区\\ff\\20230810T160043n310.MP4",
+      "sha256": "419ec77aa8ca74e0aacae4e8662205f0d3db24332aa292849c8622ba1ef0552b"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B二号舍青年牛\\20230810T164018n221381\\20230810T164018n221381.MP4",
+      "sha256": "df57ece309a713efb14e2d711af8e550cc251d7c09d7f2ab2db5c0759c1cb00f"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B二号舍青年牛\\20230810T164658n221284\\20230810T164658n221284.MP4",
+      "sha256": "12971165542ef50ff1978ea996a10532a0530c17a6527fafcbe2a99eff73599d"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B二号舍青年牛\\20230810T165048n221270\\20230810T165048n221270.MP4",
+      "sha256": "204fa4872b157226e553be3ab628f0399a6e64b0c5fdb537018d9f301ccd0639"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B二号舍青年牛\\20230810T165321n221323\\20230810T165321n221323.MP4",
+      "sha256": "4fe258f00a4c97d3f26a6944a62954bfd275bed55451c536a7fcfe06390cd93b"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B二号舍青年牛\\20230810T165507n221356\\20230810T165507n221356.MP4",
+      "sha256": "df1546587d91ec17149343e4314ab25ba05f1fa2ce264989abf64606ef6509d4"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B二号舍青年牛\\ff\\20230810T163415n221304.MP4",
+      "sha256": "11651ab53de9f7c687f66fea19f8448100df5308743a74f790d0ab3eee56dab6"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B二号舍青年牛\\ff\\20230810T163713n221276.MP4",
+      "sha256": "0f5e6527f3bd9b65d971a701d3971cd43a1ca947f9fd57510f83730177cb1004"
+    },
+    {
+      "path": "E:\\real\\use_code\\林甸红外视频\\0810\\下午\\B二号舍青年牛\\ff\\20230810T164255n221296.MP4",
+      "sha256": "008dd2719944f627abbd421fb7da510c71a486e4ab554e78e3b72021a97c0d79"
+    }
+  ],
+  "generated": [
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\dataset\\dataset.yaml",
+      "sha256": "bdaa03f12cf7a2e0eadea3c765610cb48dcb77666f49846c1fc3f5185d4c3339"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\frame_split_manifest.csv",
+      "sha256": "f84b67f9513d06601b8462751d0215afe44395989966655d3604615afc8357a4"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\rr_replay\\frame_times.csv",
+      "sha256": "96f753825318e968ecabcc73f65e40941d6a36ba892e734d09f58281ed4d9351"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\rr_replay\\frames.csv",
+      "sha256": "265f319f4d384ab689fb8e3560a62da3856b3351424cdf1bf9f536a0698915cf"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\rr_replay\\reference_events.csv",
+      "sha256": "a0f490ac25edd71ceecac268ae109c80d99204f227e60460a19dccd8b9b27be3"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\rr_replay\\reference_registry.csv",
+      "sha256": "73e0082fdc63a5cb1063a2a08424a384c962c98a685eb00b88fa363ae942704d"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\segment_exposure.csv",
+      "sha256": "872c9d5c15ae32a8cd0dcdcdda17a292eb257ee5f286b3c3ba3e96208f453e52"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\split_audit.json",
+      "sha256": "2d4ecb0602857d1914f3a0caa9c35e6155c748f64ed7e32fbf3de2037a6a765e"
+    }
+  ],
+  "arms": [
+    "C0P0",
+    "C1P0",
+    "C0P1",
+    "C1P1"
+  ],
+  "roi_radius": 20,
+  "min_temperature": 20.0,
+  "keypoint_confidence": 0.5,
+  "scope": "Exposed-frame development experiment; no independent test; no default adoption",
+  "duration_reference": "unchanged from baseline"
+}

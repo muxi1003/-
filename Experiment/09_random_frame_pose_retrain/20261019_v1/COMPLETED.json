@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "weight_sha256": "dbd98984a9624af3ad2650073042d059673a70e5fd86a746eb18100dfdc04937",
+  "frames": 40542,
+  "segments": 199,
+  "rr_predictions": 796,
+  "default_changed": false,
+  "independent_test": false,
+  "claim": "Exposed-frame development comparison; no automatic method or superiority adoption"
+}

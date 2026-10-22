@@ -1,0 +1,18 @@
+{
+  "timezone": "Asia/Shanghai",
+  "last_training_log_write": "2026-10-16T15:18:25+08:00",
+  "last_training_progress": {"epoch": 29, "batch": 3860, "batches_per_epoch": 4029},
+  "last_complete_checkpoint": {"completed_epochs": 28, "checkpoint_epoch_zero_based": 27, "optimizer_present": true, "ema_present": true},
+  "original_parent_pid": 35204,
+  "original_child_pid": 18804,
+  "original_processes_found": false,
+  "python_traceback_in_training_or_launcher_log": false,
+  "system_event_evidence": [
+    {"local_time": "2026-10-16T15:18:24+08:00", "log": "System", "provider": "Microsoft-Windows-WindowsUpdateClient", "id": 43, "message": "Installation started: 9PLM9XGG6VKS-OpenAI.Codex"},
+    {"local_time": "2026-10-16T15:18:29+08:00", "log": "System", "provider": "Microsoft-Windows-WindowsUpdateClient", "id": 19, "message": "Installation succeeded: 9PLM9XGG6VKS-OpenAI.Codex"},
+    {"local_time": "2026-10-16T15:18:29+08:00", "log": "Application", "provider": "CodexSandboxService.OpenAI.Codex", "id": 1000, "message": "The Codex sandbox service is running."}
+  ],
+  "cause_assessment": "Likely interrupted during Codex application update / sandbox service restart because timestamps coincide. This is an inference, not a captured process termination trace.",
+  "status_bug": "Old supervisor wrote stage only on transitions and had no heartbeat; abrupt termination left stage=training. A saved stage alone was not current liveness evidence.",
+  "recovery_policy": "Preserve original logs, status and checkpoints, verify frozen dataset, restore optimizer/EMA from epoch 28, replay the unfinished epoch 29, keep total limit 200 and all data/RR rules unchanged."
+}

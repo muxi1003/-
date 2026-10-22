@@ -1,0 +1,5 @@
+﻿cohort,candidate_windows,complete_reference_windows,excluded_incomplete_reference,reference_coverage
+anchored49,49,47,2,0.9591836734693877
+P1,8,5,3,0.625
+P2,16,6,10,0.375
+P3,53,24,29,0.4528301886792453

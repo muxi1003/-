@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "predictions": 1312,
+  "curves_independently_recounted": 1312,
+  "metrics_recomputed": 272,
+  "paired_intervals_rebuilt": 153,
+  "event_match_rows_checked": 37350,
+  "tp_one_to_one_and_within_tolerance": true,
+  "original_source_hashes_unchanged": true,
+  "workbook_sheets": [
+    "说明",
+    "指标_all",
+    "指标_train",
+    "指标_val",
+    "原始汇总",
+    "全部配对区间",
+    "逐窗16组预测",
+    "候选质量",
+    "条件差值分解",
+    "病例",
+    "来源哈希"
+  ],
+  "figures": 9,
+  "conditional_decomposition_identity_passed": true,
+  "workbook_error_cells": 0
+}

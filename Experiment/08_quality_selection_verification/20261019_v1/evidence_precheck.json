@@ -1,0 +1,42 @@
+{
+  "results": [
+    {
+      "id": "primary_selection_mae",
+      "value": "2.5949192311790363",
+      "source": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json",
+      "status": "verified",
+      "detail": "'2.5949192311790363' found in E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json"
+    },
+    {
+      "id": "primary_ci_upper",
+      "value": "0.6359771815828192",
+      "source": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json",
+      "status": "verified",
+      "detail": "'0.6359771815828192' found in E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json"
+    },
+    {
+      "id": "all_pure_selection_delta",
+      "value": "-0.1473568036077726",
+      "source": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json",
+      "status": "verified",
+      "detail": "'-0.1473568036077726' found in E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json"
+    },
+    {
+      "id": "fixed_mode",
+      "value": "MIN_LINEAR",
+      "source": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json",
+      "status": "verified",
+      "detail": "'MIN_LINEAR' found in E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json"
+    },
+    {
+      "id": "filling_not_entire_gain",
+      "value": "0.0001815789355504",
+      "source": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json",
+      "status": "verified",
+      "detail": "'0.0001815789355504' found in E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\REVIEW_EVIDENCE.json"
+    }
+  ],
+  "summary": {
+    "verified": 5
+  }
+}

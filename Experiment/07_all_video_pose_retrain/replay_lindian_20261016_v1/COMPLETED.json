@@ -1,0 +1,12 @@
+{
+  "segments": 199,
+  "arms": [
+    "C0P0",
+    "C1P0",
+    "C0P1",
+    "C1P1"
+  ],
+  "predictions": 796,
+  "weights_sha256": "87646cc1d1acfe91575d9741b7c40d0c4d58e895b6491e3bb19b554ec7165b6e",
+  "claim": "Development replay only; no automatic default adoption or paper-level innovation claim"
+}

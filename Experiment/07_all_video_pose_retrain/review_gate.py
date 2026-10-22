@@ -56,10 +56,36 @@ def pending_rows() -> pd.DataFrame:
     return expected
 
 
+def ensure_label_directories(expected: pd.DataFrame) -> dict:
+    root = (CORPUS / "manual_labels").resolve()
+    folders = {Path(name).parent.resolve() for name in expected.manual_label_path}
+    if any(not folder.is_relative_to(root) for folder in folders):
+        raise ValueError("Manual label directory escaped the corpus")
+    root.mkdir(parents=True, exist_ok=True)
+    created = 0
+    for folder in sorted(folders):
+        if not folder.is_dir():
+            folder.mkdir(parents=True, exist_ok=True)
+            created += 1
+    return {"manual_label_root": str(root), "segment_directories": len(folders),
+            "created_segment_directories": created, "review_rows": len(expected)}
+
+
+def prepare_label_dirs() -> None:
+    expected = pending_rows()
+    if REVIEWS.is_file():
+        actual = pd.read_csv(REVIEWS, dtype=str).fillna("")
+        fixed = ["frame_key", "cohort", "cow_group", "split", "image_path", "manual_label_path"]
+        if not actual[fixed].equals(expected[fixed]):
+            raise ValueError("Review source/frame/split/label mapping changed")
+    print(json.dumps(ensure_label_directories(expected), ensure_ascii=False, indent=2), flush=True)
+
+
 def init() -> None:
     if REVIEWS.exists() or REVIEW_META.exists():
         raise FileExistsError("Review file already exists; edits must be preserved")
     expected = pending_rows()
+    directory_result = ensure_label_directories(expected)
     expected.to_csv(REVIEWS, index=False, encoding="utf-8-sig")
     REVIEW_META.write_text(json.dumps({
         "frames_sha256": sha256(FRAMES),
@@ -68,6 +94,7 @@ def init() -> None:
         "semantics": "approved means each frame was manually inspected, including empty labels",
     }, indent=2), encoding="utf-8")
     print(f"Created {REVIEWS} with {len(expected)} pending rows", flush=True)
+    print(json.dumps(directory_result, ensure_ascii=False, indent=2), flush=True)
 
 
 def parse_pose_label(path: Path) -> None:
@@ -98,7 +125,9 @@ def parse_pose_label(path: Path) -> None:
                 raise ValueError(f"{path}:{number}: invalid keypoint visibility")
 
 
-def validated_inputs() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
+def validated_inputs(scope: str = "all") -> tuple[pd.DataFrame, pd.DataFrame, dict]:
+    if scope not in ("all", "lindian"):
+        raise ValueError(f"Unknown training scope: {scope}")
     if not REVIEWS.is_file() or not REVIEW_META.is_file():
         raise FileNotFoundError("Run init after inventory, then review all new frames")
     meta = json.loads(REVIEW_META.read_text(encoding="utf-8"))
@@ -114,14 +143,21 @@ def validated_inputs() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     frames = pd.read_csv(FRAMES, dtype=str).fillna("")
     if not (CORPUS / "extraction_complete.json").is_file():
         raise ValueError("Frame extraction has not completed")
+    if scope == "lindian":
+        frames = frames[frames.cohort.ne("R3_jiufu")].copy()
+        actual = actual[actual.cohort.ne("R3_jiufu")].copy()
     pending = actual[~actual.review_status.eq("approved")]
     missing_signoff = actual[actual.review_status.eq("approved") &
                              (actual.reviewer.eq("") | actual.reviewed_at.eq(""))]
-    missing_labels = actual[actual.review_status.eq("approved") &
-                            ~actual.manual_label_path.map(lambda name: Path(name).is_file())]
-    result = {"total_new_frames": len(actual),
+    label_exists = actual.manual_label_path.map(lambda name: Path(name).is_file())
+    missing_labels = actual[actual.review_status.eq("approved") & ~label_exists]
+    label_directories = {Path(name).parent for name in actual.manual_label_path}
+    result = {"scope": scope, "active_frames": len(frames), "total_new_frames": len(actual),
               "approved": int(actual.review_status.eq("approved").sum()),
               "pending_or_other": len(pending),
+              "manual_label_directories": len(label_directories),
+              "missing_manual_label_directories": sum(not path.is_dir() for path in label_directories),
+              "existing_manual_label_files": int(label_exists.sum()),
               "approved_without_reviewer_or_time": len(missing_signoff),
               "approved_without_label_file": len(missing_labels)}
     if any(result[key] for key in ("pending_or_other", "approved_without_reviewer_or_time",
@@ -138,15 +174,15 @@ def validated_inputs() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     return frames, actual, result
 
 
-def check() -> None:
-    _, _, result = validated_inputs()
+def check(scope: str = "all") -> None:
+    _, _, result = validated_inputs(scope)
     print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)
     if not result.get("all_labels_valid"):
         raise SystemExit("Training set blocked: manual review incomplete")
 
 
-def materialize(name: str) -> None:
-    frames, reviews, result = validated_inputs()
+def materialize(name: str, scope: str = "all") -> None:
+    frames, reviews, result = validated_inputs(scope)
     if not result.get("all_labels_valid"):
         print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)
         raise SystemExit("Training set blocked: manual review incomplete")
@@ -178,7 +214,7 @@ def materialize(name: str) -> None:
     (destination / "READY.json").write_text(json.dumps({
         "frames_sha256": sha256(FRAMES), "segments_sha256": sha256(SEGMENTS),
         "reviews_sha256": sha256(REVIEWS), "label_manifest_sha256": sha256(label_manifest),
-        "frames": len(frames),
+        "frames": len(frames), "scope": scope,
         "train": int(frames.split.eq("train").sum()),
         "val": int(frames.split.eq("val").sum()),
         "source_labels": "7488 existing labels plus all new manually approved labels",
@@ -188,8 +224,9 @@ def materialize(name: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("stage", choices=("init", "check", "materialize"))
+    parser.add_argument("stage", choices=("init", "prepare-label-dirs", "check", "materialize"))
     parser.add_argument("--name", default="yolo_dataset_v1")
+    parser.add_argument("--scope", choices=("all", "lindian"), default="all")
     args = parser.parse_args()
-    {"init": init, "check": check,
-     "materialize": lambda: materialize(args.name)}[args.stage]()
+    {"init": init, "prepare-label-dirs": prepare_label_dirs, "check": lambda: check(args.scope),
+     "materialize": lambda: materialize(args.name, args.scope)}[args.stage]()

@@ -1,0 +1,62 @@
+{
+  "selection_uses": "69 train-group complete references only",
+  "classification": "development comparator, not unseen RR validation",
+  "candidates": [
+    {
+      "mode": "mean",
+      "tie_rank": 0,
+      "train_mae_bpm": 3.8261268351496724
+    },
+    {
+      "mode": "max",
+      "tie_rank": 1,
+      "train_mae_bpm": 3.8556951231786556
+    },
+    {
+      "mode": "min",
+      "tie_rank": 2,
+      "train_mae_bpm": 3.825590796283392
+    },
+    {
+      "mode": "left",
+      "tie_rank": 3,
+      "train_mae_bpm": 4.028728301615241
+    },
+    {
+      "mode": "right",
+      "tie_rank": 4,
+      "train_mae_bpm": 6.898843887055936
+    }
+  ],
+  "chosen_mode": "min",
+  "chosen_arm": "MIN_LINEAR",
+  "validation_windows": 13,
+  "validation_fixed": {
+    "scored_windows": 13,
+    "cow_groups": 13,
+    "rr_mae_bpm": 2.0004442971310468,
+    "rr_rmse_bpm": 2.5425416560588734,
+    "rr_r2": 0.9579787015885395,
+    "exact_count": 4,
+    "exact_count_rate": 0.3076923076923077,
+    "mean_count_accuracy": 0.9552682731612496,
+    "tp": 255,
+    "fp": 86,
+    "fn": 79,
+    "event_f1": 0.7555555555555555
+  },
+  "validation_selector": {
+    "scored_windows": 13,
+    "cow_groups": 13,
+    "rr_mae_bpm": 1.3849047548925444,
+    "rr_rmse_bpm": 2.000754278390187,
+    "rr_r2": 0.9739791893705966,
+    "exact_count": 6,
+    "exact_count_rate": 0.46153846153846156,
+    "mean_count_accuracy": 0.9653829076906,
+    "tp": 261,
+    "fp": 68,
+    "fn": 73,
+    "event_f1": 0.7873303167420814
+  }
+}

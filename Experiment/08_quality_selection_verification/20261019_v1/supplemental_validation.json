@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "selection_checks": 492,
+  "score_removal_rows": 328,
+  "unchanged_selection_has_unchanged_error": true,
+  "upstream_frozen_files_verified": 131,
+  "reference_candidates": 126,
+  "complete_references": 82,
+  "all_arms_output_coverage": "82/82; no rejection rule",
+  "output_coverage_is_not_successful_observation": true,
+  "figures": [
+    {
+      "path": "figures\\arm_mae_matrix.png",
+      "width": 1440,
+      "height": 1440,
+      "color_pixel_fraction": 0.5976692708333333,
+      "pixel_std": 65.45656406712156
+    },
+    {
+      "path": "figures\\cases\\A49_190588.png",
+      "width": 1920,
+      "height": 1008,
+      "color_pixel_fraction": 0.022120949074074074,
+      "pixel_std": 37.02192125871534
+    },
+    {
+      "path": "figures\\cases\\A49_ns211095.png",
+      "width": 1920,
+      "height": 1008,
+      "color_pixel_fraction": 0.034735139715608467,
+      "pixel_std": 40.09901660715918
+    },
+    {
+      "path": "figures\\cases\\P1_20230809T080543n200798_000_030.png",
+      "width": 1920,
+      "height": 1008,
+      "color_pixel_fraction": 0.02607421875,
+      "pixel_std": 39.046897178640315
+    },
+    {
+      "path": "figures\\cases\\P3_20230809T082820n16110673_030_060.png",
+      "width": 1920,
+      "height": 1008,
+      "color_pixel_fraction": 0.027153087797619047,
+      "pixel_std": 39.077388263967286
+    },
+    {
+      "path": "figures\\cases\\P3_20230810T071310n211109_000_030.png",
+      "width": 1920,
+      "height": 1008,
+      "color_pixel_fraction": 0.020023664847883597,
+      "pixel_std": 37.617635293178864
+    },
+    {
+      "path": "figures\\cases\\P3_20230810T145443n170131_000_030.png",
+      "width": 1920,
+      "height": 1008,
+      "color_pixel_fraction": 0.025562169312169314,
+      "pixel_std": 39.0140992489424
+    },
+    {
+      "path": "figures\\continuous_attribution.png",
+      "width": 1980,
+      "height": 827,
+      "color_pixel_fraction": 0.011061033551964628,
+      "pixel_std": 38.35688764464085
+    },
+    {
+      "path": "figures\\score_term_ablation.png",
+      "width": 1800,
+      "height": 792,
+      "color_pixel_fraction": 0.009941077441077441,
+      "pixel_std": 34.78570564030769
+    }
+  ],
+  "visual_inspection": [
+    "arm_mae_matrix.png",
+    "continuous_attribution.png",
+    "cases/A49_190588.png",
+    "cases/P3_20230810T071310n211109_000_030.png"
+  ],
+  "workbook_visual_office_render": "not run; structural and numerical snapshot checks only"
+}

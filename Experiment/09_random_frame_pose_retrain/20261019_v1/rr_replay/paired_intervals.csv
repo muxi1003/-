@@ -1,0 +1,16 @@
+﻿cohort,split,candidate,control,windows,cow_groups,delta_mae_bpm,ci95_low,ci95_high,draws,seed,interpretation
+short73,all,C1P0,C0P0,73,71,-0.4194891866124742,-1.2460336559651628,0.28983766171266157,10000,20260929,Exploratory development comparison; previously used RR windows
+short73,all,C0P1,C0P0,73,71,-0.44569129500636356,-1.1715931455240665,0.27054640414015413,10000,20260929,Exploratory development comparison; previously used RR windows
+short73,all,C1P1,C0P0,73,71,-1.146157495472564,-1.934754041058305,-0.42421201145516235,10000,20260929,Exploratory development comparison; previously used RR windows
+anchored49,all,C1P0,C0P0,47,45,-0.3002160911899134,-1.635278902557128,0.8497906972607384,10000,20260929,Exploratory development comparison; previously used RR windows
+anchored49,all,C0P1,C0P0,47,45,0.0420790410956493,-0.47937908754373537,0.5768933290276614,10000,20260929,Exploratory development comparison; previously used RR windows
+anchored49,all,C1P1,C0P0,47,45,-0.2573404964638435,-1.567738870752384,0.868207358778595,10000,20260929,Exploratory development comparison; previously used RR windows
+P1,all,C1P0,C0P0,5,5,-2.0,-4.0,-0.4,10000,20260929,Exploratory development comparison; previously used RR windows
+P1,all,C0P1,C0P0,5,5,0.8,0.0,2.4,10000,20260929,Exploratory development comparison; previously used RR windows
+P1,all,C1P1,C0P0,5,5,-2.0,-4.0,-0.4,10000,20260929,Exploratory development comparison; previously used RR windows
+P2,all,C1P0,C0P0,6,6,0.6666666666666666,-1.3333333333333333,2.6666666666666665,10000,20260929,Exploratory development comparison; previously used RR windows
+P2,all,C0P1,C0P0,6,6,0.3333333333333333,0.0,1.0,10000,20260929,Exploratory development comparison; previously used RR windows
+P2,all,C1P1,C0P0,6,6,0.3333333333333333,-2.3333333333333335,2.6666666666666665,10000,20260929,Exploratory development comparison; previously used RR windows
+P3,all,C1P0,C0P0,24,24,-0.5,-1.6666666666666667,0.75,10000,20260929,Exploratory development comparison; previously used RR windows
+P3,all,C0P1,C0P0,24,24,0.4166666666666667,-0.9166666666666666,1.5,10000,20260929,Exploratory development comparison; previously used RR windows
+P3,all,C1P1,C0P0,24,24,-0.6666666666666666,-2.0,0.5,10000,20260929,Exploratory development comparison; previously used RR windows

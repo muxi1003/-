@@ -1,0 +1,27 @@
+[
+  {
+    "id": "primary_selection_mae",
+    "value": "2.5949192311790363",
+    "source": "REVIEW_EVIDENCE.json"
+  },
+  {
+    "id": "primary_ci_upper",
+    "value": "0.6359771815828192",
+    "source": "REVIEW_EVIDENCE.json"
+  },
+  {
+    "id": "all_pure_selection_delta",
+    "value": "-0.1473568036077726",
+    "source": "REVIEW_EVIDENCE.json"
+  },
+  {
+    "id": "fixed_mode",
+    "value": "MIN_LINEAR",
+    "source": "REVIEW_EVIDENCE.json"
+  },
+  {
+    "id": "filling_not_entire_gain",
+    "value": "0.0001815789355504",
+    "source": "REVIEW_EVIDENCE.json"
+  }
+]

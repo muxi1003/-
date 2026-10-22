@@ -1,0 +1,17 @@
+{
+  "scope": "lindian",
+  "confirmation_date": "2026-10-16",
+  "human_review_declaration": "User used X-AnyLabeling assistance, inspected/corrected each frame, and declared annotation complete in this conversation. R3 Jiufu remains deferred.",
+  "restored_annotations": "User confirmed bs177611 annotations were put back; accept the restored JSON after structural validation.",
+  "confirmed_negative_ranges": [
+    {
+      "segment_id": "A49_200713",
+      "first_source_frame": 0,
+      "stop_source_frame_exclusive": 54,
+      "user_answer": "看不到鼻部",
+      "question_scope": "200713 frame_000000 through frame_000053 (first 54 frames)",
+      "semantics": "Explicit user-confirmed absence of visible nose; generate empty labels only for these missing JSON. No inferred respiratory events."
+    }
+  ],
+  "date_semantics": "Date records this import's confirmation/provenance, not actual per-frame annotation timestamps."
+}

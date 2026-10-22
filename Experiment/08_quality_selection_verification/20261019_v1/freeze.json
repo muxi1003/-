@@ -1,0 +1,792 @@
+{
+  "client_date": "2026-10-19",
+  "classification": "exploratory_development_attribution",
+  "windows": 82,
+  "primary_windows": 47,
+  "train": 69,
+  "val": 13,
+  "arms": [
+    "MEAN_HALF",
+    "MAX_HALF",
+    "MIN_HALF",
+    "LEFT_HALF",
+    "RIGHT_HALF",
+    "MEAN_LINEAR",
+    "MAX_LINEAR",
+    "MIN_LINEAR",
+    "LEFT_LINEAR",
+    "RIGHT_LINEAR",
+    "SELECT_HALF",
+    "SELECT_LINEAR",
+    "SELECT_LINEAR_NO_PROMINENCE",
+    "SELECT_LINEAR_NO_AMPLITUDE",
+    "SELECT_LINEAR_NO_INTERVAL_CV",
+    "SELECT_LINEAR_NO_MISSING"
+  ],
+  "primary_contrast": "SELECT_LINEAR minus MAX_LINEAR on primary47",
+  "rr": "60*N/frozen_duration",
+  "no_yolo_training_or_inference": true,
+  "sources": [
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\03_可靠事件参考\\reference_tools.py",
+      "sha256": "eda7ea4b78a26216e92f9868e0548990cffe4419658d5bccfd073cb48e091cf3"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\05_方法核证\\run.py",
+      "sha256": "385cc92e342bd4da5e944248fc58870d014e021b2d3b9b25786c1a5f40c08139"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\COMPLETED.json",
+      "sha256": "5d6e3edcd7d79249425a1088e0344244ae6c306f13094de0a23a7cecaeaba0ab"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\event_matches.csv",
+      "sha256": "bed1847fba1f3fa251f67e9850d7ef872c2924cb64823df886262e0a2b8b3268"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\frame_times.csv",
+      "sha256": "96f753825318e968ecabcc73f65e40941d6a36ba892e734d09f58281ed4d9351"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\freeze.json",
+      "sha256": "f6b40fbbdd2d1917ae4b881bcb6ed2c72765fc291984532226a550e2c02caff0"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\predicted_events.csv",
+      "sha256": "862f1d3e8bfbd7a7f74cca861e4b6252ac55eb2f7632b9effbd5de5d4ea89400"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\predictions.csv",
+      "sha256": "108f98623c0ece9882bd6e75fe401a131f49183aab321197a36a2831bcd707b8"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\reference_events.csv",
+      "sha256": "a0f490ac25edd71ceecac268ae109c80d99204f227e60460a19dccd8b9b27be3"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\reference_registry.csv",
+      "sha256": "95110e724cb2eefe3156371f8cb7a789b250ba71c1449da49be84a7d2e56904c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_16170075.csv",
+      "sha256": "58fd8c2cce95f005c1259eb3b21643d37f5861247b9eba59d5f338e8a7858589"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_170272.csv",
+      "sha256": "e8faf330fedfd7dc700efcec30f87030dca22f97be1d830f2b33de05b7ce4f74"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_170333.csv",
+      "sha256": "114f6ac2091f811559879a7e20a3ffb9afca84cd221b3f51e0aa3a8d3cb700b1"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_170334.csv",
+      "sha256": "43725d59b7765c2cbf624314f1e666b2a20042b5180f7885c735e0fe90e7ae40"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_177395.csv",
+      "sha256": "6144ca57337fe868cd3da0c37a48d2f503e887bcf2d12119e69677891a98e0a0"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_190546.csv",
+      "sha256": "ff270054eaae856957e5249f17545d9cc99bbcab50dfd89b5fd7d22e4500a428"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_190588.csv",
+      "sha256": "961378f74c4cecfd5e554008bd3850ae49732c5a4eae78499bf6b354c8c9f146"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_196434.csv",
+      "sha256": "f9c3192eb507931e3e11e91dad818878a2e3a955463cc78729978670d38dd2dc"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_200713.csv",
+      "sha256": "638a797ac7768bc1559f1a5b3799177ebbff665dbfd9e2a90d5b1101213bf168"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_200718.csv",
+      "sha256": "04e9b3b170fd6f636e1d94e76dc8c196f43865b03ab7c5c63df7ad048da9d395"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_210989.csv",
+      "sha256": "6217e91dbd73a91379a4b20509a5d5c7ebde07d50c100be5012d2ec1cfc4b858"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_211056.csv",
+      "sha256": "44d80516316ad8a53f68c8166231c37c2984a103694ffc9b714457c098dd7340"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_211070.csv",
+      "sha256": "2393cec2a77814c36f5a44a7d119044cf70d0bab45ab52d4ae3184870565fb60"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ba170296.csv",
+      "sha256": "0222728530bda4961d7b4aa1925b711834334de67be1420616d8d4a99b94bcb8"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ba177610.csv",
+      "sha256": "409698e0760c0ef477fbd620f66b83aef4290219b710fca9fd2568d8f3c49810"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ba455.csv",
+      "sha256": "f9b266b5e22177baa0041bd5f4abfe6af2cdde846801795acbbf602e322723e0"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ba6516.csv",
+      "sha256": "983f8324a47e6ae9ffec5cf2b52c1dd2679c4cdc825672c9ea3a1be73e9e546f"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs0514.csv",
+      "sha256": "85215d4d92e23e63e70dbf79c4f33a3ca259e3f5caa69cc52f5a44edadc492c0"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs170227.csv",
+      "sha256": "896a0ea8f1374b6784a7ba7040bdc3d64bce97cb3723afc93183b687800e6092"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs177611.csv",
+      "sha256": "33d5ebc6d53a318aafd59e42dc9555952aaecbf9203234cd420c3ae21c53a3ea"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs189556.csv",
+      "sha256": "13c036664be51660ce0719e8713ef88dba1785736aed3997c29dafdc423016ab"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs190624.csv",
+      "sha256": "7d6a50723c7c90c089f1a7fbfe66d917e6172a498e9ecae277ee1f129644d86a"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs200673.csv",
+      "sha256": "4de63a04dc8d9595912e501ff431516161d8da12db80df52de2d8e4a7899a9f0"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs200794.csv",
+      "sha256": "ba74c4c5aacbb5af4ecca658d6138c6ec29efab7d8be202d10d3ca7b0464c74c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs210974.csv",
+      "sha256": "34e5e0ff1237bee50187d423a113ee93045bfd1eba37df010dcfb43040785d21"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs211046.csv",
+      "sha256": "7461a1b5a8df27a0eb027cc1840506675870a6c816f4840c439e3bae037a61e5"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs211063.csv",
+      "sha256": "3f435f128c81540c48a017dd0aa8bd245b0eb1ae5a50afe3129700bf71c3d259"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs450.csv",
+      "sha256": "60b8af8443a472e06c7953075cefb45d4926e103845171b6e9645ea489fe75a6"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs455.csv",
+      "sha256": "c786fe31a83381d34f814f7854134ea2eee075b581d847d6e8e85a24ac7b3598"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs4717.csv",
+      "sha256": "a1ee0599e0b0e6ef3e3e9775620e1c193a83b33abb2654577fe7d78b6d060a4f"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_bs6516.csv",
+      "sha256": "0bb6572e847a2384bac479f2b0fb00aee674468d3fb32139d7e6691c8332e1ec"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ns170082.csv",
+      "sha256": "f85fed2111c29388b5b4566cbff113bc3871130c52c5fb8f88f69b1a9e7e4567"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ns179166.csv",
+      "sha256": "bdb5cf4fe356e52fadf5e87940f8df8ebd5f76dd2fbfc392485222cd870cdf59"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ns196527.csv",
+      "sha256": "e49cda66054c4bd93e8dd2078d4f0f4a0740ebea45fe9c5f64e232ea19cd0553"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ns200886.csv",
+      "sha256": "d0f021bc6128251934bd0a4a0cb0a81c49b3b0044196242eeec0c3bf40497685"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ns210947.csv",
+      "sha256": "b9e08b5faef283b137f83b91f0c4892ee069e2ebb5878a64d80abdcbd9d812ea"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ns211003.csv",
+      "sha256": "590d57fada7fa38581184ec7677425b8747b2bbb374dc6fd61d8bb2210893143"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ns211095.csv",
+      "sha256": "57584a43356283749d10496fb8915a615c38a22393a1c7457134bca8abf4076c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_ns211146.csv",
+      "sha256": "50213c4dee3707d4331a3add9c6631d081f85fccf00214fa7619369846e624d3"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_zs170236.csv",
+      "sha256": "8618731faf1cfe2cda8d66329316b9fcbc448b3d1dcedd59494509908a41ff06"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_zs170416.csv",
+      "sha256": "a3bd9af193eeebe8dd3bec37920c960b8b20d518e9f0931b0b53901eaf753f48"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_zs170554.csv",
+      "sha256": "9d5f84cc296192bfbe4b2ac25b06e73a25e499f99031eeea9a10f818d4422453"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_zs190621.csv",
+      "sha256": "1efa5aff9dc33f3eca45a0cc91dad7c0c5828671207a3d467b73cacbcb6a647e"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_zs197000.csv",
+      "sha256": "4c065f7e739a27f863a19b2d193d832a0a07fbd4510b213d8433e0d5d9a93f25"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_zs200751.csv",
+      "sha256": "e81a6e41ae769185e6139a012ade92e1244e8510defb45ed05c56d0406db64ae"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_zs200783.csv",
+      "sha256": "7ef8ef27557a737200cd0c51b69a11220334e929bac1b91ef49f409acb3015d5"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\A49_zs211062.csv",
+      "sha256": "e802f08d5a783744f832556ec28f7ea00d8a5ccff48cfd780ec8905357b62f62"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P1_20230808T082508n205256_000_030.csv",
+      "sha256": "c7ccd740f03c0e28b79a5dddfe5418b5d3748bcb5ade91096a36f1b83bac354b"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P1_20230808T171039n164189_000_030.csv",
+      "sha256": "ffedea5c3976a607df1356c49cd2799368c98ee96b544c1d104aa4843f55ffd8"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P1_20230809T080543n200798_000_030.csv",
+      "sha256": "30515d3393184ea3931aa0890ec8fa99510c9a4902ae47d3cb3a1177b9177353"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P1_20230809T082528n170320_030_060.csv",
+      "sha256": "b3b1e6d74b90bf67736b6bdec0c05b87340bcc6ed117219aaf0cb827b81beb32"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P1_20230810T145819n16110251_000_030.csv",
+      "sha256": "46d4e6b16e1fef0962442a41cf3113a864024f4cc5e94c5dd92f437115154e5f"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P2_20230807T075433n0514_000_030.csv",
+      "sha256": "f98cf0d26e116fb21a76845dcc3472ab68e829a090c48ad218cee94f5854bc9e"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P2_20230808T155935n200674_000_030.csv",
+      "sha256": "9c54bc6e0f25566790d387e9221dc0c1f5ec2151cb090f809fa45d50f2b17971"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P2_20230808T163447n200646_000_030.csv",
+      "sha256": "d51622bf6826b51fb4c5bf5a8ab58ed66abb2e7b42a3a4275e0d5b31c1ab6fb7"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P2_20230809T074426n190587_000_030.csv",
+      "sha256": "5a3527bc0157a417eeb7d39cbf140e37b32ac2efaca23b10ff589c658d25a614"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P2_20230809T091946n196094_000_030.csv",
+      "sha256": "40e660430607123ee6b44ae33023d344dad9f20ff2e56754cdf6db1c8e4c0be7"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P2_20230810T154633n170071_000_030.csv",
+      "sha256": "af500c52b1fff713ed4386eb8f3caf2e644ab6ad546ed49eeee5a120640cfd9f"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230807T085014n2106_000_030.csv",
+      "sha256": "855b9b4b5014d6166d19d207cee849626875350a340ae5838dcf2fd6146e6e1a"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230808T083831n0748_030_060.csv",
+      "sha256": "a6a70e1da3d8bfbf7b91fe1439b42850db848db26c29c4baae1a4d26494c88ae"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230808T085434n16110514_000_030.csv",
+      "sha256": "d1322c255ffaa565d7a5cb7267bb45726fc8d5aa082fbc121a9dde935c1394df"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230808T092117n190514_000_030.csv",
+      "sha256": "71600ff6167a8621b1b8596f4cfc2e8b28f55cadee8be6369005c3b2c293f364"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230808T093014n211075_000_030.csv",
+      "sha256": "8603e0baa1e07c13fdbdfb568e6656591d97da252a175554b2abf61eb2561e96"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230808T161329n16110075_000_030.csv",
+      "sha256": "7d95ec9ac1b267e660ac64472ac279d8eefb8f503d8c0df6b33815d8145f52ef"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230808T165332n211053_000_030.csv",
+      "sha256": "12e99d6a344bb3fbd28d3ed528895943fedce70acef9f3bfb38e4bd479c6a392"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230808T170018n164157_000_030.csv",
+      "sha256": "b6ffe05d2e00d233870c245b5d6c4d0924ccd1cfad4db399f31a606db016a86a"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230808T170359n197250_030_060.csv",
+      "sha256": "26ef5e6f8b500253ff8aa3573a5a306f0907dc699dffe0626afc604de4052708"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230809T071543n6527_000_030.csv",
+      "sha256": "c925c943135bc397db2f357cfb3dc6f3ba022a7d93621fe87a5cf23bb3bace78"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230809T080304n170240_000_030.csv",
+      "sha256": "d72200161735700d06c1d5eba89270103d8d551934b12cfc47963f3c676c7580"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230809T082820n16110673_030_060.csv",
+      "sha256": "b25165015929dbfee689bdc050f803707836348673318b1a2398ef8f5aa8481e"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230809T084642n197580_000_030.csv",
+      "sha256": "20069da60caf4c922c2c4a3daf2af8f0476d8b18d4ffa3010a46e2c508ac71f6"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230809T092245n190601_000_030.csv",
+      "sha256": "56e442a50675b00574034931bcf2705d94de277827ae4af642748d657c747ffa"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230809T094015n170097_000_030.csv",
+      "sha256": "6e152c616eed9ebdcdd63bc1f20074b8bd941fc062e0bc7668c17e897cc8035c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230810T071310n211109_000_030.csv",
+      "sha256": "2c71c0bd4722c460a0de5339b7f435b8bc65e65acb596c5198d8180d2b88bceb"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230810T145443n170131_000_030.csv",
+      "sha256": "c7466d88efe4877b38d53712ebcdce5e9b7e9bd3b3ce775038bd19e84da59063"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230810T152946n16110463_000_030.csv",
+      "sha256": "a07cf1538655264238ff14588f79e2d458ad27461cfe75dc354c2967a1aea3f1"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230810T154021n189417_000_030.csv",
+      "sha256": "89596c0ae9bcb6677d4cba22231024c2691ccab649158f3bf0502dc18686e578"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230810T155021n170355_000_030.csv",
+      "sha256": "5bcb2852f0ee3acf13e955d9a9820106d62d5b625844ff24128b9b53dee7c8ef"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230810T163713n221276_000_030.csv",
+      "sha256": "83c120965f34a7c0c664024a4ac6b7ed2d374b8c2eba48fddf7b4fe068443eca"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230810T164018n221381_000_030.csv",
+      "sha256": "074768e83fdf99621eb0b9d9b8573b9d80dd1de47b865a57361fa29e9edffdf6"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230810T164255n221296_000_030.csv",
+      "sha256": "35350e96b70cfce3b7a8a3ee307d405a136efa86a0bf922e0be80b6846a06a46"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\temperatures\\P3_20230810T164658n221284_000_030.csv",
+      "sha256": "3092b81b16a5bac0eb440a50771c9686fb8213a7e4b226571216421feb078fd8"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\training_runs\\yolo11n_pose_lindian_20261016_v1\\weights\\best.pt",
+      "sha256": "87646cc1d1acfe91575d9741b7c40d0c4d58e895b6491e3bb19b554ec7165b6e"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\models\\best.pt",
+      "sha256": "b9c318b33323a2f3887bd786b3997a8c6cf6c2098ec8fdf0d1f9b91ad3b5fbe7"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\scripts\\paper_repro_rr.py",
+      "sha256": "3c211f52fe3f1a6a3104a38f2b275cdf40fe5f21ff4ca042052cee8424947ec9"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\temperature_extraction\\getRandomForestRegress\\clf_model_RGB_20240906.pkl",
+      "sha256": "26b8e7dd25afb7780798f3609aaf16592089598157d58e11bc1e1dffd7bb03d5"
+    }
+  ],
+  "snapshots": [
+    {
+      "path": "inputs\\all_candidate_reference_audit.csv",
+      "sha256": "b69818d12a9b6ec4c4695df1a9b08a58b9393557493e47092170739036ba9b26"
+    },
+    {
+      "path": "inputs\\event_matches.csv",
+      "sha256": "515b9bb6d3bd20ca0387c4e3f1d3600c91723e2984b891f981cc81a16b73e32f"
+    },
+    {
+      "path": "inputs\\frame_times.csv",
+      "sha256": "e840daea5f30b5042bc794ed2a64c27c85c945d6e7580ce2812803765bb71f60"
+    },
+    {
+      "path": "inputs\\predicted_events.csv",
+      "sha256": "ef2f7da7ea06af3bccc7b549a7565519ec602086dc96936fd01d05441fa5d22f"
+    },
+    {
+      "path": "inputs\\predictions.csv",
+      "sha256": "754fefec47900de67c197a89e8ae26dec4dd2bc3c516ae89e2c178d1a6c1555c"
+    },
+    {
+      "path": "inputs\\reference_events.csv",
+      "sha256": "a0f490ac25edd71ceecac268ae109c80d99204f227e60460a19dccd8b9b27be3"
+    },
+    {
+      "path": "inputs\\reference_registry.csv",
+      "sha256": "de25a3a16f014b4fab93098a19bde1dffe31268c0f85dcdae9cac49c95e08a90"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_16170075.csv",
+      "sha256": "58fd8c2cce95f005c1259eb3b21643d37f5861247b9eba59d5f338e8a7858589"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_170272.csv",
+      "sha256": "e8faf330fedfd7dc700efcec30f87030dca22f97be1d830f2b33de05b7ce4f74"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_170333.csv",
+      "sha256": "114f6ac2091f811559879a7e20a3ffb9afca84cd221b3f51e0aa3a8d3cb700b1"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_170334.csv",
+      "sha256": "43725d59b7765c2cbf624314f1e666b2a20042b5180f7885c735e0fe90e7ae40"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_177395.csv",
+      "sha256": "6144ca57337fe868cd3da0c37a48d2f503e887bcf2d12119e69677891a98e0a0"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_190546.csv",
+      "sha256": "ff270054eaae856957e5249f17545d9cc99bbcab50dfd89b5fd7d22e4500a428"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_190588.csv",
+      "sha256": "961378f74c4cecfd5e554008bd3850ae49732c5a4eae78499bf6b354c8c9f146"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_196434.csv",
+      "sha256": "f9c3192eb507931e3e11e91dad818878a2e3a955463cc78729978670d38dd2dc"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_200713.csv",
+      "sha256": "638a797ac7768bc1559f1a5b3799177ebbff665dbfd9e2a90d5b1101213bf168"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_200718.csv",
+      "sha256": "04e9b3b170fd6f636e1d94e76dc8c196f43865b03ab7c5c63df7ad048da9d395"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_210989.csv",
+      "sha256": "6217e91dbd73a91379a4b20509a5d5c7ebde07d50c100be5012d2ec1cfc4b858"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_211056.csv",
+      "sha256": "44d80516316ad8a53f68c8166231c37c2984a103694ffc9b714457c098dd7340"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_211070.csv",
+      "sha256": "2393cec2a77814c36f5a44a7d119044cf70d0bab45ab52d4ae3184870565fb60"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ba170296.csv",
+      "sha256": "0222728530bda4961d7b4aa1925b711834334de67be1420616d8d4a99b94bcb8"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ba177610.csv",
+      "sha256": "409698e0760c0ef477fbd620f66b83aef4290219b710fca9fd2568d8f3c49810"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ba455.csv",
+      "sha256": "f9b266b5e22177baa0041bd5f4abfe6af2cdde846801795acbbf602e322723e0"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ba6516.csv",
+      "sha256": "983f8324a47e6ae9ffec5cf2b52c1dd2679c4cdc825672c9ea3a1be73e9e546f"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs0514.csv",
+      "sha256": "85215d4d92e23e63e70dbf79c4f33a3ca259e3f5caa69cc52f5a44edadc492c0"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs170227.csv",
+      "sha256": "896a0ea8f1374b6784a7ba7040bdc3d64bce97cb3723afc93183b687800e6092"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs177611.csv",
+      "sha256": "33d5ebc6d53a318aafd59e42dc9555952aaecbf9203234cd420c3ae21c53a3ea"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs189556.csv",
+      "sha256": "13c036664be51660ce0719e8713ef88dba1785736aed3997c29dafdc423016ab"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs190624.csv",
+      "sha256": "7d6a50723c7c90c089f1a7fbfe66d917e6172a498e9ecae277ee1f129644d86a"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs200673.csv",
+      "sha256": "4de63a04dc8d9595912e501ff431516161d8da12db80df52de2d8e4a7899a9f0"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs200794.csv",
+      "sha256": "ba74c4c5aacbb5af4ecca658d6138c6ec29efab7d8be202d10d3ca7b0464c74c"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs210974.csv",
+      "sha256": "34e5e0ff1237bee50187d423a113ee93045bfd1eba37df010dcfb43040785d21"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs211046.csv",
+      "sha256": "7461a1b5a8df27a0eb027cc1840506675870a6c816f4840c439e3bae037a61e5"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs211063.csv",
+      "sha256": "3f435f128c81540c48a017dd0aa8bd245b0eb1ae5a50afe3129700bf71c3d259"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs450.csv",
+      "sha256": "60b8af8443a472e06c7953075cefb45d4926e103845171b6e9645ea489fe75a6"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs455.csv",
+      "sha256": "c786fe31a83381d34f814f7854134ea2eee075b581d847d6e8e85a24ac7b3598"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs4717.csv",
+      "sha256": "a1ee0599e0b0e6ef3e3e9775620e1c193a83b33abb2654577fe7d78b6d060a4f"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_bs6516.csv",
+      "sha256": "0bb6572e847a2384bac479f2b0fb00aee674468d3fb32139d7e6691c8332e1ec"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ns170082.csv",
+      "sha256": "f85fed2111c29388b5b4566cbff113bc3871130c52c5fb8f88f69b1a9e7e4567"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ns179166.csv",
+      "sha256": "bdb5cf4fe356e52fadf5e87940f8df8ebd5f76dd2fbfc392485222cd870cdf59"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ns196527.csv",
+      "sha256": "e49cda66054c4bd93e8dd2078d4f0f4a0740ebea45fe9c5f64e232ea19cd0553"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ns200886.csv",
+      "sha256": "d0f021bc6128251934bd0a4a0cb0a81c49b3b0044196242eeec0c3bf40497685"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ns210947.csv",
+      "sha256": "b9e08b5faef283b137f83b91f0c4892ee069e2ebb5878a64d80abdcbd9d812ea"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ns211003.csv",
+      "sha256": "590d57fada7fa38581184ec7677425b8747b2bbb374dc6fd61d8bb2210893143"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ns211095.csv",
+      "sha256": "57584a43356283749d10496fb8915a615c38a22393a1c7457134bca8abf4076c"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_ns211146.csv",
+      "sha256": "50213c4dee3707d4331a3add9c6631d081f85fccf00214fa7619369846e624d3"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_zs170236.csv",
+      "sha256": "8618731faf1cfe2cda8d66329316b9fcbc448b3d1dcedd59494509908a41ff06"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_zs170416.csv",
+      "sha256": "a3bd9af193eeebe8dd3bec37920c960b8b20d518e9f0931b0b53901eaf753f48"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_zs170554.csv",
+      "sha256": "9d5f84cc296192bfbe4b2ac25b06e73a25e499f99031eeea9a10f818d4422453"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_zs190621.csv",
+      "sha256": "1efa5aff9dc33f3eca45a0cc91dad7c0c5828671207a3d467b73cacbcb6a647e"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_zs197000.csv",
+      "sha256": "4c065f7e739a27f863a19b2d193d832a0a07fbd4510b213d8433e0d5d9a93f25"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_zs200751.csv",
+      "sha256": "e81a6e41ae769185e6139a012ade92e1244e8510defb45ed05c56d0406db64ae"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_zs200783.csv",
+      "sha256": "7ef8ef27557a737200cd0c51b69a11220334e929bac1b91ef49f409acb3015d5"
+    },
+    {
+      "path": "inputs\\temperatures\\A49_zs211062.csv",
+      "sha256": "e802f08d5a783744f832556ec28f7ea00d8a5ccff48cfd780ec8905357b62f62"
+    },
+    {
+      "path": "inputs\\temperatures\\P1_20230808T082508n205256_000_030.csv",
+      "sha256": "c7ccd740f03c0e28b79a5dddfe5418b5d3748bcb5ade91096a36f1b83bac354b"
+    },
+    {
+      "path": "inputs\\temperatures\\P1_20230808T171039n164189_000_030.csv",
+      "sha256": "ffedea5c3976a607df1356c49cd2799368c98ee96b544c1d104aa4843f55ffd8"
+    },
+    {
+      "path": "inputs\\temperatures\\P1_20230809T080543n200798_000_030.csv",
+      "sha256": "30515d3393184ea3931aa0890ec8fa99510c9a4902ae47d3cb3a1177b9177353"
+    },
+    {
+      "path": "inputs\\temperatures\\P1_20230809T082528n170320_030_060.csv",
+      "sha256": "b3b1e6d74b90bf67736b6bdec0c05b87340bcc6ed117219aaf0cb827b81beb32"
+    },
+    {
+      "path": "inputs\\temperatures\\P1_20230810T145819n16110251_000_030.csv",
+      "sha256": "46d4e6b16e1fef0962442a41cf3113a864024f4cc5e94c5dd92f437115154e5f"
+    },
+    {
+      "path": "inputs\\temperatures\\P2_20230807T075433n0514_000_030.csv",
+      "sha256": "f98cf0d26e116fb21a76845dcc3472ab68e829a090c48ad218cee94f5854bc9e"
+    },
+    {
+      "path": "inputs\\temperatures\\P2_20230808T155935n200674_000_030.csv",
+      "sha256": "9c54bc6e0f25566790d387e9221dc0c1f5ec2151cb090f809fa45d50f2b17971"
+    },
+    {
+      "path": "inputs\\temperatures\\P2_20230808T163447n200646_000_030.csv",
+      "sha256": "d51622bf6826b51fb4c5bf5a8ab58ed66abb2e7b42a3a4275e0d5b31c1ab6fb7"
+    },
+    {
+      "path": "inputs\\temperatures\\P2_20230809T074426n190587_000_030.csv",
+      "sha256": "5a3527bc0157a417eeb7d39cbf140e37b32ac2efaca23b10ff589c658d25a614"
+    },
+    {
+      "path": "inputs\\temperatures\\P2_20230809T091946n196094_000_030.csv",
+      "sha256": "40e660430607123ee6b44ae33023d344dad9f20ff2e56754cdf6db1c8e4c0be7"
+    },
+    {
+      "path": "inputs\\temperatures\\P2_20230810T154633n170071_000_030.csv",
+      "sha256": "af500c52b1fff713ed4386eb8f3caf2e644ab6ad546ed49eeee5a120640cfd9f"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230807T085014n2106_000_030.csv",
+      "sha256": "855b9b4b5014d6166d19d207cee849626875350a340ae5838dcf2fd6146e6e1a"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230808T083831n0748_030_060.csv",
+      "sha256": "a6a70e1da3d8bfbf7b91fe1439b42850db848db26c29c4baae1a4d26494c88ae"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230808T085434n16110514_000_030.csv",
+      "sha256": "d1322c255ffaa565d7a5cb7267bb45726fc8d5aa082fbc121a9dde935c1394df"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230808T092117n190514_000_030.csv",
+      "sha256": "71600ff6167a8621b1b8596f4cfc2e8b28f55cadee8be6369005c3b2c293f364"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230808T093014n211075_000_030.csv",
+      "sha256": "8603e0baa1e07c13fdbdfb568e6656591d97da252a175554b2abf61eb2561e96"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230808T161329n16110075_000_030.csv",
+      "sha256": "7d95ec9ac1b267e660ac64472ac279d8eefb8f503d8c0df6b33815d8145f52ef"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230808T165332n211053_000_030.csv",
+      "sha256": "12e99d6a344bb3fbd28d3ed528895943fedce70acef9f3bfb38e4bd479c6a392"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230808T170018n164157_000_030.csv",
+      "sha256": "b6ffe05d2e00d233870c245b5d6c4d0924ccd1cfad4db399f31a606db016a86a"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230808T170359n197250_030_060.csv",
+      "sha256": "26ef5e6f8b500253ff8aa3573a5a306f0907dc699dffe0626afc604de4052708"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230809T071543n6527_000_030.csv",
+      "sha256": "c925c943135bc397db2f357cfb3dc6f3ba022a7d93621fe87a5cf23bb3bace78"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230809T080304n170240_000_030.csv",
+      "sha256": "d72200161735700d06c1d5eba89270103d8d551934b12cfc47963f3c676c7580"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230809T082820n16110673_030_060.csv",
+      "sha256": "b25165015929dbfee689bdc050f803707836348673318b1a2398ef8f5aa8481e"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230809T084642n197580_000_030.csv",
+      "sha256": "20069da60caf4c922c2c4a3daf2af8f0476d8b18d4ffa3010a46e2c508ac71f6"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230809T092245n190601_000_030.csv",
+      "sha256": "56e442a50675b00574034931bcf2705d94de277827ae4af642748d657c747ffa"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230809T094015n170097_000_030.csv",
+      "sha256": "6e152c616eed9ebdcdd63bc1f20074b8bd941fc062e0bc7668c17e897cc8035c"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230810T071310n211109_000_030.csv",
+      "sha256": "2c71c0bd4722c460a0de5339b7f435b8bc65e65acb596c5198d8180d2b88bceb"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230810T145443n170131_000_030.csv",
+      "sha256": "c7466d88efe4877b38d53712ebcdce5e9b7e9bd3b3ce775038bd19e84da59063"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230810T152946n16110463_000_030.csv",
+      "sha256": "a07cf1538655264238ff14588f79e2d458ad27461cfe75dc354c2967a1aea3f1"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230810T154021n189417_000_030.csv",
+      "sha256": "89596c0ae9bcb6677d4cba22231024c2691ccab649158f3bf0502dc18686e578"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230810T155021n170355_000_030.csv",
+      "sha256": "5bcb2852f0ee3acf13e955d9a9820106d62d5b625844ff24128b9b53dee7c8ef"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230810T163713n221276_000_030.csv",
+      "sha256": "83c120965f34a7c0c664024a4ac6b7ed2d374b8c2eba48fddf7b4fe068443eca"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230810T164018n221381_000_030.csv",
+      "sha256": "074768e83fdf99621eb0b9d9b8573b9d80dd1de47b865a57361fa29e9edffdf6"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230810T164255n221296_000_030.csv",
+      "sha256": "35350e96b70cfce3b7a8a3ee307d405a136efa86a0bf922e0be80b6846a06a46"
+    },
+    {
+      "path": "inputs\\temperatures\\P3_20230810T164658n221284_000_030.csv",
+      "sha256": "3092b81b16a5bac0eb440a50771c9686fb8213a7e4b226571216421feb078fd8"
+    }
+  ],
+  "implementation": [
+    {
+      "path": "PROTOCOL.md",
+      "sha256": "a6bd675492251e134c71d2e1c24d79fb88d6eac4cf1014be468bfae25204c281"
+    },
+    {
+      "path": "run_verification.py",
+      "sha256": "770137e8477f39328d70ada03e43dd45b8fb12b4ee01c9251b429f61e76acea8"
+    },
+    {
+      "path": "test_verification.py",
+      "sha256": "427543cd1a2fe6847d69caa9cddb52cfbd83241ccacf3a34671450d4a802e87d"
+    }
+  ],
+  "runtime": {
+    "python": "3.10.20",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3"
+  }
+}

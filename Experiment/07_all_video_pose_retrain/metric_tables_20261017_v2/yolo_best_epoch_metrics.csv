@@ -1,0 +1,5 @@
+﻿指标,鼻部检测框(B),鼻孔关键点(P),来源
+Precision,0.99571,0.98673,best.pt保存的train_metrics，与results.csv第85轮一致
+Recall,0.99598,0.98522,best.pt保存的train_metrics，与results.csv第85轮一致
+mAP50,0.9949,0.98432,best.pt保存的train_metrics，与results.csv第85轮一致
+mAP50-95,0.85156,0.9843,best.pt保存的train_metrics，与results.csv第85轮一致

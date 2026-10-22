@@ -1,0 +1,1181 @@
+
+PAGE 1
+Respiratory rate detection of dairy cows based on infrared thermography in 
+head movement scenarios
+Xinchao Chen a, Baisheng Dai a,*, Xinjie Wang a, Yanxing Li a, Xiao Fu a, Xin Dai a, Hangshu Xin b,  
+Yang Li b, Weizheng Shen a,**
+a College of Electrical Engineering and Information, Northeast Agricultural University, Harbin, 150030, China
+b College of Animal Science and Technology, Northeast Agricultural University, Harbin, 150030, China
+A R T I C L E  I N F O
+Keywords:
+Infrared thermography
+Respiratory rate
+Head movement
+Dairy cows
+Cow nostrils
+A B S T R A C T
+The respiratory rate (RR) of an individual cow is commonly used as a physiological indicator to monitor its heat 
+stress and health conditions. The monitoring of temperature changes in dairy cow nostrils using infrared ther­
+mography (IRT) is an effective technique for monitoring the RRs of cows. However, the high-resolution re­
+quirements for thermal images and the effect of abnormal respiratory curve fluctuations due to cow head 
+movements on RR detection limit the applicability of this technique. This study aimed to develop an RR detection 
+method that is based on low-resolution thermal images and incorporated a curve fusion strategy to mitigate the 
+effects of head movements. In this method, the YOLOv8n-Pose network is first utilized to identify nostrils as key 
+points, which addressed the challenge of nostril region localization at low resolution. Second, the random forest 
+algorithm is employed to establish a mapping relationship between the temperature of each pixel and the cor­
+responding RGB color space values. Finally, a fusion strategy for the temperature curves of the two nostrils is 
+implemented to address the issue of abnormal temperature curve fluctuations that are caused by head move­
+ments. To evaluate the proposed method, a dataset of 246 thermal videos of cow faces was constructed. The 
+results showed that the correlation analysis between the predicted RR and manually observed results yielded an 
+R2 of 0.92 and a root mean squared error (RMSE) of 3.53 breaths per minute (bpm), and the average accuracy of 
+RR detection reached 96.3 %. This study demonstrated that the integration of IRT and deep learning provides a 
+foundation for the deployment of automatic RR detection in dairy farming environments.
+1. Introduction
+The respiratory rate (RR) of a cow is an essential physiological in­
+dicator that reflects its heat stress and overall health status. The respi­
+ration rate of a lactating dairy cow is easily influenced by various cow- 
+related factors (Yan et al., 2021). Abnormal fluctuations in RR can be 
+closely related to factors such as cow diseases, barn comfort, and envi­
+ronmental temperature and humidity (Das et al., 2016; Rensis et al., 
+2015). Traditional methods for monitoring RR involve primarily visual 
+observation of flank fluctuations (Lowe et al., 2019; Milan et al., 2016). 
+This method requires experienced observers, has high labor costs and 
+does not allow for continuous monitoring (Eigenberg et al., 2000).
+Various technologies for sensing cow respiratory signals and calcu­
+lating RRs have been researched to address the problems associated with 
+manual methods. The existing methods can be categorized into contact 
+and noncontact methods. Contact methods involve mainly outfitting 
+cows with thoracic belts (Eigenberg et al., 2000) or halters (Milan et al., 
+2016) that are embedded with pressure sensors or thermistors. For 
+example, Milan et al. (2016) mounted a thermistor on a halter to 
+monitor thermal fluctuations near a cow’s nostrils, and the RR was 
+calculated based on the frequency of temperature curve fluctuations. 
+Although wearable devices provide accurate measurements, subsequent 
+maintenance of sensors can induce stress, thus potentially diminishing 
+the comfort of the cow in daily behavior (Handa and Peschel, 2022).
+In recent years, noncontact monitoring methods have garnered 
+increasing attention. Researchers have explored various noncontact 
+sensor devices, including lasers (Pastell et al., 2006), radars (Tuan et al., 
+2022), RGB cameras (Mantovani et al., 2023; Shu et al., 2024a; Song 
+et al., 2019; Wu et al., 2020; Zhao et al., 2014), and thermal cameras 
+(Lowe et al., 2019; Stewart et al., 2017; Strutzke et al., 2019), for 
+* Corresponding author.
+** Corresponding author.
+E-mail addresses: bsdai@neau.edu.cn (B. Dai), wzshen@neau.edu.cn (W. Shen). 
+Contents lists available at ScienceDirect
+Journal of Thermal Biology
+journal homepage: www.elsevier.com/locate/jtherbio
+https://doi.org/10.1016/j.jtherbio.2025.104154
+Received 23 December 2024; Received in revised form 16 May 2025; Accepted 23 May 2025  
+Journal of Thermal Biology 130 (2025) 104154 
+Available online 1 June 2025 
+0306-4565/© 2025 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+
+
+PAGE 2
+monitoring the RRs of dairy cows. Laser and radar sensors have been 
+used to continuously measure the displacements from the cow’s flank 
+movements. However, the use of this method during milking is prob­
+lematic, as the stress experienced by cows during milking hinders the 
+ability to monitor cows’ normal RRs in a calm state (Pastell et al., 2006). 
+Like laser and radar technology, monitoring of the RRs of dairy cows has 
+focused primarily on the use of RGB video and infrared thermography 
+(IRT) in combination with computer vision technologies (Nasirahmadi 
+et al., 2017). By utilizing RGB video techniques, visible light cameras 
+can be employed to record the flank movements of cows and capture 
+alterations in image features. The RR can be subsequently calculated via 
+the optical flow method on the basis of changes in the directions of 
+respiratory motion vectors in the cow’s flank (Shu et al., 2024a; Song 
+et al., 2019; Wu et al., 2020; Zhao et al., 2014). The aforementioned 
+studies have confirmed the efficacy of using RGB cameras and computer 
+vision to monitor RR. However, these methods are constrained by the 
+movement of cows, which could affect the accuracy of these algorithms 
+(Handa and Peschel, 2022).
+For techniques that employ IRT, respiratory patterns are identified 
+by detecting temperature fluctuations within the region of the nostrils 
+(Wang et al., 2024a). IRT mitigates the effects of body movements and 
+lighting conditions during respiratory monitoring. During the entire 
+respiratory cycle, cows inhale cold air, which lowers their nostril tem­
+perature, while exhaling warmer air increases their nostril temperature. 
+Based on the characteristics of temperature changes that are caused by 
+cow respiration, the RR is determined by observing the continuous 
+thermal fluctuations within the two nostrils (Lowe et al., 2019; Stewart 
+et al., 2017). Kim and Hidaka (2021) employed Mask R-CNN to segment 
+nostrils, with masks generated for the two nostrils. These masks were 
+applied to the corresponding temperature data within the nostrils, and 
+the RR was obtained by counting the number of peak values in the 
+average temperature variation curve of the nostrils. Zhao et al. (2023)
+detected and tracked the two nostrils of cows in thermal images and 
+utilized a hash algorithm to map the temperature values of the nostril 
+area. The RR was determined by identifying the peaks in the tempera­
+ture variation curve and the monitoring time. However, the accuracy of 
+this approach may decrease because of head movements in dairy cows. 
+Owing to the temperature difference between the two nostrils, the head 
+movements of the dairy cows led to the alternating appearance of single 
+and dual nostrils in the video scenes, which in turn caused abnormal 
+fluctuations in the temperature curve and reduced the detection accu­
+racy for the RR. In addition, monitoring methods of this type requires 
+high-resolution of thermal infrared images, and the cost of suitable 
+thermal infrared camera is relatively high, which reduces the feasibility 
+of large-scale deployment on farms.
+To address the issue of low segmentation accuracy of the nostril re­
+gion due to low-resolution thermal infrared images, the YOLOv8-Pose 
+network was utilized to localize the keypoints of the cow’s nostrils. 
+Circular regions were then cropped around these keypoints to segment 
+the left and right nostril areas from each image. The random forest al­
+gorithm was used to fit the temperature values of the cropped nostril 
+regions on the basis of the RGB values of each pixel to address the issue 
+of thermal infrared videos lacking temperature information. The ther­
+mal infrared images contained alternating cases where either a single 
+nostril or two nostrils were visible due to cow head movements. 
+Furthermore, the temperatures of the single and dual nostrils differed, 
+which led to erroneous peak detection caused by abnormal oscillations 
+in the temperature change curve. To address this challenge, this study 
+proposes a curve fusion strategy for application to the temperature 
+curves of the two nostrils. After the application of this approach, the 
+correctly filtered peaks in the temperature curve were counted, and the 
+RR was calculated accordingly.
+2. Materials and methods
+2.1. Data collection and processing
+The data were collected for this experiment over one week, from 
+August 6th to August 12th, 2023. The subjects of this experiment were 
+Holstein cows at different stages of growth: 25 nonlactating cows with 
+an average age of 12 months and 151 lactating cows with an average age 
+of 30 months. After feeding, when the cows stretched their heads out of 
+the railing and their activity was relatively stable, thermal infrared 
+videos of their faces were recorded. The thermal infrared video data 
+were collected at an average environmental temperature of 33 ◦C, as 
+indicated by thermometers in the barn. A FLIR One Edge Pro infrared 
+thermal imaging camera, which was mounted on the aluminium rail, 
+was used. The temperature measurement accuracy of this thermal 
+infrared camera is ±3 ◦C. This camera communicates with a tablet de­
+vice via a wireless connection using the FLIR ONE application. An 
+aluminium profile stand that supported this camera was placed 1 m in 
+front of a dairy cow, and a tripod stand that supported the tablet was 
+placed on the side to record the infrared thermal video (see Fig. 1). 
+During data collection, nonradiative thermal infrared video was recor­
+ded using this camera and stored in MP4 format, with a frame rate of 8.7 
+Hz. As shown in Table 1, these infrared videos were collected from 176 
+dairy cows, including different categories. The time period for collecting 
+the video clips that were used in the study was from 7:00 to 9:00 in the 
+morning and from 3:00 to 5:00 in the afternoon, when the cows had not 
+yet experienced the stress induced by the milking process.
+To ensure the acquisition of stable and reliable respiratory moni­
+toring data, the video duration was controlled to approximately 3 min. 
+In the final videos, the visibility of at least one nostril within the video 
+frame was ensured. A total of 176 cows were recorded in 246 video clips. 
+To facilitate subsequent RR calculations, the video clips were divided 
+uniformly into segments of 30 s in duration. The breaths of the cows in 
+the videos were manually counted. An automated Python program was 
+developed with FFmpeg to frame the thermal infrared video into ther­
+mal infrared images. The extracted frames were saved in JPG format 
+with a resolution of 1080 × 1440 pixels. During the data collection 
+process, variations in cow head movement resulted in diverse scenarios 
+being captured in the acquired images (as illustrated in Fig. 2).
+2.2. Overall technical route
+The overall technical framework for calculating the RR of cows via 
+infrared thermography and computer vision is illustrated in Fig. 3, and it 
+consists of three main steps. First, the YOLOv8n-Pose network is utilized 
+to localize the keypoints of each cow’s nostrils in the thermal infrared 
+images and differentiate between the left and right nostrils. Then, cir­
+cular regions with a specific radius are cropped to segment the nostril 
+areas on the basis of the coordinates of the detected keypoints. Second, 
+the random forest algorithm is employed to establish a mapping be­
+tween the temperature values and the corresponding three-channel (R, 
+G, B) values of each pixel in the RGB color space. Finally, the average 
+temperature values of the left and right nostrils are obtained, and the 
+temperature change curves are fused on the basis of the presence of two 
+nostrils in the image. The number of peaks, which corresponds to the 
+number of breaths in the fused curve, is counted to determine the RR.
+2.2.1. Nostril segmentation based on keypoint localization
+Accurate selection of the nostril region significantly influences the 
+accuracy of RR detection. Therefore, precise localization of the nostril 
+regions within thermal images is essential for reliable respiratory signal 
+analysis. In this study, a consumer-grade thermal imaging device was 
+employed. Owing to the limited resolution of the thermal infrared im­
+ages and the small scale of the nostril regions of cows, the image features 
+within nostril areas lacked sufficient detail to directly facilitate seg­
+mentation. To accomplish the task of nostril localization, the YOLOv8n- 
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+2 
+
+
+PAGE 3
+Pose model (Jocher et al., 2023) was used. Then, on the basis of the 
+localized keypoints, the nostril regions were selected. By utilizing the 
+advantages of top-down approaches, YOLOv8-Pose can locate the nostril 
+keypoints inside the cow’s nose bounding box accurately. Moreover, to 
+accelerate the model training process, this study utilized the pretrained 
+weights of the YOLOv8n-Pose network and fine-tuned the network on 
+the thermal infrared dataset, which helped reduce the risk of overfitting.
+The network structure of YOLOv8n-Pose is detailed in Fig. 4. As 
+shown, the architecture comprises three primary components: a back­
+bone, a neck layer, and a head layer. Accurate selection of the nostril 
+region is essential for precise respiratory rate monitoring. Here, we 
+propose a segmentation method that is based on key point localization, 
+where keypoints serve as focal markers for cropping a circular nostril 
+region with a specified radius. The choice of radius will undergo 
+experimental validation to optimize the overall detection efficacy of the 
+model. The selection process for the entire nostril region, along with its 
+effect, is illustrated in Fig. 5. Notably, the head layer of the network not 
+only localizes the keypoints of the nostrils but also distinguishes the two 
+sides of the nostrils into two categories. Consequently, the cropped 
+nostril region is divided into two parts, which lays the foundation for 
+subsequent temperature curve analysis and RR calculation.
+2.2.2. Temperature mapping via the random forest algorithm
+After the nostril regions in the thermal infrared images of cows are 
+identified, accurate temperature extraction within the nostril regions of 
+the thermal infrared images is a critical prerequisite for the subsequent 
+determination of respiratory status. The thermal camera that was 
+selected for this study supports both image and video capture modes. 
+The single-frame capture mode provides thermal images with temper­
+ature values. Thermal images with temperature metadata in JPG format 
+were obtained using the thermal imaging device. These images were 
+processed using a customized Python program that was designed to 
+extract and analyse the temperature metadata, which were then stored 
+for further analysis. To ensure continuous monitoring of RR, video mode 
+was used to record the respiratory behaviour of dairy cows. However, 
+the recorded videos in the experimental data were nonradiometric 
+infrared video streams that lacked temperature metadata. Recognizing 
+the value of facial temperatures captured by infrared thermography for 
+physiological insights, efforts have been made to derive temperature 
+values from images (Shu et al., 2024b).
+To address the absence of temperature data, this study employed the 
+random forest algorithm for temperature mapping. The random forest 
+algorithm builds upon the bagging ensemble by incorporating random 
+feature selection during the training of decision trees. In ensemble 
+learning, a series of individual learners are trained and combined ac­
+cording to a specific strategy to form a powerful composite learner. The 
+bagging algorithm, which is a representative parallel ensemble learning 
+method, follows the overall process illustrated in Fig. 6. This process 
+involves several steps:
+Pixel Reading: Images embedded with thermal radiation metadata 
+are read to obtain the RGB values of each pixel.
+Temperature Mapping: Each pixel’s temperature value is mapped 
+to its RGB values, which generates a dataset where the training set X 
+consists of pixel RGB values x1(R,G,B), x2(R,G,B), x3(R,G,B), …, xn(R,G, 
+B) and the target set Y consists of the corresponding temperatures y1(T), 
+y2(T), y3(T), …, yn(T).
+Model Training by Bagging: To build a robust RGB-to-temperature 
+model, the bagging method is employed, which involves the following 
+steps:
+For b = 1, …, N. 
+(1) n training examples are sampled with replacement from X and Y, 
+which results in samples Xb and Yb.
+(2) A regression tree fb is trained on the samples Xb and Yb.
+Prediction: After training, predictions for a new sample X (R, G, B) 
+are made by averaging the predictions from all individual regression 
+trees.
+As illustrated in Fig. 7, each static image that was captured is a JPG 
+image that contains thermal radiation temperature information, with a 
+thermal resolution of 160 × 120, whereas the displayed resolution of the 
+exported thermal infrared image is 640 × 480. A random forest regressor 
+was used to model the relationships between the R, G and B channel 
+values of individual pixels and their corresponding temperature values. 
+The number of estimators in the regressor was set to 120 to balance 
+accuracy and model complexity. Additionally, for the training of each 
+weak classifier, bootstrapping was enabled for random sampling with 
+replacement, and the number of random states was set to 42 to ensure 
+Fig. 1. Physical diagram of the device for capturing thermal videos. (a) Thermal camera, (b) tablet, (c) tripod, and (d) aluminium profile bracket.
+Table 1 
+Categories and quantities of infrared thermal videos.
+Category
+Number
+Lactating cows
+151
+Heifers within their first year
+25
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+3 
+
+
+PAGE 4
+reproducible results. The remaining parameters were set to their default 
+values. By utilizing this temperature fitting model, technical support 
+was provided for the extraction of temperature data from individual 
+frames of the recorded thermal infrared videos.
+2.2.3. Fusion of temperature curves and respiratory rate detection
+After the nostril regions were segmented and the temperature values 
+in the thermal infrared images were mapped, continuous temperature 
+measurements within each nostril region were obtained. On the basis of 
+the presence of temperature values for the left and right nostrils in the 
+same frame, the temperature curves were fused to generate a single 
+temperature curve, which was then subjected to smoothing and filtering. 
+Finally, peak detection was performed on the temperature values within 
+the curve, and the RR was obtained using the following equation: 
+RR = Nr × 60
+t
+(1) 
+where RR is the respiratory rate, t denotes the time length of the video, 
+and Nr is the number of peaks.
+During the monitoring process, cow head movements can result in 
+partial visibility of either the left or right nostril in the thermal infrared 
+images. For plotting the temperature variations in the nostril regions in 
+each frame, the entire algorithmic process is illustrated in Fig. 8. This 
+algorithm primarily performs different operations based on the presence 
+status of both nostrils in the thermal infrared images. The following 
+strategy is employed:
+Case 1: When two nostrils are visible in the video, the temperatures 
+of the left and right nostrils are normalized using the min-max 
+normalization method, which can be expressed as shown in Eq. (2). 
+The higher value between the two normalized temperatures is selected 
+as the final normalized value for the current frame. 
+xnorm =
+x −min(x)
+max(x) −min(x)
+(2) 
+where min(x) and max(x) represent the minimum and maximum values, 
+Fig. 2. Example images of cow thermal infrared facial data that show different scenarios of head movement.
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+4 
+
+
+PAGE 5
+respectively, in the temperature data.
+Case 2: In scenarios where a cow’s head is turned to one side, the 
+video frames capture only one nostril. For these frames, the average 
+temperature of the visible nostril region is computed and designated as 
+the temperature of the frame. Normal head movements of the cow can 
+cause the video to alternate between capturing two nostrils and just one 
+nostril, which results in a temperature difference between the average 
+temperature of two nostrils and that of a single nostril.
+Min-max normalization is performed on both the double-nostril and 
+single-nostril average temperature arrays to maintain a consistent tem­
+perature curve. The temperature value signals that are obtained from 
+consecutive frames are filtered to reduce the effect of noise on subse­
+quent peak detection. This is accomplished by calculating the average 
+temperature within a specified window using the moving average filter 
+(MAF) algorithm. This algorithm involves sliding a fixed-length window 
+of size M over the signal sequence and computing the average value of 
+the samples within the window for filtering. The basic principle is 
+described by Eq. (3). 
+y[i] = x[i] + x[i −1] + x[i −2] + … + x[i −M + 1]
+M
+(3) 
+where x[i] represents the sample value at index i in the temperature 
+sequence. The term 1/M is a normalization factor that is used to average 
+the sample values within the window. 
+dy[i] = y[i] −y[i −1]
+i −(i −1)
+(4) 
+where i represents the index of the temperature value that corresponds 
+to each frame and y denotes the list of consecutive temperature values.
+After the complete normalized variation curve is obtained, the RR of 
+the cow in the video is calculated by counting the number of breaths. To 
+determine the number of peaks in the temperature variation curves, this 
+study aimed to identify the temperature peak coordinates caused by 
+respiration and remove false peaks that result from noise in the curves. 
+To obtain the peaks in the temperature value list, the method relies 
+primarily on first-order differentiation to evaluate the change in slope 
+(refer to Eq. (4)), thereby identifying multiple local maxima in the 
+current temperature value list. Considering the effects of noise signals, 
+after multiple candidate peak subsets are obtained, the correct peaks are 
+determined by specifying the conditions of the peak attributes. The 
+temperature variation curve and the final respiratory count detection 
+results are shown in Fig. 9. Each peak detected in the temperature curve 
+corresponds to a single breath. By counting the number of peaks within a 
+given video clip duration, the RR can be calculated.
+2.3. Evaluation metrics
+2.3.1. Keypoint detection
+To comprehensively assess the model’s performance in key point 
+localization, the study adopted precision (P), recall (R), average preci­
+sion (AP), and mean average precision (mAP) as the performance met­
+rics. These metrics are defined as shown in Eqs. (5)–(8): 
+Fig. 3. Overview of the proposed framework. (a) Nostril segmentation based on keypoint localization; (b) temperature mapping via the random forest algorithm; and 
+(c) fusion of temperature curves and respiratory rate detection.
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+5 
+
+
+PAGE 6
+P =
+TP
+TP + FP
+(5) 
+R =
+TP
+TP + FN
+(6) 
+AP =
+∫k=1
+k=0
+pkdk
+(7) 
+mAP = 1
+k
+∑
+k
+i=1
+APi
+(8) 
+where TP, FP, and FN denote the numbers of true-positive, false-posi­
+tive, and false-negative results, respectively.
+2.3.2. Temperature mapping
+To validate the mapping accuracy of the proposed temperature 
+mapping model, this study used the mean absolute error (MAE) and the 
+coefficient of determination R2 as the evaluation metrics for the random 
+forest regression. The calculation formulas for the MAE and R2 are 
+presented as Eq. (9) and Eq. (10): 
+MAE = 1
+n
+∑
+n
+i=1
+|̂yi −yi|
+(9) 
+Fig. 4. The network architecture for cow nostril localization on the basis of YOLOv8n-Pose.
+Fig. 5. Example of nostril key point localization and region selection.
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+6 
+
+
+PAGE 7
+where n represents the number of samples, yi represents the true value of 
+the i-th sample and ̂yi represents the predicted value of the i-th sample. 
+R2 = 1 −
+∑n
+i=1(yi −̂yi)2
+∑n
+i=1(yi −y)2
+(10) 
+where y represents the average value of all the true values of the sam­
+ples.
+2.3.3. Respiratory rate detection
+To validate the effectiveness of the proposed method, the R2, RMSE 
+and ACC metrics were selected to assess the accuracy of RR detection. 
+The calculation formulas are represented by Eqs. (10)–(12) respectively: 
+ACC =
+(
+1 −|Rmod el −Rreal|
+Rreal
+)
+× 100%
+(11) 
+Fig. 6. Basic flowchart of the bagging algorithm.
+Fig. 7. Example of temperature analysis for a single pixel.
+Fig. 8. Flowchart of bilateral nostril temperature processing.
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+7 
+
+
+PAGE 8
+RMSE =
+̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅
+1
+m
+∑
+m
+i=1
+(Rreal −Rmod el)2
+√
+(12) 
+where m represents the number of test videos, Rreal represents the true 
+value of RR for each video, and Rmod el represents the predicted value 
+obtained by the model for each video.
+3. Results and discussion
+3.1. Nostril localization model training details and results
+To localize the cow’s left and right nostrils, our study employed the 
+YOLOv8-Pose network for key point detection. The YOLOv8-Pose 
+network consists of five variants (YOLOv8n-Pose, YOLOv8s-Pose, 
+YOLOv8m-Pose, YOLOv8l-Pose, and YOLOv8x-Pose), with a consistent 
+network architecture shared across the different models. The dataset 
+was created by extracting 150 thermal infrared video clips from various 
+dates, randomly sampling frames to obtain 1512 thermal infrared im­
+ages, and manually annotating the nostril keypoints. The dataset was 
+divided into training and test sets at an 8:2 ratio for model training. For 
+network training, the batch size was set to 16, and the other hyper­
+parameters were set to default values. The training was conducted for 
+200 epochs.
+The loss value and mAP variation curves during the training process 
+for the different-sized YOLOv8-Pose network structures are shown in 
+Fig. 10. As shown in this figure, a notable increase in the validation mAP 
+was observed as the training loss decreased for each model. Eventually, 
+the training curves of the five models of different sizes converged. 
+Fig. 9. Results of fusing the left and right nostril temperature curves and peak detection, including temperature change curves for the left and right nostrils under 
+different nostril absence conditions (a–c) and corresponding fused temperature curves (d–f).
+Fig. 10. Curves of the model loss value and mAP metric variation for models of different sizes. (a) train/keypoint_loss, (b) val/keypoint_loss, (c) mAP50, and (d) 
+mAP50-95.
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+8 
+
+
+PAGE 9
+According to the results in Table 2, the different-sized YOLOv8-Pose 
+network structures all achieved metric values that exceeded 0.99 for the 
+nostril key point localization task, with only minor differences among 
+them. Additionally, considering that the larger network structures have 
+higher parameter counts and that the performance of the models was 
+sufficient, the smallest YOLOv8n-Pose model size was selected for the 
+subsequent respiratory rate measurements.
+The trained YOLOv8n-Pose network structure was utilized to 
+perform batch detection on the thermal infrared videos. Fig. 11 shows 
+selected detection results, which demonstrate the effectiveness of the 
+nostril keypoint detection model under normal head movements of dairy 
+cows. The network effectively detects and localizes the nostrils while 
+also enabling the distinction between the left and right nostrils. This lays 
+the foundation for the subsequent analysis of temperature variations in 
+the two nostrils.
+3.2. Selecting the scope of the nostril area
+To partition the areas that correspond to the two nostrils, we per­
+formed region segmentation on each frame after obtaining the 
+coordinates of the two nostril keypoints. Circular regions with a radius 
+of size r, centred on the keypoints, were proposed for extracting the 
+temperature of the cow’s nostrils. To determine the optimal radius size, 
+different values of r (5, 10, 15, 20, 25, and 30) were tested, and evalu­
+ation metrics, including the RMSE and R2, were calculated. The 
+comparative results for different radius sizes are presented in Table 3. 
+Through the analysis of the overall dataset, 20 pixels was identified as 
+the optimal radius size for accurately capturing the RR. On the basis of 
+the data in the table, when the radius is less than 20, the R2 value is 
+lower, and the RMSE is greater. A possible reason for this is that the 
+segmentation range is too small to accurately delineate the nostril skin 
+that is affected by respiratory airflow, thus leading to missed or false 
+detections of respiratory cycles. In addition, when the segmented cir­
+cular range is too large, it includes irrelevant areas, which results in a 
+decreased average temperature value near the nostrils in each frame, 
+thus introducing unnecessary temperature noise. Multiple comparisons 
+in this experiment confirmed that this method of segmenting nostril 
+regions significantly enhances the accuracy of subsequent respiratory 
+Table 2 
+Comparison of the metrics of the 5 different-sized network models.
+Model
+Precision
+Recall
+mAP@0.5
+mAP@0.5:0.95
+YOLOv8n-Pose
+0.996
+0.997
+0.995
+0.995
+YOLOv8s-Pose
+0.997
+0.997
+0.995
+0.995
+YOLOv8m-Pose
+0.997
+0.997
+0.995
+0.995
+YOLOv8l-Pose
+0.998
+0.997
+0.995
+0.995
+YOLOv8x-Pose
+0.998
+0.998
+0.995
+0.995
+Fig. 11. Nostril detection images of cows whose heads were tilted. (a) Head turned right, (b) head straight, and (c) head turned left.
+Table 3 
+Model performance metrics for different radius sizes tested.
+Radius size
+R2
+RMSE
+Accuracy
+Average
+Ours
+Average
+Ours
+Average
+Ours
+5
+0.81
+0.85
+5.19
+4.03
+0.934
+0.948
+10
+0.85
+0.86
+4.60
+3.91
+0.943
+0.950
+15
+0.87
+0.89
+4.37
+3.67
+0.950
+0.956
+20
+0.90
+0.92
+3.72
+3.53
+0.959
+0.963
+25
+0.90
+0.91
+3.81
+3.67
+0.943
+0.954
+30
+0.89
+0.90
+3.94
+3.85
+0.948
+0.952
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+9 
+
+
+PAGE 10
+detection in cows and demonstrates strong resistance to interference 
+when segmenting regions within thermal infrared images.
+3.3. Evaluation of the efficacy of the temperature mapping model
+To sense respiratory signals by extracting the temperature values of 
+individual pixels in thermal infrared images independently of the pro­
+prietary software that is associated with the thermal imaging device, this 
+study investigated the process of temperature mapping from thermal 
+infrared images and validated the effectiveness of a fitting model 
+designed for this purpose. On the basis of nine thermal infrared images 
+that were captured separately each day (each containing embedded 
+temperature metadata), we conducted a validation experiment to fit the 
+model’s predicted values with the actual values. The temperature 
+mapping results are shown in Table 4. The evaluation of the regressor 
+was based on the MAE and R2 values. Generally, a higher value of R2 
+indicates a better fit of the regressor to the data, whereas a smaller MAE 
+value suggests a better fit of the model to the data. As shown by the 
+values in Table 4, a comparison between the regressor’s predicted 
+temperature values and the actual temperature values yielded R2 values 
+consistently above 0.96, with the MAE remaining within 0.5 ◦C. This 
+minor error had minimal effects on the subsequent plotting of temper­
+ature curves across consecutive frames and on the oscillatory trend of 
+the curves, thereby confirming the effectiveness of the temperature 
+fitting strategy.
+In this study, we developed a temperature mapping model on the 
+basis of the random forest algorithm, which fits the relationship between 
+RGB colour space values and temperature. However, this model may 
+face limitations in its scalability to other scenarios because of its reliance 
+on specific data distributions. To mitigate the effects of varying sce­
+narios and enhance the model’s adaptability and extensibility, we 
+defined a temperature scale that establishes two values that represent 
+the colour range for displaying infrared images. We conducted field 
+research during both winter (December) and summer (August) to record 
+the environmental temperatures in the barn. The minimum temperature 
+recorded in winter was not lower than −10 ◦C, whereas the maximum 
+temperature in summer did not exceed 40 ◦C. These limits were set to 
+initialize the temperature scale for our mapping, thus ensuring a 
+comprehensive approach to temperature representation. From the 
+perspective of the model’s integration with new technologies, the 
+random forest algorithm simplifies the mapping relationship between 
+RGB colour space values and temperature values. This allows for effi­
+cient end-to-end temperature mapping, particularly in the nostril re­
+gions, and yields accurate mapping results.
+In summary, the random forest model that is proposed in this study 
+maintains good performance when adapting to new datasets without 
+requiring extensive retraining or adjustments. It is capable of performing 
+temperature mapping tasks across different environmental conditions.
+3.4. Results of respiratory rate detection
+After obtaining the nostril temperature values from each frame, we 
+derive the normalized temperature values for consecutive frames and 
+plotted the corresponding temperature variation curve. To perform peak 
+detection on the variation curve, we used an MAF for noise reduction in 
+the temperature values. The parameter M in the MAF algorithm repre­
+sents the fixed length of the sliding window for the temperature signal 
+sequence, with an initial value set to 3. Following noise reduction for the 
+temperature values, peak detection was used to identify peaks in the 
+temperature values. Considering that the frame rate of the thermal 
+infrared video is 8.7 fps, the minimum distance between peaks was thus 
+set to 6. The parameter prominence, which represents the minimum 
+prominence of peaks, was set to 0.05. Other parameters, such as 
+thresholds, were set to default values to detect temperature peaks. A 
+complete respiratory cycle is represented by a pair of peaks and troughs 
+in the curve. In summary, after a series of processing steps on the tem­
+perature signals, the respiratory temperature variation curve of the 
+cow’s nostrils was plotted (as shown in Fig. 12).
+This study proposes a method for calculating RR based on the joint 
+processing of the temperature values of the left and right nostrils. To 
+validate the effectiveness of this approach, it was compared with the 
+method of averaging the temperature values of both nostrils. The com­
+parison results are shown in Fig. 13. As shown in Fig. 13, the RRs 
+detected using the proposed model were compared with the results 
+obtained through manual observation. The best results achieved for R2 
+and RMSE were 0.92 and 3.53 breaths per minute, respectively. In 
+Fig. 13(a), the predicted results for the overall average temperature of 
+the two nostril regions were subjected to regression analysis in com­
+parison with the manually observed results. The R2 was found to be 0.90, 
+with an RMSE of 3.72 breaths per minute. Fig. 13(b) presents the inte­
+gration of temperature using the approach proposed in this study, which 
+distinguishes between the two nostrils of the cow. Regression analysis 
+was performed between the integrated temperature and the manually 
+observed results, which resulted in an R2 of 0.92 and an RMSE of 3.53 
+breaths per minute. From this perspective, our method outperformed the 
+traditional approach of averaging temperatures, thus demonstrating the 
+effectiveness of jointly processing the left and right nostrils.
+To further analyse the effectiveness of our method, Fig. 14 illustrates 
+the temperature variation in the nostril regions of the cow with identifier 
+170131. The cow’s movements included left and right head shifts, which 
+led to frames where only one nostril was visible at a time. Fig. 14(c) 
+shows the temperature variation curves for monitoring changes in the 
+two nostrils. Before frame 110, the left nostril was visible in the field of 
+view, with occasional instances where two nostrils appeared. After 
+frame 110, the left nostril was no longer visible in the images. This 
+change affected the trends in the curves in Fig. 14(a): for frames 25–46, 
+where two nostrils are visible, the overall temperature curve shows 
+abnormal fluctuations owing to the limited effect of respiratory airflow 
+on one nostril. This variation led to missed detections of the respiratory 
+rate when the average temperature method was used.
+In contrast, our processing strategy, as shown in Fig. 14(b), achieved 
+more accurate results when each nostril’s temperature value was pro­
+cessed separately. This approach avoids temperature fluctuations caused 
+by alternating between single and double nostril visibility, thereby 
+resulting in more reliable respiratory rate detection. Hence, this con­
+firms the effectiveness of our temperature curve processing strategy, 
+which provides a robust basis for accurate respiratory rate monitoring.
+3.5. Performance comparison with state-of-the-art technologies
+As shown in Table 5, we compared our proposed method with state- 
+of-the-art methods. However, due to differences in the collected datasets 
+and validation methods, direct comparisons of detection accuracy had to 
+be approached with caution. In the detection of respiratory rates for 
+cows resting on their sides, Zhao et al. (2014) employed a dense optical 
+flow method to calculate the variations in motion speed of each pixel in 
+the video frames of each cow’s abdomen and achieved an accuracy of 
+95.68 %. Song et al. (2019) employed the Lucas‒Kanade sparse optical 
+Table 4 
+Comparison of the thermal infrared image temperature results predicted by the 
+model.
+Image number
+Shooting date
+Number of samples
+R2
+MAE
+1
+2023.08.06
+307200
+0.999
+0.022
+2
+2023.08.06
+307200
+0.982
+0.250
+3
+2023.08.06
+307200
+0.995
+0.246
+4
+2023.08.08
+307200
+0.994
+0.196
+5
+2023.08.08
+307200
+0.999
+0.013
+6
+2023.08.08
+307200
+0.993
+0.219
+7
+2023.08.10
+307200
+0.968
+0.434
+8
+2023.08.10
+307200
+0.996
+0.139
+9
+2023.08.10
+307200
+0.969
+0.418
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+10 
+
+
+PAGE 11
+flow method to monitor respiratory behaviour by detecting the move­
+ment of abdominal spot boundaries. The test results indicated that this 
+method achieved an average accuracy of 98.58 %, thus outperforming 
+traditional detection algorithms. To address the issue of subtle abdom­
+inal fluctuations in cows during standing, Wu et al. (2020) combined the 
+DeepLab V3+ semantic segmentation model for image segmentation of 
+individual cows in a resting standing state. They applied the phase-based 
+video magnification (PBVM) algorithm to amplify the weak respiratory 
+movements of the cows and subsequently utilized the Lucas‒Kanade 
+sparse optical flow method to detect the respiratory rate of each cow. 
+This approach achieved a detection accuracy of 93.04 %. Mantovani 
+et al. (2023) captured the abdominal region of interest (ROI) and 
+calculated the average pixel intensity of each frame to filter respiratory 
+movement-related frequencies using fast Fourier transform. They then 
+identified peaks through inverse Fourier transform to detect the respi­
+ratory rates of cows. The final detection results showed an R2 of 0.77 and 
+a root mean square error (RMSE) of 5.35 breaths per minute compared 
+with the true values. To detect respiratory rates for individual cows in a 
+visual scene, Shu et al. (2024a) employed the YOLOv5 and YOLOv5-seg 
+network models to detect and segment the abdomens of multiple cows in 
+a resting lateral position. They utilized the Lucas‒Kanade optical flow 
+algorithm to capture the flow variations in the overlapping regions be­
+tween the detection boxes and segmentation masks. By using a fast 
+Fourier transform algorithm, they extracted the respiratory rates of the 
+cows. This method yielded a respiratory rate correlation coefficient of 
+0.944 and an RMSE of 5.35 breaths per minute.
+The aforementioned RGB video-based detection methods focus on 
+assessing the entire abdominal region of each cow, which can be easily 
+disrupted by body movements such as shifting and rising. To address this 
+issue, Wang et al. (2024b) first selected the optimal abdominal ROI and 
+applied a Butterworth filter to reduce noise. They shortened the 
+computation time by lowering the resolution and frame rate of the 
+detection videos. Ultimately, they employed optical flow methods for 
+rapid and accurate detection of cows’ respiratory rates and achieved an 
+average accuracy of 92 % with the improved algorithm.
+Methods for obtaining abdominal respiratory signals via visible light 
+video are sensitive to lighting conditions, and during the summer, in­
+dividual cows can be disturbed by insects, which leads to abdominal 
+twitching, thus affecting the accuracy of respiratory rate detection. To 
+mitigate the effect of lighting, Tuan et al. (2022) used millimetre-wave 
+radar to continuously measure displacement changes caused by the 
+lateral movements of cows to capture respiratory signals. This method 
+was deployed in a milking parlour, and an R2 of 0.995 was achieved with 
+the actual values observed manually, along with an RMSE of 1.582 
+breaths per minute. Importantly, the detection methods used in milking 
+scenarios may induce slight stress in cows, thus resulting in detected 
+respiratory rates that differ from those observed under calm conditions.
+To mitigate the effects of lighting and interference from cow head 
+movements, Kim and Hidaka (2021) and Zhao et al. (2023) utilized the 
+average temperature in the nasal region as an indicator for RR detection. 
+In their study, Kim and Hidaka (2021) first employed the Mask R-CNN 
+segmentation network to segment the nostril area directly from an RGB 
+video of a cow’s face. They extracted the temperature sequence values 
+that corresponded to the nostril area in the same thermal infrared image 
+frames on the basis of the continuous average temperature changes to 
+detect respiratory rates. The results obtained via this method showed a 
+high correlation with the actual values, and an R2 of 0.91 was achieved. 
+This approach, which leverages image segmentation technology, allows 
+for more precise localization of the nostril region in RGB images, fol­
+lowed by synchronous mapping to obtain the temperature of the nostril 
+region in thermal infrared images. While this method offers accurate 
+perception of respiratory signals, it is complicated, has high operational 
+costs, and relies on camera software for temperature data acquisition, 
+which limits its scalability in subsequent applications.
+To ensure the simplicity of thermal infrared image detection, Zhao 
+et al. (2023) localized the nostril region directly and obtained 
+Fig. 12. Examples of detection peaks.
+Fig. 13. Linear regression analysis of the results predicted by the model in comparison with manually observed results. (a) Regression results of the conventional 
+detection method and (b) regression results of the method that distinguishes between the two nostrils.
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+11 
+
+
+PAGE 12
+temperature sequences from thermal infrared images. They employed 
+the YOLOv8 model to detect and track the nostril area within thermal 
+infrared images and utilized the Mask2Former instance segmentation 
+model to segment the nostril region. By combining this with a hashing 
+algorithm, they extracted the temperature of each pixel within the 
+nostril area. Respiratory rates were detected by counting the peaks in the 
+temperature change curve, and an average accuracy of 94.58 % and a 
+correlation coefficient of 0.95 were achieved. This method eliminates 
+reliance on temperature mapping software and achieves high accuracy 
+in respiratory rate detection; however, movement interference from the 
+cow’s head affects the detection performance significantly.
+While these studies concentrated on temperature changes in thermal 
+infrared imaging, most assumed a frontal view of cows facing the 
+infrared camera and neglected the influence of head movements on the 
+Fig. 14. Comparison of peak detection effects for different processing strategies. (a) Average temperature of the two nostrils, (b) temperature variation obtained by 
+selecting the maximum temperature value of the two nostrils, and (c) temperature variation of the left and right nostrils.
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+12 
+
+
+PAGE 13
+accuracy of respiratory rate detection. By implementing a method that 
+distinguishes between the left and right nostrils and integrates their 
+temperature variation curves, our approach achieved an average respi­
+ratory rate detection accuracy of 96.3 %. Therefore, this study can offer 
+technical support for the advancement of automated monitoring systems 
+and remote diagnosis of respiratory-related illnesses.
+3.6. Practical application in the future
+Based on the research foundation of this work and considering the 
+future applicability of this method, we propose an integrated technology 
+for remote respiratory rate detection by mobile inspection-based ther­
+mal infrared imaging of cows. The preliminary design of the respiratory 
+rate detection system consists of a thermal infrared camera fixed to an 
+inspection robot positioned 60 cm above the ground and 1 m away from 
+the cow’s face. After milking, cows move to the feeding passage; in 
+large-scale dairy operations, milking occurs three times a day. After each 
+feeding session, the inspection robot patrols the feeding passage and 
+records a thermal infrared video of each cow’s face for 3 min. The 
+automatic monitoring model trained in this study will be deployed on 
+the edge computing terminal of the inspection robot, which will identify 
+the cows on the basis of facial information and upload the detection 
+results to a cloud server for visualization of respiratory rate data. An 
+application will be developed and installed on smartphones for moni­
+toring individual and group respiratory rate variations. If any abnor­
+malities in the respiratory rate detection results are detected, the 
+application will send alerts to prompt farm personnel for timely inter­
+vention. This mobile inspection method will facilitate the collection of 
+thermal infrared video data from cows with lower demands on the cow 
+cooperation, thus offering significant advantages for large-scale dairy 
+farms and increasing equipment utilization to reduce costs. In the future, 
+various sensors could be integrated into the inspection robot to monitor 
+the overall physiological health status of the cows.
+4. Conclusions
+In this study, a method was proposed for respiratory rate monitoring 
+using infrared thermography. This method addresses the interference 
+caused by the head movements of cows, as well as the challenge of ac­
+curate nostril segmentation that arises from blurred image features in 
+low-resolution thermal infrared images. This study utilized the 
+YOLOv8n-Pose network architecture for the localization of nostril key­
+points, with a mAP of 0.99 for the keypoint localization task. Circular 
+regions with a radius of 20 pixels centred on the detected keypoints were 
+subsequently cropped to segment the nostril regions. Additionally, a 
+random forest algorithm was used to fit the temperature values, which 
+yielded an R2 value of 0.99 and an MAE of 0.022 ◦C per pixel, thus 
+indicating the high accuracy of the temperature mapping. Furthermore, 
+a strategy for fusing the temperature curves of the left and right nostrils 
+was proposed. The results of the proposed respiratory rate monitoring 
+method revealed a correlation coefficient R2 of 0.92 and an RMSE of 
+3.53 breaths per minute compared with manual observations. The 
+average accuracy of RR detection was 96.3 %. These promising results 
+indicate that the proposed RR detection method can facilitate the 
+application of automated monitoring techniques for the respiratory rate 
+in dairy farming environments. Moreover, when combined with other 
+health monitoring factors, such as body temperature and rumination 
+behaviour, it can serve as a comprehensive means for monitoring the 
+health and welfare of dairy cows.
+CRediT authorship contribution statement
+Xinchao Chen: Writing – review & editing, Writing – original draft, 
+Methodology, Data curation, Conceptualization. Baisheng Dai: Writing 
+– review & editing, Methodology, Funding acquisition, Formal analysis, 
+Data curation. Xinjie Wang: Writing – review & editing, Software, 
+Methodology. Yanxing Li: Validation, Software, Resources. Xiao Fu: 
+Validation, Resources. Xin Dai: Validation, Resources. Hangshu Xin: 
+Data curation. Yang Li: Data curation. Weizheng Shen: Writing – re­
+view & editing, Supervision, Funding acquisition.
+Ethical committee/institutional review board (IRB) approval
+Ethical committee/institutional review board (IRB) approval was not 
+applicable for this study. According to the guidelines of our institution, 
+ethical approval is not required for non-invasive observational studies 
+involving livestock, such as the infrared thermography measurements 
+conducted on dairy cows in this research. No invasive procedures, in­
+terventions, or treatments were performed on the animals.
+Data accessibility statement
+The raw/processed data required to reproduce the above findings 
+cannot be shared at this time as the data also forms part of an ongoing 
+study.
+Funding sources
+This work was supported in part by the National Key Research and 
+Development Program of China (Grant No. 2023YFD2000700), in part 
+by the National Key Research and Development Program of China 
+(Grant No. 2024YFD1300600), in part by the Key Research and Devel­
+opment Program of Heilongjiang Province (Grant No. 2022ZX01A24), in 
+part by the National Natural Science Foundation of China (Grant No. 
+32072788), in part by the Natural Science Foundation of Heilongjiang 
+Province of China (Grant No. ZL2024C014), in part by the Modern 
+Agricultural Industry Technology Collaborative Innovation Promotion 
+System Construction Project of Heilongjiang Province (the Letter of 
+Department of Agriculture and Rural Affairs of Heilongjiang Province 
+(2021) No. 1492), and in part by the earmarked fund for CARS (Grant 
+Table 5 
+Comparison of our proposed algorithm with state-of-the-art methods.
+References
+Signal typea
+Detection area
+Number of video segments
+Number of animals
+Metrics
+Accuracy
+R2
+RMSE
+Zhao et al. (2014)
+RGB
+Abdomen
+72
+72
+95.68 %
+0.9614
+4.1556
+Song et al. (2019)
+RGB
+Abdomen
+105
+–
+98.58 %
+–
+–
+Wu et al. (2020)
+RGB
+Abdomen
+70
+–
+93.04 %
+–
+–
+Mantovani et al. (2023)
+RGB
+Abdomen
+95
+–
+–
+0.73
+8.3
+Shu et al. (2024a)
+RGB
+Abdomen
+–
+–
+–
+–
+5.35
+Wang et al. (2024b)
+RGB
+Abdomen
+250
+–
+92 %
+–
+–
+Tuan et al. (2022)
+FMCW Radar
+Abdomen
+–
+–
+–
+0.995
+1.582
+Kim and Hidaka (2021)
+IRT
+Nose
+50
+5
+–
+0.91
+–
+Zhao et al. (2023)
+IRT
+Nose
+92
+5
+94.58 %
+–
+–
+ours
+IRT
+Nose
+246
+176
+96.3 %
+0.92
+3.53
+a RGB = red, green, blue; FMCW radar = frequency modulated continuous wave radar; and IRT = infrared thermography.
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+13 
+
+
+PAGE 14
+No. CARS-36).
+Declaration of competing interest
+The authors declare that they have no known competing financial 
+interests or personal relationships that could have appeared to influence 
+the work reported in this paper.
+Acknowledgements
+We thank the farm staff at the Shengkang Livestock Farm (Lindian 
+County, Daqing, Heilongjiang, China) for their assistance during the 
+project.
+The correspondence for this article at all stages of the refereeing and 
+publication process, as well as post-publication, will be handled by the 
+second author, Baisheng Dai.
+Data availability
+No
+References
+Das, R., Sailo, L., Verma, N., Bharti, P., Saikia, J., Imtiwati, Kumar, R., 2016. Impact of 
+heat stress on health and performance of dairy animals: a review. Vet. World 9, 
+260–268. https://doi.org/10.14202/vetworld.2016.260-268.
+Eigenberg, R.A., Hahn, G.L., Nienaber, J.A., Brown-Brandl, T.M., Spiers, D.E., 2000. 
+Development of a new respiration rate monitor for cattle. Trans. ASABE (Am. Soc. 
+Agric. Biol. Eng.) 43, 723–728. https://doi.org/10.13031/2013.2755.
+Handa, D., Peschel, J.M., 2022. A review of monitoring techniques for livestock 
+respiration and sounds. Front. Anim. Sci. 3, 904834. https://doi.org/10.3389/ 
+fanim.2022.904834.
+Jocher, G., Qiu, J., Chaurasia, A., 2023. Ultralytics YOLOv8. URL. https://github. 
+com/ultralytics/ultralytics.
+Kim, S., Hidaka, Y., 2021. Breathing pattern analysis in cattle using infrared 
+thermography and computer vision. Animals 11, 207. https://doi.org/10.3390/ 
+ani11010207.
+Lowe, G., Sutherland, M., Waas, J., Schaefer, A., Cox, N., Stewart, M., 2019. Infrared 
+thermography—a non-invasive method of measuring respiration rate in calves. 
+Animals 9, 535. https://doi.org/10.3390/ani9080535.
+Mantovani, R.R., Menezes, G.L., D´orea, J.R.R., 2023. Predicting respiration rate in 
+unrestrained dairy cows using image analysis and Fast Fourier Transform. JDS 
+Communications 5, 310–316. https://doi.org/10.3168/jdsc.2023-0442.
+Milan, H.F.M., Maia, A.S.C., Gebremedhin, K.G., 2016. Technical note: device for 
+measuring respiration rate of cattle under field conditions. J. Anim. Sci. 94, 
+5434–5438. https://doi.org/10.2527/jas.2016-0904.
+Nasirahmadi, A., Edwards, S.A., Sturm, B., 2017. Implementation of machine vision for 
+detecting behaviour of cattle and pigs. Livest. Sci. 202, 25–38. https://doi.org/ 
+10.1016/j.livsci.2017.05.014.
+Pastell, M., Aisla, A.M., Hautala, M., Poikalainen, V., Praks, J., Veerm¨ae, I., Ahokas, J., 
+2006. Contactless measurement of cow behavior in a milking robot. Behav. Res. 
+Methods 38, 479–486. https://doi.org/10.3758/BF03192802.
+Rensis, F.D., Garcia-Ispierto, I., L´opez-Gatius, F., 2015. Seasonal heat stress: clinical 
+implications and hormone treatments for the fertility of dairy cows. Theriogenology 
+84, 659–666. https://doi.org/10.1016/j.theriogenology.2015.04.021.
+Shu, H., Bindelle, J., Gu, X., 2024a. Non-contact respiration rate measurement of 
+multiple cows in a free-stall barn using computer vision methods. Comput. Electron. 
+Agric. 218, 108678. https://doi.org/10.1016/j.compag.2024.108678.
+Shu, H., Wang, K., Guo, L., Bindelle, J., Wang, W., 2024b. Automated collection of facial 
+temperatures in dairy cows via improved UNet. Comput. Electron. Agric. 220, 
+108614. https://doi.org/10.1016/j.compag.2024.108614.
+Song, H., Wu, D., Yin, X., Jiang, B., He, D., 2019. Respiratory behavior detection of cow 
+based on Lucas-Kanade sparse optical flow algorithm. Trans. Chin. Soc. Agric. Eng. 
+35, 215–224. https://doi.org/10.11975/j.issn.1002-6819.2019.17.026.
+Stewart, M., Wilson, M.T., Schaefer, A.L., Huddart, F., Sutherland, M.A., 2017. The use of 
+infrared thermography and accelerometers for remote monitoring of dairy cow 
+health and welfare. J. Dairy Sci. 100, 3893–3901. https://doi.org/10.3168/ 
+jds.2016-12055.
+Strutzke, S., Fiske, D., Hoffmann, G., Ammon, C., Heuwieser, W., Amon, T., 2019. 
+Technical note: Development of a noninvasive respiration rate sensor for cattle. 
+J. Dairy Sci. 102, 690–695. https://doi.org/10.3168/jds.2018-14999.
+Tuan, S.-A., Rustia, D.J.A., Hsu, J.-T., Lin, T.-T., 2022. Frequency modulated continuous 
+wave radar-based system for monitoring dairy cow respiration rate. Comput. 
+Electron. Agric. 196, 106913. https://doi.org/10.1016/j.compag.2022.106913.
+Wang, M., Li, S., Peng, R., R¨ais¨anen, S.E., Serviento, A.M., Sun, X., Wang, K., Yu, F., 
+Niu, M., 2024a. Learning end-to-end respiratory rate prediction of dairy cows from 
+RGB videos. J. Dairy Sci. https://doi.org/10.3168/jds.2023-24601.
+Wang, X., Chen, B., Yang, R., Liu, K., Cuan, K., Cao, M., 2024b. A non-contact and fasting 
+estimating method for respiration rate of cows using machine vision. Agriculture 
+(Switzerland) 14. https://doi.org/10.3390/agriculture14010040.
+Wu, D., Yin, X., Jiang, B., Jiang, M., Li, Z., Song, H., 2020. Detection of the respiratory 
+rate of standing cows by combining the Deeplab V3+ semantic segmentation model 
+with the phase-based video magnification algorithm. Biosyst. Eng. 192, 72–89. 
+https://doi.org/10.1016/j.biosystemseng.2020.01.012.
+Yan, G., Liu, K., Hao, Z., Shi, Z., Li, H., 2021. The effects of cow-related factors on rectal 
+temperature, respiration rate, and temperature-humidity index thresholds for 
+lactating cows exposed to heat stress. J. Therm. Biol. 100, 103041. https://doi.org/ 
+10.1016/j.jtherbio.2021.103041.
+Zhao, K., Duan, Y., Chen, J., Li, Q., Hong, X., Zhang, R., Wang, M., 2023. Detection of 
+respiratory rate of dairy cows based on infrared thermography and deep learning. 
+Agriculture 13, 1939. https://doi.org/10.3390/agriculture13101939.
+Zhao, K., He, D., Wang, E., 2014. Detection of breathing rate and abnormity of dairy 
+cattle based on video analysis. Trans. Chin. Soc. Agric. Mach. 45, 258–263. https:// 
+doi.org/10.6041/j.issn.1000-1298.2014.10.040.
+X. Chen et al.                                                                                                                                                                                                                                    
+Journal of Thermal Biology 130 (2025) 104154 
+14 

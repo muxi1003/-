@@ -1,0 +1,10 @@
+{
+  "windows": 82,
+  "arms": 16,
+  "predictions": 1312,
+  "metric_rows": 272,
+  "paired_intervals": 153,
+  "original_sources_unchanged": true,
+  "novelty_and_final_claim_review": "pending",
+  "no_automatic_adoption": true
+}

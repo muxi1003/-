@@ -1,0 +1,7 @@
+{
+  "id": "infant2020",
+  "public_source_url": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC7510882/unicode",
+  "prior_failures_preserved": true,
+  "status": "retrieval_failed",
+  "error": "syntax error: line 1, column 0"
+}

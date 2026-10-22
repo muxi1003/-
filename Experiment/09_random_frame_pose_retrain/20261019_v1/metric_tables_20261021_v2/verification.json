@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "date": "2026-10-21T09:09:44.158850+08:00",
+  "new_replay": {
+    "metric_rows_recomputed": 20,
+    "stored_intervals_recomputed": 15,
+    "event_match_rows_checked": 9333,
+    "saved_peak_curves_checked": 796
+  },
+  "old_replay": {
+    "metric_rows_recomputed": 56,
+    "stored_intervals_recomputed": 42,
+    "event_match_rows_checked": 9356,
+    "saved_peak_curves_checked": 0
+  },
+  "aggregate_rows": 168,
+  "existing_comparison_rows_checked": 28,
+  "exploratory_paired_intervals": 49,
+  "new_best_epoch": 200,
+  "new_last_epoch": 200,
+  "old_best_epoch": 85,
+  "old_last_epoch": 135,
+  "workbook_sheets": [
+    "说明",
+    "YOLO最佳轮验证",
+    "RR新旧8列",
+    "RR新随机4列",
+    "RR旧牛号4列",
+    "RR历史训练组_非新训练窗",
+    "RR历史验证组_非新验证窗",
+    "探索性配对区间",
+    "重算汇总长表",
+    "流水线已有新旧比较",
+    "新逐窗四组记录",
+    "旧逐窗四组记录",
+    "参考及暴露",
+    "新逐轮训练",
+    "来源哈希"
+  ],
+  "workbook_cells_roundtripped": 60602,
+  "last_row_all155_historical_train127_val28_checked": true,
+  "formulas": 0,
+  "error_cells": 0,
+  "missing_metrics_preserved": true,
+  "source_files_unchanged": true,
+  "excel_ui_render": "not run",
+  "default_changed": false
+}

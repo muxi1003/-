@@ -1,0 +1,15 @@
+{
+  "pid": 19932,
+  "name": "yolo11n_pose_frame_random_20261019_v1",
+  "default_changed": false,
+  "no_independent_test": true,
+  "stage": "complete",
+  "heartbeat_at": "2026-10-21T05:05:53.159881+08:00",
+  "child_pid": null,
+  "command": [
+    "E:\\real\\anaconda\\envs\\plant_gpu\\python.exe",
+    "-u",
+    "E:\\real\\use_code\\yoloV8\\Experiment\\09_random_frame_pose_retrain\\20261019_v1\\run.py",
+    "summarize"
+  ]
+}

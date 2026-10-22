@@ -1,0 +1,103 @@
+[
+  {
+    "id": "chen2025",
+    "local_pdf": "E:/real/学习/呼吸文献/1-s2.0-S0306456525001111-main.pdf",
+    "url": "https://doi.org/10.1016/j.jtherbio.2025.104154",
+    "doi": "10.1016/j.jtherbio.2025.104154",
+    "status": "full_text_local_user_supplied",
+    "pages": 14,
+    "pdf_sha256": "3585d5d898038d2c2259784a8f732625cc3357948f2626ccfe6d5f00fd1507d4",
+    "text_path": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\literature\\chen2025.txt",
+    "text_sha256": "ebdaedc12918b23749b7becb7420e2c27e24fc597c80f5ce82f36502d69210cb",
+    "characters": 61128
+  },
+  {
+    "id": "zhao2023",
+    "local_pdf": "E:/real/学习/呼吸文献/agriculture-13-01939-v2.pdf",
+    "url": "https://www.mdpi.com/2077-0472/13/10/1939",
+    "doi": "10.3390/agriculture13101939",
+    "status": "full_text_local_user_supplied",
+    "pages": 15,
+    "pdf_sha256": "384728121f522767ba57ad57397c05b6769670e75e8c9f1eda3a51efae530a20",
+    "text_path": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\literature\\zhao2023.txt",
+    "text_sha256": "16abb036a7362fe57ecb040c46b9918a32db83e2f303b629aab677176a944504",
+    "characters": 49975
+  },
+  {
+    "id": "negishi2020",
+    "pmcid": "PMC7218727",
+    "url": "https://www.mdpi.com/1424-8220/20/8/2171",
+    "retrieval_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7218727/fullTextXML",
+    "status": "full_text_open_jats",
+    "title": "Contactless Vital Signs Measurement System Using RGB-Thermal Image Sensors and Its Clinical Screening Test on Patients with Seasonal Influenza",
+    "journal": "Sensors (Basel, Switzerland)",
+    "authors": [
+      "Toshiaki Negishi",
+      "Shigeto Abe",
+      "Takemi Matsui",
+      "He Liu",
+      "Masaki Kurosawa",
+      "Tetsuo Kirimoto",
+      "Guanghao Sun"
+    ],
+    "doi": "10.3390/s20082171",
+    "license": "https://creativecommons.org/licenses/by/4.0/ Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license ( http://creativecommons.org/licenses/by/4.0/ ).",
+    "xml_sha256": "7feb29db68c21a1d0d2e253180c8673f21a1b19a02c87fb8445abe554af4a764",
+    "text_path": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\literature\\negishi2020.txt",
+    "text_sha256": "38140fa11d6cb65e7cfa810bf81cf2813e752e14f45668e923ed6fc1e5a03d99",
+    "characters": 30409
+  },
+  {
+    "id": "takahashi2021",
+    "pmcid": "PMC8271612",
+    "url": "https://www.mdpi.com/1424-8220/21/13/4406",
+    "retrieval_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8271612/fullTextXML",
+    "status": "full_text_open_jats",
+    "title": "Estimation of Respiratory Rate from Thermography Using Respiratory Likelihood Index",
+    "journal": "Sensors (Basel, Switzerland)",
+    "authors": [
+      "Yudai Takahashi",
+      "Yi Gu",
+      "Takaaki Nakada",
+      "Ryuzo Abe",
+      "Toshiya Nakaguchi",
+      "Paola Saccomandi"
+    ],
+    "doi": "10.3390/s21134406",
+    "license": "https://creativecommons.org/licenses/by/4.0/ Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license ( https://creativecommons.org/licenses/by/4.0/ ).",
+    "xml_sha256": "999af5f27388d91c3bed38b031ada921473a5080c7dfbe37132ae59d00abfba8",
+    "text_path": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\literature\\takahashi2021.txt",
+    "text_sha256": "cd699f6cc448228bcc7c9914ed490dafb5a6de41804cff7e20fb9127dbf9af7d",
+    "characters": 25741
+  },
+  {
+    "id": "infant2020",
+    "pmcid": "PMC7510882",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7510882/",
+    "retrieval_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7510882/fullTextXML",
+    "status": "retrieval_failed",
+    "error": "SSLError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /europepmc/webservices/rest/PMC7510882/fullTextXML (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')))"
+  },
+  {
+    "id": "analia2026",
+    "pmcid": "PMC12788367",
+    "url": "https://www.mdpi.com/1424-8220/26/1/278",
+    "retrieval_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12788367/fullTextXML",
+    "status": "full_text_open_jats",
+    "title": "Adaptive Thermal Imaging Signal Analysis for Real-Time Non-Invasive Respiratory Rate Monitoring",
+    "journal": "Sensors (Basel, Switzerland)",
+    "authors": [
+      "Riska Analia",
+      "Anne Forster",
+      "Sheng-Quan Xie",
+      "Zhiqiang Zhang",
+      "Jianxiong Zhu"
+    ],
+    "doi": "10.3390/s26010278",
+    "license": "Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the  Creative Commons Attribution (CC BY) license .",
+    "xml_sha256": "2de8fc138940ee22393602d862f7247b59e8f7031ed38d2ae65cc8306ccdda8a",
+    "text_path": "E:\\real\\use_code\\yoloV8\\Experiment\\08_quality_selection_verification\\20261019_v1\\literature\\analia2026.txt",
+    "text_sha256": "793c6a7ec892ba6912766c00b10ae25088efe2df0525a0f6ffa885e68a2e29d0",
+    "characters": 93416
+  }
+]

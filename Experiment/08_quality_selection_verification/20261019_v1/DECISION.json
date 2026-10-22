@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-19",
+  "claim_supported": "partial",
+  "approved_plan_route": "uncertain",
+  "novelty_recommendation": "PROCEED WITH CAUTION",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "integrity_status": "not_formally_audited",
+  "agent_id": "01a151e3-f878-7b73-9d50-75f41858584f",
+  "issue": "Label extreme cases as all82, not primary47",
+  "resolution": "Corrected case report, plot generator and six panel captions without changing predictions",
+  "decision_gates": {
+    "novelty_narrow_verifiable_difference": true,
+    "primary47_ci_upper_below_zero": false,
+    "all82_mae_direction_not_reversed": true,
+    "val13_not_worse_than_train_selected_fixed": true,
+    "both_primary_and_all_no_mae_improvement": false
+  },
+  "default_changed": false,
+  "new_annotation": false,
+  "new_yolo_training_or_inference": false,
+  "automatic_next_iteration": false,
+  "latest_project_node": "N100"
+}

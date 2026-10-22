@@ -1,0 +1,117 @@
+{
+  "metric_rows_recomputed": 56,
+  "paired_intervals_recomputed": 42,
+  "event_match_rows_checked": 9356,
+  "rr_scored_windows": 155,
+  "event_scored_windows": 82,
+  "segments": 199,
+  "prediction_rows": 796,
+  "best_epoch": 85,
+  "last_epoch": 135,
+  "best_weight_metrics_match_epoch": true,
+  "all_missing_signal_outputs": 4,
+  "pooled_metric_rows": 12,
+  "approx30_metric_rows": 12,
+  "pooled_paired_interval_rows": 30,
+  "audited_73_sources": 73,
+  "pooled_all_rr_windows": 155,
+  "pooled_val_rr_windows": 28,
+  "pooling_status": "exploratory_mixed_duration_not_155_new_30s",
+  "audit_73": {
+    "rows": 73,
+    "replayed_frames": 7488,
+    "duration_min_seconds": 6.0,
+    "duration_max_seconds": 20.0,
+    "all_source_hashes_match": true,
+    "all_video_metadata_frame_counts_match": true
+  },
+  "status": "passed",
+  "workbook_sheets": [
+    "按指标_all",
+    "按指标_train",
+    "按指标_val",
+    "说明",
+    "YOLO最佳轮验证",
+    "RR_all",
+    "配对区间_all",
+    "RR_train",
+    "配对区间_train",
+    "RR_val",
+    "配对区间_val",
+    "逐窗四组明细",
+    "原始RR汇总",
+    "原始配对区间",
+    "逐轮训练记录",
+    "来源哈希",
+    "合计_混合时长",
+    "仅约30秒窗",
+    "合计配对区间",
+    "73输入时长核查"
+  ],
+  "workbook_formula_count": 0,
+  "workbook_error_count": 0,
+  "source_files_unchanged": true,
+  "generated_at": "2026-10-17T19:54:14.637647+08:00",
+  "sources": [
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\COMPLETED.json",
+      "sha256": "5d6e3edcd7d79249425a1088e0344244ae6c306f13094de0a23a7cecaeaba0ab"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\metrics.csv",
+      "sha256": "ec6ec857c6e456f74fb9aa208fe94076c4dc35ccad7415c636e00c94ae95a326"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\paired_intervals.csv",
+      "sha256": "07327f1fe1f0108ff64bec1875596e252b2c95bcd267b27e3b677c33e627153f"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\predictions.csv",
+      "sha256": "108f98623c0ece9882bd6e75fe401a131f49183aab321197a36a2831bcd707b8"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\event_matches.csv",
+      "sha256": "bed1847fba1f3fa251f67e9850d7ef872c2924cb64823df886262e0a2b8b3268"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\reference_registry.csv",
+      "sha256": "95110e724cb2eefe3156371f8cb7a789b250ba71c1449da49be84a7d2e56904c"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\freeze.json",
+      "sha256": "f6b40fbbdd2d1917ae4b881bcb6ed2c72765fc291984532226a550e2c02caff0"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\training_runs\\yolo11n_pose_lindian_20261016_v1\\results.csv",
+      "sha256": "68ff398b65c896cf9de4bd135ecf88dc977bb0210109296ddd9b4a0e80c10b1f"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\training_runs\\yolo11n_pose_lindian_20261016_v1\\weights\\best.pt",
+      "sha256": "87646cc1d1acfe91575d9741b7c40d0c4d58e895b6491e3bb19b554ec7165b6e"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\yolo_dataset_lindian_20261016_v1\\READY.json",
+      "sha256": "e1568df218531ec43437f30270594692c657e6afcbced455f9a9479869c22826"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\corpus_v1\\segments.csv",
+      "sha256": "f0584820a4c177472875be25474bb16551a44f0f8c55d2a7c831ff56f76f92c3"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\corpus_v1\\manual_review_status.csv",
+      "sha256": "cb6cc64bd0fde9c97b14908cb437e7477033eff32be51bde9a86a40d0ec88e7a"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\frames.csv",
+      "sha256": "5316632e098c14eaafe8acc0e85289798d8c93d6b62497d1e44c841f354bb277"
+    },
+    {
+      "path": "E:\\real\\use_code\\yoloV8\\Experiment\\07_all_video_pose_retrain\\replay_lindian_20261016_v1\\frame_times.csv",
+      "sha256": "96f753825318e968ecabcc73f65e40941d6a36ba892e734d09f58281ed4d9351"
+    },
+    {
+      "path": "E:\\real\\汇报+论文\\组会\\第三次工作汇报材料\\cow_rr_group_meeting_20260908_v4.pptx",
+      "sha256": "fc789b5923fb1ed7430002496316ac6b2c86d7545001de1aa5465399b0c149aa"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+test_ablation_removes_exactly_one_term (test_verification.VerificationTests) ... ok
+test_cluster_pairing_keeps_whole_cow_and_checks_membership (test_verification.VerificationTests) ... ok
+test_constant_curve_and_tie_order (test_verification.VerificationTests) ... ok
+test_filling_policies_include_endpoints (test_verification.VerificationTests) ... ok
+test_global_fixed_mode_ignores_validation_errors_and_uses_declared_ties (test_verification.VerificationTests) ... ok
+test_p0_center_frame_mapping_and_duration_formula (test_verification.VerificationTests) ... ok
+test_rr_metrics_recompute_sse_not_average_r2 (test_verification.VerificationTests) ... ok
+test_single_side_and_bilateral_missing (test_verification.VerificationTests) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.065s
+
+OK

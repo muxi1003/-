@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "window_arms": 164,
+  "windows": 82,
+  "counts_peaks_modes_curves_and_times_match": true,
+  "new_implementation_matches_original": true
+}

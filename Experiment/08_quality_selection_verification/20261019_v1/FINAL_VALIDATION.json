@@ -1,0 +1,159 @@
+{
+  "status": "passed",
+  "client_date": "2026-10-19",
+  "utc_completed": "2026-10-19T02:10:58.508320+00:00",
+  "required_artifacts": [
+    "README.md",
+    "REPORT.md",
+    "PROTOCOL.md",
+    "WRITING_DRAFT.md",
+    "CLAIMS_FROM_RESULTS.md",
+    "DECISION.json",
+    "metric_comparison.xlsx",
+    "literature_comparison.csv",
+    "LITERATURE_COMPARISON.md",
+    "predictions.csv",
+    "candidate_quality.csv",
+    "predicted_events.csv",
+    "event_matches.csv",
+    "metrics.csv",
+    "paired_intervals.csv",
+    "replay_acceptance.json",
+    "numeric_validation.json",
+    "supplemental_validation.json",
+    "score_selection_diagnostics.csv",
+    "score_selection_summary.csv",
+    "reference_coverage.csv",
+    "upstream_provenance_check.csv",
+    "CASES.md",
+    "freeze.json"
+  ],
+  "original_sources_and_core_hashes_unchanged": true,
+  "source_hash_count": 96,
+  "upstream_hash_count": 131,
+  "unit_tests_passed": 8,
+  "numeric_validation": {
+    "status": "passed",
+    "predictions": 1312,
+    "curves_independently_recounted": 1312,
+    "metrics_recomputed": 272,
+    "paired_intervals_rebuilt": 153,
+    "event_match_rows_checked": 37350,
+    "tp_one_to_one_and_within_tolerance": true,
+    "original_source_hashes_unchanged": true,
+    "workbook_sheets": [
+      "说明",
+      "指标_all",
+      "指标_train",
+      "指标_val",
+      "原始汇总",
+      "全部配对区间",
+      "逐窗16组预测",
+      "候选质量",
+      "条件差值分解",
+      "病例",
+      "来源哈希"
+    ],
+    "figures": 9,
+    "conditional_decomposition_identity_passed": true,
+    "workbook_error_cells": 0
+  },
+  "historical_replay": {
+    "status": "passed",
+    "window_arms": 164,
+    "windows": 82,
+    "counts_peaks_modes_curves_and_times_match": true,
+    "new_implementation_matches_original": true
+  },
+  "final_figure_checks": [
+    {
+      "path": "figures\\arm_mae_matrix.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "std": 65.45656406712156,
+      "color_fraction": 0.5976692708333333
+    },
+    {
+      "path": "figures\\cases\\A49_190588.png",
+      "size": [
+        1920,
+        1008
+      ],
+      "std": 37.22785635337242,
+      "color_fraction": 0.022142650462962963
+    },
+    {
+      "path": "figures\\cases\\A49_ns211095.png",
+      "size": [
+        1920,
+        1008
+      ],
+      "std": 40.29875173322399,
+      "color_fraction": 0.034793526785714284
+    },
+    {
+      "path": "figures\\cases\\P1_20230809T080543n200798_000_030.png",
+      "size": [
+        1920,
+        1008
+      ],
+      "std": 39.11195426770755,
+      "color_fraction": 0.026103153935185187
+    },
+    {
+      "path": "figures\\cases\\P3_20230809T082820n16110673_030_060.png",
+      "size": [
+        1920,
+        1008
+      ],
+      "std": 39.13350194220405,
+      "color_fraction": 0.027192873677248677
+    },
+    {
+      "path": "figures\\cases\\P3_20230810T071310n211109_000_030.png",
+      "size": [
+        1920,
+        1008
+      ],
+      "std": 37.708486369770945,
+      "color_fraction": 0.020033998842592594
+    },
+    {
+      "path": "figures\\cases\\P3_20230810T145443n170131_000_030.png",
+      "size": [
+        1920,
+        1008
+      ],
+      "std": 39.10278989817474,
+      "color_fraction": 0.02556836970899471
+    },
+    {
+      "path": "figures\\continuous_attribution.png",
+      "size": [
+        1980,
+        827
+      ],
+      "std": 38.35688764464085,
+      "color_fraction": 0.011061033551964628
+    },
+    {
+      "path": "figures\\score_term_ablation.png",
+      "size": [
+        1800,
+        792
+      ],
+      "std": 34.78570564030769,
+      "color_fraction": 0.009941077441077441
+    }
+  ],
+  "cases_scope_label_fixed": true,
+  "project_node": "N100",
+  "review_status": "same-family/provisional/not_formally_audited",
+  "new_annotation": false,
+  "new_yolo_training_or_inference": false,
+  "new_algorithm_modules": false,
+  "default_model_or_rr_changed": false,
+  "workbook_office_render": "not run"
+}

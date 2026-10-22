@@ -1,3 +1,9 @@
 ultralytics_config/
 training_runs/
 yolo_dataset_*/
+annotation_intake_*/converted_labels/
+annotation_final_*/converted_labels/
+pipeline_logs/
+replay_lindian_*/temperatures/
+replay_lindian_*/curves/
+replay_lindian_*/plots/

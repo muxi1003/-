@@ -1,0 +1,49 @@
+{
+  "results": [
+    {
+      "id": "mixed155_control_mae",
+      "value": "3.9168264862803808",
+      "source": "Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json",
+      "status": "verified",
+      "detail": "'3.9168264862803808' found in Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json"
+    },
+    {
+      "id": "val28_quality_mae",
+      "value": "3.0399695153209882",
+      "source": "Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json",
+      "status": "verified",
+      "detail": "'3.0399695153209882' found in Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json"
+    },
+    {
+      "id": "val28_quality_ci_upper",
+      "value": "-0.23066568378971983",
+      "source": "Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json",
+      "status": "verified",
+      "detail": "'-0.23066568378971983' found in Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json"
+    },
+    {
+      "id": "mixed155_quality_ci_upper",
+      "value": "0.3462538857297116",
+      "source": "Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json",
+      "status": "verified",
+      "detail": "'0.3462538857297116' found in Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json"
+    },
+    {
+      "id": "actual73_frames",
+      "value": "7488",
+      "source": "Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json",
+      "status": "verified",
+      "detail": "'7488' found in Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json"
+    },
+    {
+      "id": "actual73_duration_max",
+      "value": "20.0",
+      "source": "Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json",
+      "status": "verified",
+      "detail": "'20.0' found in Experiment\\07_all_video_pose_retrain\\metric_tables_20261017_v2\\aggregation_summary.json"
+    }
+  ],
+  "summary": {
+    "verified": 6
+  }
+}

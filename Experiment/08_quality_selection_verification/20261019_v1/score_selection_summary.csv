@@ -1,0 +1,17 @@
+﻿scope,split,removed_term,windows,selection_changed,error_improved,error_worsened,error_equal,delta_mae_bpm
+primary47,all,prominence,47,8,1,5,41,0.2127252425758732
+primary47,all,amplitude,47,18,5,4,38,-0.2546742474214796
+primary47,all,interval_cv,47,6,0,6,41,0.9795383317991583
+primary47,all,missing,47,9,0,6,41,0.9795238001707285
+all82,all,prominence,82,13,2,9,71,0.41461080976909803
+all82,all,amplitude,82,34,10,9,63,-0.21914255644889682
+all82,all,interval_cv,82,11,0,11,71,0.9516866048117126
+all82,all,missing,82,26,2,14,66,1.2931416903417592
+all82,train,prominence,69,8,2,5,62,0.08695436690862093
+all82,train,amplitude,69,31,10,8,51,-0.31845705478534003
+all82,train,interval_cv,69,8,0,8,61,0.9280693363389478
+all82,train,missing,69,24,2,12,55,1.217934636012406
+all82,val,prominence,13,5,0,4,9,2.1537103911054767
+all82,val,amplitude,13,3,0,1,12,0.3079882424137631
+all82,val,interval_cv,13,3,0,3,10,1.0770397990133107
+all82,val,missing,13,2,0,2,11,1.692317594089863
