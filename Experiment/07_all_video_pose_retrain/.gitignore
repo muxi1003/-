@@ -1,8 +1,12 @@
 ultralytics_config/
 training_runs/
 yolo_dataset_*/
-annotation_intake_*/converted_labels/
-annotation_final_*/converted_labels/
+# X-AnyLabeling 标注的逐帧导出（约 12.3 万个文件 / 174MB，多为每帧一个 json 或 txt）
+# 文件数过多会显著拖慢 git status；标注本体与 converted_labels 一并留在磁盘不入库。
+# 收到的原始提交与审计结论仍由 annotation_declarations / audit 报告与 SUPERSEDED 类说明记录。
+annotation_intake_*/
+annotation_final_*/
+biaozhu/
 pipeline_logs/
 replay_lindian_*/temperatures/
 replay_lindian_*/curves/
